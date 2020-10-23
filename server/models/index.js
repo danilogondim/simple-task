@@ -27,7 +27,7 @@ module.exports = (db) => {
   const addUser = (firstName, lastName, phone, email, password, address, photoUrl) => {
     const query = {
       text: `INSERT INTO users (first_name, last_name, phone, email, password, address, photo_url) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
-      values: [firstName, lastName, phone, email, password, address,  photoUrl]
+      values: [firstName, lastName, phone, email, password, address, photoUrl]
     };
 
     return db.query(query)
@@ -69,10 +69,36 @@ module.exports = (db) => {
     throw 'It seems that the user id is missing or there are no fields to update';
   };
 
+  const getTaskersByService = service_id => {
+
+    const query = {
+      text: `
+        SELECT first_name, last_name, address, photo_url, vehicle, hourly_rate, AVG(user_rate) AS user_rate
+        FROM users
+        JOIN service_taskers ON users.id = service_taskers.tasker_id
+        LEFT JOIN task_reviews ON users.id = task_reviews.tasker_id
+
+        WHERE
+          service_id = $1 AND
+          is_tasker = 't' AND
+          is_available = 't'
+        GROUP BY first_name, last_name, address, photo_url, vehicle, hourly_rate;
+      `,
+      values: [service_id]
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
+
   return {
     getUsers,
     getUserByEmail,
     addUser,
-    updateUser
+    updateUser,
+    getTaskersByService
   };
 };
