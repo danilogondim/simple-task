@@ -1,22 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+
+// import logo from './logo.svg';
 import './App.css';
-import useApplicationData from './hooks/useApplicationData'
+// import useApplicationData from './hooks/useApplicationData'
 
+import Navbar from './components/Navbar';
 
-const App = () => {
-  const {
-    state,
-    dispatch
-  } = useApplicationData();
-  const userList = state.users.map((user) => (<li key={user.id} > {user.first_name} {user.last_name} {user.email} </li>
-  ));
-  return (<div className="App" >
-    <h1> Users </h1>
+import Home                 from './pages/Home';
+import About                from './pages/About';
+import Users                from './pages/Users';
+import Login                from './pages/Login';
+import Register             from './pages/Register';
 
-    <ul> {userList} </ul>
-  </div >
+export default function App() {
+  return (
+    <Router>
+      <div>
+        <Navbar/>
+        <Switch>
+          <Route exact path="/">        <Home/>         </Route>
+          <Route path="/about">         <About/>        </Route>
+          <Route path="/login">         <Login/>        </Route>
+          <Route path="/Register">      <Register/>     </Route>
+          <Route path="/users">         <Users/>        </Route>
+        </Switch>
+      </div>
+    </Router>
   );
-};
-
-export default App;
+}
