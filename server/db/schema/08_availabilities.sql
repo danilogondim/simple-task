@@ -7,3 +7,7 @@ CREATE TABLE availabilities (
   start_hour TIME NOT NULL,
   end_hour TIME NOT NULL
 );
+
+-- situation the table is trying to handle: I don't want to work at Mondays from 7am to 1pm
+
+-- situation the table is not handling: I don't want to work from October 23th until November 1st (how it can be handled with the current solution: users/id/edit -> is_available = false)
