@@ -19,7 +19,7 @@ module.exports = ({
       }));
   });
 
-
+  /* create new user */
   router.post('/', (req, res) => {
 
     const {
@@ -51,6 +51,7 @@ module.exports = ({
 
   })
 
+  /* update user information */
   router.put("/:id", (req, res) => {
 
     // we need to include some logic to be able to verify if the user who is doing the request is the owner of the account
