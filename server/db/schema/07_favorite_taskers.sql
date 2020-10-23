@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS favorite_taskers CASCADE;
+CREATE TABLE favorite_taskers (
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  tasker_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+);
