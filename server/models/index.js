@@ -110,7 +110,8 @@ module.exports = (db) => {
       JOIN service_taskers ON services.id = service_id
       JOIN users ON tasker_id = users.id
       WHERE is_available = 't'
-      GROUP BY categories.id, categories.name, categories.description, services.id, services.name, services.description`
+      GROUP BY categories.id, categories.name, categories.description, services.id, services.name, services.description
+      ORDER BY categories.id, services.id`
     };
 
     return db

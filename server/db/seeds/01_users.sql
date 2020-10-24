@@ -22,9 +22,3 @@ VALUES
  ('Mario', 'Bros', '4161234567', 'mario@nintendo.com', 'test13', '123 random street', 't', 'https://images.unsplash.com/photo-1602459816722-ce53719a4987?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 't', 'kart'),
  ('Luigi', 'Bros', '6477654321', 'luigi@nintendo.com', 'test14', '123 random street', 't', 'https://images.unsplash.com/photo-1542988538-30d8820ec5fd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80', 't', 'kart'),
  ('Princess', 'Peach', '4162222222', 'peach@nintendo.com', 'test15', '123 random street', 't', 'https://images.unsplash.com/photo-1598021605336-7e9ed0d52efb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 't', 'car');
-
-
-
-
-
-
