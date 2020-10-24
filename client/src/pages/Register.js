@@ -1,25 +1,13 @@
 import React from 'react';
+import Registration from '../components/Registration.js'
 
-export default function Login() {
+export default function Register() {
 
   // for later use <form onSubmit={handleSubmit}>
 
   return (
-    <>
-      <h1>Please Register</h1>
-
-      <form>
-        <input type="text" name="name" id="name" placeholder="name" />
-        <input type="text" name="email" id="email" placeholder="email" />
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="password"
-        />
-
-        <input type="submit" value="Register" />
-      </form>
-    </>
+    
+    <Registration />
+  
   );
 }
