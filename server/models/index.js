@@ -93,12 +93,38 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const getCategories = () => {
+    const query = {
+      text: `
+      SELECT
+        categories.id AS category_id,
+        categories.name AS category,
+        categories.description AS category_description,
+        services.id AS service_id,
+        services.name AS service,
+        services.description AS service_description,
+        MIN(hourly_rate) AS min_rate,
+        MAX(hourly_rate) AS max_rate
+      FROM categories
+      JOIN services ON categories.id = category_id
+      JOIN service_taskers ON services.id = service_id
+      JOIN users ON tasker_id = users.id
+      WHERE is_available = 't'
+      GROUP BY categories.id, categories.name, categories.description, services.id, services.name, services.description`
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
 
   return {
     getUsers,
     getUserByEmail,
     addUser,
     updateUser,
-    getTaskersByService
+    getTaskersByService,
+    getCategories
   };
 };
