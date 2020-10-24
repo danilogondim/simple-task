@@ -1,4 +1,4 @@
--- Pets
+-- Pets (ids: 1-3)
 INSERT INTO
 services(name, description, category_id, thumbnail_photo_url)
 VALUES
@@ -6,7 +6,7 @@ VALUES
  ('Pet walking', 'Tough day? Let us help you with your pets'' needs!',1,'https://images.unsplash.com/photo-1494947665470-20322015e3a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'),
  ('Pet feeding','Do you want to keep your pet at home while you are travelling? This service is definitely for you!',1,'https://images.unsplash.com/photo-1580238169544-86bf7cd8c84c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60');
 
--- House
+-- House (ids: 4-7)
 INSERT INTO
 services(name, description, category_id, thumbnail_photo_url)
 VALUES
@@ -16,7 +16,7 @@ VALUES
  ('Moving Assitance','Hire a professional to handle your moving! You will thank us latter...',2,'https://images.unsplash.com/photo-1600725935160-f67ee4f6084a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
 
 
--- Garden
+-- Garden (ids: 8-9)
 INSERT INTO
 services(name, description, category_id, thumbnail_photo_url)
 VALUES
@@ -24,7 +24,7 @@ VALUES
  ('Showering flowers','Let a specialist water your plants and have amazing results!',3,'https://images.unsplash.com/photo-1494007485290-ce668e189d92?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60');
 
 
--- Food
+-- Food (ids: 10-11)
 INSERT INTO
 services(name, description, category_id, thumbnail_photo_url)
 VALUES
