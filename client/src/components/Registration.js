@@ -1,9 +1,15 @@
 import React from 'react';
 import './Registration.scss';
+import { useForm } from 'react-hook-form';
 
 export default function Registration() {
 
-    // for later use <form onSubmit={handleSubmit}>
+
+  const { register, handleSubmit, errors } = useForm();
+  const onSubmit = (data) => {
+    console.log(data)
+  }
+
 
   return (
     <div>
@@ -13,25 +19,31 @@ export default function Registration() {
 
 
       <h2>User: </h2>
-        <form>
+        <form className='Registration-form' onSubmit={handleSubmit(onSubmit)}>
           <label>First Name*:</label>
-          <input type="text" name="first_name" id="first_name" /><br />
+          <input type="text" name="first_name" ref={register({ required: true})} /><br />
+
           <label>Last Name*:</label>
-          <input type="text" name="last_name" id="last_name" /><br />
+          <input type="text" name="last_name" ref={register({ required: true})}  /><br />
+
           <label>Phone*:</label>
-          <input type="number" name="phone" id="phone" /><br />
+          <input type="tel" name="phone" ref={register({ required: true})}  /><br />
+
           <label>Email*:</label>
-          <input type="text" name="email" id="email" /><br />
+          <input type="email" name="email" ref={register({ required: true})}  /><br />
+
           <label>Password*:</label>
-          <input type="password" name="password" id="password" /><br />
-          <label>Confirm Password*:</label>
-          <input type="password" name="confirm_password" id="confirm_password" /><br />
+          <input type="password" name="password" ref={register({ required: true, minLength: 6})}  /><br />
           <label>Address*:</label>
-          <input type="text" name="address" id="address" /><br />
+          <input type="text" name="address" ref={register({ required: true})}  /><br />
+
           <label>Photo:</label>
-          <input type="text" name="photo" id="photo" /><br />
-          <input type="submit" value="Register" />
+          <input type="text" name="photo_url" ref={register({ required: false})}  /><br />
+          
+          <input type="submit" name="submit_register" />
         </form>
+
+      <p>Are you looking to become a tasker? Make an account as an user and upgrade it for free after.</p>
 
     
 
