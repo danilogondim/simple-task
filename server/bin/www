@@ -25,9 +25,9 @@ const server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port, () => console.log(`SimpleTask listing on port ${port}`));
-server.on('error', onError);
-server.on('listening', onListening);
+app.listen(port, () => console.log(`CORS-enabled\nSimpleTask listening on port ${port}`));
+app.on('error', onError);
+app.on('listening', onListening);
 
 /**
  * Normalize a port into a number, string, or false.
