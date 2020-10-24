@@ -29,6 +29,7 @@ module.exports = ({
       email,
       password,
       address,
+      coordinates,
       photo_url
     } = req.body;
 
@@ -40,7 +41,7 @@ module.exports = ({
             msg: 'Sorry, a user account with this email already exists'
           });
         } else {
-          return addUser(first_name, last_name, phone, email, password, address, photo_url)
+          return addUser(first_name, last_name, phone, email, password, address, coordinates, photo_url)
         }
 
       })
@@ -63,6 +64,7 @@ module.exports = ({
       email,
       password,
       address,
+      coordinates,
       is_tasker,
       photo_url,
       is_available,
@@ -87,6 +89,7 @@ module.exports = ({
             email,
             password,
             address,
+            coordinates,
             is_tasker,
             photo_url,
             is_available,

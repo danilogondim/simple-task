@@ -7,6 +7,7 @@ CREATE TABLE users(
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
   address VARCHAR(255) NOT NULL,
+  coordinates VARCHAR[],
   is_tasker BOOLEAN DEFAULT 'f',
   photo_url TEXT,
   is_available BOOLEAN,

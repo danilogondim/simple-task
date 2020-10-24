@@ -24,10 +24,10 @@ module.exports = (db) => {
   };
 
   // is_tasker, is_available and vehicle will not be filled in this step. Becoming a tasker is considered an update
-  const addUser = (firstName, lastName, phone, email, password, address, photoUrl) => {
+  const addUser = (firstName, lastName, phone, email, password, address, coordinates, photoUrl) => {
     const query = {
-      text: `INSERT INTO users (first_name, last_name, phone, email, password, address, photo_url) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
-      values: [firstName, lastName, phone, email, password, address, photoUrl]
+      text: `INSERT INTO users (first_name, last_name, phone, email, password, address, coordinates, photo_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
+      values: [firstName, lastName, phone, email, password, address, coordinates, photoUrl]
     };
 
     return db.query(query)
@@ -73,7 +73,7 @@ module.exports = (db) => {
 
     const query = {
       text: `
-        SELECT first_name, last_name, address, photo_url, vehicle, hourly_rate, AVG(user_rate) AS user_rate
+        SELECT first_name, last_name, address, coordinates, photo_url, vehicle, hourly_rate, AVG(user_rate) AS user_rate
         FROM users
         JOIN service_taskers ON users.id = service_taskers.tasker_id
         LEFT JOIN task_reviews ON users.id = task_reviews.tasker_id
@@ -82,7 +82,7 @@ module.exports = (db) => {
           service_id = $1 AND
           is_tasker = 't' AND
           is_available = 't'
-        GROUP BY first_name, last_name, address, photo_url, vehicle, hourly_rate;
+        GROUP BY first_name, last_name, address, coordinates, photo_url, vehicle, hourly_rate;
       `,
       values: [service_id]
     };
