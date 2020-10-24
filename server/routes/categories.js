@@ -8,7 +8,7 @@ module.exports = ({
   /* GET categories listing. */
   router.get('/', (req, res) => {
     getCategories()
-      .then((users) => res.json(users))
+      .then((categories) => res.json(categories))
       .catch((err) => res.json({
         error: err.message
       }));
