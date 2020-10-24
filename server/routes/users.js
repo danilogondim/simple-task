@@ -22,6 +22,8 @@ module.exports = ({
   /* create new user */
   router.post('/', (req, res) => {
 
+    console.log(req.body);
+
     const {
       first_name,
       last_name,
@@ -41,8 +43,10 @@ module.exports = ({
             msg: 'Sorry, a user account with this email already exists'
           });
         } else {
-          return addUser(first_name, last_name, phone, email, password, address, coordinates, photo_url)
+          return addUser(first_name, last_name, phone, email, password, address, [1,2], photo_url)
         }
+
+        // Need to updated coordinates
 
       })
       .then(newUser => res.json(newUser))

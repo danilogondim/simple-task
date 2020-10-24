@@ -8,17 +8,19 @@ export default function Registration() {
 
 
   const { register, handleSubmit, errors } = useForm();
+  
   const onSubmit = (user) => {
+
+    // console.log(user);
 
     axios
     .post('/api/users/', user)
-    .then(() => console.log('User created'))
+    .then((user) => console.log(user.data))
     .catch(err => {
       console.error(err);
     });
 
-    // console.log(data)
-    // res.send (data)
+
   }
 
 
