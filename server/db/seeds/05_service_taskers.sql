@@ -1,27 +1,25 @@
 INSERT INTO
 service_taskers(service_id, tasker_id, hourly_rate)
 VALUES
- (1, 7, 15),
- (1, 8, 20),
- (1, 9, 25),
- (1, 10, 30),
- (1, 11, 35),
---  next one is an unavailable tasker, so his hourly rate will not be counted in service_id = 1 (then max will be 35)
- (1, 12, 40),
- (2, 7, 25),
- (2, 10, 30),
- (2, 11, 20),
- (4, 10, 20),
- (4, 12, 25),
- (5, 9, 25),
- (5, 14, 27),
- (5, 12, 29),
- (6, 7, 20),
- (7, 9, 32),
- (8, 7, 40),
- (9, 2, 35);
-
-
+ (1, 7, 1500),
+ (1, 8, 2000),
+ (1, 9, 2500),
+ (1, 10, 3000),
+ (1, 11, 3500),
+--  next one is an unavailable tasker, so his hourly rate will not be counted in service_id = 1 (then max will be 3500)
+ (1, 12, 4000),
+ (2, 7, 2500),
+ (2, 10, 3000),
+ (2, 11, 2000),
+ (4, 10, 2000),
+ (4, 12, 2500),
+ (5, 9, 2500),
+ (5, 14, 2700),
+ (5, 12, 2900),
+ (6, 7, 2000),
+ (7, 9, 3200),
+ (8, 7, 4000),
+ (9, 2, 3500);
 
 -- taskers and availability (ids from 7 to 15):
 -- available: 7, 8, 9, 11, 13, 14, 15
