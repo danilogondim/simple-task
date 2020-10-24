@@ -16,7 +16,7 @@ import Login                from './pages/Login';
 import Register             from './pages/Register';
 import Users                from './pages/Users';
 import User                 from './pages/User';
-import Services             from './pages/Services';
+import Category             from './pages/Category';
 import Service              from './pages/Service';
 import TasksNew             from './pages/TasksNew';
 import Task                 from './pages/Task';
@@ -35,7 +35,7 @@ export default function App() {
           <Route path="/register">                         <Register/>        </Route>
           <Route exact path="/users">                      <Users/>           </Route>
           <Route path="/users/:id">                        <User/>            </Route>
-          <Route exact path="/categories/:id/services">    <Services/>        </Route>
+          <Route exact path="/categories/:id">             <Category/>        </Route>
           <Route path="/categories/:id/services/:id">      <Service/>         </Route>
           <Route path="/tasks/new">                        <TasksNew/>        </Route>
           <Route exact path="/tasks/:id">                  <Task/>            </Route>

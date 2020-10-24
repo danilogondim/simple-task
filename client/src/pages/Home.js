@@ -11,7 +11,7 @@ export default function Home() {
         <br></br>
         {category.category_description}
         <br></br>
-        <Link to={`categories/${category.category_id}/services`}>
+        <Link to={`categories/${category.category_id}`}>
         <img src={category.category_thumbnail} alt={category.category}/>
         </Link>
         <br></br>
