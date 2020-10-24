@@ -73,7 +73,7 @@ module.exports = (db) => {
 
     const query = {
       text: `
-        SELECT first_name, last_name, address, coordinates, photo_url, vehicle, hourly_rate, AVG(user_rate) AS user_rate
+        SELECT id, first_name, last_name, phone, email, address, coordinates, photo_url, vehicle, hourly_rate, AVG(user_rate) AS user_rate
         FROM users
         JOIN service_taskers ON users.id = service_taskers.tasker_id
         LEFT JOIN task_reviews ON users.id = task_reviews.tasker_id
@@ -82,7 +82,7 @@ module.exports = (db) => {
           service_id = $1 AND
           is_tasker = 't' AND
           is_available = 't'
-        GROUP BY first_name, last_name, address, coordinates, photo_url, vehicle, hourly_rate;
+        GROUP BY id, first_name, last_name, phone, email, address, coordinates, photo_url, vehicle, hourly_rate;
       `,
       values: [service_id]
     };
