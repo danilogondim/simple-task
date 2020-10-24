@@ -1,31 +1,32 @@
+const getServicesByCategories = categories => {
+  const servicesByCategories = {};
 
-// use this file to work as a selector (change dbHelpers return's format)
+  for (let category of categories) {
+    if (!servicesByCategories[category.category_id]) {
+      servicesByCategories[category.category_id] = {
+        category_id: category.category_id,
+        category: category.category,
+        category_description: category.category_description,
+        category_thumbnail: category.category_thumbnail,
+        category_cover_photo: category.category_cover_photo,
+        services: []
+      };
+    }
 
+    servicesByCategories[category.category_id].services.push({
+      service_id: category.service_id,
+      service: category.service,
+      service_description: category.service_description,
+      service_thumbnail: category.service_thumbnail,
+      min_rate: category.min_rate,
+      max_rate: category.max_rate,
+    });
 
-// const getPostsByUsers = (usersPosts) => {
-//   const postsByUsers = {};
+  }
 
-//   for (let post of usersPosts) {
-//     if (!postsByUsers[post.user_id]) {
-//       postsByUsers[post.user_id] = {
-//         userId: post.user_id,
-//         firstName: post.first_name,
-//         lastName: post.last_name,
-//         email: post.email,
-//         posts: [],
-//       };
-//     }
+  return Object.values(servicesByCategories);
+};
 
-//     postsByUsers[post.user_id].posts.push({
-//       title: post.title,
-//       content: post.content,
-//     });
-
-//   }
-
-//   return Object.values(postsByUsers);
-// };
-
-// module.exports = {
-//   getPostsByUsers,
-// };
+module.exports = {
+  getServicesByCategories
+};

@@ -7,7 +7,8 @@ const router = express.Router();
 module.exports = ({
   getUsers,
   getUserByEmail,
-  addUser
+  addUser,
+  updateUser
 }) => {
   /* GET users listing. */
   router.get('/', (req, res) => {
@@ -18,14 +19,18 @@ module.exports = ({
       }));
   });
 
-
+  /* create new user */
   router.post('/', (req, res) => {
 
     const {
       first_name,
       last_name,
+      phone,
       email,
-      password
+      password,
+      address,
+      coordinates,
+      photo_url
     } = req.body;
 
     getUserByEmail(email)
@@ -36,7 +41,7 @@ module.exports = ({
             msg: 'Sorry, a user account with this email already exists'
           });
         } else {
-          return addUser(first_name, last_name, email, password)
+          return addUser(first_name, last_name, phone, email, password, address, coordinates, photo_url)
         }
 
       })
@@ -46,6 +51,57 @@ module.exports = ({
       }));
 
   })
+
+  /* update user information */
+  router.put("/:id", (req, res) => {
+
+    // we need to include some logic to be able to verify if the user who is doing the request is the owner of the account
+
+    const {
+      first_name,
+      last_name,
+      phone,
+      email,
+      password,
+      address,
+      coordinates,
+      is_tasker,
+      photo_url,
+      is_available,
+      vehicle
+    } = req.body;
+
+    const { id } = req.params;
+
+    getUserByEmail(email)
+      .then(user => {
+
+        if (user) {
+          res.json({
+            msg: 'Sorry, a user account with this email already exists'
+          });
+        } else {
+          return updateUser({
+            id,
+            first_name,
+            last_name,
+            phone,
+            email,
+            password,
+            address,
+            coordinates,
+            is_tasker,
+            photo_url,
+            is_available,
+            vehicle
+          })
+        }
+      })
+      .then(updatedUser => res.json(updatedUser))
+      .catch(err => res.json({
+        error: err.message
+      }));
+  });
 
   return router;
 };
