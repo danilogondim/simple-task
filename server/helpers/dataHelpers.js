@@ -7,6 +7,8 @@ const getServicesByCategories = categories => {
         category_id: category.category_id,
         category: category.category,
         category_description: category.category_description,
+        category_thumbnail: category.category_thumbnail,
+        category_cover_photo: category.category_cover_photo,
         services: []
       };
     }
@@ -15,6 +17,7 @@ const getServicesByCategories = categories => {
       service_id: category.service_id,
       service: category.service,
       service_description: category.service_description,
+      service_thumbnail: category.service_thumbnail,
       min_rate: category.min_rate,
       max_rate: category.max_rate,
     });

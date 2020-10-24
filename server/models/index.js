@@ -100,9 +100,12 @@ module.exports = (db) => {
         categories.id AS category_id,
         categories.name AS category,
         categories.description AS category_description,
+        categories.thumbnail_photo_url AS category_thumbnail,
+        categories.cover_photo_url AS category_cover_photo,
         services.id AS service_id,
         services.name AS service,
         services.description AS service_description,
+        services.thumbnail_photo_url AS service_thumbnail,
         MIN(hourly_rate) AS min_rate,
         MAX(hourly_rate) AS max_rate
       FROM categories
@@ -110,7 +113,7 @@ module.exports = (db) => {
       JOIN service_taskers ON services.id = service_id
       JOIN users ON tasker_id = users.id
       WHERE is_available = 't'
-      GROUP BY categories.id, categories.name, categories.description, services.id, services.name, services.description
+      GROUP BY categories.id, categories.name, categories.description, categories.thumbnail_photo_url, categories.cover_photo_url, services.id, services.name, services.description, services.thumbnail_photo_url
       ORDER BY categories.id, services.id`
     };
 
