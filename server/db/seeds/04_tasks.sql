@@ -31,10 +31,3 @@ VALUES
 (15,3,8, 'Organizing a whole garden', 2, now(), '1 castel wisdom vale', '1 castel wisdom vale', now(), 4, 11),
 (16,4,10, 'Buying alchool for a party', 2, now(), 'toronto south detention center, cell2', 'toronto south detention center, cell2', now(), 5, 9),
 (17,4,11, 'Burguer king picking-up', 2, now(), '15 cave street', '15 cave street', now(), 1, 10);
-
-
-
-
-  
-  
-
