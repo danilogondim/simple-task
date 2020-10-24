@@ -2,23 +2,23 @@
 INSERT INTO
 users(first_name, last_name, phone, email, password, address, is_tasker)
 VALUES
- ('Hank', 'Ranger', '4161234567', 'hranger@dungeons.com', 'test1', '15 cave street', 'f'),
- ('Eric', 'Cavalier', '6477654321', 'ecavalier@dungeons.com', 'test2', '12 manson road', 'f'),
- ('Diana', 'Acrobat', '7462222222', 'dacrobat@dungeons.com', 'test3', '237 circus street', 'f'),
- ('Presto', 'Magician', '6479999999', 'pmagician@dungeons.com', 'test4', '1 castel wisdom vale', 'f'),
- ('Sheila', 'Thief', '6474567890', 'sthief@dungeons.com', 'test5', 'toronto south detention center, cell2', 'f'),
- ('Bobby', 'Barbarian', '6474567890', 'bbarbarian@dungeons.com', 'test6', 'arreat summit village', 'f');
+ ('Daniel', 'Abreu', '4161234567', 'dabreu@email.com', 'test1', '100 Queen St W, Toronto', 'f'),
+ ('Eric', 'Clinton', '6477654321', 'eclinton@email.com', 'test2', '1 Austin Terrace, Toronto', 'f'),
+ ('Diana', 'Gibbons', '7462222222', 'diana@email.com', 'test3', '1 Dundas St E, Toronto', 'f'),
+ ('Richard', 'Nakoolak', '6479999999', 'richard@email.com', 'test4', '2 Bloor St E, Toronto', 'f'),
+ ('Sheila', 'Souza', '6474567890', 'ss@email.com', 'test5', '1 Canada''s Wonderland Drive, Vaughan', 'f'),
+ ('Carlos', 'Richmond', '6474567890', 'cr@email.com', 'test6', '2000 Meadowvale Rd, Toronto', 'f');
 
 -- taskers (ids: 7-15)
 INSERT INTO
 users(first_name, last_name, phone, email, password, address, is_tasker, photo_url, is_available, vehicle)
 VALUES
- ('John', 'Smith', '4167653112', 'johns@email.com', 'test7', '290 Bremner Blvd', 't', 'https://miro.medium.com/max/500/0*Fle0WFBFSbQRjS2b.jpg', 't', 'car'),
- ('Duegon', 'Master', '6477654321', 'dmaster@dragons.com', 'test8', 'cloud mountains no number', 't', 'https://miro.medium.com/max/500/0*3MwGeUV66MiBrm4_.jpg', 't', 'car'),
- ('Tiamat', 'Evil', '6477665421', 'tevil@dragons.com', 'test9', 'cloud mountains no number', 't', 'https://miro.medium.com/max/700/0*qTZK4pvE1enPo14S.jpg', 't', 'bycicle'),
- ('Shadow', 'Demon', '6477654321', 'sdemon@dragons.com', 'test10', 'dark mountains no number', 't', 'https://miro.medium.com/max/500/0*Zr9VJLJld-l8v_Dr.jpg', 'f', 'bycicle'),
- ('Hammer', 'Bros', '4167653112', 'hammer@nintendo.com', 'test11', '123 random street', 't', 'https://www.mariowiki.com/images/e/e3/NSMBU_Hammer_Bro_Artwork.png', 't', 'bicycle'),
- ('Lakitu', 'Koopa', '6477654321', 'lakitu@nintendo.com', 'test12', '123 random street', 't', 'https://upload.wikimedia.org/wikipedia/en/2/2d/Lakitu.png', 'f', 'truck'),
- ('Mario', 'Bros', '4161234567', 'mario@nintendo.com', 'test13', '123 random street', 't', 'https://images.unsplash.com/photo-1602459816722-ce53719a4987?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 't', 'car'),
- ('Luigi', 'Bros', '6477654321', 'luigi@nintendo.com', 'test14', '123 random street', 't', 'https://images.unsplash.com/photo-1542988538-30d8820ec5fd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80', 't', 'car'),
- ('Princess', 'Peach', '4162222222', 'peach@nintendo.com', 'test15', '123 random street', 't', 'https://images.unsplash.com/photo-1598021605336-7e9ed0d52efb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 't', 'car');
+ ('John', 'Smith', '4167653112', 'johns@email.com', 'test7', '290 Bremner Blvd, Toronto', 't', 'https://miro.medium.com/max/500/0*Fle0WFBFSbQRjS2b.jpg', 't', 'car'),
+ ('Robert', 'Master', '6477654321', 'robert@email.com', 'test8', '6301 Silver Dart Dr, Mississauga', 't', 'https://miro.medium.com/max/500/0*3MwGeUV66MiBrm4_.jpg', 't', 'car'),
+ ('Cameron', 'Rutherford', '6477665421', 'cameron@email.com', 'test9', '662 King St W, Toronto', 't', 'https://miro.medium.com/max/700/0*qTZK4pvE1enPo14S.jpg', 't', 'bicycle'),
+ ('Cristian', 'Button', '6477654321', 'chris@email.com', 'test10', '288 Bremner Blvd, Toronto', 't', 'https://miro.medium.com/max/500/0*Zr9VJLJld-l8v_Dr.jpg', 'f', 'bicycle'),
+ ('Alfred', 'Sinatra', '4167653112', 'alfred@email.com', 'test11', '789 Yonge St, Toronto', 't', 'https://www.mariowiki.com/images/e/e3/NSMBU_Hammer_Bro_Artwork.png', 't', 'bicycle'),
+ ('Gilbert', 'Stace', '6477654321', 'gilbert@email.com', 'test12', '200 Bay St, Toronto,', 't', 'https://upload.wikimedia.org/wikipedia/en/2/2d/Lakitu.png', 'f', 'truck'),
+ ('Mario', 'Bros', '4161234567', 'mario@email.com', 'test13', '40 Bay St, Toronto', 't', 'https://images.unsplash.com/photo-1602459816722-ce53719a4987?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 't', 'car'),
+ ('Luigi', 'Bros', '6477654321', 'luigi@email.com', 'test14', '60 Carl Hall Rd, North York', 't', 'https://images.unsplash.com/photo-1542988538-30d8820ec5fd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80', 't', 'car'),
+ ('Antony', 'Cooper', '4162222222', 'antony@email.com', 'test15', '1 Blue Jays Way, Toronto', 't', 'https://images.unsplash.com/photo-1598021605336-7e9ed0d52efb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 't', 'car');
