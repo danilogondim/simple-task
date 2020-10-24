@@ -1,64 +1,53 @@
-import React from "react";
-
-import { Formik } from "formik";
-import * as EmailValidator from "email-validator";
-import * as Yup from "yup";
-import "./ValidatedLoginForm.scss"
-
-const ValidatedLoginForm = () => (
-  <Formik
-    initialValues={{ email: "", password: "" }}
-    onSubmit={(values, { setSubmitting }) => {
-      setTimeout(() => {
-        console.log("Logging in", values);
-        setSubmitting(false);
-      }, 500);
-    }}
-  >
-    {props => {
-      const {
-        values,
-        touched,
-        errors,
-        isSubmitting,
-        handleChange,
-        handleBlur,
-        handleSubmit
-      } = props;
-
-      return (
-        <div>
-          <h1>Login</h1>
-
-          <form onSubmit={handleSubmit}>
-
-            <label htmlFor="email">Email: </label>
-            <input
-              id="email"
-              name="email"
-              type="text"
-              placeholder="Enter your email"
-            />
-
-            <label htmlFor="password">Password: </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Enter your password"
-            />
-
-            <button type="submit" disabled={isSubmitting}>
-              Login
-            </button>
-
-          </form>
+import React from 'react';
+import './Registration.scss';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import './ValidatedLoginForm.scss'
 
 
-        </div>
-      );
-    }}
-  </Formik>
-);
+export default function ValidatedLoginForm() {
 
-export default ValidatedLoginForm;
+
+  const { register, handleSubmit, errors } = useForm();
+  
+  const onSubmit = (user) => {
+
+    console.log(user);
+
+    axios
+    .post('/api/users/authenticate/', user)
+    .then( (res) => console.log(res.data.msg))
+    .catch(err => {
+      console.error(err);
+    });
+
+
+  }
+
+
+  return (
+    <div>
+      <h1>Login</h1>
+
+      <form className='Login-form' onSubmit={handleSubmit(onSubmit)}>
+
+        <label htmlFor="email">Email: </label>
+        <input name="email" type="text" placeholder="Enter your email"
+        ref={register({ required: true})} />
+        {errors.email && <p> This is a mandatory field. </p>}
+
+        <label htmlFor="password">Password: </label>
+        <input name="password" type="password" placeholder="Enter your password" ref={register({ required: true, minLength: 6})}  />
+        {errors.password && errors.password.type === "required" && <p> This is a mandatory field. </p>}
+        {errors.password && errors.password.type === "minLength" && <p> Password must have at least 6 characters. </p>}
+
+         <button type="submit">
+           Login
+         </button>
+
+      </form>
+
+
+     </div>
+  );
+}
