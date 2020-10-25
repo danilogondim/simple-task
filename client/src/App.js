@@ -37,7 +37,7 @@ export default function App() {
           <Route exact path="/users">                      <Users/>           </Route>
           <Route path="/users/:id">                        <User/>            </Route>
           <Route exact path="/categories/:id">             <Services/>        </Route>
-          <Route path="/categories/:id/services/:id">      <Service/>         </Route>
+          <Route path="/categories/:c_id/services/:id" children={<Service />} />
           <Route path="/tasks/new">                        <TasksNew/>        </Route>
           <Route exact path="/tasks/:id">                  <Task/>            </Route>
           <Route path="/tasks/:id/complete">               <TaskComplete/>    </Route>
