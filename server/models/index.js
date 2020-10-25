@@ -23,6 +23,7 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+
   // is_tasker, is_available and vehicle will not be filled in this step. Becoming a tasker is considered an update
   const addUser = (firstName, lastName, phone, email, password, address, coordinates, photoUrl) => {
     const query = {
@@ -129,6 +130,6 @@ module.exports = (db) => {
     addUser,
     updateUser,
     getTaskersByService,
-    getCategories
+    getCategories,
   };
 };
