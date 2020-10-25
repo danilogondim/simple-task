@@ -44,11 +44,18 @@ module.exports = ({
             msg: 'Sorry, a user account with this email already exists'
           });
         } else {
+
           return addUser(first_name, last_name, phone, email, password, address, [1,2], photo_url)
+
         }
+
 
         // Need to updated coordinates
 
+      })
+      .then( user => {          
+      const token = jwt.sign({id: user.id}, process.env.TOKEN_SECRET);
+      res.json(token)
       })
       .then(newUser => res.json(newUser))
       .catch(err => res.json({
@@ -65,7 +72,7 @@ module.exports = ({
       password,
     } = req.body;
 
-    console.log(req.body);
+    //console.log(req.body);
 
     getUserByEmail(email)
     .then(user => {
@@ -77,8 +84,11 @@ module.exports = ({
           //   msg: 'User can enter!'
           // });
           //create and assign a token
+
+          //console.log('req.body users.js:', req.body)
           const token = jwt.sign({id: user.id}, process.env.TOKEN_SECRET);
-          res.header('auth-token', token);
+          res.json(token)
+        
 
         } else {
           res.json({

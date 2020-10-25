@@ -18,11 +18,12 @@ export default function Registration() {
 
     axios
     .post('/api/users/', user)
-    .then(() => {
-
-      
+    .then((info) => {
+      //console.log('info.data---------------->', info.data)
+      document.cookie = `token=${info.data}`
 
       history.push("/");
+
     }
       //(user) => console.log(user.data)
     )
