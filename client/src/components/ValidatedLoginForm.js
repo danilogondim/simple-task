@@ -4,27 +4,21 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import './ValidatedLoginForm.scss'
 
-
-
 export default function ValidatedLoginForm() {
-
 
   const { register, handleSubmit, errors } = useForm();
   
   const onSubmit = (user) => {
-
-    console.log(user);
-
+    //console.log(user);
     axios
     .post('/api/users/authenticate/', user)
-    .then( (res) => console.log(res)
-    
+    .then((info)=>{
+      document.cookie = `token=${info.data}`
+    }
     )
     .catch(err => {
       console.error(err);
     });
-
-
   }
 
 

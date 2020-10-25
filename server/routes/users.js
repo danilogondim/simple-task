@@ -79,7 +79,6 @@ module.exports = ({
           //create and assign a token
           const token = jwt.sign({id: user.id}, process.env.TOKEN_SECRET);
           res.header('auth-token', token);
-          res.send(token)
 
         } else {
           res.json({
