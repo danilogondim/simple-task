@@ -2,14 +2,12 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  useParams
+  Route
 } from "react-router-dom";
 
-// import logo from './logo.svg';
 import './App.css';
 
-import Navbar from './components/Navbar';
+import Navbar               from './components/Navbar';
 
 import Home                 from './pages/Home';
 import About                from './pages/About';
@@ -42,21 +40,8 @@ export default function App() {
           <Route exact path="/tasks/:id">                  <Task/>            </Route>
           <Route path="/tasks/:id/complete">               <TaskComplete/>    </Route>
           <Route path="/tasks/:id/payment">                <TaskPayment/>     </Route>
-          <Route path="/:id" children={<Child />} />
         </Switch>
       </div>
     </Router>
-  );
-}
-
-function Child() {
-  // We can use the `useParams` hook here to access
-  // the dynamic pieces of the URL.
-  let { id } = useParams();
-
-  return (
-    <div>
-      <h3>ID: {id}</h3>
-    </div>
   );
 }

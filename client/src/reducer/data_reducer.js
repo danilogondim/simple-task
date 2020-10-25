@@ -1,6 +1,5 @@
 export const SET_USERS            = 'SET_USERS';
 export const SET_CATEGORIES       = 'SET_CATEGORIES';
-export const SET_SERVICES         = 'SET_SERVICES';
 
 const dataReducer = (state, action) => {
   switch (action.type) {
@@ -15,13 +14,6 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         categories: action.categories,
-        loading: false,
-      };
-
-    case SET_SERVICES:
-      return {
-        ...state,
-        services: action.services,
         loading: false,
       };
       
