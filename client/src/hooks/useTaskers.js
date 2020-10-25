@@ -13,7 +13,7 @@ const useServices = id => {
       .get(`/api/services/${id}/users`)
       .then(({ data }) => dispatch({ type: SET_TASKERS, taskers: data }))
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
 
   return { state, dispatch };
 };

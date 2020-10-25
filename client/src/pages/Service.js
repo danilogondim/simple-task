@@ -2,6 +2,7 @@ import React from 'react';
 // import {Link} from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import useTaskers from '../hooks/useTaskers'
+import Filter from '../components/Filter'
 
 export default function Service() {
   const { id } = useParams();
@@ -9,8 +10,6 @@ export default function Service() {
   const taskers = !state.taskers ? "" : state.taskers.map(tasker => {
     return (
       <li key={tasker.id} >
-        {tasker.name}
-        <br></br>
         {tasker.first_name}
         <br></br>
         {tasker.last_name}
@@ -37,9 +36,14 @@ export default function Service() {
     )
   })
   return (
-    <div>
-      <h2> Select a Tasker </h2>
-      <ul> {taskers} </ul>
-    </div>
+    <>
+      <Filter />
+      <section className="taskers">
+        <h4 className="taskers__header text--light">Select a Tasker</h4>
+        <ul className="taskers__list">
+          {taskers}
+        </ul>
+      </section>
+    </>
   );
 }
