@@ -1,6 +1,7 @@
-export const SET_USERS            = 'SET_USERS';
-export const SET_CATEGORIES       = 'SET_CATEGORIES';
-export const SET_SERVICES         = 'SET_SERVICES';
+export const SET_USERS = 'SET_USERS';
+export const SET_CATEGORIES = 'SET_CATEGORIES';
+export const SET_SERVICES = 'SET_SERVICES';
+export const SET_TASKERS = 'SET_TASKERS';
 
 const dataReducer = (state, action) => {
   switch (action.type) {
@@ -24,7 +25,14 @@ const dataReducer = (state, action) => {
         services: action.services,
         loading: false,
       };
-      
+
+    case SET_TASKERS:
+      return {
+        ...state,
+        taskers: action.taskers,
+        loading: false,
+      };
+
     default:
       return state;
   }
