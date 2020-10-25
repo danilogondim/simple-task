@@ -5,6 +5,7 @@ import axios from 'axios';
 import './ValidatedLoginForm.scss'
 
 
+
 export default function ValidatedLoginForm() {
 
 
@@ -16,7 +17,9 @@ export default function ValidatedLoginForm() {
 
     axios
     .post('/api/users/authenticate/', user)
-    .then( (res) => console.log(res.data.msg))
+    .then( (res) => console.log(res)
+    
+    )
     .catch(err => {
       console.error(err);
     });
