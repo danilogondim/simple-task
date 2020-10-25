@@ -74,7 +74,7 @@ module.exports = (db) => {
 
     const query = {
       text: `
-        SELECT id, first_name, last_name, phone, email, address, coordinates, photo_url, vehicle, hourly_rate, AVG(user_rate) AS user_rate
+        SELECT id, first_name, last_name, phone, email, address, coordinates, photo_url, vehicle, hourly_rate, AVG(user_rating) AS user_rating
         FROM users
         JOIN service_taskers ON users.id = service_taskers.tasker_id
         LEFT JOIN task_reviews ON users.id = task_reviews.tasker_id
