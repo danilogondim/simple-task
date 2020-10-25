@@ -23,6 +23,7 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+
   // is_tasker, is_available and vehicle will not be filled in this step. Becoming a tasker is considered an update
   const addUser = (firstName, lastName, phone, email, password, address, coordinates, photoUrl) => {
     const query = {
@@ -73,16 +74,20 @@ module.exports = (db) => {
 
     const query = {
       text: `
-        SELECT id, first_name, last_name, phone, email, address, coordinates, photo_url, vehicle, hourly_rate, AVG(user_rate) AS user_rate
-        FROM users
-        JOIN service_taskers ON users.id = service_taskers.tasker_id
-        LEFT JOIN task_reviews ON users.id = task_reviews.tasker_id
-
-        WHERE
-          service_id = $1 AND
-          is_tasker = 't' AND
-          is_available = 't'
-        GROUP BY id, first_name, last_name, phone, email, address, coordinates, photo_url, vehicle, hourly_rate;
+      SELECT users.id, first_name, last_name, phone, email, address, coordinates, photo_url, vehicle, hourly_rate, user_rating, availability
+      FROM availabilities JOIN
+        (
+          SELECT users.id, first_name, last_name, phone, email, address, coordinates, photo_url, vehicle, hourly_rate, AVG(user_rating) AS user_rating
+          FROM users
+          JOIN service_taskers ON users.id = service_taskers.tasker_id
+          LEFT JOIN task_reviews ON users.id = task_reviews.tasker_id
+        
+          WHERE
+            service_id = $1 AND
+            is_tasker = 't' AND
+            is_available = 't'
+            GROUP BY users.id, first_name, last_name, phone, email, address, coordinates, photo_url, vehicle, hourly_rate
+        ) AS users ON tasker_id = users.id;
       `,
       values: [service_id]
     };
@@ -129,6 +134,37 @@ module.exports = (db) => {
     addUser,
     updateUser,
     getTaskersByService,
-    getCategories
+    getCategories,
   };
 };
+
+
+// `
+// SELECT users.id, first_name, last_name, phone, email, address, coordinates, photo_url, vehicle, hourly_rate, availability, AVG(user_rating) AS user_rating
+// FROM users
+// JOIN service_taskers ON users.id = service_taskers.tasker_id
+// JOIN availabilities ON users.id = availabilities.tasker_id
+// LEFT JOIN task_reviews ON users.id = task_reviews.tasker_id
+
+// WHERE
+//   service_id = 1 AND
+//   is_tasker = 't' AND
+//   is_available = 't'
+//   GROUP BY users.id, first_name, last_name, phone, email, address, coordinates, photo_url, vehicle, hourly_rate, availability;
+// `
+
+
+
+// `
+// SELECT * from availabilities JOIN
+// (SELECT users.id, first_name, last_name, phone, email, address, coordinates, photo_url, vehicle, hourly_rate, AVG(user_rating) AS user_rating
+// FROM users
+// JOIN service_taskers ON users.id = service_taskers.tasker_id
+// LEFT JOIN task_reviews ON users.id = task_reviews.tasker_id
+
+// WHERE
+//   service_id = 1 AND
+//   is_tasker = 't' AND
+//   is_available = 't'
+//   GROUP BY users.id, first_name, last_name, phone, email, address, coordinates, photo_url, vehicle, hourly_rate) AS users ON tasker_id = users.id;
+// `
