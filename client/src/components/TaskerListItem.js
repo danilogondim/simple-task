@@ -19,15 +19,13 @@ export default function TaskerListItem(props) {
       <li key={id} >
         {first_name + ' ' + last_name}
         <br></br>
-        {coordinates}
-        <br></br>
         <img src={photo_url} alt={first_name + " " + last_name} />
         <br></br>
-        {'vehicle: ' + vehicle}
+        {user_rating === null ? 'New Tasker!' : 'Stars: ' + Number(user_rating).toFixed(2)}
         <br></br>
-        {'hourly_rate: $' + (hourly_rate / 100).toFixed(2)}
+        {'Hourly rate: $' + (hourly_rate / 100).toFixed(2)}
         <br></br>
-        {'user_rating: ' + Number(user_rating).toFixed(2)}
+        {'Vehicle: ' + vehicle}
         <br></br>
         <br></br>
       </li>
