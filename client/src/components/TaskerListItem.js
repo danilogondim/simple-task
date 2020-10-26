@@ -27,10 +27,10 @@ export default function TaskerListItem(props) {
           <>
             <Rating
               name="half-rating-read"
-              size="small"
               defaultValue={Number(user_rating).toFixed(2)}
               precision={0.5}
               readOnly
+              className="rating"
             />
             <br></br>
           </>}
