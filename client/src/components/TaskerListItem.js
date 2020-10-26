@@ -11,8 +11,7 @@ export default function TaskerListItem(props) {
     photo_url,
     vehicle,
     hourly_rate,
-    user_rating,
-    availability
+    user_rating
   } = props.tasker;
   return (
     <article className='tasker'>
@@ -31,7 +30,6 @@ export default function TaskerListItem(props) {
         <br></br>
         {user_rating}
         <br></br>
-        {/* {availability} */}
         <br></br>
       </li>
     </article >
