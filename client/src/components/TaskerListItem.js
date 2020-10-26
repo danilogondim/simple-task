@@ -1,4 +1,5 @@
 import React from 'react';
+import { Rating } from '@material-ui/lab';
 import './TaskerListItem.scss'
 
 export default function TaskerListItem(props) {
@@ -21,8 +22,18 @@ export default function TaskerListItem(props) {
         <br></br>
         <img src={photo_url} alt={first_name + " " + last_name} />
         <br></br>
-        {user_rating === null ? 'New Tasker!' : 'Stars: ' + Number(user_rating).toFixed(2)}
-        <br></br>
+        {user_rating === null && <p>New Tasker!</p>}
+        {user_rating !== null &&
+          <>
+            <Rating
+              name="half-rating-read"
+              size="small"
+              defaultValue={Number(user_rating).toFixed(2)}
+              precision={0.5}
+              readOnly
+            />
+            <br></br>
+          </>}
         {'Hourly rate: $' + (hourly_rate / 100).toFixed(2)}
         <br></br>
         {'Vehicle: ' + vehicle}
