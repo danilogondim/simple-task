@@ -1,0 +1,17 @@
+.box {
+  margin: 20px;
+}
+
+.grid {
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  font-family: monospace;
+  justify-content: center;
+  background-color: #68b0ab;
+}
+
+// .grid > div {
+//   flex-basis: calc(50% - 40px);
+// }
