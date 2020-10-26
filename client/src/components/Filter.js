@@ -26,12 +26,26 @@ export default function Filter(props) {
   const handleInputChange = (event) => {
     const index = event.target.id;
     const input = Number(event.target.value);
+    // check if the input is within the accepted range
     if (input <= 23 && input >= 0) {
-      if (index === '0' && input < range[1]) {
+      if (index === '0' && input === range[0] + 1 && input === range[1] && input + 1 <= 23) {
+        // avoid lowest value overlapping the highest value by making the highest value move as long as it is within the limit
+        const newRange = [...range];
+        newRange[index] = event.target.value === '' ? '' : input;
+        newRange['1'] = event.target.value === '' ? '' : input + 1;
+        dispatch({ type: SET_RANGE, range: newRange });
+      } else if (index === '1' && input === range[1] - 1 && input === range[0] && input - 1 >= 0) {
+        // avoid highest value overlapping the lowest value by making the lowest value move as long as it is within the limit
+        const newRange = [...range];
+        newRange[index] = event.target.value === '' ? '' : input;
+        newRange['0'] = event.target.value === '' ? '' : input - 1;
+        dispatch({ type: SET_RANGE, range: newRange });
+      } else if (index === '0' && input < range[1]) {
         const newRange = [...range];
         newRange[index] = event.target.value === '' ? '' : input;
         dispatch({ type: SET_RANGE, range: newRange });
       } else if (index === '0' && input > range[1]) {
+        // if the new input set for the lowest value is higher than the highest value, interchange them
         const newRange = [...range];
         newRange[index] = event.target.value === '' ? '' : input;
         newRange.sort((a, b) => a - b)
@@ -41,6 +55,7 @@ export default function Filter(props) {
         newRange[index] = event.target.value === '' ? '' : input;
         dispatch({ type: SET_RANGE, range: newRange });
       } else if (index === '1' && input < range[0]) {
+        // if the new input set for the highest value is lower than the lowest value, interchange them
         const newRange = [...range];
         newRange[index] = event.target.value === '' ? '' : input;
         newRange.sort((a, b) => a - b)
