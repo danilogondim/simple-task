@@ -1,5 +1,5 @@
 import 'date-fns';
-import React, { useState } from 'react';
+import React from 'react';
 import { Grid, Input, Slider, Typography } from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
@@ -34,23 +34,28 @@ export default function Filter(props) {
 
   // input handler
   const handleInputChange = (event) => {
-    const index = event.target.name === "start" ? 0 : 1;
-    const newRange = [...range];
-    newRange[index] = event.target.value === '' ? '' : Number(event.target.value);
-    dispatch({ type: SET_RANGE, range: newRange });
-  };
-
-  // when the input lose focus, the values are validated
-  const handleBlur = (event) => {
-    const index = event.target.name === "start" ? 0 : 1;
-    if (range[index] < 0) {
-      const newRange = [...range];
-      newRange[index] = 0;
-      dispatch({ type: SET_RANGE, range: newRange });
-    } else if (range[index] > 23) {
-      const newRange = [...range];
-      newRange[index] = 23;
-      dispatch({ type: SET_RANGE, range: newRange });
+    const index = event.target.id;
+    const input = Number(event.target.value);
+    if (input <= 23 && input >= 0) {
+      if (index === '0' && input < range[1]) {
+        const newRange = [...range];
+        newRange[index] = event.target.value === '' ? '' : input;
+        dispatch({ type: SET_RANGE, range: newRange });
+      } else if (index === '0' && input > range[1]) {
+        const newRange = [...range];
+        newRange[index] = event.target.value === '' ? '' : input;
+        newRange.sort((a, b) => a - b)
+        dispatch({ type: SET_RANGE, range: newRange });
+      } else if (index === '1' && input > range[0]) {
+        const newRange = [...range];
+        newRange[index] = event.target.value === '' ? '' : input;
+        dispatch({ type: SET_RANGE, range: newRange });
+      } else if (index === '1' && input < range[0]) {
+        const newRange = [...range];
+        newRange[index] = event.target.value === '' ? '' : input;
+        newRange.sort((a, b) => a - b)
+        dispatch({ type: SET_RANGE, range: newRange });
+      }
     }
   };
 
@@ -87,12 +92,11 @@ export default function Filter(props) {
         <Grid container spacing={2} alignItems="center">
           <Grid item>
             <Input
-              name="start"
+              id={"0"}
               className={classes.input}
               value={range[0]}
               margin="dense"
               onChange={handleInputChange}
-              onBlur={handleBlur}
               inputProps={{
                 step: 1,
                 min: 0,
@@ -114,12 +118,11 @@ export default function Filter(props) {
           </Grid>
           <Grid item>
             <Input
-              name="end"
+              id={"1"}
               className={classes.input}
               value={range[1]}
               margin="dense"
               onChange={handleInputChange}
-              onBlur={handleBlur}
               inputProps={{
                 step: 1,
                 min: 0,
