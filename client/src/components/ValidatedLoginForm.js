@@ -3,28 +3,27 @@ import './Registration.scss';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import './ValidatedLoginForm.scss'
-
-
+import { useHistory } from "react-router-dom";
 
 export default function ValidatedLoginForm() {
 
+  let history = useHistory();
 
   const { register, handleSubmit, errors } = useForm();
   
   const onSubmit = (user) => {
-
-    console.log(user);
-
+    //console.log(user);
     axios
     .post('/api/users/authenticate/', user)
-    .then( (res) => console.log(res)
-    
+    .then((info)=>{
+      //console.log('Info.data from ValidatedLoginForm:', info.data);
+      document.cookie = `token=${info.data}`
+      history.push("/");
+    }
     )
     .catch(err => {
       console.error(err);
     });
-
-
   }
 
 
