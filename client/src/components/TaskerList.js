@@ -1,20 +1,38 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './TaskerList.scss';
 
 import TaskerListItem from './TaskerListItem';
 
 export default function TaskerList(props) {
 
-  const [value, setValue] = useState('rating')
-  const handleClick = () =>{
-    if (value === 'rating') {
-      setValue('price');
+  const { taskers } = props;
+
+  const [filter, setFilter] = useState('rating')
+  const handleClick = () => {
+    if (filter === 'rating') {
+      setFilter('price');
     } else {
-      setValue('rating');
+      setFilter('rating');
     }
   };
 
-  const taskers = !props.taskers ? "" : props.taskers.map(tasker => {
+  const handleFilter = {
+    'rating': 'user_rating',
+    'price': 'hourly_rate'
+  }
+
+
+  const taskerList = !taskers ? "" : [...taskers].sort((a, b) => {
+    // if the filter criteria is price, return the lowest prices first
+    if (filter === 'price') {
+      return Number(a[handleFilter[filter]]) - Number(b[handleFilter[filter]]);
+    }
+    // if the criteria is rating, then return by rating (price if the rating is the same)
+    if (Number(b[handleFilter[filter]]) === Number(a[handleFilter[filter]])) {
+      return Number(a['hourly_rate']) - Number(b['hourly_rate'])
+    }
+    return Number(b[handleFilter[filter]]) - Number(a[handleFilter[filter]]);
+  }).map(tasker => {
     return (
       <TaskerListItem
         key={tasker.id}
@@ -27,11 +45,11 @@ export default function TaskerList(props) {
     <section className="taskers">
       <div className="sort">
         <h5>Sorted By: </h5>
-        <button onClick={handleClick}>{value}</button>
+        <button onClick={handleClick}>{filter}</button>
       </div>
       <h4 className="taskers__header text--light">Select a Tasker</h4>
       <ul className="taskers__list">
-        {taskers}
+        {taskerList}
       </ul>
     </section>
   );

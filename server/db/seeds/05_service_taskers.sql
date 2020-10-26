@@ -7,7 +7,7 @@ VALUES
  (1, 10, 3000),
  (1, 11, 3500),
 --  next one is an unavailable tasker, so his hourly rate will not be counted in service_id = 1 (then max will be 3500)
- (1, 12, 4000),
+ (1, 12, 1600),
  (2, 7, 2500),
  (2, 8, 2800),
  (2, 10, 3000),
