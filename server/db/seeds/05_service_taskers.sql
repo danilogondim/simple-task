@@ -43,3 +43,12 @@ VALUES
 -- service 4 will be used to test a service with only unavailable taskers (if we don't have available taskers, it should not show up to users) -- ok
 -- service 6 will be used to test an empty service (if we don't have taskers willing to do it, it should not show up to users) -- ok
 -- service 9 will be used to test a service provided by a user (not a tasker) (it should not show up to users) -- ok
+
+
+-- comment this out after changing the taskers display (I am making every body available for service number 1 to work with the layout)
+INSERT INTO
+service_taskers(service_id, tasker_id, hourly_rate)
+VALUES
+ (1, 13, 2800),
+ (1, 14, 3100),
+ (1, 15, 4200);
