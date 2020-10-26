@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import { Jumbotron, Container, Card } from 'react-bootstrap'
 import useCategories from '../hooks/useCategories.js'
-import { Jumbotron, Container, Toast, Card, Row, Col } from 'react-bootstrap'
 import "./Home.scss";
 
 export default function Home() {
