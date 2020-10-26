@@ -1,21 +1,21 @@
 import { useEffect, useReducer } from 'react';
-import dataReducer, { SET_SERVICES } from '../reducer/data_reducer';
+import dataReducer, { SET_TASKERS } from '../reducer/data_reducer';
 import axios from 'axios';
 
-const useServices = () => {
+const useServices = id => {
   const [state, dispatch] = useReducer(dataReducer, {
     services: [],
     loading: true,
   });
-  
+
   useEffect(() => {
     axios
-      .get('/api/services')
-      .then(({data}) => dispatch({type: SET_SERVICES, services: data}))
+      .get(`/api/services/${id}/users`)
+      .then(({ data }) => dispatch({ type: SET_TASKERS, taskers: data }))
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
 
-  return {state, dispatch};
+  return { state, dispatch };
 };
 
 export default useServices;
