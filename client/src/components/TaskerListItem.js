@@ -16,19 +16,17 @@ export default function TaskerListItem(props) {
   return (
     <article className='tasker'>
       <li key={id} >
-        {first_name}
-        <br></br>
-        {last_name}
+        {first_name + ' ' + last_name}
         <br></br>
         {coordinates}
         <br></br>
         <img src={photo_url} alt={first_name + " " + last_name} />
         <br></br>
-        {vehicle}
+        {'vehicle: ' + vehicle}
         <br></br>
-        {hourly_rate}
+        {'hourly_rate: $' + (hourly_rate / 100).toFixed(2)}
         <br></br>
-        {user_rating}
+        {'user_rating: ' + Number(user_rating).toFixed(2)}
         <br></br>
         <br></br>
       </li>

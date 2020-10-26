@@ -1,7 +1,7 @@
 INSERT INTO
 service_taskers(service_id, tasker_id, hourly_rate)
 VALUES
- (1, 7, 1500),
+ (1, 7, 1550),
  (1, 8, 2000),
  (1, 9, 2500),
  (1, 10, 3000),
