@@ -1,0 +1,16 @@
+.filter {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  
+  > div{
+    padding: 0rem 0 3rem;
+  }
+
+  .time{
+    width: 300px;
+  }
+  .input {
+    width: 42px;
+  }
+}

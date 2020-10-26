@@ -3,22 +3,12 @@ import React from 'react';
 import { Grid, Input, Slider, Typography } from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
-import { makeStyles } from '@material-ui/core/styles';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import { SET_DAY, SET_RANGE } from '../reducer/data_reducer';
+import "./Filter.scss";
 
-
-const useStyles = makeStyles({
-  root: {
-    width: 800,
-  },
-  input: {
-    width: 42,
-  },
-});
 
 export default function Filter(props) {
-  const classes = useStyles();
 
   const { dispatch, day, range } = props;
 
@@ -60,9 +50,11 @@ export default function Filter(props) {
   };
 
   return (
-    <section className="filter" style={{ display: 'flex' }}>
-      <h4>Location: </h4>
-      <input type='search'></input>
+    <section className="filter">
+      <div>
+        <h4>Location: </h4>
+        <input type='search'></input>
+      </div>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container justify="space-around">
           <KeyboardDatePicker
@@ -82,7 +74,7 @@ export default function Filter(props) {
           />
         </Grid>
       </MuiPickersUtilsProvider>
-      <div className={classes.root}>
+      <div className="time">
         <Grid container spacing={2} alignItems="center">
           <Grid item>
             <AccessTimeIcon />
@@ -95,7 +87,7 @@ export default function Filter(props) {
           <Grid item>
             <Input
               id={"0"}
-              className={classes.input}
+              className="input"
               value={range[0]}
               margin="dense"
               onChange={handleInputChange}
@@ -121,7 +113,7 @@ export default function Filter(props) {
           <Grid item>
             <Input
               id={"1"}
-              className={classes.input}
+              className="input"
               value={range[1]}
               margin="dense"
               onChange={handleInputChange}

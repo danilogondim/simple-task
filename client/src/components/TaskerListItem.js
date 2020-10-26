@@ -1,6 +1,6 @@
 import React from 'react';
 import { Rating } from '@material-ui/lab';
-import './TaskerListItem.scss'
+import './TaskerListItem.scss';
 
 export default function TaskerListItem(props) {
   const { id,
