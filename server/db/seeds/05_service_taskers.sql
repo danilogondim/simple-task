@@ -50,5 +50,5 @@ INSERT INTO
 service_taskers(service_id, tasker_id, hourly_rate)
 VALUES
  (1, 13, 2800),
- (1, 14, 3100),
+ (1, 14, 1700),
  (1, 15, 4200);
