@@ -4,8 +4,10 @@ import axios from 'axios';
 
 const useServiceData = id => {
   const [state, dispatch] = useReducer(dataReducer, {
-    services: [],
+    taskers: [],
     loading: true,
+    day: new Date().getDay(),
+    range: [0, 23]
   });
 
   useEffect(() => {

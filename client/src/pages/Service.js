@@ -6,10 +6,11 @@ import TaskerList from '../components/TaskerList'
 
 export default function Service() {
   const { id } = useParams();
-  const { state } = useServiceData(id);
+  const { state, dispatch } = useServiceData(id);
+
   return (
     <>
-      <Filter />
+      <Filter dispatch={dispatch}/>
       <TaskerList taskers={state.taskers}/>
     </>
   );

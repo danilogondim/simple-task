@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Filter() {
+export default function Filter(props) {
 
   // data state and handler
   const [selectedDate, setSelectedDate] = useState(new Date());
