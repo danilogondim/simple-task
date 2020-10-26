@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+
+
+const {validation} = require('../helpers/handlers.js')
+//console.log('validation function: ', validation)
 // const {
 //   getPostsByUsers
 // } = require('../helpers/dataHelpers');
@@ -9,9 +13,9 @@ module.exports = ({
   getUsers,
   getUserByEmail,
   addUser,
-  updateUser
+  updateUser,
 }) => {
-  /* GET users listing. */
+  /* GET users listing. */ 
   router.get('/', (req, res) => {
     getUsers()
       .then((users) => res.json(users))
@@ -24,6 +28,7 @@ module.exports = ({
   router.post('/', (req, res) => {
 
     //console.log(req.body);
+
 
     const {
       first_name,
@@ -55,7 +60,8 @@ module.exports = ({
       })
       .then( user => {          
       const token = jwt.sign({id: user.id}, process.env.TOKEN_SECRET);
-      res.json(token)
+      res.json(token) 
+      res.end()
       })
       .then(newUser => res.json(newUser))
       .catch(err => res.json({
@@ -72,8 +78,20 @@ module.exports = ({
       password,
     } = req.body;
 
-    //console.log(req.body);
 
+    //////TESTING -----------------------
+    console.log('before calling validation: ', req.cookies.token)
+    
+    const test = validation(req.cookies.token);
+
+    console.log('validation answer: ', test);
+
+
+
+
+    //END TESTING -------------------------
+    
+    //console.log(req.body);
     getUserByEmail(email)
     .then(user => {
       if (user) {
@@ -87,7 +105,8 @@ module.exports = ({
 
           //console.log('req.body users.js:', req.body)
           const token = jwt.sign({id: user.id}, process.env.TOKEN_SECRET);
-          res.json(token)
+          res.json(token) 
+          res.end()
         
 
         } else {
