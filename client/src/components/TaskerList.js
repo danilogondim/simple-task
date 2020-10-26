@@ -15,7 +15,11 @@ export default function TaskerList(props) {
 
   return (
     <section className="taskers">
-      <h4 className="taskers__header text--light">Tasker</h4>
+      <div className="sort">
+        <h5>Sorted By: </h5>
+        <button>price/ratings</button>
+      </div>
+      <h4 className="taskers__header text--light">Select a Tasker</h4>
       <ul className="taskers__list">
         {taskers}
       </ul>

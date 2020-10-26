@@ -1,6 +1,16 @@
-.taskers__list {
+.taskers {
   display: flex;
-  flex-flow: row wrap;
-  list-style-type: none;
-  padding: 0;
+  flex-direction: column;
+
+  .taskers__list {
+    display: flex;
+    flex-flow: row wrap;
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sort{
+    margin-left: auto;
+    display: flex;
+  }
 }

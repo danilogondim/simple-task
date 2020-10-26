@@ -18,9 +18,9 @@ export default function TaskerListItem(props) {
   return (
     <article className='tasker'>
       <li key={id} >
-        {first_name + ' ' + last_name}
-        <br></br>
         <img src={photo_url} alt={first_name + " " + last_name} />
+        <br></br>
+        {first_name + ' ' + last_name}
         <br></br>
         {user_rating === null && <p>New Tasker!</p>}
         {user_rating !== null &&
