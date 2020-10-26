@@ -7,7 +7,7 @@ const useServiceData = id => {
     taskers: [],
     loading: true,
     day: new Date(),
-    range: [0, 23]
+    range: [9, 15]
   });
 
   useEffect(() => {
