@@ -5,6 +5,8 @@ import {
   Route
 } from "react-router-dom";
 
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 import './App.css';
 
 import Navbar               from './components/Navbar';
@@ -21,6 +23,7 @@ import TasksNew             from './pages/TasksNew';
 import Task                 from './pages/Task';
 import TaskComplete         from './pages/TaskComplete';
 import TaskPayment          from './pages/TaskPayment';
+
 
 export default function App() {
   return (

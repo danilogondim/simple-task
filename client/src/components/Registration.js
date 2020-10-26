@@ -2,9 +2,12 @@ import React from 'react';
 import './Registration.scss';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 
 export default function Registration() {
+
+  let history = useHistory();
 
 
   const { register, handleSubmit, errors } = useForm();
@@ -15,7 +18,16 @@ export default function Registration() {
 
     axios
     .post('/api/users/', user)
-    .then((user) => console.log(user.data))
+    .then((info) => {
+      //console.log('info.data---------------->', info.data)
+      document.cookie = `token=${info.data}`
+
+      history.push("/");
+
+    }
+      //(user) => console.log(user.data)
+    )
+
     .catch(err => {
       console.error(err);
     });
