@@ -16,29 +16,32 @@ export default function TaskerListItem(props) {
     user_rating
   } = props.tasker;
   return (
-    <article className='tasker'>
+    <article className='tasker card'>
       <li key={id} >
-        <img src={photo_url} alt={first_name + " " + last_name} />
-        <br></br>
-        {first_name + ' ' + last_name}
-        <br></br>
-        {user_rating === null && <p>New Tasker!</p>}
-        {user_rating !== null &&
-          <>
-            <Rating
-              name="half-rating-read"
-              defaultValue={Number(user_rating).toFixed(2)}
-              precision={0.5}
-              readOnly
-              className="rating"
-            />
-            <br></br>
-          </>}
-        {'Hourly rate: $' + (hourly_rate / 100).toFixed(2)}
-        <br></br>
-        {'Vehicle: ' + vehicle}
-        <br></br>
-        <br></br>
+        <img className="card-img-top" src={photo_url} alt={first_name + " " + last_name} />
+        <div className="card-body">
+
+          <br></br>
+          {first_name + ' ' + last_name}
+          <br></br>
+          {user_rating === null && <p>New Tasker!</p>}
+          {user_rating !== null &&
+            <>
+              <Rating
+                name="half-rating-read"
+                defaultValue={Number(user_rating).toFixed(2)}
+                precision={0.5}
+                readOnly
+                className="rating"
+              />
+              <br></br>
+            </>}
+          {'Hourly rate: $' + (hourly_rate / 100).toFixed(2)}
+          <br></br>
+          {'Vehicle: ' + vehicle}
+          <br></br>
+          <br></br>
+        </div>
       </li>
     </article >
   );

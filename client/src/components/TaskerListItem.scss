@@ -1,7 +1,9 @@
 .tasker {
+  width: 300px;
+  margin: 1rem;
   li > img {
-    width: 200px;
-    height: 200px;
+    width: percentage($number: 1);
+    height: 250px;
     object-fit: cover;
   }
   li > p{
@@ -15,5 +17,9 @@
     margin: 0;
     padding: 0.3em 0em 0.1em;
     font-size: 1rem;
+  }
+  .card-body{
+    padding-top: 0;
+    padding-bottom: 0;
   }
 }
