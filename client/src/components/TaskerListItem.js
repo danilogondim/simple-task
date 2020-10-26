@@ -1,4 +1,5 @@
 import React from 'react';
+import './TaskerListItem.scss'
 
 export default function TaskerListItem(props) {
   const { id,

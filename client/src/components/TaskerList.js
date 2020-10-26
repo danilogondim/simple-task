@@ -1,4 +1,5 @@
 import React from 'react';
+import './TaskerList.scss'
 
 import TaskerListItem from './TaskerListItem';
 
