@@ -26,7 +26,7 @@ export default function Filter() {
 
   // range state and handler
   const classes = useStyles();
-  const [value, setValue] = useState([1, 22]);
+  const [value, setValue] = useState([0, 23]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

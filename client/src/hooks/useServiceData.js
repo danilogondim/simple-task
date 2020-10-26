@@ -2,7 +2,7 @@ import { useEffect, useReducer } from 'react';
 import dataReducer, { SET_TASKERS } from '../reducer/data_reducer';
 import axios from 'axios';
 
-const useServices = id => {
+const useServiceData = id => {
   const [state, dispatch] = useReducer(dataReducer, {
     services: [],
     loading: true,
@@ -18,4 +18,4 @@ const useServices = id => {
   return { state, dispatch };
 };
 
-export default useServices;
+export default useServiceData;
