@@ -69,6 +69,8 @@ export default function Filter(props) {
             disableToolbar
             variant="inline"
             format="yyyy/MM/dd"
+            minDate={new Date()}
+            minDateMessage="Please select a future date"
             margin="normal"
             id="date-picker-inline"
             label="Date"
