@@ -10,7 +10,7 @@ export default function Service() {
 
   return (
     <>
-      <Filter dispatch={dispatch}/>
+      <Filter dispatch={dispatch} day={state.day} range={state.range}/>
       <TaskerList taskers={state.taskers}/>
     </>
   );

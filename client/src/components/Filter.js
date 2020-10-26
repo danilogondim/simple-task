@@ -5,6 +5,8 @@ import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import { makeStyles } from '@material-ui/core/styles';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import { SET_DAY, SET_RANGE } from '../reducer/data_reducer';
+
 
 const useStyles = makeStyles({
   root: {
@@ -16,45 +18,39 @@ const useStyles = makeStyles({
 });
 
 export default function Filter(props) {
+  const classes = useStyles();
 
-  // data state and handler
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const { dispatch, day, range } = props;
 
+  // date handler
   const handleDateChange = (date) => {
-    setSelectedDate(date);
+    dispatch({ type: SET_DAY, day: date });
   };
 
-  // range state and handler
-  const classes = useStyles();
-  const [value, setValue] = useState([0, 23]);
-
+  // range handler
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    dispatch({ type: SET_RANGE, range: newValue });
   };
 
   // input handler
   const handleInputChange = (event) => {
     const index = event.target.name === "start" ? 0 : 1;
-    setValue(prev => {
-      const newArr = [...prev];
-      newArr[index] = event.target.value === '' ? '' : Number(event.target.value);
-      return newArr
-    });
+    const newRange = [...range];
+    newRange[index] = event.target.value === '' ? '' : Number(event.target.value);
+    dispatch({ type: SET_RANGE, range: newRange });
   };
+
+  // when the input lose focus, the values are validated
   const handleBlur = (event) => {
     const index = event.target.name === "start" ? 0 : 1;
-    if (value[index] < 0) {
-      setValue(prev => {
-        const newArr = [...prev];
-        newArr[index] = 0;
-        return newArr
-      });
-    } else if (value[index] > 23) {
-      setValue(prev => {
-        const newArr = [...prev];
-        newArr[index] = 23;
-        return newArr
-      });
+    if (range[index] < 0) {
+      const newRange = [...range];
+      newRange[index] = 0;
+      dispatch({ type: SET_RANGE, range: newRange });
+    } else if (range[index] > 23) {
+      const newRange = [...range];
+      newRange[index] = 23;
+      dispatch({ type: SET_RANGE, range: newRange });
     }
   };
 
@@ -71,7 +67,7 @@ export default function Filter(props) {
             margin="normal"
             id="date-picker-inline"
             label="Date"
-            value={selectedDate}
+            value={day}
             onChange={handleDateChange}
             KeyboardButtonProps={{
               'aria-label': 'change date',
@@ -93,7 +89,7 @@ export default function Filter(props) {
             <Input
               name="start"
               className={classes.input}
-              value={value[0]}
+              value={range[0]}
               margin="dense"
               onChange={handleInputChange}
               onBlur={handleBlur}
@@ -108,7 +104,7 @@ export default function Filter(props) {
           </Grid>
           <Grid item xs>
             <Slider
-              value={value}
+              value={range}
               onChange={handleChange}
               valueLabelDisplay="auto"
               aria-labelledby="range-slider"
@@ -120,7 +116,7 @@ export default function Filter(props) {
             <Input
               name="end"
               className={classes.input}
-              value={value[1]}
+              value={range[1]}
               margin="dense"
               onChange={handleInputChange}
               onBlur={handleBlur}

@@ -6,7 +6,7 @@ const useServiceData = id => {
   const [state, dispatch] = useReducer(dataReducer, {
     taskers: [],
     loading: true,
-    day: new Date().getDay(),
+    day: new Date(),
     range: [0, 23]
   });
 
