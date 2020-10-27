@@ -1,7 +1,6 @@
 import React from 'react';
 import { useParams } from "react-router-dom";
 import useServiceData from '../hooks/useServiceData';
-import useCategories from '../hooks/useCategories';
 import Filter from '../components/Filter';
 import TaskerList from '../components/TaskerList';
 import taskersFilter from '../helpers/taskersFilter';
@@ -9,13 +8,8 @@ import './Service.scss';
 
 export default function Service() {
   const { c_id, id } = useParams();
-  const { state, dispatch } = useServiceData(id);
-  const categories = useCategories().state.categories;
-  const category = categories.find(element => element.category_id === Number(c_id));
-  const service = !category? "": category.services.find(element => element.service_id === Number(id));
+  const { state, dispatch, service } = useServiceData(c_id, id);
   const { day, range } = state;
-
-
 
   const filteredTaskers = taskersFilter(state);
 
