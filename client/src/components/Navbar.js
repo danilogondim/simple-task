@@ -1,9 +1,10 @@
 import React, {useContext} from 'react';
-import './Navbar.scss';
 import {Link} from 'react-router-dom';
 //import NavButton from './NavButton';
 import { useHistory } from "react-router-dom";
 import { AppContext } from "../App.js"
+
+import './Navbar.scss';
 
 //Get a token for the first time on the file
 //let token = localStorage.getItem('token');
@@ -27,9 +28,8 @@ export default function Navbar() {
     history.push('/login');
   }
   
-  
   return (
-    <nav>
+    <nav className="navbar sticky-top">
 
       <div className="logo">
         <span>Simple</span><span>Task</span>
