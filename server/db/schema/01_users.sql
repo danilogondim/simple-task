@@ -10,12 +10,16 @@ CREATE TABLE users(
   coordinates VARCHAR[],
   is_tasker BOOLEAN DEFAULT 'f',
   photo_url TEXT,
+  summary TEXT,
   is_available BOOLEAN,
   vehicle VARCHAR(255),
-  -- if the user is a tasker, it should have photo, availability (true or false) and vehicle:
+  -- if the user is a tasker, it should have photo, summary, availability (true or false) and vehicle:
   CONSTRAINT if_tasker_then_photo_url_is_not_null 
     CHECK ( NOT (is_tasker AND photo_url IS NULL) ),
 
+  CONSTRAINT if_tasker_then_summary_is_not_null 
+    CHECK ( NOT (is_tasker AND summary IS NULL) ),
+    
   CONSTRAINT if_tasker_then_is_available_is_not_null 
     CHECK ( NOT (is_tasker AND is_available IS NULL) ),
 
