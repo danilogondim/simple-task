@@ -19,6 +19,8 @@ export default function Registration() {
 
     // console.log(user);
 
+    //My google API: AIzaSyACgjYxBRjV6oZ8QjUyw66vFUCVVjuzRi4
+
     axios
     .post('/api/users/', user)
     .then((info) => {
