@@ -5,7 +5,7 @@ import TaskerListItem from './TaskerListItem';
 
 export default function TaskerList(props) {
 
-  const { taskers } = props;
+  const { taskers, service } = props;
 
   const [filter, setFilter] = useState('rating')
   const handleClick = () => {
@@ -47,7 +47,7 @@ export default function TaskerList(props) {
         <h5>Sorted By: </h5>
         <button onClick={handleClick}>{filter}</button>
       </div>
-      <h4 className="taskers__header text--light">Select a Tasker</h4>
+      <h4 className="taskers__header text--light">{service.service + " >> "}Select a Tasker</h4>
       <ul className="taskers__list">
         {taskerList}
       </ul>
