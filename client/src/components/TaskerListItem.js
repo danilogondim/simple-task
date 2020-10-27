@@ -14,7 +14,7 @@ export default function TaskerListItem(props) {
     last_name,
     // phone,
     // address,
-    coordinates,
+    // coordinates,
     // email,
     photo_url,
     vehicle,

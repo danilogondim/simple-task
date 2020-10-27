@@ -1,12 +1,12 @@
 .tasker {
 
-  width: 300px;
+  width: 350px;
   margin: 1rem;
   opacity: 0.8;
 
   li > img {
     width: percentage($number: 1);
-    height: 250px;
+    height: 300px;
     object-fit: cover;
   }
 
@@ -28,11 +28,12 @@
       padding: 0.1em 0.3em 0.1em 0;
 
       > p{
-        color: #ff7e67
+        color: #ff7e67;
+        font-size: 1.2rem;
       }
 
       .rating-result {
-        font-size: 1rem;
+        font-size: 1.4rem;
       }
     }
 
