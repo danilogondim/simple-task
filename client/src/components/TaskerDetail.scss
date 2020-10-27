@@ -5,7 +5,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  
+  width: 350px;
   
   img {
     width: 350px;
@@ -45,5 +45,29 @@
       padding: 0 2rem 1rem 2rem;
       justify-content: space-between;
     }
+  }
+
+  .right_details{
+    width: inherit;
+    > footer {
+      display: flex;
+      justify-content: space-evenly;
+      padding: 1rem 0;
+    }
+  } 
+}
+
+@media only screen and (min-width: 768px) {
+  
+  .tasker__details {
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    max-width: 800px;
+    .right_details{
+      > footer {
+        padding: 1rem 0 0;
+      }
+    } 
   }
 }

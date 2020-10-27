@@ -20,9 +20,12 @@ export default function TaskerDetail(props) {
   return (
     <>
       <div className="tasker__details card border-dark mb-3" onClick={props.setTasker}>
-        <article className="tasker__information" onClick={props.setTasker}>
+        <article className="left_details" onClick={props.setTasker}>
           <img className="card-img-top" src={photo_url} alt={first_name + " " + last_name} />
-          <div className="card-body">
+          
+        </article >
+        <div className="right_details">
+        <div className="card-body">
             <div className="rating">
               {user_rating === null && <p>New Tasker!</p>}
               {user_rating !== null &&
@@ -54,7 +57,12 @@ export default function TaskerDetail(props) {
               </span>
             </div>
           </div>
-        </article >
+          <h1>Test</h1>
+          <footer>
+            <button>Chat now!</button>
+            <button>Book now!</button>
+          </footer>
+        </div>
       </div>
     </>
   )
