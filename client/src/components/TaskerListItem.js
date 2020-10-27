@@ -22,7 +22,7 @@ export default function TaskerListItem(props) {
     user_rating
   } = props.tasker;
   return (
-    <article className='tasker card'>
+    <article className="tasker card">
       <li key={id} >
         <img className="card-img-top" src={photo_url} alt={first_name + " " + last_name} />
         <div className="card-body">
@@ -48,7 +48,12 @@ export default function TaskerListItem(props) {
               {'$' + (hourly_rate / 100).toFixed(2) + '/h'}
             </span>
             <span>
-              {'Vehicle: ' + vehicle}
+              {vehicle === 'van' && <AirportShuttle/>}
+              {vehicle === 'truck' && <LocalShipping/>}
+              {vehicle === 'car' && <DriveEta/>}
+              {vehicle === 'bicycle' && <DirectionsBike/>}
+              {vehicle === 'motorcycle' && <SportsMotorsports/>}
+              {vehicle === 'public' && <DirectionsTransit/>}
             </span>
           </div>
         </div>
