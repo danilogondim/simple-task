@@ -10,7 +10,7 @@ export default function Home() {
     return (
       <Card style={{ width: "18rem" }} key={index} className="box">
         <Link to={`categories/${card.category_id}`}>
-        <Card.Img variant="top" src="holder.js/100px180" src={card.category_thumbnail} />
+        <Card.Img variant="top" src={card.category_thumbnail} />
         </Link>
         <Card.Body>
           <Card.Title>{card.category}</Card.Title>
@@ -24,8 +24,8 @@ export default function Home() {
     <Container className="p-3">
     <Jumbotron className="p-3 mb-2 jumbotron">
       <h1 className="header">Welcome To SimpleTask</h1>
-      <br></br>
-      <img src="holder.js/100px180" src="holder.js/100px180" src={"https://www.handymanvancouver.ca/wp-content/uploads/2016/12/vancouver-handyman-furniture-assembly.jpg"}/>
+      {/* <br></br> */}
+      {/* <img src="holder.js/100px180" src="holder.js/100px180" src={"https://www.handymanvancouver.ca/wp-content/uploads/2016/12/vancouver-handyman-furniture-assembly.jpg"}/> */}
       <br></br>
       <h4>Select a category to begin with</h4>
     </Jumbotron>

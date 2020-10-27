@@ -1,3 +1,11 @@
+.jumbotron {
+  background-color: #ff7e67;
+  color: #ecf4f3;
+  // background-color: #ff7e67;
+  // color: #006a71;
+  font-family: 'Handlee', cursive;;
+};
+
 .box {
   margin: 20px;
   opacity: 0.8;
@@ -5,7 +13,7 @@
 
 .box:hover{
   opacity: 1;
-  box-shadow: 0 0 11px rgba(33,33,33,.2);
+  box-shadow: 0 0 11px #21212133;
 }
 
 .grid {
@@ -13,15 +21,10 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  font-family: monospace;
+  color: #ff7e67;
   justify-content: center;
 }
 
-// .grid > div {
-//   flex-basis: calc(50% - 40px);
-// }
-
-.jumbotron {
+.grid > div > div > p {
   color: #006a71;
-  font-family: Means Web,Georgia,Times,Times New Roman,serif;
-}
+};

@@ -12,7 +12,7 @@ export default function Services() {
     return (
       <Card style={{ width: "18rem" }} key={index} className="box">
         <Link to={`${id}/services/${card.service_id}`}>
-        <Card.Img variant="top" src="holder.js/100px180" src={card.service_thumbnail} />
+        <Card.Img variant="top" src={card.service_thumbnail} />
         </Link>
         <Card.Body>
           <Card.Title>{card.service}</Card.Title>
