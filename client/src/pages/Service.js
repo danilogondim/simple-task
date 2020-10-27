@@ -9,7 +9,7 @@ import './Service.scss';
 export default function Service() {
   const { c_id, id } = useParams();
   const { state, dispatch, service } = useServiceData(c_id, id);
-  const { day, range } = state;
+  const { day, range, tasker } = state;
 
   const filteredTaskers = taskersFilter(state);
 
@@ -17,7 +17,7 @@ export default function Service() {
     <>
       <main className="selection_page">
         <Filter dispatch={dispatch} day={day} range={range} />
-        <TaskerList service={service} taskers={filteredTaskers} />
+        <TaskerList dispatch={dispatch} service={service} taskers={filteredTaskers} />
       </main>
     </>
   );

@@ -22,7 +22,7 @@ export default function TaskerListItem(props) {
     user_rating
   } = props.tasker;
   return (
-    <article className="tasker card">
+    <article className="tasker card" onClick={props.setTasker}>
       <li key={id} >
         <img className="card-img-top" src={photo_url} alt={first_name + " " + last_name} />
         <div className="card-body">

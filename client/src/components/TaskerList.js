@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SET_TASKER } from '../reducer/data_reducer';
 import './TaskerList.scss';
 
 import TaskerListItem from './TaskerListItem';
@@ -37,6 +38,7 @@ export default function TaskerList(props) {
       <TaskerListItem
         key={tasker.id}
         tasker={tasker}
+        setTasker={() => props.dispatch({ type: SET_TASKER, tasker: tasker })}
       />
     );
   });
