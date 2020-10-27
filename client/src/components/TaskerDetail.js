@@ -13,6 +13,7 @@ export default function TaskerDetail(props) {
     coordinates,
     email,
     photo_url,
+    summary,
     vehicle,
     hourly_rate,
     user_rating
@@ -22,27 +23,28 @@ export default function TaskerDetail(props) {
       <div className="tasker__details card border-dark mb-3" onClick={e => e.stopPropagation()}>
         <article className="left_details">
           <img className="card-img-top" src={photo_url} alt={first_name + " " + last_name} />
-          
         </article >
         <div className="right_details">
-        <div className="card-body">
-            <div className="rating">
-              {user_rating === null && <p>New Tasker!</p>}
-              {user_rating !== null &&
-                <>
-                  <Rating
-                    name="half-rating-read"
-                    defaultValue={Number(Number(user_rating).toFixed(2))}
-                    precision={0.1}
-                    readOnly
-                    className="rating-result"
-                  />
-                </>
-              }
-            </div>
-            <h5>
-              {first_name + ' ' + last_name}
-            </h5>
+          <div className="card-body">
+            <header>
+              <h5>
+                {first_name + ' ' + last_name}
+              </h5>
+              <div className="rating">
+                {user_rating === null && <p>New Tasker!</p>}
+                {user_rating !== null &&
+                  <>
+                    <Rating
+                      name="half-rating-read"
+                      defaultValue={Number(Number(user_rating).toFixed(2))}
+                      precision={0.1}
+                      readOnly
+                      className="rating-result"
+                    />
+                  </>
+                }
+              </div>
+            </header>
             <div className="price-vehicle">
               <span>
                 {'$' + (hourly_rate / 100).toFixed(2) + '/h'}
@@ -57,7 +59,13 @@ export default function TaskerDetail(props) {
               </span>
             </div>
           </div>
-          <h1>Test</h1>
+          <div className="comment-review">
+            <p>{"About me: " + summary}</p>
+            <blockquote class="blockquote mb-0">
+              <p>{summary}</p>
+              <footer class="blockquote-footer">Reviewer</footer>
+            </blockquote>
+          </div>
           <footer>
             <button>Chat now!</button>
             <button>Book now!</button>

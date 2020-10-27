@@ -20,7 +20,9 @@ export default function Service() {
       {!tasker && (
         <main className="selection_page">
           {<Filter dispatch={dispatch} day={day} range={range} />}
-          {<TaskerList dispatch={dispatch} service={service} taskers={filteredTaskers} />}
+          {/* commented out to test layout */}
+          {/* {<TaskerList dispatch={dispatch} service={service} taskers={filteredTaskers} />} */}
+          {<TaskerList dispatch={dispatch} service={service} taskers={state.taskers} />}
         </main>
       )}
       {tasker && (
