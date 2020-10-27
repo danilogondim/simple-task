@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import './Registration.scss';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
+import { AppContext } from "../App.js"
 
 
 export default function Registration() {
+
+  const {setToken} = useContext(AppContext);
 
   let history = useHistory();
 
@@ -21,7 +24,7 @@ export default function Registration() {
     .then((info) => {
       //console.log('info.data---------------->', info.data)
       localStorage.setItem('token', info.data);
-
+      setToken(info.data);
       history.push("/");
 
     }

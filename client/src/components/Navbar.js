@@ -18,8 +18,8 @@ export default function Navbar() {
 
   let history = useHistory();
 
-  console.log('!!token------------>', !!token)
-  console.log('token------------>', token)
+  // console.log('!!token------------>', !!token)
+  // console.log('token------------>', token)
 
   function handleLogout() {
     localStorage.clear();
