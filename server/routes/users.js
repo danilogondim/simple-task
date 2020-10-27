@@ -3,7 +3,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 
 
-const {validation} = require('../helpers/handlers.js')
+
 //console.log('validation function: ', validation)
 // const {
 //   getPostsByUsers
@@ -78,18 +78,6 @@ module.exports = ({
       password,
     } = req.body;
 
-
-    //////TESTING -----------------------
-    console.log('before calling validation: ', req.cookies.token)
-    
-    const test = validation(req.cookies.token);
-
-    console.log('validation answer: ', test);
-
-
-
-
-    //END TESTING -------------------------
     
     //console.log(req.body);
     getUserByEmail(email)
@@ -105,6 +93,7 @@ module.exports = ({
 
           //console.log('req.body users.js:', req.body)
           const token = jwt.sign({id: user.id}, process.env.TOKEN_SECRET);
+         
           res.json(token) 
           res.end()
         
