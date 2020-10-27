@@ -45,9 +45,30 @@ VALUES
 
 
 -- comment this out after changing the taskers display (I am making every body available for service number 1 to work with the layout)
--- INSERT INTO
--- service_taskers(service_id, tasker_id, hourly_rate)
--- VALUES
---  (1, 13, 2800),
---  (1, 14, 1700),
---  (1, 15, 4200);
+INSERT INTO
+service_taskers(service_id, tasker_id, hourly_rate)
+VALUES
+ (1, 13, 2800),
+ (1, 14, 1700),
+ (1, 15, 1850),
+ (1, 16, 2300),
+ (1, 17, 3200),
+ (1, 18, 1700),
+ (1, 19, 2500),
+ (1, 20, 1599),
+ (1, 21, 2200),
+ (1, 22, 1800),
+ (1, 23, 4250),
+ (1, 24, 3800),
+ (1, 25, 1900),
+ (1, 26, 2700),
+ (1, 27, 4200),
+ (1, 28, 2900),
+ (1, 29, 2100),
+ (1, 30, 1650),
+ (1, 31, 1520),
+ (1, 32, 3200),
+ (1, 33, 2700),
+ (1, 34, 1850),
+ (1, 35, 1920),
+ (1, 36, 3200);
