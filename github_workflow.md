@@ -7,6 +7,7 @@
 6. git merge origin/master
 7. *resolve conflict if any*
 8. git push
+(extra) git pull (if it is necessary)
 9. git checkout master
 10. git merge *feature/name_of_the_feature*
 11. git push

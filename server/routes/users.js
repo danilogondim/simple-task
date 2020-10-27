@@ -50,7 +50,7 @@ module.exports = ({
           });
         } else {
 
-          return addUser(first_name, last_name, phone, email, password, address, [1,2], photo_url)
+          return addUser(first_name, last_name, phone, email, password, address, coordinates, photo_url)
 
         }
 
@@ -96,6 +96,11 @@ module.exports = ({
          
           res.json(token) 
           res.end()
+          
+          //Getting ID from the JWT Token
+          // const decoded = jwt.verify(token, "82jd73h@hsd8ko83");  
+          // let userId = decoded.id   
+          // console.log('userID----------->', userId) 
         
 
         } else {
