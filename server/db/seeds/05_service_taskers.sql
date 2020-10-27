@@ -6,7 +6,6 @@ VALUES
  (1, 9, 2500),
  (1, 10, 3000),
  (1, 11, 3500),
---  next one is an unavailable tasker, so his hourly rate will not be counted in service_id = 1 (then max will be 3500)
  (1, 12, 1600),
  (2, 7, 2500),
  (2, 8, 2800),
@@ -46,9 +45,9 @@ VALUES
 
 
 -- comment this out after changing the taskers display (I am making every body available for service number 1 to work with the layout)
-INSERT INTO
-service_taskers(service_id, tasker_id, hourly_rate)
-VALUES
- (1, 13, 2800),
- (1, 14, 1700),
- (1, 15, 4200);
+-- INSERT INTO
+-- service_taskers(service_id, tasker_id, hourly_rate)
+-- VALUES
+--  (1, 13, 2800),
+--  (1, 14, 1700),
+--  (1, 15, 4200);
