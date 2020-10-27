@@ -32,7 +32,7 @@ export default function Navbar() {
     <nav>
 
       <div className="logo">
-        SimpleTask
+        <span>Simple</span><span>Task</span>
       </div>
 
       <ul className="menu">
@@ -43,7 +43,7 @@ export default function Navbar() {
         {(token.length > 0) ? 
         <>
         <li><Link onClick={handleLogout}>Logout</Link></li>
-        <li><Link to='/users/:id'>Become a member</Link></li>
+        <li><Link to='/users/:id'>Profile</Link></li>
         </>
         :
         <>

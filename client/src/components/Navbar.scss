@@ -3,8 +3,8 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 0 3em;
-  background-color: #2ec4b6;
-  color: #7209b7;
+  background-color: #006a71;
+  color: #ecf4f3;
   position: navbar navbar-default navbar-fixed-top;
   width: 100%;
   height: 70px;
@@ -22,8 +22,16 @@ ul.menu {
 }
 
 .logo {
+  font-family: 'Handlee', cursive;
   font-size: xx-large;
   font-style: oblique;
   font-weight: 300;
-  text-decoration: underline;
 }
+
+.logo > span:first-child {
+  color: #ecf4f3;
+};
+
+.logo > span:last-child {
+  color: #ff7e67;
+};
