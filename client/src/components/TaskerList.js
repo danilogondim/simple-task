@@ -49,7 +49,19 @@ export default function TaskerList(props) {
       </div>
       <h4 className="taskers__header text--light">{service.service + " >> "}Select a Tasker</h4>
       <ul className="taskers__list">
-        {taskerList}
+        {taskerList.length === 0 &&
+          <>
+            <div className="alert alert-primary">
+              <h2>Unfortunately, there is no match for your search.</h2>
+              <br />
+              <h4>That is probably because all our taskers are busy for the selected date and period.</h4>
+              <br />
+              <h4>Please try a different one if it still suits your needs.</h4>
+            </div>
+          </>
+        }
+        {taskerList.length > 0 && taskerList}
+
       </ul>
     </section>
   );
