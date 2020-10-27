@@ -3,8 +3,13 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 0 3em;
-  background-color: #91f191;
-  color: #e100ff;
+  background-color: #2ec4b6;
+  color: #7209b7;
+  position: navbar navbar-default navbar-fixed-top;
+  width: 100%;
+  height: 70px;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 2px 4px #cccccc80;
 }
 
 ul.menu {
@@ -14,4 +19,11 @@ ul.menu {
   li {
     margin: 0 1em;
   }
+}
+
+.logo {
+  font-size: xx-large;
+  font-style: oblique;
+  font-weight: 300;
+  text-decoration: underline;
 }
