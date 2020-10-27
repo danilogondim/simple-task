@@ -5,13 +5,14 @@ import { AirportShuttle, LocalShipping, DriveEta, DirectionsBike, SportsMotorspo
 
 
 export default function TaskerDetail(props) {
-  const { id,
+  const { 
+    // id,
     first_name,
     last_name,
-    phone,
-    address,
-    coordinates,
-    email,
+    // phone,
+    // address,
+    // coordinates,
+    // email,
     photo_url,
     summary,
     vehicle,
@@ -61,9 +62,9 @@ export default function TaskerDetail(props) {
           </div>
           <div className="comment-review">
             <p>{"About me: " + summary}</p>
-            <blockquote class="blockquote mb-0">
+            <blockquote className="blockquote mb-0">
               <p>{summary}</p>
-              <footer class="blockquote-footer">Reviewer</footer>
+              <footer className="blockquote-footer">Reviewer</footer>
             </blockquote>
           </div>
           <footer>
