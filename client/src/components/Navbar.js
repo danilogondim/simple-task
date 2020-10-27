@@ -31,7 +31,7 @@ export default function Navbar() {
   return (
     <nav>
 
-      <div>
+      <div className="logo">
         SimpleTask
       </div>
 

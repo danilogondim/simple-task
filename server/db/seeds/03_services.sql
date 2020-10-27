@@ -11,7 +11,7 @@ INSERT INTO
 services(name, description, category_id, thumbnail_photo_url)
 VALUES
  ('Painting','Do you need a hand to paint your house? We got you covered!',2,'https://images.unsplash.com/photo-1573753458526-f353a3cc0aac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80'),
- ('Plumbing','For who hates dripping noise...',2,'https://unsplash.com/photos/HIBdxZQzA2Q'),
+ ('Plumbing','For who hates dripping noise...',2,'https://images.unsplash.com/photo-1553265381-674034b34554?ixlib=rb-1.2.1&auto=format&fit=crop&w=1445&q=80'),
  ('Electric Services','Afraid of electricity?',2,'https://images.unsplash.com/photo-1440595228939-3673bdb622b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80'),
  ('Moving Assitance','Hire a professional to handle your moving! You will thank us latter...',2,'https://images.unsplash.com/photo-1600725935160-f67ee4f6084a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
 

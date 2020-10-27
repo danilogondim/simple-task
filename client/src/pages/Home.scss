@@ -1,0 +1,27 @@
+.box {
+  margin: 20px;
+  opacity: 0.8;
+}
+
+.box:hover{
+  opacity: 1;
+  box-shadow: 0 0 11px rgba(33,33,33,.2);
+}
+
+.grid {
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  font-family: monospace;
+  justify-content: center;
+}
+
+// .grid > div {
+//   flex-basis: calc(50% - 40px);
+// }
+
+.jumbotron {
+  color: #480ca8;
+  font-family: Means Web,Georgia,Times,Times New Roman,serif;
+}
