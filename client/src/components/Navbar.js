@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 //import NavButton from './NavButton';
 import { useHistory } from "react-router-dom";
 import { AppContext } from "../App.js"
@@ -35,7 +35,7 @@ export default function Navbar() {
         <span>Simple</span><span>Task</span>
       </a>
 
-      <ul className="menu">
+      {/* <ul className="menu">
         <li><Link to='/'>Home</Link></li>
         <li><Link to="/about">About</Link> </li>
         <li><Link to='/search'>Search</Link></li>
@@ -52,6 +52,34 @@ export default function Navbar() {
         </>
         }
 
+      </ul> */}
+
+      <ul className="nav">
+        <li className="nav-item">
+          <a className="nav-link active" href="/">Home</a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="/about">About</a>
+        </li>
+        {(token.length > 0) ? 
+        <>
+        <li className="nav-item">
+          <a className="nav-link" href='/#' onClick={handleLogout}>Logout</a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href='/users/:id'>Profile</a>
+        </li>
+        </>
+        :
+        <>
+        <li className="nav-item">
+          <a className="nav-link" href='/login'>Login</a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href='/register'>Register</a>
+        </li>
+        </>
+        }
       </ul>
 
     </nav>
