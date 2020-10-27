@@ -1,3 +1,9 @@
+.jumbotron {
+  color: #ecf4f3;
+  background-color: #68b0ab;
+  font-family: Means Web,Georgia,Times,Times New Roman,serif;
+};
+
 .box {
   margin: 20px;
   opacity: 0.8;
@@ -13,16 +19,10 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  font-family: monospace;
+  color: #ff7e67;
   justify-content: center;
 }
 
-// .grid > div {
-//   flex-basis: calc(50% - 40px);
-// }
-
-.jumbotron {
-  color: #ff7e67;
-  background-color: #006a71;
-  font-family: Means Web,Georgia,Times,Times New Roman,serif;
-}
+.grid > div > div > p {
+  color: #006a71
+};

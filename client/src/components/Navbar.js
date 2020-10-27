@@ -3,6 +3,7 @@ import React, {useContext} from 'react';
 //import NavButton from './NavButton';
 import { useHistory } from "react-router-dom";
 import { AppContext } from "../App.js"
+// import HomeIcon from '@material-ui/icons/Home';
 
 import './Navbar.scss';
 
