@@ -1,26 +1,33 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './Navbar.scss';
 import {Link} from 'react-router-dom';
-import NavButton from './NavButton';
+//import NavButton from './NavButton';
+import { useHistory } from "react-router-dom";
+import { AppContext } from "../App.js"
 
+//Get a token for the first time on the file
+//let token = localStorage.getItem('token');
 
+//Get a token if it already exists
+//let token = localStorage.setItem('token');
 
 
 export default function Navbar() {
 
+  const {token, setToken} = useContext(AppContext);
 
-  function useToggle(initialValue = false) {
-    const [value, setValue] = React.useState(initialValue);
-    const toggle = React.useCallback(() => {
-      setValue(v => !v);
-    }, []);
-    return [value, toggle];
+  let history = useHistory();
+
+  console.log('!!token------------>', !!token)
+  console.log('token------------>', token)
+
+  function handleLogout() {
+    localStorage.clear();
+    setToken([]);
+    history.push('/login');
   }
-
-  const [initial, funcInitial] = useToggle('Login');
-  const [initial2, funcInitial2] = useToggle('Register');
-
-
+  
+  
   return (
     <nav>
 
@@ -33,24 +40,17 @@ export default function Navbar() {
         <li><Link to="/about">About</Link> </li>
         <li><Link to='/search'>Search</Link></li>
 
-
-        <NavButton onClick={funcInitial}>
-        {initial ? 
-        'Login'
-        : 
-        'Logout'
-        } 
-        </NavButton>
-
-        <NavButton onClick={funcInitial2}>
-        {initial2 ? 
-        'Register' 
-        : 
-        'Become a Tasker'
-        } 
-        </NavButton>
-
-
+        {(token.length > 0) ? 
+        <>
+        <li><Link onClick={handleLogout}>Logout</Link></li>
+        <li><Link to='/users/:id'>Become a member</Link></li>
+        </>
+        :
+        <>
+        <li><Link to='/login'>Login</Link></li>
+        <li><Link to='/register'>Register</Link></li>
+        </>
+        }
 
       </ul>
 

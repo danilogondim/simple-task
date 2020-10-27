@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, createContext, Provider} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,8 +25,14 @@ import TaskComplete         from './pages/TaskComplete';
 import TaskPayment          from './pages/TaskPayment';
 
 
+const AppContext = createContext();
+
 export default function App() {
+
+  const [token, setToken] = React.useState([])
+
   return (
+    <AppContext.Provider value={{token, setToken}}>
     <Router>
       <div>
         <Navbar/>
@@ -46,5 +52,8 @@ export default function App() {
         </Switch>
       </div>
     </Router>
+    </AppContext.Provider>
   );
-}
+};
+
+export {AppContext}; 

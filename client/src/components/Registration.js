@@ -20,7 +20,7 @@ export default function Registration() {
     .post('/api/users/', user)
     .then((info) => {
       //console.log('info.data---------------->', info.data)
-      document.cookie = `token=${info.data}`
+      localStorage.setItem('token', info.data);
 
       history.push("/");
 
