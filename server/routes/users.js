@@ -96,6 +96,11 @@ module.exports = ({
          
           res.json(token) 
           res.end()
+          
+          //Getting ID from the JWT Token
+          // const decoded = jwt.verify(token, "82jd73h@hsd8ko83");  
+          // let userId = decoded.id   
+          // console.log('userID----------->', userId) 
         
 
         } else {
