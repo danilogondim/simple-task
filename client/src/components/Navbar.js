@@ -30,10 +30,10 @@ export default function Navbar() {
   
   return (
     <nav className="navbar sticky-top">
-
-      <div className="logo">
+      
+      <a href="/" className="logo nav-link">
         <span>Simple</span><span>Task</span>
-      </div>
+      </a>
 
       <ul className="menu">
         <li><Link to='/'>Home</Link></li>
