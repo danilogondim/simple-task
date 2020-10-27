@@ -1,13 +1,12 @@
 INSERT INTO
 service_taskers(service_id, tasker_id, hourly_rate)
 VALUES
- (1, 7, 1500),
+ (1, 7, 1550),
  (1, 8, 2000),
  (1, 9, 2500),
  (1, 10, 3000),
  (1, 11, 3500),
---  next one is an unavailable tasker, so his hourly rate will not be counted in service_id = 1 (then max will be 3500)
- (1, 12, 4000),
+ (1, 12, 1600),
  (2, 7, 2500),
  (2, 8, 2800),
  (2, 10, 3000),
@@ -43,3 +42,33 @@ VALUES
 -- service 4 will be used to test a service with only unavailable taskers (if we don't have available taskers, it should not show up to users) -- ok
 -- service 6 will be used to test an empty service (if we don't have taskers willing to do it, it should not show up to users) -- ok
 -- service 9 will be used to test a service provided by a user (not a tasker) (it should not show up to users) -- ok
+
+
+-- comment this out after changing the taskers display (I am making every body available for service number 1 to work with the layout)
+INSERT INTO
+service_taskers(service_id, tasker_id, hourly_rate)
+VALUES
+ (1, 13, 2800),
+ (1, 14, 1700),
+ (1, 15, 1850),
+ (1, 16, 2300),
+ (1, 17, 3200),
+ (1, 18, 1700),
+ (1, 19, 2500),
+ (1, 20, 1599),
+ (1, 21, 2200),
+ (1, 22, 1800),
+ (1, 23, 4250),
+ (1, 24, 3800),
+ (1, 25, 1900),
+ (1, 26, 2700),
+ (1, 27, 4200),
+ (1, 28, 2900),
+ (1, 29, 2100),
+ (1, 30, 1650),
+ (1, 31, 1520),
+ (1, 32, 3200),
+ (1, 33, 2700),
+ (1, 34, 1850),
+ (1, 35, 1920),
+ (1, 36, 3200);

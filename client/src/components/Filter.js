@@ -3,22 +3,12 @@ import React from 'react';
 import { Grid, Input, Slider, Typography } from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
-import { makeStyles } from '@material-ui/core/styles';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import { SET_DAY, SET_RANGE } from '../reducer/data_reducer';
+import "./Filter.scss";
 
-
-const useStyles = makeStyles({
-  root: {
-    width: 800,
-  },
-  input: {
-    width: 42,
-  },
-});
 
 export default function Filter(props) {
-  const classes = useStyles();
 
   const { dispatch, day, range } = props;
 
@@ -36,12 +26,26 @@ export default function Filter(props) {
   const handleInputChange = (event) => {
     const index = event.target.id;
     const input = Number(event.target.value);
+    // check if the input is within the accepted range
     if (input <= 23 && input >= 0) {
-      if (index === '0' && input < range[1]) {
+      if (index === '0' && input === range[0] + 1 && input === range[1] && input + 1 <= 23) {
+        // avoid lowest value overlapping the highest value by making the highest value move as long as it is within the limit
+        const newRange = [...range];
+        newRange[index] = event.target.value === '' ? '' : input;
+        newRange['1'] = event.target.value === '' ? '' : input + 1;
+        dispatch({ type: SET_RANGE, range: newRange });
+      } else if (index === '1' && input === range[1] - 1 && input === range[0] && input - 1 >= 0) {
+        // avoid highest value overlapping the lowest value by making the lowest value move as long as it is within the limit
+        const newRange = [...range];
+        newRange[index] = event.target.value === '' ? '' : input;
+        newRange['0'] = event.target.value === '' ? '' : input - 1;
+        dispatch({ type: SET_RANGE, range: newRange });
+      } else if (index === '0' && input < range[1]) {
         const newRange = [...range];
         newRange[index] = event.target.value === '' ? '' : input;
         dispatch({ type: SET_RANGE, range: newRange });
       } else if (index === '0' && input > range[1]) {
+        // if the new input set for the lowest value is higher than the highest value, interchange them
         const newRange = [...range];
         newRange[index] = event.target.value === '' ? '' : input;
         newRange.sort((a, b) => a - b)
@@ -51,6 +55,7 @@ export default function Filter(props) {
         newRange[index] = event.target.value === '' ? '' : input;
         dispatch({ type: SET_RANGE, range: newRange });
       } else if (index === '1' && input < range[0]) {
+        // if the new input set for the highest value is lower than the lowest value, interchange them
         const newRange = [...range];
         newRange[index] = event.target.value === '' ? '' : input;
         newRange.sort((a, b) => a - b)
@@ -60,9 +65,11 @@ export default function Filter(props) {
   };
 
   return (
-    <section className="filter" style={{ display: 'flex' }}>
-      <h4>Location: </h4>
-      <input type='search'></input>
+    <section className="filter">
+      <div>
+        <h4>Location: </h4>
+        <input type='search'></input>
+      </div>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container justify="space-around">
           <KeyboardDatePicker
@@ -82,7 +89,7 @@ export default function Filter(props) {
           />
         </Grid>
       </MuiPickersUtilsProvider>
-      <div className={classes.root}>
+      <div className="time">
         <Grid container spacing={2} alignItems="center">
           <Grid item>
             <AccessTimeIcon />
@@ -95,7 +102,7 @@ export default function Filter(props) {
           <Grid item>
             <Input
               id={"0"}
-              className={classes.input}
+              className="input"
               value={range[0]}
               margin="dense"
               onChange={handleInputChange}
@@ -121,7 +128,7 @@ export default function Filter(props) {
           <Grid item>
             <Input
               id={"1"}
-              className={classes.input}
+              className="input"
               value={range[1]}
               margin="dense"
               onChange={handleInputChange}

@@ -10,7 +10,7 @@ VALUES
  (17, 1, 10, 'Just in time! Thanks man!', 5, 'Just a regular pick-up. Great communication', 5),
  (15, 4, 11, 'Amazing!! All my friends loved his job', 5, 'Everything went as expected', 5),
  (13, 3, 13, 'Thank you Mario! Amazing job!', 5, 'It was really fun to work for Diana', 5),
- (14, 4, 14, 'Horrible service! It started late and I can''t found my stuff!', 1, 'The user did not provide the right address and the instructions were unclear', 3),
+ (14, 4, 14, 'Horrible service! It started late and I now can''t find my stuff!', 1, 'The user did not provide the right address and the instructions were unclear', 3),
  (12, 2, 15, 'Just as expected', 5, 'My experience was great. The user gave my clear instructions', 5)
 
 -- user_comment and user_rating is expected to be user input, evaluating the tasker
