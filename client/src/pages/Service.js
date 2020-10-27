@@ -17,11 +17,17 @@ export default function Service() {
 
   return (
     <>
-      <main className="selection_page">
-        {!tasker && <Filter dispatch={dispatch} day={day} range={range} />}
-        {!tasker && <TaskerList dispatch={dispatch} service={service} taskers={filteredTaskers} />}
-        {tasker && <TaskerDetail tasker={tasker} setTasker={() => dispatch({ type: SET_TASKER, tasker: null })} />}
-      </main>
+      {!tasker && (
+        <main className="selection_page">
+          {<Filter dispatch={dispatch} day={day} range={range} />}
+          {<TaskerList dispatch={dispatch} service={service} taskers={filteredTaskers} />}
+        </main>
+      )}
+      {tasker && (
+        <main className="detail_page" onClick={() => dispatch({ type: SET_TASKER, tasker: null })}>
+          <TaskerDetail tasker={tasker}  />
+        </main>
+      )}
     </>
   );
 }

@@ -19,8 +19,8 @@ export default function TaskerDetail(props) {
   } = props.tasker;
   return (
     <>
-      <div className="tasker__details card border-dark mb-3" onClick={props.setTasker}>
-        <article className="left_details" onClick={props.setTasker}>
+      <div className="tasker__details card border-dark mb-3" onClick={e => e.stopPropagation()}>
+        <article className="left_details">
           <img className="card-img-top" src={photo_url} alt={first_name + " " + last_name} />
           
         </article >
