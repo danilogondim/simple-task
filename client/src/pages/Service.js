@@ -10,8 +10,8 @@ import './Service.scss';
 export default function Service() {
   const { c_id, id } = useParams();
   const { state, dispatch } = useServiceData(id);
-  const categories = useCategories();
-  const category = categories.state.categories.find(element => element.category_id === Number(c_id))
+  const categories = useCategories().state.categories;
+  const category = categories.find(element => element.category_id === Number(c_id));
   const service = !category? "": category.services.find(element => element.service_id === Number(id));
   const { day, range } = state;
 
