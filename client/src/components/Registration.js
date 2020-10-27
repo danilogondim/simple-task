@@ -4,6 +4,13 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import { AppContext } from "../App.js"
+import Geocode from "react-geocode";
+
+//Google Geocode Setup
+Geocode.setApiKey("AIzaSyACgjYxBRjV6oZ8QjUyw66vFUCVVjuzRi4");
+Geocode.setLanguage("en");
+Geocode.setRegion("ca");
+Geocode.enableDebug();
 
 
 export default function Registration() {
@@ -17,25 +24,36 @@ export default function Registration() {
   
   const onSubmit = (user) => {
 
-    // console.log(user);
+    console.log(user);
 
-    //My google API: AIzaSyACgjYxBRjV6oZ8QjUyw66vFUCVVjuzRi4
+    Geocode.fromAddress(user.address).then(
+      response => {
+        const { lat, lng } = response.results[0].geometry.location;
+        user.coordinates = [lat, lng];
+        //console.log('user.coordinates------>', user.coordinates);
 
-    axios
-    .post('/api/users/', user)
-    .then((info) => {
-      //console.log('info.data---------------->', info.data)
-      localStorage.setItem('token', info.data);
-      setToken(info.data);
-      history.push("/");
+        axios
+        .post('/api/users/', user)
+        .then((info) => {
+          //console.log('info.data---------------->', info.data)
+          localStorage.setItem('token', info.data);
+          setToken(info.data);
+          history.push("/");
+        }
+        )
+        .catch(err => {
+          console.error(err);
+        });
 
-    }
-      //(user) => console.log(user.data)
-    )
+      },
+      error => {
+        console.error(error);
+      }
+    );
 
-    .catch(err => {
-      console.error(err);
-    });
+   
+
+
 
 
   }
