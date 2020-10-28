@@ -151,6 +151,25 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const getTaskForPayment = (id) => {
+    const query = {
+      text: `SELECT 
+              id AS task_id,
+              description AS task,
+              user_id,
+              tasker_id,
+              started_at AS start_time,
+              completed_at AS end_time
+            FROM tasks WHERE id = $1`,
+      values: [id]
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
   return {
     getUsers,
     getUserByEmail,
@@ -159,7 +178,8 @@ module.exports = (db) => {
     getTaskersByService,
     getCategories,
     getTasks,
-    getTaskById 
+    getTaskById,
+    getTaskForPayment
   };
 };
 
