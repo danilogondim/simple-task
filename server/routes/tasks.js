@@ -4,7 +4,8 @@ const router = express.Router();
 module.exports = ({
   getTasks,
   getTaskById,
-  getTaskForPayment
+  getTaskForPayment,
+  addTask
 }) => {
   /* GET Tasks listing. */
   router.get('/', (req, res) => {
