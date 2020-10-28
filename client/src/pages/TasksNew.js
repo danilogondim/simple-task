@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import LinearProgressWithLabel from '../components/LinearProgressWithLabel';
 import TaskerListItem from '../components/TaskerListItem';
 import { useForm } from 'react-hook-form';
-import randomString from '../helpers/randomString'
+import randomString from '../helpers/randomString';
+import { Link } from 'react-router-dom';
 // import axios from 'axios';
 import './TasksNew.scss';
 import Geocode from "react-geocode";
@@ -132,61 +133,71 @@ export default function TasksNew() {
 
   return (
     <main className="new-task">
-      <div className="left">
-        <LinearProgressWithLabel value={progress} />
-        <TaskerListItem tasker={tasker} />
-      </div>
-      <div className="right">
-        <h1>Please fill the information below</h1>
-
-        <form className='new-task-form' onSubmit={handleSubmit(onSubmit)}>
-
-
-          <label>Task description: </label>
-          <input name="description" type="textarea" onBlur={updateProgressiveBar} placeholder="Please let your tasker know any important detail to fulfill the task" ref={register({ required: true })} />
-          {errors.description && <p> This is a mandatory field. </p>}
-
-
-          <label>Estimated duration: </label>
-          <div className="input-group mb-3">
-            <select className="custom-select" onChange={updateProgressiveBar} onClick={e => e.preventDefault()} name="estimated_duration" ref={register({ validate: value => value !== '0' })}>
-              <option value="0">Choose...</option>
-              <option value="1">1 hour</option>
-              <option value="2">2 hours</option>
-              <option value="3">3 hours</option>
-              <option value="4">4 hours</option>
-              <option value="5">5 hours</option>
-              <option value="6">6+ hours</option>
-            </select>
+      {!tasker && (
+        <div class="alert alert-primary" role="alert">
+          <h2>It seems that you have not selected any service.</h2>
+          <br />
+          <h4>Navigate to our <Link to='/'>homepage</Link> and start browsing the different categories and services.</h4>
+        </div>)
+      }
+      {tasker &&
+        <>
+          <div className="left">
+            <LinearProgressWithLabel value={progress} />
+            <TaskerListItem tasker={tasker} />
           </div>
-          {errors.estimated_duration && <p> This is a mandatory field. </p>}
+          <div className="right">
+            <h1>Please fill the information below</h1>
+
+            <form className='new-task-form' onSubmit={handleSubmit(onSubmit)}>
 
 
-          <label>Start time: </label>
-          <input type="time" name="time" min="00:00" max="23:00" ref={register({ required: true })} />
-          {errors.time && <p> This is a mandatory field. </p>}
+              <label>Task description: </label>
+              <input name="description" type="textarea" onBlur={updateProgressiveBar} placeholder="Please let your tasker know any important detail to fulfill the task" ref={register({ required: true })} />
+              {errors.description && <p> This is a mandatory field. </p>}
 
 
-          <label>Start location: </label>
-          <input type="text" name="start_location" onBlur={updateProgressiveBar} ref={register({ required: true })} />
-          {errors.start_location && <p> This is a mandatory field. </p>}
+              <label>Estimated duration: </label>
+              <div className="input-group mb-3">
+                <select className="custom-select" onChange={updateProgressiveBar} onClick={e => e.preventDefault()} name="estimated_duration" ref={register({ validate: value => value !== '0' })}>
+                  <option value="0">Choose...</option>
+                  <option value="1">1 hour</option>
+                  <option value="2">2 hours</option>
+                  <option value="3">3 hours</option>
+                  <option value="4">4 hours</option>
+                  <option value="5">5 hours</option>
+                  <option value="6">6+ hours</option>
+                </select>
+              </div>
+              {errors.estimated_duration && <p> This is a mandatory field. </p>}
 
 
-          <label>End location if different from start location: </label>
-          <input type="text" name="end_location" ref={register()} />
+              <label>Start time: </label>
+              <input type="time" name="time" min="00:00" max="23:00" ref={register({ required: true })} />
+              {errors.time && <p> This is a mandatory field. </p>}
 
 
-          <label>Please confirm the information and submit below</label>
+              <label>Start location: </label>
+              <input type="text" name="start_location" onBlur={updateProgressiveBar} ref={register({ required: true })} />
+              {errors.start_location && <p> This is a mandatory field. </p>}
 
 
-          <button type="submit">
-            Create Task
-         </button>
-
-        </form>
+              <label>End location if different from start location: </label>
+              <input type="text" name="end_location" ref={register()} />
 
 
-      </div>
+              <label>Please confirm the information and submit below</label>
+
+
+              <button type="submit">
+                Create Task
+              </button>
+
+            </form>
+
+          </div>
+        </>
+      }
     </main>
   );
 }
