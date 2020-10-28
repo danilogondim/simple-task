@@ -5,6 +5,15 @@ import { useForm } from 'react-hook-form';
 import randomString from '../helpers/randomString'
 // import axios from 'axios';
 import './TasksNew.scss';
+import Geocode from "react-geocode";
+
+//Google Geocode Setup
+const API_KEY = process.env.REACT_APP_GOOGLE_API;
+Geocode.setApiKey(API_KEY);
+Geocode.setLanguage("en");
+Geocode.setRegion("ca");
+Geocode.enableDebug();
+
 
 export default function TasksNew() {
 
@@ -70,14 +79,31 @@ export default function TasksNew() {
     const date = day.getDate();
     const month = day.getMonth();
     const year = day.getFullYear();
-    task.time = `${year}-${month+1}-${date} ${task.time}`
-    console.log(task);
+    task.time = `${year}-${month + 1}-${date} ${task.time}`
 
+    Geocode.fromAddress(task.start_location).then(
+      response => {
+        const { lat, lng } = response.results[0].geometry.location;
+        task['start_coordinates'] = [lat, lng];
+        console.log(task);
+        // axios
+        //   .post('/api/tasks/', task)
+        //   .then((task) => {
 
+        //   }
+        //   )
+        //   .catch(err => {
+        //     console.error(err);
+        //   });
+
+      },
+      error => {
+        console.error(error);
+      }
+    );
     // users table required fields:
-    // start_coordinates VARCHAR[],       // fetch with googlemaps api
     // end_coordinates VARCHAR[],         // fetch with googlemaps api
-    
+
     // tasker_id INTEGER REFERENCES users(id) ON DELETE CASCADE,   ------------------>     // ok!!!
     // number VARCHAR(255),   ------------------------------------------------------->     // ok!!!
     // category_id INTEGER    ------------------------------------------------------->     // ok!!!
@@ -85,19 +111,12 @@ export default function TasksNew() {
     // description VARCHAR(255) NOT NULL,   ----------------------------------------->     // ok!!!
     // estimated_duration INTEGER NOT NULL,   --------------------------------------->     // ok!!!
     // start_location VARCHAR(255) NOT NULL,   -------------------------------------->     // ok!!!
+    // start_coordinates VARCHAR[],  ------------------------------------------------>     // ok!!!
     // end_location VARCHAR(255),   ------------------------------------------------->     // ok!!!
     // user_id INTEGER              -------------------------------------------------> sending token
     // start_time TIMESTAMP NOT NULL,   --------------------------------------------->     // ok!!!
 
-    // axios
-    //   .post('/api/tasks/', task)
-    //   .then((task) => {
 
-    //   }
-    //   )
-    //   .catch(err => {
-    //     console.error(err);
-    //   });
   }
 
   return (
