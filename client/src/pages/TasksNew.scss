@@ -3,3 +3,8 @@
 
 
 }
+
+textarea[name="description"] {
+  overflow: auto;
+  width: inherit;
+}

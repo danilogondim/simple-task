@@ -157,7 +157,7 @@ export default function TasksNew() {
 
 
               <label>Task description: </label>
-              <input name="description" type="textarea" onBlur={updateProgressiveBar} placeholder="Please let your tasker know any important detail to fulfill the task" ref={register({ required: true })} />
+              <textarea name="description" rows="4" type="textarea" onBlur={updateProgressiveBar} placeholder="Please let your tasker know any important detail to fulfill the task" ref={register({ required: true })} />
               {errors.description && <p> This is a mandatory field. </p>}
 
 
