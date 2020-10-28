@@ -1,6 +1,8 @@
 import React from 'react';
-
+import LinearProgressWithLabel from '../components/LinearProgressWithLabel'
 export default function TasksNew() {
+  const [progress, setProgress] = React.useState(10);
+
   const {
     // id,
     first_name,
@@ -16,11 +18,10 @@ export default function TasksNew() {
     user_rating
   } = JSON.parse(localStorage.getItem('tasker'));
 
-  console.log(first_name);
-
   return (
-    <div>
+    <>
+      <LinearProgressWithLabel value={progress} />
       <h1>Tasks ➟ NewTask</h1>
-    </div>
+    </>
   );
 }
