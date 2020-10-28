@@ -139,6 +139,18 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const getTaskById = (id) => {
+    const query = {
+      text: `SELECT * FROM tasks WHERE id = $1`,
+      values: [id]
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
   return {
     getUsers,
     getUserByEmail,
@@ -146,7 +158,8 @@ module.exports = (db) => {
     updateUser,
     getTaskersByService,
     getCategories,
-    getTasks
+    getTasks,
+    getTaskById 
   };
 };
 
