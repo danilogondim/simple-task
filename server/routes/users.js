@@ -116,22 +116,20 @@ module.exports = ({
         
 
         } else {
-          res.json({
+          res.json({  
             msg: 'Password and email do not match!'
           });
         }
-
       } else {
         res.json({
           msg: 'Email not registered!'
         });
       }
-
     })
-    .catch(err => res.json({
+    .catch(err => {
+      res.json({
       error: err.message
-    }));
-
+      })});
   });
 
 
