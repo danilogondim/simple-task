@@ -28,7 +28,10 @@ export default function TasksNew() {
 
   const tasker = JSON.parse(localStorage.getItem('tasker'));
 
-  const { register, handleSubmit, errors, watch, getValues } = useForm({ reValidateMode: 'onChange' });
+  const { register, handleSubmit, errors, watch, getValues } = useForm(
+    { defaultValues: { ...JSON.parse(previousTask) } },
+    { reValidateMode: 'onChange' }
+  );
 
   // control the progressive bar
   const [progress, setProgress] = useState(0);
@@ -83,7 +86,7 @@ export default function TasksNew() {
     task['number'] = randomString(32);
     task['category_id'] = localStorage.getItem('category_id');
     task['service_id'] = localStorage.getItem('service_id');
-    task.time = `${year}-${month + 1}-${date} ${task.time}`;
+    task.start_time = `${year}-${month + 1}-${date} ${task.time}`;
 
     if (token) {
       task['token'] = token;
