@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = ({
-  getTasks
+  getTasks,
+  getTaskById 
 }) => {
-  /* GET tasks listing. */
+  /* GET Tasks listing. */
   router.get('/', (req, res) => {
     getTasks()
       .then((tasks) => res.json(tasks))
@@ -13,6 +14,18 @@ module.exports = ({
       }));
 
   });
+
+    /* GET a Task by ID */
+    router.get('/:id', (req, res) => {
+      const { id } = req.params;
+      getTaskById(id)
+        .then((task) => res.json(task))
+        .catch((err) => res.json({
+          error: err.message
+        }));
+  
+    });
+  
 
   return router;
 };
