@@ -128,6 +128,17 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const getTasks = () => {
+    const query = {
+      text: 'SELECT * FROM tasks',
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
   return {
     getUsers,
     getUserByEmail,
@@ -135,6 +146,7 @@ module.exports = (db) => {
     updateUser,
     getTaskersByService,
     getCategories,
+    getTasks
   };
 };
 

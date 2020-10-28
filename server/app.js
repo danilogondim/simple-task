@@ -12,6 +12,7 @@ const indexRouter           = require('./routes/index');
 const usersRouter           = require('./routes/users');
 const servicesRouter        = require('./routes/services');
 const categoriesRouter      = require('./routes/categories');
+const tasksRouter           = require('./routes/tasks');
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use('/', indexRouter);
 app.use('/api/users', usersRouter(dbHelpers));
 app.use('/api/services', servicesRouter(dbHelpers));
 app.use('/api/categories', categoriesRouter(dbHelpers));
+app.use('/api/tasks', tasksRouter(dbHelpers));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

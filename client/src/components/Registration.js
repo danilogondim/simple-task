@@ -7,7 +7,8 @@ import { AppContext } from "../App.js"
 import Geocode from "react-geocode";
 
 //Google Geocode Setup
-Geocode.setApiKey("AIzaSyACgjYxBRjV6oZ8QjUyw66vFUCVVjuzRi4");
+const API_KEY = process.env.REACT_APP_GOOGLE_API;
+Geocode.setApiKey(API_KEY);
 Geocode.setLanguage("en");
 Geocode.setRegion("ca");
 Geocode.enableDebug();
@@ -24,13 +25,14 @@ export default function Registration() {
   
   const onSubmit = (user) => {
 
-    console.log(user);
+    //console.log(user);
 
     Geocode.fromAddress(user.address).then(
       response => {
         const { lat, lng } = response.results[0].geometry.location;
         user.coordinates = [lat, lng];
         //console.log('user.coordinates------>', user.coordinates);
+
 
         axios
         .post('/api/users/', user)
@@ -44,6 +46,10 @@ export default function Registration() {
         .catch(err => {
           console.error(err);
         });
+
+
+
+
 
       },
       error => {
