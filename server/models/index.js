@@ -154,13 +154,16 @@ module.exports = (db) => {
   const getTaskForPayment = (id) => {
     const query = {
       text: `SELECT 
-              id AS task_id,
-              description AS task,
-              user_id,
-              tasker_id,
-              started_at AS start_time,
-              completed_at AS end_time
-            FROM tasks WHERE id = $1`,
+              tasks.id            AS task_id,
+              tasks.description   AS task,
+              users.first_name    AS tasker_name,
+              started_at          AS start_time,
+              completed_at        AS end_time,
+              EXTRACT(EPOCH FROM (completed_at - started_at))/3600 AS total_time,
+              completed_at - started_at       AS total_duration
+            FROM tasks
+            JOIN users ON tasks.tasker_id = users.id
+            WHERE tasks.id = $1`,
       values: [id]
     };
 
