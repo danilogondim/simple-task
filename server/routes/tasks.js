@@ -25,6 +25,12 @@ module.exports = ({
       }));
 
   });
+
+  /* create a new task */
+  router.post('/new', (req, res) => {
+    console.log(req.body)
+
+  });
   
   return router;
 };

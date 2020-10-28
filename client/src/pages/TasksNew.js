@@ -4,7 +4,7 @@ import TaskerListItem from '../components/TaskerListItem';
 import { useForm } from 'react-hook-form';
 import randomString from '../helpers/randomString';
 import { Link } from 'react-router-dom';
-// import axios from 'axios';
+import axios from 'axios';
 import './TasksNew.scss';
 import Geocode from "react-geocode";
 
@@ -92,39 +92,30 @@ export default function TasksNew() {
       task['token'] = token;
       console.log(task);
 
-      // const promises = [Geocode.fromAddress(task.start_location)]
-      // if (task.end_location !== "") {
-      //   promises.push(Geocode.fromAddress(task.end_location))
-      // };
+      const promises = [Geocode.fromAddress(task.start_location)]
+      if (task.end_location !== "") {
+        promises.push(Geocode.fromAddress(task.end_location))
+      };
 
-      // Promise.all(promises)
-      //   .then(all => {
-      //     const { lat, lng } = all[0].results[0].geometry.location;
-      //     task['start_coordinates'] = [lat, lng];
-      //     if (all.length === 2) {
-      //       const { lat, lng } = all[1].results[0].geometry.location;
-      //       task['end_coordinates'] = [lat, lng];
-      //     }
-      //     console.log(task);
-      //   }).then(() => {
-      //     // axios
-      //     //   .post('/api/tasks/', task)
-      //     //   .then((task) => {
-      //     //       localStorage.removeItem('task');   // if everything went right, we can empty the task (also empty if user navigates to other pages that are different than login or register)
-
-
-      //     //   }
-      //     //   )
-      //     //   .catch(err => {
-      //     //     console.error(err);
-      //     //   });
-
-      //     //   },
-      //     //   error => {
-      //     //     console.error(error);
-      //     //   }
-      //     // );
-      //   }).catch(e => console.log(e.message));
+      Promise.all(promises)
+        .then(all => {
+          const { lat, lng } = all[0].results[0].geometry.location;
+          task['start_coordinates'] = [lat, lng];
+          if (all.length === 2) {
+            const { lat, lng } = all[1].results[0].geometry.location;
+            task['end_coordinates'] = [lat, lng];
+          }
+          console.log(task);
+        }).then(() => {
+          axios
+            .post('/api/tasks/new', task)
+        })
+        .then((task) => {
+          localStorage.removeItem('task');   // if everything went right, we can empty the task (also empty if user navigates to other pages that are different than login or register)
+        })
+        .catch(err => {
+          console.error(err);
+        });
     } else {
       localStorage.setItem('task', JSON.stringify(task));
     }
