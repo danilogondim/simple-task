@@ -21,6 +21,10 @@ export default function TasksNew() {
   const date = day.getDate();
   const month = day.getMonth();
   const year = day.getFullYear();
+  const token = localStorage.getItem('token');
+  const previousTask = localStorage.getItem('task');
+
+
 
   const tasker = JSON.parse(localStorage.getItem('tasker'));
 
@@ -75,45 +79,52 @@ export default function TasksNew() {
 
   const onSubmit = (task) => {
 
-    task['tasker_id'] = tasker.id
+    task['tasker_id'] = tasker.id;
     task['number'] = randomString(32);
-    task['token'] = localStorage.getItem('token');
-    task['category_id'] = localStorage.getItem('category_id')
-    task['service_id'] = localStorage.getItem('service_id')
-    task.time = `${year}-${month + 1}-${date} ${task.time}`
-    console.log(task);
+    task['category_id'] = localStorage.getItem('category_id');
+    task['service_id'] = localStorage.getItem('service_id');
+    task.time = `${year}-${month + 1}-${date} ${task.time}`;
 
-    // const promises = [Geocode.fromAddress(task.start_location)]
-    // if (task.end_location !== "") {
-    //   promises.push(Geocode.fromAddress(task.end_location))
-    // };
+    if (token) {
+      task['token'] = token;
+      console.log(task);
 
-    // Promise.all(promises)
-    //   .then(all => {
-    //     const { lat, lng } = all[0].results[0].geometry.location;
-    //     task['start_coordinates'] = [lat, lng];
-    //     if (all.length === 2) {
-    //       const { lat, lng } = all[1].results[0].geometry.location;
-    //       task['end_coordinates'] = [lat, lng];
-    //     }
-    //     console.log(task);
-    //   }).then(() => {
-    //     // axios
-    //     //   .post('/api/tasks/', task)
-    //     //   .then((task) => {
+      // const promises = [Geocode.fromAddress(task.start_location)]
+      // if (task.end_location !== "") {
+      //   promises.push(Geocode.fromAddress(task.end_location))
+      // };
 
-    //     //   }
-    //     //   )
-    //     //   .catch(err => {
-    //     //     console.error(err);
-    //     //   });
+      // Promise.all(promises)
+      //   .then(all => {
+      //     const { lat, lng } = all[0].results[0].geometry.location;
+      //     task['start_coordinates'] = [lat, lng];
+      //     if (all.length === 2) {
+      //       const { lat, lng } = all[1].results[0].geometry.location;
+      //       task['end_coordinates'] = [lat, lng];
+      //     }
+      //     console.log(task);
+      //   }).then(() => {
+      //     // axios
+      //     //   .post('/api/tasks/', task)
+      //     //   .then((task) => {
+      //     //       localStorage.removeItem('task');   // if everything went right, we can empty the task (also empty if user navigates to other pages that are different than login or register)
 
-    //     //   },
-    //     //   error => {
-    //     //     console.error(error);
-    //     //   }
-    //     // );
-    //   }).catch(e => console.log(e.message));
+
+      //     //   }
+      //     //   )
+      //     //   .catch(err => {
+      //     //     console.error(err);
+      //     //   });
+
+      //     //   },
+      //     //   error => {
+      //     //     console.error(error);
+      //     //   }
+      //     // );
+      //   }).catch(e => console.log(e.message));
+    } else {
+      localStorage.setItem('task', JSON.stringify(task));
+    }
 
 
 
@@ -196,6 +207,12 @@ export default function TasksNew() {
               <button type="submit">
                 Create Task
               </button>
+
+              {previousTask && !token && (
+                <div className="alert alert-danger error-message" role="alert">
+                  Please <Link to='/login'>login</Link> or <Link to='/register'>register</Link> to complete your booking
+                </div>
+              )}
 
             </form>
 
