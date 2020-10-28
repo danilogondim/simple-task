@@ -4,7 +4,7 @@ import useServiceData from '../hooks/useServiceData';
 import Filter from '../components/Filter';
 import TaskerList from '../components/TaskerList';
 import TaskerDetail from '../components/TaskerDetail';
-import taskersFilter from '../helpers/taskersFilter';
+// import taskersFilter from '../helpers/taskersFilter';
 import { SET_TASKER } from '../reducer/data_reducer';
 import './Service.scss';
 
@@ -13,7 +13,7 @@ export default function Service() {
   const { state, dispatch, service } = useServiceData(c_id, id);
   const { day, range, tasker } = state;
 
-  const filteredTaskers = taskersFilter(state);
+  // const filteredTaskers = taskersFilter(state);
 
   return (
     <>
