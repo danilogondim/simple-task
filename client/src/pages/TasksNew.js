@@ -81,38 +81,39 @@ export default function TasksNew() {
     const month = day.getMonth();
     const year = day.getFullYear();
     task.time = `${year}-${month + 1}-${date} ${task.time}`
+    console.log(task);
 
-    const promises = [Geocode.fromAddress(task.start_location)]
-    if (task.end_location !== "") {
-      promises.push(Geocode.fromAddress(task.end_location))
-    };
+    // const promises = [Geocode.fromAddress(task.start_location)]
+    // if (task.end_location !== "") {
+    //   promises.push(Geocode.fromAddress(task.end_location))
+    // };
 
-    Promise.all(promises)
-      .then(all => {
-        const { lat, lng } = all[0].results[0].geometry.location;
-        task['start_coordinates'] = [lat, lng];
-        if (all.length === 2) {
-          const { lat, lng } = all[1].results[0].geometry.location;
-          task['end_coordinates'] = [lat, lng];
-        }
-        console.log(task);
-      }).then(() => {
-        // axios
-        //   .post('/api/tasks/', task)
-        //   .then((task) => {
+    // Promise.all(promises)
+    //   .then(all => {
+    //     const { lat, lng } = all[0].results[0].geometry.location;
+    //     task['start_coordinates'] = [lat, lng];
+    //     if (all.length === 2) {
+    //       const { lat, lng } = all[1].results[0].geometry.location;
+    //       task['end_coordinates'] = [lat, lng];
+    //     }
+    //     console.log(task);
+    //   }).then(() => {
+    //     // axios
+    //     //   .post('/api/tasks/', task)
+    //     //   .then((task) => {
 
-        //   }
-        //   )
-        //   .catch(err => {
-        //     console.error(err);
-        //   });
+    //     //   }
+    //     //   )
+    //     //   .catch(err => {
+    //     //     console.error(err);
+    //     //   });
 
-        //   },
-        //   error => {
-        //     console.error(error);
-        //   }
-        // );
-      }).catch(e => console.log(e.message));
+    //     //   },
+    //     //   error => {
+    //     //     console.error(error);
+    //     //   }
+    //     // );
+    //   }).catch(e => console.log(e.message));
 
 
 
