@@ -1,0 +1,86 @@
+.tasker__details {
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 350px;
+  
+  img {
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+  }
+
+  .card-body{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+
+    header{
+      display: flex;
+      justify-content: space-evenly;
+      padding: 0.5rem;
+
+      h5 {
+        margin:0;
+      }
+      
+      > .rating {
+        height: 0.9rem;
+        padding: 0.1em 0.3em 0.1em 0;
+  
+        > p{
+          color: #ff7e67;
+          font-size: 1.2rem;
+        }
+  
+        .rating-result {
+          font-size: 1.4rem;
+        }
+      }
+    }
+
+    .price-vehicle{
+      display: flex;
+      padding: 0 2rem 1rem 2rem;
+      justify-content: space-around;
+    }
+  }
+
+  .right_details{
+    width: inherit;
+    > footer {
+      display: flex;
+      justify-content: space-evenly;
+      padding: 1rem 0;
+    }
+  } 
+
+  .comment-review{
+    padding: 0 1rem;
+    p{
+      font-size: 1rem;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  
+  .tasker__details {
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    max-width: 800px;
+    height: 500px;
+    .right_details{
+      > footer {
+        padding: 1rem 0 1rem;
+      }
+    } 
+    img {
+      height: 100%;
+    }
+  }
+}

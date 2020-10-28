@@ -14,7 +14,7 @@ export default function TaskerListItem(props) {
     last_name,
     // phone,
     // address,
-    coordinates,
+    // coordinates,
     // email,
     photo_url,
     vehicle,
@@ -22,7 +22,7 @@ export default function TaskerListItem(props) {
     user_rating
   } = props.tasker;
   return (
-    <article className="tasker card">
+    <article className="tasker card" onClick={props.setTasker}>
       <li key={id} >
         <img className="card-img-top" src={photo_url} alt={first_name + " " + last_name} />
         <div className="card-body">
@@ -32,8 +32,8 @@ export default function TaskerListItem(props) {
               <>
                 <Rating
                   name="half-rating-read"
-                  defaultValue={Number(user_rating).toFixed(2)}
-                  precision={0.5}
+                  defaultValue={Number(Number(user_rating).toFixed(2))}
+                  precision={0.1}
                   readOnly
                   className="rating-result"
                 />

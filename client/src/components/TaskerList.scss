@@ -4,13 +4,22 @@
 
   .taskers__list {
     display: flex;
+    flex-direction: column;
     flex-flow: row wrap;
     list-style-type: none;
     padding: 0;
+
+    .alert{
+      margin-top: 1rem;
+      padding: 1.5rem;
+    }
   }
   
   .sort{
     margin-left: auto;
     display: flex;
+  }
+  .taskers__header {
+    color: #68b0ab;
   }
 }

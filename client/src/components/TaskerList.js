@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { SET_TASKER } from '../reducer/data_reducer';
 import './TaskerList.scss';
 
 import TaskerListItem from './TaskerListItem';
 
 export default function TaskerList(props) {
 
-  const { taskers } = props;
+  const { taskers, service } = props;
 
   const [filter, setFilter] = useState('rating')
   const handleClick = () => {
@@ -37,6 +38,7 @@ export default function TaskerList(props) {
       <TaskerListItem
         key={tasker.id}
         tasker={tasker}
+        setTasker={() => props.dispatch({ type: SET_TASKER, tasker: tasker })}
       />
     );
   });
@@ -47,9 +49,21 @@ export default function TaskerList(props) {
         <h5>Sorted By: </h5>
         <button onClick={handleClick}>{filter}</button>
       </div>
-      <h4 className="taskers__header text--light">Select a Tasker</h4>
+      <h4 className="taskers__header text--light">{service.service + " >> "}Select a Tasker</h4>
       <ul className="taskers__list">
-        {taskerList}
+        {taskerList.length === 0 &&
+          <>
+            <div className="alert alert-primary">
+              <h2>Unfortunately, there is no match for your search.</h2>
+              <br />
+              <h4>That is probably because all our taskers are busy for the selected date and period.</h4>
+              <br />
+              <h4>Please try a different one if it still suits your needs.</h4>
+            </div>
+          </>
+        }
+        {taskerList.length > 0 && taskerList}
+
       </ul>
     </section>
   );
