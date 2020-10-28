@@ -6,7 +6,7 @@ module.exports = ({
   getTaskById,
   getTaskForPayment
 }) => {
-  /* GET tasks listing. */
+  /* GET Tasks listing. */
   router.get('/', (req, res) => {
     getTasks()
       .then((tasks) => res.json(tasks))
