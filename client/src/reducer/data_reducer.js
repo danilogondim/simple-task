@@ -1,9 +1,10 @@
-export const SET_USERS = 'SET_USERS';
-export const SET_CATEGORIES = 'SET_CATEGORIES';
-export const SET_TASKERS = 'SET_TASKERS';
-export const SET_DAY = 'SET_DAY';
-export const SET_RANGE = 'SET_RANGE';
-export const SET_TASKER = 'SET_TASKER';
+export const SET_USERS              = 'SET_USERS';
+export const SET_CATEGORIES         = 'SET_CATEGORIES';
+export const SET_TASKERS            = 'SET_TASKERS';
+export const SET_DAY                = 'SET_DAY';
+export const SET_RANGE              = 'SET_RANGE';
+export const SET_TASKER             = 'SET_TASKER';
+export const SET_TASK_PAYMENT       = 'SET_TASK_PAYMENT';
 
 const dataReducer = (state, action) => {
   switch (action.type) {
@@ -48,6 +49,13 @@ const dataReducer = (state, action) => {
         tasker: action.tasker,
         loading: false,
       };
+
+    case SET_TASK_PAYMENT:
+    return {
+      ...state,
+      taskPayment: action.taskPayment,
+      loading: false,
+    };
 
     default:
       return state;
