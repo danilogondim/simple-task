@@ -81,11 +81,21 @@ export default function TasksNew() {
     const year = day.getFullYear();
     task.time = `${year}-${month + 1}-${date} ${task.time}`
 
-    Geocode.fromAddress(task.start_location).then(
-      response => {
-        const { lat, lng } = response.results[0].geometry.location;
+    const promises = [Geocode.fromAddress(task.start_location)]
+    if (task.end_location !== "") {
+      promises.push(Geocode.fromAddress(task.end_location))
+    };
+
+    Promise.all(promises)
+      .then(all => {
+        const { lat, lng } = all[0].results[0].geometry.location;
         task['start_coordinates'] = [lat, lng];
+        if (all.length === 2) {
+          const { lat, lng } = all[1].results[0].geometry.location;
+          task['end_coordinates'] = [lat, lng];
+        }
         console.log(task);
+      }).then(() => {
         // axios
         //   .post('/api/tasks/', task)
         //   .then((task) => {
@@ -96,14 +106,16 @@ export default function TasksNew() {
         //     console.error(err);
         //   });
 
-      },
-      error => {
-        console.error(error);
-      }
-    );
-    // users table required fields:
-    // end_coordinates VARCHAR[],         // fetch with googlemaps api
+        //   },
+        //   error => {
+        //     console.error(error);
+        //   }
+        // );
+      }).catch(e => console.log(e.message));
 
+
+
+    // tasks table required fields:
     // tasker_id INTEGER REFERENCES users(id) ON DELETE CASCADE,   ------------------>     // ok!!!
     // number VARCHAR(255),   ------------------------------------------------------->     // ok!!!
     // category_id INTEGER    ------------------------------------------------------->     // ok!!!
@@ -113,10 +125,9 @@ export default function TasksNew() {
     // start_location VARCHAR(255) NOT NULL,   -------------------------------------->     // ok!!!
     // start_coordinates VARCHAR[],  ------------------------------------------------>     // ok!!!
     // end_location VARCHAR(255),   ------------------------------------------------->     // ok!!!
+    // end_coordinates VARCHAR[],   ------------------------------------------------->     // ok!!!
     // user_id INTEGER              -------------------------------------------------> sending token
     // start_time TIMESTAMP NOT NULL,   --------------------------------------------->     // ok!!!
-
-
   }
 
   return (
