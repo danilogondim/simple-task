@@ -2,10 +2,11 @@ import React from 'react';
 import './TaskerDetail.scss';
 import { Rating } from '@material-ui/lab';
 import { AirportShuttle, LocalShipping, DriveEta, DirectionsBike, SportsMotorsports, DirectionsTransit } from '@material-ui/icons';
+import { useHistory } from "react-router-dom";
 
 
 export default function TaskerDetail(props) {
-  const { 
+  const {
     // id,
     first_name,
     last_name,
@@ -19,6 +20,15 @@ export default function TaskerDetail(props) {
     hourly_rate,
     user_rating
   } = props.tasker;
+
+  const history = useHistory();
+
+  const handleBookingClick = () => {
+    localStorage.setItem('tasker', JSON.stringify(props.tasker));
+    history.push("/tasks/new");
+  }
+
+
   return (
     <>
       <div className="tasker__details card border-dark mb-3" onClick={e => e.stopPropagation()}>
@@ -69,7 +79,7 @@ export default function TaskerDetail(props) {
           </div>
           <footer>
             <button>Chat now!</button>
-            <button>Book now!</button>
+            <button onClick={handleBookingClick}>Book now!</button>
           </footer>
         </div>
       </div>
