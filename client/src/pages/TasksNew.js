@@ -15,9 +15,9 @@ export default function TasksNew() {
   const [progress, setProgress] = useState(0);
   const [valid, setValid] = useState({});
 
-  // text fields will be managed onBlur with this function
+  // text and select fields will be managed onBlur or onChange with this function
   const updateProgressiveBar = () => {
-    const { description, start_location } = getValues(['description', 'start_location']);
+    const { description, estimated_duration, start_location } = getValues(['description', 'estimated_duration', 'start_location']);
     // count description field as complete
     if (description && description.length !== 0 && !valid.description) {
       setProgress(prev => prev + 20)
@@ -25,6 +25,14 @@ export default function TasksNew() {
     } else if (!description && valid.description) {
       setProgress(prev => prev - 20)
       setValid(prev => ({ ...prev, description: false }))
+    }
+    // count estimated_duration field as complete
+    if (Number(estimated_duration) > 0 && !valid.duration) {
+      setProgress(prev => prev + 20)
+      setValid(prev => ({ ...prev, duration: true }))
+    } else if (Number(estimated_duration) === 0 && valid.duration) {
+      setProgress(prev => prev - 20)
+      setValid(prev => ({ ...prev, duration: false }))
     }
     // count start_location field as complete
     if (start_location && start_location.length !== 0 && !valid.start_location) {
@@ -36,17 +44,9 @@ export default function TasksNew() {
     }
   }
 
-  // time and select fields will be managed after every change (onBlur does not work well with these fields)
-  const {time, estimated_duration} = watch(['time', 'estimated_duration']);
+  // time field will be managed after every change (onBlur and onChange did not work well with this field)
+  const { time } = watch(['time']);
   useEffect(() => {
-    // count estimated_duration field as complete
-    if (Number(estimated_duration) > 0 && !valid.duration) {
-      setProgress(prev => prev + 20)
-      setValid(prev => ({ ...prev, duration: true }))
-    } else if (Number(estimated_duration) === 0 && valid.duration) {
-      setProgress(prev => prev - 20)
-      setValid(prev => ({ ...prev, duration: false }))
-    }
     // count time field as complete
     if (time && time.length !== 0 && !valid.time) {
       setProgress(prev => prev + 20)
@@ -55,7 +55,7 @@ export default function TasksNew() {
       setProgress(prev => prev - 20)
       setValid(prev => ({ ...prev, time: false }))
     }
-  }, [time, estimated_duration, valid]);
+  }, [time, valid]);
 
 
   const onSubmit = (task) => {
@@ -90,7 +90,7 @@ export default function TasksNew() {
 
           <label>Estimated duration: </label>
           <div className="input-group mb-3">
-            <select className="custom-select" name="estimated_duration" ref={register({ validate: value => value !== '0' })}>
+            <select className="custom-select" onChange={updateProgressiveBar} onClick={e => e.preventDefault()} name="estimated_duration" ref={register({ validate: value => value !== '0' })}>
               <option value="0">Choose...</option>
               <option value="1">1 hour</option>
               <option value="2">2 hours</option>
