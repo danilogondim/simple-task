@@ -60,20 +60,23 @@ export default function TasksNew() {
 
 
   const onSubmit = (task) => {
+
     task['tasker_id'] = tasker.id
     task['number'] = randomString(32);
     task['token'] = localStorage.getItem('token');
+    task['category_id'] = localStorage.getItem('category_id')
+    task['service_id'] = localStorage.getItem('service_id')
     console.log(task);
 
     // users table required fields:
-    // category_id INTEGER                // include in localStorage?
-    // service_id INTEGER                 // include in localStorage?
     // start_time TIMESTAMP NOT NULL,     // combine selected day (localStorage?) with form time
     // start_coordinates VARCHAR[],       // fetch with googlemaps api
     // end_coordinates VARCHAR[],         // fetch with googlemaps api
     
     // tasker_id INTEGER REFERENCES users(id) ON DELETE CASCADE,   ------------------>     // ok!!!
     // number VARCHAR(255),   ------------------------------------------------------->     // ok!!!
+    // category_id INTEGER    ------------------------------------------------------->     // ok!!!
+    // service_id INTEGER     ------------------------------------------------------->     // ok!!!
     // description VARCHAR(255) NOT NULL,   ----------------------------------------->     // ok!!!
     // estimated_duration INTEGER NOT NULL,   --------------------------------------->     // ok!!!
     // start_location VARCHAR(255) NOT NULL,   -------------------------------------->     // ok!!!
@@ -134,7 +137,7 @@ export default function TasksNew() {
 
 
           <label>End location if different from start location: </label>
-          <input type="text" name="end_location" ref={register()}/>
+          <input type="text" name="end_location" ref={register()} />
 
 
           <label>Please confirm the information and submit below</label>
