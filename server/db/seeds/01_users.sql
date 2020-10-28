@@ -2,12 +2,12 @@
 INSERT INTO
 users(first_name, last_name, phone, email, password, address, coordinates, is_tasker)
 VALUES
- ('Daniel', 'Abreu', '4161234567', 'dabreu@email.com', 'password1', '100 Queen St W, Toronto',[43.652569, -79.383713], 'f'),
- ('Eric', 'Clinton', '6477654321', 'eclinton@email.com', 'password2', '1 Austin Terrace, Toronto', [43.678030, -79.409440] 'f'),
- ('Diana', 'Gibbons', '7462222222', 'diana@email.com', 'password3', '1 Dundas St E, Toronto', [43.656200, -79.380440], 'f'),
- ('Richard', 'Nakoolak', '6479999999', 'richard@email.com', 'password4', '2 Bloor St E, Toronto', [43.670420, -79.386450], 'f'),
- ('Sheila', 'Souza', '6474567890', 'ss@email.com', 'password5', '90 Eastdale Avenue, Toronto', [43.694610, -79.301250] 'f'),
- ('Carlos', 'Richmond', '6474567890', 'cr@email.com', 'password6', '2000 Meadowvale Rd, Toronto', [43.820469, -79.181160] 'f');
+ ('Daniel', 'Abreu', '4161234567', 'dabreu@email.com', 'password1', '100 Queen St W, Toronto', '{43.652569, -79.383713}', 'f'),
+ ('Eric', 'Clinton', '6477654321', 'eclinton@email.com', 'password2', '1 Austin Terrace, Toronto', '{43.678030, -79.409440}', 'f'),
+ ('Diana', 'Gibbons', '7462222222', 'diana@email.com', 'password3', '1 Dundas St E, Toronto', '{43.656200, -79.380440}', 'f'),
+ ('Richard', 'Nakoolak', '6479999999', 'richard@email.com', 'password4', '2 Bloor St E, Toronto', '{43.670420, -79.386450}', 'f'),
+ ('Sheila', 'Souza', '6474567890', 'ss@email.com', 'password5', '90 Eastdale Avenue, Toronto', '{43.694610, -79.301250}', 'f'),
+ ('Carlos', 'Richmond', '6474567890', 'cr@email.com', 'password6', '2000 Meadowvale Rd, Toronto', '{43.820469, -79.181160}', 'f');
 
 -- taskers (ids: 7-15)
 INSERT INTO
