@@ -26,8 +26,10 @@ export default function Registration() {
   const onSubmit = (user) => {
 
     //console.log(user);
+    
+    let address = `${user.number} ${user.street}, ${user.city}`;
 
-    Geocode.fromAddress(user.address).then(
+    Geocode.fromAddress(address).then(
       response => {
         const { lat, lng } = response.results[0].geometry.location;
         user.coordinates = [lat, lng];
@@ -102,9 +104,20 @@ export default function Registration() {
           {errors.password && errors.password.type === "required" && <p> This is a mandatory field. </p>}
           {errors.password && errors.password.type === "minLength" && <p> Password must have at least 6 characters. </p>}
 
+          <label>Number:</label>
+          <input type="text" name="number" ref={register({ required: true})}  /><br />
+          {errors.address && <p> This is a mandatory field. </p>}
 
-          <label>Address:</label>
-          <input type="text" name="address" ref={register({ required: true})}  /><br />
+
+          <label>Street:</label>
+          <input type="text" name="street" ref={register({ required: true})}  /><br />
+          {errors.address && <p> This is a mandatory field. </p>}
+
+          <label>Unit:</label>
+          <input type="text" name="unit" ref={register({ required: false})} /><br />
+
+          <label>City:</label>
+          <input type="text" name="city" ref={register({ required: true})}  /><br />
           {errors.address && <p> This is a mandatory field. </p>}
 
           <label>Photo:</label>

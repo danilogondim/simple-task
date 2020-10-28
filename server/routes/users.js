@@ -36,7 +36,10 @@ module.exports = ({
       phone,
       email,
       password,
-      address,
+      number,
+      street,
+      unit,
+      city,
       coordinates,
       photo_url
     } = req.body;
@@ -49,6 +52,15 @@ module.exports = ({
             msg: 'Sorry, a user account with this email already exists'
           });
         } else {
+
+          let address = '';
+
+          unit ? 
+          (address = `${unit}-${number} ${street}, ${city}`)
+          :
+          (address = `${number} ${street}, ${city}`);
+
+          // console.log('Address------------>', Address);
 
           return addUser(first_name, last_name, phone, email, password, address, coordinates, photo_url)
 
