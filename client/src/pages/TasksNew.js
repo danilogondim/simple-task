@@ -9,14 +9,15 @@ export default function TasksNew() {
 
   const tasker = JSON.parse(localStorage.getItem('tasker'));
 
-  const { register, handleSubmit, errors, watch } = useForm({ mode: "onChange", reValidateMode: 'onChange' });
+  const { register, handleSubmit, errors, watch, getValues } = useForm({ reValidateMode: 'onChange' });
 
   // control the progressive bar
   const [progress, setProgress] = useState(0);
   const [valid, setValid] = useState({});
-  const allFields = watch();
-  useEffect(() => {
-    const { description, start_location, time, estimated_duration } = allFields;
+
+  // text fields will be managed onBlur with this function
+  const updateProgressiveBar = () => {
+    const { description, start_location } = getValues(['description', 'start_location']);
     // count description field as complete
     if (description && description.length !== 0 && !valid.description) {
       setProgress(prev => prev + 20)
@@ -25,6 +26,19 @@ export default function TasksNew() {
       setProgress(prev => prev - 20)
       setValid(prev => ({ ...prev, description: false }))
     }
+    // count start_location field as complete
+    if (start_location && start_location.length !== 0 && !valid.start_location) {
+      setProgress(prev => prev + 20)
+      setValid(prev => ({ ...prev, start_location: true }))
+    } else if (!start_location && valid.start_location) {
+      setProgress(prev => prev - 20)
+      setValid(prev => ({ ...prev, start_location: false }))
+    }
+  }
+
+  // time and select fields will be managed after every change (onBlur does not work well with these fields)
+  const {time, estimated_duration} = watch(['time', 'estimated_duration']);
+  useEffect(() => {
     // count estimated_duration field as complete
     if (Number(estimated_duration) > 0 && !valid.duration) {
       setProgress(prev => prev + 20)
@@ -41,15 +55,8 @@ export default function TasksNew() {
       setProgress(prev => prev - 20)
       setValid(prev => ({ ...prev, time: false }))
     }
-    // count start_location field as complete
-    if (start_location && start_location.length !== 0 && !valid.start_location) {
-      setProgress(prev => prev + 20)
-      setValid(prev => ({ ...prev, start_location: true }))
-    } else if (!start_location && valid.start_location) {
-      setProgress(prev => prev - 20)
-      setValid(prev => ({ ...prev, start_location: false }))
-    }
-  }, [allFields, valid]);
+  }, [time, estimated_duration, valid]);
+
 
   const onSubmit = (task) => {
     console.log(task);
@@ -77,7 +84,7 @@ export default function TasksNew() {
 
 
           <label>Task description: </label>
-          <input name="description" type="textarea" placeholder="Please let your tasker know any important detail to fulfill the task" ref={register({ required: true })} />
+          <input name="description" type="textarea" onBlur={updateProgressiveBar} placeholder="Please let your tasker know any important detail to fulfill the task" ref={register({ required: true })} />
           {errors.description && <p> This is a mandatory field. </p>}
 
 
@@ -102,7 +109,7 @@ export default function TasksNew() {
 
 
           <label>Start location: </label>
-          <input type="text" name="start_location" ref={register({ required: true })} />
+          <input type="text" name="start_location" onBlur={updateProgressiveBar} ref={register({ required: true })} />
           {errors.start_location && <p> This is a mandatory field. </p>}
 
 
