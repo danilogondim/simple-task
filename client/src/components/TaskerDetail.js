@@ -24,7 +24,8 @@ export default function TaskerDetail(props) {
   const history = useHistory();
 
   const handleBookingClick = () => {
-    localStorage.setItem('tasker', JSON.stringify(props.tasker));
+    localStorage.setItem("tasker", JSON.stringify(props.tasker));
+    localStorage.setItem("day", props.day);
     history.push("/tasks/new");
   }
 

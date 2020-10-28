@@ -29,7 +29,7 @@ export default function Service() {
       )}
       {tasker && (
         <main className="detail_page" onClick={() => dispatch({ type: SET_TASKER, tasker: null })}>
-          <TaskerDetail tasker={tasker} />
+          <TaskerDetail tasker={tasker} day={day} />
         </main>
       )}
     </>

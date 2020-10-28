@@ -66,10 +66,15 @@ export default function TasksNew() {
     task['token'] = localStorage.getItem('token');
     task['category_id'] = localStorage.getItem('category_id')
     task['service_id'] = localStorage.getItem('service_id')
+    const day = new Date(localStorage.getItem('day'));
+    const date = day.getDate();
+    const month = day.getMonth();
+    const year = day.getFullYear();
+    task.time = `${year}-${month+1}-${date} ${task.time}`
     console.log(task);
 
+
     // users table required fields:
-    // start_time TIMESTAMP NOT NULL,     // combine selected day (localStorage?) with form time
     // start_coordinates VARCHAR[],       // fetch with googlemaps api
     // end_coordinates VARCHAR[],         // fetch with googlemaps api
     
@@ -82,6 +87,7 @@ export default function TasksNew() {
     // start_location VARCHAR(255) NOT NULL,   -------------------------------------->     // ok!!!
     // end_location VARCHAR(255),   ------------------------------------------------->     // ok!!!
     // user_id INTEGER              -------------------------------------------------> sending token
+    // start_time TIMESTAMP NOT NULL,   --------------------------------------------->     // ok!!!
 
     // axios
     //   .post('/api/tasks/', task)
