@@ -14,6 +14,8 @@ export default function Service() {
   const { day, range, tasker } = state;
   localStorage.setItem('category_id', c_id);
   localStorage.setItem('service_id', id);
+  localStorage.setItem("service_name", service.service);
+
 
   // const filteredTaskers = taskersFilter(state);
 

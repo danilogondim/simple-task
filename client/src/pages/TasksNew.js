@@ -17,6 +17,10 @@ Geocode.enableDebug();
 
 
 export default function TasksNew() {
+  const day = new Date(localStorage.getItem('day'));
+  const date = day.getDate();
+  const month = day.getMonth();
+  const year = day.getFullYear();
 
   const tasker = JSON.parse(localStorage.getItem('tasker'));
 
@@ -76,10 +80,6 @@ export default function TasksNew() {
     task['token'] = localStorage.getItem('token');
     task['category_id'] = localStorage.getItem('category_id')
     task['service_id'] = localStorage.getItem('service_id')
-    const day = new Date(localStorage.getItem('day'));
-    const date = day.getDate();
-    const month = day.getMonth();
-    const year = day.getFullYear();
     task.time = `${year}-${month + 1}-${date} ${task.time}`
     console.log(task);
 
@@ -144,6 +144,9 @@ export default function TasksNew() {
       {tasker &&
         <>
           <div className="left">
+            <h1>Booking</h1>
+            <h3>Task: {localStorage.getItem('service_name')}</h3>
+            <h3>Date: {`${year}/${month + 1}/${date}`}</h3>
             <LinearProgressWithLabel value={progress} />
             <TaskerListItem tasker={tasker} />
           </div>
