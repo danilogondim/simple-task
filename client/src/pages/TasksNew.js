@@ -1,20 +1,55 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LinearProgressWithLabel from '../components/LinearProgressWithLabel';
 import TaskerListItem from '../components/TaskerListItem';
 import { useForm } from 'react-hook-form';
 // import axios from 'axios';
 import './TasksNew.scss';
 
-
-
-
 export default function TasksNew() {
-
-  const [progress, setProgress] = useState(10);
 
   const tasker = JSON.parse(localStorage.getItem('tasker'));
 
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, watch } = useForm({ mode: "onChange", reValidateMode: 'onChange' });
+
+  // control the progressive bar
+  const [progress, setProgress] = useState(0);
+  const [valid, setValid] = useState({});
+  const allFields = watch();
+  useEffect(() => {
+    const { description, start_location, time, estimated_duration } = allFields;
+    // count description field as complete
+    if (description && description.length !== 0 && !valid.description) {
+      setProgress(prev => prev + 20)
+      setValid(prev => ({ ...prev, description: true }))
+    } else if (!description && valid.description) {
+      setProgress(prev => prev - 20)
+      setValid(prev => ({ ...prev, description: false }))
+    }
+    // count estimated_duration field as complete
+    if (Number(estimated_duration) > 0 && !valid.duration) {
+      setProgress(prev => prev + 20)
+      setValid(prev => ({ ...prev, duration: true }))
+    } else if (Number(estimated_duration) === 0 && valid.duration) {
+      setProgress(prev => prev - 20)
+      setValid(prev => ({ ...prev, duration: false }))
+    }
+    // count time field as complete
+    if (time && time.length !== 0 && !valid.time) {
+      setProgress(prev => prev + 20)
+      setValid(prev => ({ ...prev, time: true }))
+    } else if (!time && valid.time) {
+      setProgress(prev => prev - 20)
+      setValid(prev => ({ ...prev, time: false }))
+    }
+    // count start_location field as complete
+    if (start_location && start_location.length !== 0 && !valid.start_location) {
+      setProgress(prev => prev + 20)
+      setValid(prev => ({ ...prev, start_location: true }))
+    } else if (!start_location && valid.start_location) {
+      setProgress(prev => prev - 20)
+      setValid(prev => ({ ...prev, start_location: false }))
+    }
+  }, [allFields, valid]);
 
   const onSubmit = (task) => {
     console.log(task);
