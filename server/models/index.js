@@ -98,25 +98,34 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
-  const getBestReviews = () => {
+  const getBestReviews = (limit) => {
     const query = {
-      text: `
-      SELECT DATE(start_time) AS execution_date, service_id, reviewer, tasks.tasker_id, user_comment, user_rating
-      FROM tasks JOIN
-            (
-              SELECT first_name AS reviewer, task_id, task_reviews.tasker_id, user_comment, user_rating
-              FROM task_reviews
-              JOIN  (
-                      SELECT task_reviews.tasker_id, service_id, MAX(user_rating) AS max_rating
-                      FROM task_reviews
-                      JOIN tasks
-                      ON task_id = tasks.id
-                      GROUP BY task_reviews.tasker_id, service_id
-                    ) AS max_ratings
-              ON max_ratings.tasker_id = task_reviews.tasker_id AND max_rating = task_reviews.user_rating
-              JOIN users ON users.id = user_id
-            ) AS max_reviews
-      ON tasks.id = task_id`
+      text: ` 
+            SELECT execution_date, service_id, reviewer, tasker_id, user_comment, user_rating
+            FROM (
+                  SELECT
+                    ROW_NUMBER() OVER (PARTITION BY service_id, tasker_id ORDER BY execution_date DESC) AS r, t.*
+                  FROM (
+                        SELECT DATE(start_time) AS execution_date, service_id, reviewer, tasks.tasker_id, user_comment, user_rating
+                        FROM tasks
+                        JOIN (
+                              SELECT first_name AS reviewer, task_id, task_reviews.tasker_id, user_comment, user_rating
+                              FROM task_reviews
+                              JOIN  (
+                                      SELECT task_reviews.tasker_id, service_id, MAX(user_rating) AS max_rating
+                                      FROM task_reviews
+                                      JOIN tasks
+                                      ON task_id = tasks.id
+                                      GROUP BY task_reviews.tasker_id, service_id
+                                    ) AS max_ratings
+                              ON max_ratings.tasker_id = task_reviews.tasker_id AND max_rating = task_reviews.user_rating
+                              JOIN users ON users.id = user_id
+                            ) AS max_reviews
+                        ON tasks.id = task_id
+                  ) t) x
+            WHERE
+              x.r <= $1;`,
+      values: [limit] 
     };
 
     return db

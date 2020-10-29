@@ -15,7 +15,7 @@ module.exports = ({
 
     const { id } = req.params;
 
-    Promise.all([getTaskersByService(id), getBestReviews()])
+    Promise.all([getTaskersByService(id), getBestReviews(4)])
     .then(all => {
       taskersWithReviews = getBestReviewsByTaskers(all[0], all[1]);
     })
