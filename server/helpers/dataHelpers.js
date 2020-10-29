@@ -23,8 +23,17 @@ const getServicesByCategories = categories => {
     });
 
   }
+  const orderedCategories = Object.values(servicesByCategories).sort((a, b) => {
+    if (a.category < b.category) {
+      return -1;
+    }
+    if (a.category > b.category) {
+      return 1;
+    }
+    return 0;
+  })
 
-  return Object.values(servicesByCategories);
+  return orderedCategories;
 };
 
 module.exports = {
