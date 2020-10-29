@@ -105,9 +105,11 @@ module.exports = (db) => {
         (SELECT first_name AS reviewer, task_id, task_reviews.tasker_id, user_comment, user_rating
         FROM task_reviews
         JOIN (
-            SELECT tasker_id, MAX(user_rating) AS max_rating
+            SELECT task_reviews.tasker_id, service_id, MAX(user_rating) AS max_rating
             FROM task_reviews
-            GROUP BY tasker_id
+            JOIN tasks
+            ON task_id = tasks.id
+            GROUP BY task_reviews.tasker_id, service_id
         ) AS max_ratings ON
         max_ratings.tasker_id = task_reviews.tasker_id AND
         max_rating = task_reviews.user_rating
