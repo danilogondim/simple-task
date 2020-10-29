@@ -8,18 +8,19 @@ export default function TaskPayment() {
   const { state } = useTaskPaymentData();
   const task = state.taskPayment
   return (
-    <div className="App" >
+    <div className="App">
     <Container className="p-3">
     <Jumbotron className="p-3 mb-2 jumbotron">
       <h1 className="header">Payment</h1>
     </Jumbotron>
-    <table class="table table-dark">
+    <div className="payment table-responsive">
+    <table className="table table-dark">
       <thead>
         <tr>
-          <th colspan="2" scope="col">Payment Info</th>
+          <th colSpan="2" scope="col">Task Info</th>
         </tr>
       </thead>
-      <tbody class="text-left">
+      <tbody className="text-left">
         <tr>
           <td>Task ID</td>
           <td>{task.task_id}</td>
@@ -34,7 +35,7 @@ export default function TaskPayment() {
         </tr>
         <tr>
           <td>Hourly Rate</td>
-          <td>${task.hourly_rate/100}.00</td>
+          <td>${task.hourly_rate}</td>
         </tr>
         <tr>
           <td>Start Time</td>
@@ -50,6 +51,45 @@ export default function TaskPayment() {
         </tr>
       </tbody>
     </table>
+
+    <table className="payment.table table table-dark">
+      <thead>
+        <tr>
+          <th colSpan="2" scope="col">Payment Info</th>
+        </tr>
+      </thead>
+      <tbody className="text-left">
+        <tr>
+          <td>Hourly Total</td>
+          <td>${(task.hourly_rate * task.total_time).toFixed(2)}</td>
+        </tr>
+        <tr>
+          <td className="text-wrap">Discount</td>
+          <td>$0.00</td>
+        </tr>
+        <tr>
+          <td>Service Charge</td>
+          <td>${((task.hourly_rate * task.total_time) * 0.10).toFixed(2)}</td>
+        </tr>
+        <tr>
+          <td>Tax</td>
+          <td>${(((task.hourly_rate * task.total_time) + (task.hourly_rate * task.total_time) * 0.10) * 0.13).toFixed(2)}</td>
+        </tr>
+        <tr>
+          <td>Total Price</td>
+          <td>${((task.hourly_rate * task.total_time) * 1.23).toFixed(2)}</td>
+        </tr>
+        <tr>
+          <td colSpan="2" className="text-center">Proceed to Pay</td>
+        </tr>
+        <tr>
+          <td colSpan="2" className="text-center">
+            <button type="button" class="btn btn-success">Submit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
     </Container>
     </div >
   );

@@ -158,7 +158,7 @@ module.exports = (db) => {
               tasks.description   AS task,
               users.first_name,
               users.last_name,
-              service_taskers.hourly_rate,
+              round(service_taskers.hourly_rate/100, 2) AS hourly_rate,
               started_at          AS start_time,
               completed_at        AS end_time,
               EXTRACT(EPOCH FROM (completed_at - started_at))/3600 AS total_time,

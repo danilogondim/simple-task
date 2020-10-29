@@ -1,3 +1,11 @@
 .table {
-  width: auto;
-}
+  max-width: 600px;
+  margin-bottom: 20px;
+};
+
+.payment {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+};
