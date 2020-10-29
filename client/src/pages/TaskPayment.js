@@ -23,31 +23,31 @@ export default function TaskPayment() {
       <tbody className="text-left">
         <tr>
           <td>Task ID</td>
-          <td>{task.task_id}</td>
+          <td className="text-right">{task.task_id}</td>
         </tr>
         <tr>
           <td className="text-wrap">Task</td>
-          <td>{task.task}</td>
+          <td className="text-right">{task.task}</td>
         </tr>
         <tr>
           <td>Tasker</td>
-          <td>{task.first_name} {task.last_name}</td>
+          <td className="text-right">{task.first_name} {task.last_name}</td>
         </tr>
         <tr>
           <td>Hourly Rate</td>
-          <td>${task.hourly_rate}</td>
+          <td className="text-right">${task.hourly_rate}</td>
         </tr>
         <tr>
           <td>Start Time</td>
-          <td>{task.start_time}</td>
+          <td className="text-right">{task.start_time}</td>
         </tr>
         <tr>
           <td>End Time</td>
-          <td>{task.end_time}</td>
+          <td className="text-right">{task.end_time}</td>
         </tr>
         <tr>
           <td>Total Time</td>
-          <td>{task.total_time} Hours</td>
+          <td className="text-right">{task.total_time} Hours</td>
         </tr>
       </tbody>
     </table>
@@ -61,30 +61,30 @@ export default function TaskPayment() {
       <tbody className="text-left">
         <tr>
           <td>Hourly Total</td>
-          <td>${(task.hourly_rate * task.total_time).toFixed(2)}</td>
+          <td className="text-right">${(task.hourly_rate * task.total_time).toFixed(2)}</td>
         </tr>
         <tr>
           <td className="text-wrap">Discount</td>
-          <td>$0.00</td>
+          <td className="text-right">$0.00</td>
         </tr>
         <tr>
           <td>Service Charge</td>
-          <td>${((task.hourly_rate * task.total_time) * 0.10).toFixed(2)}</td>
+          <td className="text-right">${((task.hourly_rate * task.total_time) * 0.10).toFixed(2)}</td>
         </tr>
         <tr>
           <td>Tax</td>
-          <td>${(((task.hourly_rate * task.total_time) + (task.hourly_rate * task.total_time) * 0.10) * 0.13).toFixed(2)}</td>
+          <td className="text-right">${(((task.hourly_rate * task.total_time) + (task.hourly_rate * task.total_time) * 0.10) * 0.13).toFixed(2)}</td>
         </tr>
         <tr>
           <td>Total Price</td>
-          <td>${((task.hourly_rate * task.total_time) * 1.23).toFixed(2)}</td>
+          <td className="text-right">${((task.hourly_rate * task.total_time) * 1.23).toFixed(2)}</td>
         </tr>
         <tr>
           <td colSpan="2" className="text-center">Proceed to Pay</td>
         </tr>
         <tr>
           <td colSpan="2" className="text-center">
-            <button type="button" class="btn btn-success">Submit</button>
+            <button type="button" className="btn btn-success">Submit</button>
           </td>
         </tr>
       </tbody>
