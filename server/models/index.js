@@ -159,8 +159,16 @@ module.exports = (db) => {
               users.first_name,
               users.last_name,
               round(service_taskers.hourly_rate/100, 2) AS hourly_rate,
-              started_at          AS start_time,
-              completed_at        AS end_time,
+              to_char(
+                (to_char(started_at :: time, 'HH24:MI'):: time
+                ),
+                'HH24:MI'
+              ) AS start_time,
+              to_char(
+                (to_char(completed_at :: time, 'HH24:MI'):: time
+                ),
+                'HH24:MI'
+              ) AS end_time,
               EXTRACT(EPOCH FROM (completed_at - started_at))/3600 AS total_time,
               completed_at - started_at       AS total_duration
             FROM tasks
