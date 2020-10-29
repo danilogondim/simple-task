@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useTaskersData from '../hooks/useTaskersData.js'
 import MapView from '../components/MapView';
 
@@ -7,6 +7,14 @@ import MapView from '../components/MapView';
 
 export default function Search() {
 
+  const [myLocation, setMyLocation] = useState()
+
+  navigator.geolocation.getCurrentPosition((data) => {
+
+    const {latitude: lat, longitude: lng} = data.coords
+   
+    setMyLocation({lat, lng})
+  })
 
   //render users
   const { state } = useTaskersData();
@@ -28,6 +36,7 @@ export default function Search() {
 
       <div className="App">
       <MapView
+      myLocation = {myLocation}
       />
       </div>
 
