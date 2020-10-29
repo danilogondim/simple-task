@@ -7,10 +7,9 @@ import "./Home.scss";
 export default function Services() {
   const { id } = useParams();
   const { state } = useCategories();
-
-  const renderCard = ((card, index) => {
+  const renderCard = ((card) => {
     return (
-      <Card style={{ width: "18rem" }} key={index} className="box">
+      <Card style={{ width: "18rem" }} key={card.service_id} className="box">
         <Link to={`${id}/services/${card.service_id}`}>
         <Card.Img variant="top" src={card.service_thumbnail} />
         </Link>
@@ -27,7 +26,7 @@ export default function Services() {
     <Jumbotron className="p-3 mb-2 jumbotron">
       <h3 className="header">Select a Service</h3>
     </Jumbotron>
-      <div className="grid">{!state.categories[id - 1] ? "" : state.categories[id - 1].services.map(renderCard)}</div>
+      <div className="grid">{!state.categories.length > 0 ? "" : state.categories.find(category => category.category_id === Number(id)).services.map(renderCard)}</div>
     </Container>
     </div >
   );
