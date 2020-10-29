@@ -98,6 +98,27 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const getBestReviews = () => {
+    const query = {
+      text: `
+      SELECT first_name AS reviewer, task_reviews.tasker_id, user_comment, user_rating
+      FROM task_reviews
+      JOIN (
+          SELECT tasker_id, MAX(user_rating) AS max_rating
+          FROM task_reviews
+          GROUP BY tasker_id
+      ) AS max_ratings ON
+      max_ratings.tasker_id = task_reviews.tasker_id AND
+      max_rating = task_reviews.user_rating
+      JOIN users ON users.id = user_id`
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
   const getCategories = () => {
     const query = {
       text: `
@@ -229,6 +250,7 @@ module.exports = (db) => {
     addUser,
     updateUser,
     getTaskersByService,
+    getBestReviews,
     getCategories,
     getTasks,
     getTaskById,
