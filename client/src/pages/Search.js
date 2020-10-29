@@ -1,5 +1,6 @@
 import React from 'react';
 import useTaskersData from '../hooks/useTaskersData.js'
+import MapView from '../components/MapView';
 
 
 
@@ -17,11 +18,17 @@ export default function Search() {
 
   
     return (
+          
       <>
       <p>RENDER MAP HERE</p>
       <div className="App" >
       <h2> Taskers </h2>
       <ul> {users} </ul>
+      </div>
+
+      <div className="App">
+      <MapView
+      />
       </div>
 
       </>
