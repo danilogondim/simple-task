@@ -7,7 +7,7 @@ VALUES
  (11, 6, 8, 'My dogs had a nice time. I will definitely hire him again', 5, 'Communication was a little confusing', 4),
  (16, 5, 9, 'Everything was delivered as expected', 5, 'Well detailed task', 5),
  (8, 2, 10, 'My bed was slightly damaged', 3, 'When I chatted with Eric, he simplified the task. I had to disassemble the bed to be able to move it', 3),
- (17, 1, 10, 'Just in time! Thanks man!', 5, 'Just a regular pick-up. Great communication', 5),
+ (17, 1, 10, 'Just in time! Thanks!', 5, 'Just a regular pick-up. Great communication', 5),
  (15, 4, 11, 'Amazing!! All my friends loved his job', 5, 'Everything went as expected', 5),
  (13, 3, 13, 'Thank you Mario! Amazing job!', 5, 'It was really fun to work for Diana', 5),
  (14, 4, 14, 'Horrible service! It started late and I now can''t find my stuff!', 1, 'The user did not provide the right address and the instructions were unclear', 3),
