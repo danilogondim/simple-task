@@ -21,24 +21,26 @@ export default function Registration() {
   let history = useHistory();
 
 
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, watch, errors } = useForm();
   
   const onSubmit = (user) => {
 
     //console.log(user);
+    
+    let address = `${user.number} ${user.street}, ${user.city}`;
 
-    Geocode.fromAddress(user.address).then(
+    Geocode.fromAddress(address).then(
       response => {
         const { lat, lng } = response.results[0].geometry.location;
         user.coordinates = [lat, lng];
         //console.log('user.coordinates------>', user.coordinates);
-
 
         axios
         .post('/api/users/', user)
         .then((info) => {
           //console.log('info.data---------------->', info.data)
           localStorage.setItem('token', info.data);
+
           setToken(info.data);
           history.push("/");
         }
@@ -46,10 +48,6 @@ export default function Registration() {
         .catch(err => {
           console.error(err);
         });
-
-
-
-
 
       },
       error => {
@@ -102,10 +100,26 @@ export default function Registration() {
           {errors.password && errors.password.type === "required" && <p> This is a mandatory field. </p>}
           {errors.password && errors.password.type === "minLength" && <p> Password must have at least 6 characters. </p>}
 
+          <label>Confirm Password:</label>
+          <input type="password" name="check_password" ref={register({ validate: (value) => value === watch('password') })}  />
+          {errors.check_password && <p> Password and Check Password must match </p>}
+          <br />
 
-          <label>Address:</label>
-          <input type="text" name="address" ref={register({ required: true})}  /><br />
-          {errors.address && <p> This is a mandatory field. </p>}
+          <label>Number:</label>
+          <input type="text" name="number" ref={register({ required: true})}  /><br />
+          {errors.number && <p> This is a mandatory field. </p>}
+
+
+          <label>Street:</label>
+          <input type="text" name="street" ref={register({ required: true})}  /><br />
+          {errors.street && <p> This is a mandatory field. </p>}
+
+          <label>Unit:</label>
+          <input type="text" name="unit" ref={register({ required: false})} /><br />
+
+          <label>City:</label>
+          <input type="text" name="city" ref={register({ required: true})}  /><br />
+          {errors.city && <p> This is a mandatory field. </p>}
 
           <label>Photo:</label>
           <input type="text" name="photo_url" ref={register({ required: false})}  /><br />
