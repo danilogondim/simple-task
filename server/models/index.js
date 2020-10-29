@@ -184,6 +184,45 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const addTask = (taskObject) => {
+    const {
+      number,
+      category_id,
+      service_id,
+      description,
+      estimated_duration,
+      start_time,
+      start_location,
+      start_coordinates,
+      end_location,
+      end_coordinates,
+      user_id,
+      tasker_id
+    } = taskObject;
+    const query = {
+      text: `
+      INSERT INTO tasks (number, category_id, service_id, description, estimated_duration, start_time, start_location, start_coordinates, end_location, end_coordinates, user_id, tasker_id)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+      RETURNING *`,
+      values: [number,
+        category_id,
+        service_id,
+        description,
+        estimated_duration,
+        start_time,
+        start_location,
+        start_coordinates,
+        end_location,
+        end_coordinates,
+        user_id,
+        tasker_id]
+    };
+
+    return db.query(query)
+      .then(result => result.rows[0])
+      .catch(err => err);
+  };
+
   return {
     getUsers,
     getUserByEmail,
@@ -193,7 +232,8 @@ module.exports = (db) => {
     getCategories,
     getTasks,
     getTaskById,
-    getTaskForPayment
+    getTaskForPayment,
+    addTask
   };
 };
 

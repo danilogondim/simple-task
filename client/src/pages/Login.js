@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import '../components/Registration.scss';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -7,6 +7,14 @@ import { AppContext } from "../App.js"
 
 
 export default function Login() {
+
+  const [message, setMessage] = useState('');
+
+  const handleClickAsync = () => {
+    setTimeout(function delay() {
+      setMessage('Email not registered or incorret password!');
+    }, 500);
+  }
 
   const {setToken} = useContext(AppContext);
 
@@ -19,10 +27,28 @@ export default function Login() {
     axios
     .post('/api/users/authenticate/', user)
     .then((info)=>{
-      //console.log('Info.data from ValidatedLoginForm:', info.data);
+
+      console.log('Info.data from ValidatedLoginForm:', info.data);
+
+      if (info.data.msg === 'Password and email do not match!') {
+
+        localStorage.clear();
+        setToken([]);
+        history.push('/login');
+
+      } else if (info.data.msg === 'Email not registered!') {
+
+        localStorage.clear();
+        setToken([]);
+        history.push('/login');
+
+      } else {
+
       localStorage.setItem('token', info.data);
       setToken(info.data);
       history.push("/");
+
+      }
 
 
       
@@ -50,7 +76,12 @@ export default function Login() {
         {errors.password && errors.password.type === "required" && <p> This is a mandatory field. </p>}
         {errors.password && errors.password.type === "minLength" && <p> Password must have at least 6 characters. </p>}
 
-         <button type="submit">
+        <p>{message}</p>
+
+         <button 
+         type="submit"
+         onClick={handleClickAsync}
+         >
            Login
          </button>
 

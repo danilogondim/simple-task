@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+
 
 module.exports = ({
   getTasks,
   getTaskById,
-  getTaskForPayment
+  getTaskForPayment,
+  addTask
 }) => {
   /* GET Tasks listing. */
   router.get('/', (req, res) => {
@@ -25,6 +28,18 @@ module.exports = ({
         error: err.message
       }));
 
+  });
+
+  /* create a new task */
+  router.post('/new', (req, res) => {
+    //Getting ID from the JWT Token
+    const decoded = jwt.verify(req.body.token, process.env.TOKEN_SECRET);
+    const user_id = decoded.id
+    addTask({...req.body, user_id})
+    .then((task) => res.json(task))
+    .catch((err) => res.json({
+      error: err.message
+    }));
   });
 
   /* GET a Task for Payment by ID */

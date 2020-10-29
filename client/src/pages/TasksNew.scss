@@ -3,3 +3,16 @@
 
 
 }
+
+textarea[name="description"] {
+  overflow: auto;
+  width: inherit;
+}
+
+.error-message{
+  > a{
+    text-decoration: none;
+    color: #721c24;
+    font-weight: 600;
+  }
+}

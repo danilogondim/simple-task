@@ -36,7 +36,10 @@ module.exports = ({
       phone,
       email,
       password,
-      address,
+      number,
+      street,
+      unit,
+      city,
       coordinates,
       photo_url
     } = req.body;
@@ -49,6 +52,15 @@ module.exports = ({
             msg: 'Sorry, a user account with this email already exists'
           });
         } else {
+
+          let address = '';
+
+          unit ? 
+          (address = `${unit}-${number} ${street}, ${city}`)
+          :
+          (address = `${number} ${street}, ${city}`);
+
+          // console.log('Address------------>', Address);
 
           return addUser(first_name, last_name, phone, email, password, address, coordinates, photo_url)
 
@@ -104,22 +116,20 @@ module.exports = ({
         
 
         } else {
-          res.json({
+          res.json({  
             msg: 'Password and email do not match!'
           });
         }
-
       } else {
         res.json({
           msg: 'Email not registered!'
         });
       }
-
     })
-    .catch(err => res.json({
+    .catch(err => {
+      res.json({
       error: err.message
-    }));
-
+      })});
   });
 
 

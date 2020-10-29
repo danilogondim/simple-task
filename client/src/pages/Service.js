@@ -12,6 +12,10 @@ export default function Service() {
   const { c_id, id } = useParams();
   const { state, dispatch, service } = useServiceData(c_id, id);
   const { day, range, tasker } = state;
+  localStorage.setItem('category_id', c_id);
+  localStorage.setItem('service_id', id);
+  localStorage.setItem("service_name", service.service);
+
 
   // const filteredTaskers = taskersFilter(state);
 
@@ -27,7 +31,7 @@ export default function Service() {
       )}
       {tasker && (
         <main className="detail_page" onClick={() => dispatch({ type: SET_TASKER, tasker: null })}>
-          <TaskerDetail tasker={tasker}  />
+          <TaskerDetail tasker={tasker} day={day} />
         </main>
       )}
     </>
