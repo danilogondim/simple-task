@@ -151,6 +151,28 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const getTaskForPayment = (id) => {
+    const query = {
+      text: `SELECT 
+              tasks.id            AS task_id,
+              tasks.description   AS task,
+              users.first_name    AS tasker_name,
+              started_at          AS start_time,
+              completed_at        AS end_time,
+              EXTRACT(EPOCH FROM (completed_at - started_at))/3600 AS total_time,
+              completed_at - started_at       AS total_duration
+            FROM tasks
+            JOIN users ON tasks.tasker_id = users.id
+            WHERE tasks.id = $1`,
+      values: [id]
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
   return {
     getUsers,
     getUserByEmail,
@@ -159,7 +181,8 @@ module.exports = (db) => {
     getTaskersByService,
     getCategories,
     getTasks,
-    getTaskById 
+    getTaskById,
+    getTaskForPayment
   };
 };
 

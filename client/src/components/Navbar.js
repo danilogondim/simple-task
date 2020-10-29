@@ -32,9 +32,9 @@ export default function Navbar() {
   return (
     <nav className="navbar sticky-top">
       
-      <a href="/" className="logo nav-link">
+      <Link to="/" className="logo nav-link">
         <span>Simple</span><span>Task</span>
-      </a>
+      </Link>
 
       <ul className="nav">
         <li className="nav-item"><Link className="nav-link" to='/'>Home</Link></li>
