@@ -1,83 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useHistory } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import useTasksNewData from '../hooks/useTasksNewData';
 import LinearProgressWithLabel from '../components/LinearProgressWithLabel';
 import TaskerListItem from '../components/TaskerListItem';
-import randomString from '../helpers/randomString';
-import axios from 'axios';
-import Geocode from "react-geocode";
 import './TasksNew.scss';
 
-
-//Google Geocode Setup
-const API_KEY = process.env.REACT_APP_GOOGLE_API;
-Geocode.setApiKey(API_KEY);
-Geocode.setLanguage("en");
-Geocode.setRegion("ca");
-Geocode.enableDebug();
-
-
 export default function TasksNew() {
-  const { progress, updateProgressiveBar, previousTask } = useTasksNewData();
-  const history = useHistory();
-
-  const day = new Date(localStorage.getItem('day'));
-  const date = day.getDate();
-  const month = day.getMonth();
-  const year = day.getFullYear();
-  const token = localStorage.getItem('token');
-  const tasker = JSON.parse(localStorage.getItem('tasker'));
+  const { progress,
+    updateProgressiveBar,
+    previousTask,
+    date,
+    month,
+    year,
+    token,
+    tasker,
+    onSubmit
+  } = useTasksNewData();
 
   const { register, handleSubmit, errors, getValues } = useForm(
     { defaultValues: { ...JSON.parse(previousTask) } },
     { reValidateMode: 'onChange' }
   );
-
-  const onSubmit = (task) => {
-
-    task['tasker_id'] = tasker.id;
-    task['number'] = randomString(32);
-    task['category_id'] = localStorage.getItem('category_id');
-    task['service_id'] = localStorage.getItem('service_id');
-    task.start_time = `${year}-${month + 1}-${date} ${task.time}`;
-
-    if (token) {
-      task['token'] = token;
-      console.log(task);
-
-      const promises = [Geocode.fromAddress(task.start_location)]
-      if (task.end_location !== "") {
-        promises.push(Geocode.fromAddress(task.end_location))
-      };
-
-      Promise.all(promises)
-        .then(all => {
-          const { lat, lng } = all[0].results[0].geometry.location;
-          task['start_coordinates'] = [lat, lng];
-          if (all.length === 2) {
-            const { lat, lng } = all[1].results[0].geometry.location;
-            task['end_coordinates'] = [lat, lng];
-          }
-        })
-        .catch(e => console.log(e.message))
-        .then(() => {
-          axios
-            .post('/api/tasks/new', task)
-            .then(task => {
-              localStorage.removeItem('task');   // if everything went right, we can empty the task (also empty if user navigates to other pages that are different than login or register)
-              updateProgressiveBar('task_created', {});
-              history.push(`/tasks/${task.data.id}`);
-            })
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    } else {
-      localStorage.setItem('task', JSON.stringify(task));
-    }
-  }
 
   return (
     <main className="new-task">
