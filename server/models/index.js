@@ -156,13 +156,24 @@ module.exports = (db) => {
       text: `SELECT 
               tasks.id            AS task_id,
               tasks.description   AS task,
-              users.first_name    AS tasker_name,
-              started_at          AS start_time,
-              completed_at        AS end_time,
+              users.first_name,
+              users.last_name,
+              round(service_taskers.hourly_rate/100, 2) AS hourly_rate,
+              to_char(
+                (to_char(started_at :: time, 'HH24:MI'):: time
+                ),
+                'HH24:MI'
+              ) AS start_time,
+              to_char(
+                (to_char(completed_at :: time, 'HH24:MI'):: time
+                ),
+                'HH24:MI'
+              ) AS end_time,
               EXTRACT(EPOCH FROM (completed_at - started_at))/3600 AS total_time,
               completed_at - started_at       AS total_duration
             FROM tasks
             JOIN users ON tasks.tasker_id = users.id
+            JOIN service_taskers ON tasks.tasker_id = service_taskers.tasker_id
             WHERE tasks.id = $1`,
       values: [id]
     };
