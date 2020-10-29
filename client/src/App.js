@@ -23,6 +23,7 @@ import TasksNew             from './pages/TasksNew';
 import Task                 from './pages/Task';
 import TaskComplete         from './pages/TaskComplete';
 import TaskPayment          from './pages/TaskPayment';
+import Search               from './pages/Search';
 
 
 const AppContext = createContext();
@@ -49,6 +50,7 @@ export default function App() {
           <Route exact path="/tasks/:id">                  <Task/>            </Route>
           <Route path="/tasks/:id/complete">               <TaskComplete/>    </Route>
           <Route path="/tasks/:id/payment">                <TaskPayment/>     </Route>
+          <Route path="/search">                           <Search/>          </Route>
         </Switch>
       </div>
     </Router>

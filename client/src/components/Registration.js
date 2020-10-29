@@ -40,6 +40,7 @@ export default function Registration() {
         .then((info) => {
           //console.log('info.data---------------->', info.data)
           localStorage.setItem('token', info.data);
+
           setToken(info.data);
           history.push("/");
         }
