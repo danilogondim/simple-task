@@ -46,7 +46,17 @@ export default function Login() {
 
       localStorage.setItem('token', info.data);
       setToken(info.data);
-      history.push("/");
+      
+
+        if(localStorage.getItem('task')) {
+
+          history.push("/tasks/new")
+
+        } else {
+
+          history.push("/")
+        
+        }
 
       }
 

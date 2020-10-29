@@ -66,7 +66,6 @@ module.exports = ({
 
         }
 
-
         // Need to updated coordinates
 
       })
