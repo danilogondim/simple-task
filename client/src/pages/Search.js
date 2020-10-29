@@ -1,41 +1,31 @@
-import React, { Component } from 'react';
-import GoogleMapReact from 'google-map-react';
-
-//Google Geocode Setup
-// const API_KEY = process.env.REACT_APP_GOOGLE_API;
-// Geocode.setApiKey(API_KEY);
+import React from 'react';
+import useTaskersData from '../hooks/useTaskersData.js'
 
 
-// const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
 
 export default function Search() {
 
-//     let defaultProps = {
-//       center: {
-//         lat: 59.95,
-//         lng: 30.33
-//       },
-//       zoom: 10
-//     };
+
+  //render users
+  const { state } = useTaskersData();
+  const users = state.taskers.map(user => {
+    return (
+      <li key={user.id} > {user.first_name} {user.last_name} {user.email} </li>
+  )});
+
+
   
-//     return (
-//       // // Important! Always set the container height explicitly
-//       // <div style={{ height: '100vh', width: '100%' }}>
-//       //   { localStorage.getItem('lat') }
-//       //   { localStorage.getItem('lng') }
-        
-//       //   <GoogleMapReact
-//       //     bootstrapURLKeys={{ key: API_KEY }}
-//       //     defaultCenter={defaultProps.center}
-//       //     defaultZoom={10}
-//       //   >
-//       //     <AnyReactComponent
-//       //       lat={43.6670978}
-//       //       lng={-79.39965339999999}
-//       //       text="YOU ARE HERE"
-//       //     />
-//       //   </GoogleMapReact>
-//       // </div>
-//     )
+    return (
+      <>
+      <p>RENDER MAP HERE</p>
+      <div className="App" >
+      <h2> Taskers </h2>
+      <ul> {users} </ul>
+      </div>
+
+      </>
+
+    )
 }
  

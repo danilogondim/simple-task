@@ -6,6 +6,7 @@ export const SET_RANGE              = 'SET_RANGE';
 export const SET_TASKER             = 'SET_TASKER';
 export const SET_TASK_PAYMENT       = 'SET_TASK_PAYMENT';
 
+
 const dataReducer = (state, action) => {
   switch (action.type) {
     case SET_USERS:
