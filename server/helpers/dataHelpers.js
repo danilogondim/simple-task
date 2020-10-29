@@ -36,6 +36,13 @@ const getServicesByCategories = categories => {
   return orderedCategories;
 };
 
+const getBestReviewsByTaskers = (taskers, bestReviews) => {
+  console.log({ taskers });
+  console.log({ bestReviews });
+
+};
+
 module.exports = {
-  getServicesByCategories
+  getServicesByCategories,
+  getBestReviewsByTaskers
 };
