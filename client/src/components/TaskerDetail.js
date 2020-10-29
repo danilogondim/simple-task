@@ -74,8 +74,8 @@ export default function TaskerDetail(props) {
           <div className="comment-review">
             <p>{"About me: " + summary}</p>
             <blockquote className="blockquote mb-0">
-              <p>{summary}</p>
-              <footer className="blockquote-footer">Reviewer</footer>
+              <p>{"Sample review: " + "This should be a user review at some point so we can show in the tasker card before booking."}</p>
+              <footer className="blockquote-footer">{"First_name, " + "November 2020"}</footer>
             </blockquote>
           </div>
           <footer>
