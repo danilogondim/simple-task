@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './TasksNew.scss';
 import Geocode from "react-geocode";
+import { useHistory } from "react-router-dom";
+
 
 //Google Geocode Setup
 const API_KEY = process.env.REACT_APP_GOOGLE_API;
@@ -17,6 +19,8 @@ Geocode.enableDebug();
 
 
 export default function TasksNew() {
+  const history = useHistory();
+
   const day = new Date(localStorage.getItem('day'));
   const date = day.getDate();
   const month = day.getMonth();
@@ -105,13 +109,16 @@ export default function TasksNew() {
             const { lat, lng } = all[1].results[0].geometry.location;
             task['end_coordinates'] = [lat, lng];
           }
-          console.log(task);
-        }).then(() => {
+        })
+        .catch(e => console.log(e.message))
+        .then(() => {
           axios
             .post('/api/tasks/new', task)
-        })
-        .then((task) => {
-          localStorage.removeItem('task');   // if everything went right, we can empty the task (also empty if user navigates to other pages that are different than login or register)
+            .then(task => {
+              localStorage.removeItem('task');   // if everything went right, we can empty the task (also empty if user navigates to other pages that are different than login or register)
+              setProgress(prev => prev + 20);
+              history.push(`/tasks/${task.data.id}`);
+            })
         })
         .catch(err => {
           console.error(err);
@@ -119,22 +126,6 @@ export default function TasksNew() {
     } else {
       localStorage.setItem('task', JSON.stringify(task));
     }
-
-
-
-    // tasks table required fields:
-    // tasker_id INTEGER REFERENCES users(id) ON DELETE CASCADE,   ------------------>     // ok!!!
-    // number VARCHAR(255),   ------------------------------------------------------->     // ok!!!
-    // category_id INTEGER    ------------------------------------------------------->     // ok!!!
-    // service_id INTEGER     ------------------------------------------------------->     // ok!!!
-    // description VARCHAR(255) NOT NULL,   ----------------------------------------->     // ok!!!
-    // estimated_duration INTEGER NOT NULL,   --------------------------------------->     // ok!!!
-    // start_location VARCHAR(255) NOT NULL,   -------------------------------------->     // ok!!!
-    // start_coordinates VARCHAR[],  ------------------------------------------------>     // ok!!!
-    // end_location VARCHAR(255),   ------------------------------------------------->     // ok!!!
-    // end_coordinates VARCHAR[],   ------------------------------------------------->     // ok!!!
-    // user_id INTEGER              -------------------------------------------------> sending token
-    // start_time TIMESTAMP NOT NULL,   --------------------------------------------->     // ok!!!
   }
 
   return (
