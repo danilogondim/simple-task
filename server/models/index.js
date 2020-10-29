@@ -173,7 +173,7 @@ module.exports = (db) => {
               completed_at - started_at       AS total_duration
             FROM tasks
             JOIN users ON tasks.tasker_id = users.id
-            JOIN service_taskers ON tasks.tasker_id = service_taskers.tasker_id
+            JOIN service_taskers ON tasks.service_id = service_taskers.service_id
             WHERE tasks.id = $1`,
       values: [id]
     };
