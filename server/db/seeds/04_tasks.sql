@@ -33,4 +33,6 @@ VALUES
 (15,3,8, 'Organizing a small garden', 2, '2020-10-22 13:00:00', '1 castel wisdom vale', '1 castel wisdom vale', '13:00:00', '15:00:00', 4, 11),
 (16,4,10, 'Buying beverages for a party', 2, '2020-10-22 08:00:00', 'toronto south detention center, cell2', 'toronto south detention center, cell2', '08:00:00', '10:00:00', 5, 9),
 -- a example that was faster than expected:
-(17,4,11, 'Burger king picking-up', 2, '2020-10-22 09:00:00', '15 cave street', '15 cave street', '09:00:00', '09:45:00', 1, 10);
+(17,4,11, 'Burger king pick-up', 2, '2020-10-22 09:00:00', '100 Queen St W, Toronto', '100 Queen St W, Toronto', '09:00:00', '09:45:00', 1, 10),
+(18,4,11, 'Pizza Hut pick-up', 2, '2020-10-23 09:00:00', '1 Austin Terrace, Toronto', '1 Austin Terrace, Toronto', '09:00:00', '11:00:00', 2, 10),
+(19,4,11, 'Dominos Hut pick-up', 2, '2020-10-24 09:00:00', '1 Dundas St E, Toronto', '1 Dundas St E, Toronto', '09:00:00', '11:00:00', 3, 10);
