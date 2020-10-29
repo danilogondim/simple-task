@@ -62,10 +62,9 @@ module.exports = ({
 
           // console.log('Address------------>', Address);
 
-          return addUser(first_name, last_name, phone, email, password, address, coordinates, photo_url)
+          return addUser(first_name, last_name, phone, email, password, address, [1,2], photo_url)
 
         }
-
 
         // Need to updated coordinates
 

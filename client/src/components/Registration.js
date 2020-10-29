@@ -4,14 +4,14 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import { AppContext } from "../App.js"
-import Geocode from "react-geocode";
+// import Geocode from "react-geocode";
 
-//Google Geocode Setup
-const API_KEY = process.env.REACT_APP_GOOGLE_API;
-Geocode.setApiKey(API_KEY);
-Geocode.setLanguage("en");
-Geocode.setRegion("ca");
-Geocode.enableDebug();
+// //Google Geocode Setup
+// const API_KEY = process.env.REACT_APP_GOOGLE_API;
+// Geocode.setApiKey(API_KEY);
+// Geocode.setLanguage("en");
+// Geocode.setRegion("ca");
+// Geocode.enableDebug();
 
 
 export default function Registration() {
@@ -29,11 +29,11 @@ export default function Registration() {
     
     let address = `${user.number} ${user.street}, ${user.city}`;
 
-    Geocode.fromAddress(address).then(
-      response => {
-        const { lat, lng } = response.results[0].geometry.location;
-        user.coordinates = [lat, lng];
-        //console.log('user.coordinates------>', user.coordinates);
+    // Geocode.fromAddress(address).then(
+    //   response => {
+    //     const { lat, lng } = response.results[0].geometry.location;
+    //     user.coordinates = [lat, lng];
+    //     //console.log('user.coordinates------>', user.coordinates);
 
         axios
         .post('/api/users/', user)
@@ -42,18 +42,29 @@ export default function Registration() {
           localStorage.setItem('token', info.data);
 
           setToken(info.data);
-          history.push("/");
+        
+          if(localStorage.getItem('task')) {
+
+            history.push("/tasks/new")
+  
+          } else {
+  
+            history.push("/")
+          
+          }
+
+
         }
         )
         .catch(err => {
           console.error(err);
         });
 
-      },
-      error => {
-        console.error(error);
-      }
-    );
+    //   },
+    //   error => {
+    //     console.error(error);
+    //   }
+    // );
 
    
 
