@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+
 
 module.exports = ({
   getTasks,
@@ -30,10 +32,16 @@ module.exports = ({
 
   /* create a new task */
   router.post('/new', (req, res) => {
-    console.log(req.body)
-
+    //Getting ID from the JWT Token
+    const decoded = jwt.verify(req.body.token, process.env.TOKEN_SECRET);
+    const user_id = decoded.id
+    addTask({...req.body, user_id})
+    .then((task) => res.json(task))
+    .catch((err) => res.json({
+      error: err.message
+    }));
   });
-  
+
   /* GET a Task for Payment by ID */
   router.get('/:id/payment', (req, res) => {
     const { id } = req.params;
