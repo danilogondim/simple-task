@@ -10,8 +10,13 @@ import Dropbox from '../components/Dropbox.js'
 export default function Search() {
 
   const [myLocation, setMyLocation] = useState(JSON.parse(localStorage.getItem('location')));
-  const [value, setValue] = useState('1');
-  //console.log('value----------->', value)
+  const [selectedCategory, setSelectedCategory] = useState('1');
+
+  const [selectedService, setSelectedService] = useState('1');
+
+
+ 
+
 
 
   navigator.geolocation.getCurrentPosition((data) => {
@@ -25,31 +30,55 @@ export default function Search() {
 
   
   //render users
-  const { state } = useTaskersData(value);
-  const users = state.taskers.map(user => {
-    return (
-      <li key={user.id} > {user.first_name} {user.last_name} {user.email} </li>
-  )});
+  const { state } = useTaskersData(selectedCategory, selectedService);
+
 
 
   //renders categories
-  const state2 = useCategories().state;
-  const categories = state2.categories.map(category => {
-  return (
-      <li key={category.category_id} > {category.category} {category.service_id} {category.service} </li>
-  )});
+  const result = useCategories().state;
 
-  
+  //console.log ('result------->', result);
 
 
+  const findServices = () => {
+
+    
+    console.log(result.categories)
+    const indexOfCategory = result.categories.findIndex( (category) => category.category_id.toString() === selectedCategory )
+    
+    const category = {...result.categories[indexOfCategory] }
+
+ 
+    const services = category.services?.map((service) => ({
+      category: service.service,
+      category_id: service.service_id
+    }))
+
+    return services
+
+  }
+
+ 
 
     return (
           
       <>
 
+      
       <Dropbox 
-        value = {value}
-        setValue = {setValue}
+        title = 'Categories:'
+        value = {selectedCategory}
+        setValue = {setSelectedCategory}
+        categories = {result.categories}
+      />
+
+
+
+      <Dropbox 
+        title = 'Services:'
+        value = {selectedService}
+        setValue = {setSelectedService}
+        categories = {findServices()}
       />
 
       

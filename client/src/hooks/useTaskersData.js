@@ -17,7 +17,7 @@ const useTaskersData = (id) => {
       .then(({
         data
       }) => {
-        //console.log(data);
+        console.log(data);
         dispatch({
           type: SET_TASKERS,
           taskers: data

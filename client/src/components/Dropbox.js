@@ -4,16 +4,21 @@ class Dropbox extends Component {
 
   render() {
 
+    //console.log('this.props Dropxbox----------->', this.props.categories);
+
     return (
       <>
-
+        
       <form>
-        <label> Categories:</label>
+        <label> {this.props.title}</label>
          <select value={this.props.value} onChange={event => this.props.setValue(event.target.value)} name = "dropdown_categories">
-            <option value = "1">Pets</option>
-            <option value = "2">House</option>
-            <option value = "3">Garden</option>
-            <option value = "4">Food</option>
+
+         {this.props.categories?.map ((category) => (
+          <option key={category.category_id} value = {category.category_id}>{category.category}</option>
+         )
+         )}
+
+
          </select>
       </form> 
 
