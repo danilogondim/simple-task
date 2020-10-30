@@ -25,7 +25,7 @@ const useTaskData = () => {
       .catch(e => console.log(e))
   }, [id])
 
-  return { state, dispatch };
+  return { state };
 };
 
 export default useTaskData;
