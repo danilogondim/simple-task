@@ -37,7 +37,7 @@ export default function Task() {
 
               <label>Estimated duration: </label>
               <div className="input-group mb-3">
-                <select className="custom-select" name="estimated_duration" readOnly disabled value={estimated_duration}  ref={register({ validate: value => value !== '0' })}>
+                <select className="custom-select" name="estimated_duration" readOnly disabled value={estimated_duration} ref={register({ validate: value => value !== '0' })}>
                   <option value="0">Choose...</option>
                   <option value="1">1 hour</option>
                   <option value="2">2 hours</option>
@@ -54,11 +54,11 @@ export default function Task() {
 
 
               <label>Start location: </label>
-              <input type="text" name="start_location" readOnly disabled value={start_location}ref={register({ required: true })} />
+              <input type="text" name="start_location" readOnly disabled value={start_location} ref={register({ required: true })} />
 
 
               <label>End location: </label>
-              <input type="text" name="end_location" readOnly disabled value={end_location}ref={register()} />
+              <input type="text" name="end_location" readOnly disabled value={end_location} ref={register()} />
 
             </form>
 

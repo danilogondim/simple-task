@@ -25,6 +25,14 @@ const useTaskData = () => {
       .catch(e => console.log(e))
   }, [id])
 
+  useEffect(() => {
+    if (state.tasker && !state.tasker.hourly_rate) {
+      const { hourly_rate } = state.task;
+      const newTasker = { ...state.tasker, hourly_rate };
+      dispatch({ type: SET_TASKER, tasker: newTasker });
+    }
+  }, [state.tasker, state.task])
+
   return { state };
 };
 
