@@ -50,6 +50,16 @@ export default function Search() {
       <ul> {users} </ul>
       </div> */}
 
+      <form>
+        <label> Categories:</label>
+         <select name = "dropdown_categories">
+            <option value = "Category 1" selected>Pets</option>
+            <option value = "Category 2">House</option>
+            <option value = "Category 3">Garden</option>
+            <option value = "Category 4">Food</option>
+         </select>
+      </form>
+
       <div className="App">
       <MapView
       myLocation = {myLocation}
