@@ -17,7 +17,7 @@ module.exports = ({
   updateUser,
   getChatsByUser
 }) => {
-  /* GET users listing. */ 
+  /* GET users listing. */
   router.get('/', (req, res) => {
     getUsers()
       .then((users) => res.json(users))
@@ -26,7 +26,7 @@ module.exports = ({
       }));
   });
 
-  /* GET a specific user. */ 
+  /* GET a specific user. */
   router.get('/:id', (req, res) => {
 
     const { id } = req.params;
@@ -69,10 +69,10 @@ module.exports = ({
 
           let address = '';
 
-          unit ? 
-          (address = `${unit}-${number} ${street}, ${city}`)
-          :
-          (address = `${number} ${street}, ${city}`);
+          unit ?
+            (address = `${unit}-${number} ${street}, ${city}`)
+            :
+            (address = `${number} ${street}, ${city}`);
 
           // console.log('Address------------>', Address);
 
@@ -83,10 +83,10 @@ module.exports = ({
         // Need to updated coordinates
 
       })
-      .then( user => {          
-      const token = jwt.sign({id: user.id}, process.env.TOKEN_SECRET);
-      res.json(token) 
-      res.end()
+      .then(user => {
+        const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET);
+        res.json(token)
+        res.end()
       })
       .then(newUser => res.json(newUser))
       .catch(err => res.json({
@@ -103,46 +103,47 @@ module.exports = ({
       password,
     } = req.body;
 
-    
+
     //console.log(req.body);
     getUserByEmail(email)
-    .then(user => {
-      if (user) {
+      .then(user => {
+        if (user) {
 
-        if(user.password === password) {
+          if (user.password === password) {
 
-          // res.json({
-          //   msg: 'User can enter!'
-          // });
-          //create and assign a token
+            // res.json({
+            //   msg: 'User can enter!'
+            // });
+            //create and assign a token
 
-          //console.log('req.body users.js:', req.body)
-          const token = jwt.sign({id: user.id}, process.env.TOKEN_SECRET);
-         
-          res.json(token) 
-          res.end()
-          
-          //Getting ID from the JWT Token
-          // const decoded = jwt.verify(token, "82jd73h@hsd8ko83");  
-          // let userId = decoded.id   
-          // console.log('userID----------->', userId) 
-        
+            //console.log('req.body users.js:', req.body)
+            const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET);
 
+            res.json(token)
+            res.end()
+
+            //Getting ID from the JWT Token
+            // const decoded = jwt.verify(token, "82jd73h@hsd8ko83");  
+            // let userId = decoded.id   
+            // console.log('userID----------->', userId) 
+
+
+          } else {
+            res.json({
+              msg: 'Password and email do not match!'
+            });
+          }
         } else {
-          res.json({  
-            msg: 'Password and email do not match!'
+          res.json({
+            msg: 'Email not registered!'
           });
         }
-      } else {
+      })
+      .catch(err => {
         res.json({
-          msg: 'Email not registered!'
-        });
-      }
-    })
-    .catch(err => {
-      res.json({
-      error: err.message
-      })});
+          error: err.message
+        })
+      });
   });
 
 
@@ -198,17 +199,31 @@ module.exports = ({
   });
 
 
-/* GET the chats for a specific user. */ 
-router.get('/:id/chats', (req, res) => {
+  /* GET the chats for a specific user. */
+  router.get('/:id/chats', (req, res) => {
 
-  const { id } = req.params;
+    const { id } = req.params;
 
-  getChatsByUser(id)
-    .then((user) => res.json(user))
-    .catch((err) => res.json({
-      error: err.message
-    }));
-});
+    getChatsByUser(id)
+      .then((user) => res.json(user))
+      .catch((err) => res.json({
+        error: err.message
+      }));
+  });
+
+  /* GET the chats for a specific user by using a token instead of id. */
+  router.get('/token/:token/chats', (req, res) => {
+
+    const { token } = req.params;
+    const id = jwt.verify(token, process.env.TOKEN_SECRET).id;
+    console.log(id);
+
+    getChatsByUser(id)
+      .then((user) => res.json(user))
+      .catch((err) => res.json({
+        error: err.message
+      }));
+  });
 
 
   return router;

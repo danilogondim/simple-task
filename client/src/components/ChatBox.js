@@ -10,9 +10,8 @@ import { AppContext } from "../App";
 
 export default function ChatBox() {
   const { token } = useContext(AppContext);
-  console.log(token);
 
-  useChatBoxData(1);
+  useChatBoxData(token);
   return (
 
     <section className="chat-box">
