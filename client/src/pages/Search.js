@@ -12,8 +12,21 @@ export default function Search() {
   navigator.geolocation.getCurrentPosition((data) => {
 
     const {latitude: lat, longitude: lng} = data.coords
+
+    
+
+    localStorage.setItem('location', JSON.stringify({lat, lng}))
+
+    let location = localStorage.getItem('location');
+
+    console.log('location------->', location);
+
+    setMyLocation(JSON.parse(location))
+
+
    
-    setMyLocation({lat, lng})
+    
+    //setMyLocation({lat, lng})
   })
 
   //render users

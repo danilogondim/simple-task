@@ -9,6 +9,11 @@ class MapView extends Component {
   
   render() {
 
+    //let location = localStorage.getItem('location');
+
+    //console.log('location---------->',location);
+
+    //this.props.myLocation
 
     return (
       <Map center={this.props.myLocation} zoom={12}  style = {{  width: "100vw",  height: "100vh" }}>
