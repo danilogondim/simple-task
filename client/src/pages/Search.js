@@ -23,7 +23,7 @@ export default function Search() {
       <li key={user.id} > {user.first_name} {user.last_name} {user.email} </li>
   )});
 
-
+      //console.log(state);
   
     return (
           
@@ -37,6 +37,7 @@ export default function Search() {
       <div className="App">
       <MapView
       myLocation = {myLocation}
+      taskers = {state.taskers}
       />
       </div>
 
