@@ -7,7 +7,11 @@ import MapView from '../components/MapView';
 
 export default function Search() {
 
-  const [myLocation, setMyLocation] = useState()
+  const [myLocation, setMyLocation] = useState(JSON.parse(localStorage.getItem('location')));
+
+  const [value, setValue] = useState('1');
+
+  console.log('value----------->', value)
 
   navigator.geolocation.getCurrentPosition((data) => {
 
@@ -19,7 +23,7 @@ export default function Search() {
 
     let location = localStorage.getItem('location');
 
-    console.log('location------->', location);
+    //console.log('location------->', location);
 
     setMyLocation(JSON.parse(location))
 
@@ -32,8 +36,17 @@ export default function Search() {
     //setMyLocation({lat, lng})
   })
 
+  
+
+
+
+
+
+
   //render users
-  const { state } = useTaskersData();
+
+  const { state } = useTaskersData(1);
+  
   const users = state.taskers.map(user => {
     return (
       <li key={user.id} > {user.first_name} {user.last_name} {user.email} </li>
@@ -52,20 +65,22 @@ export default function Search() {
 
       <form>
         <label> Categories:</label>
-         <select name = "dropdown_categories">
-            <option value = "Category 1" selected>Pets</option>
-            <option value = "Category 2">House</option>
-            <option value = "Category 3">Garden</option>
-            <option value = "Category 4">Food</option>
+         <select value={value} onChange={event => setValue(event.target.value)} name = "dropdown_categories">
+            <option value = "1">Pets</option>
+            <option value = "2">House</option>
+            <option value = "3">Garden</option>
+            <option value = "4">Food</option>
          </select>
       </form>
-
-      <div className="App">
-      <MapView
-      myLocation = {myLocation}
-      taskers = {state.taskers}
-      />
-      </div>
+      {myLocation &&
+      
+        <div className="App">
+          <MapView
+          myLocation = {myLocation}
+          taskers = {state.taskers}
+          />
+        </div>
+      }
 
       </>
 
