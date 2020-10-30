@@ -50,9 +50,9 @@ const getBestReviewsByTaskers = (taskers, bestReviews) => {
       if (!taskersWithReviews[tasker.id].reviews[review.service_id]) {
         taskersWithReviews[tasker.id].reviews[review.service_id] = []
       }
-      const { execution_date, reviewer, user_comment, user_rating } = review;
+      const { execution_date, reviewer, user_comment, user_rating, service_name } = review;
 
-      taskersWithReviews[tasker.id].reviews[review.service_id].push({ execution_date, reviewer, user_comment, user_rating })
+      taskersWithReviews[tasker.id].reviews[review.service_id].push({ execution_date, reviewer, user_comment, user_rating, service_name })
     }
   }
   return Object.values(taskersWithReviews);

@@ -2,7 +2,7 @@ import React from 'react';
 import './TaskerDetail.scss';
 import { Rating } from '@material-ui/lab';
 import { AirportShuttle, LocalShipping, DriveEta, DirectionsBike, SportsMotorsports, DirectionsTransit } from '@material-ui/icons';
-import { useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 
 export default function TaskerDetail(props) {
@@ -18,8 +18,16 @@ export default function TaskerDetail(props) {
     summary,
     vehicle,
     hourly_rate,
-    average_rating
+    average_rating,
+    reviews
   } = props.tasker;
+  const { id } = useParams();
+
+  // define review to be shown
+  // if there is a review related to the current service, just take the first review (it will be the longest one between the last three most positive reviews)
+  // if there is no review related to the current service, check which of the services has the best user_rating, then retrieve the first one
+
+  const review = reviews[id] ? reviews[id][0] : (Object.keys(reviews).length === 0 ? "" : Object.values(reviews).sort((a, b) => b[0].user_rating - a[0].user_rating)[0][0]);
 
   const history = useHistory();
 
@@ -74,8 +82,8 @@ export default function TaskerDetail(props) {
           <div className="comment-review">
             <p>{"About me: " + summary}</p>
             <blockquote className="blockquote mb-0">
-              <p>{"Sample review: " + "This should be a user review at some point so we can show in the tasker card before booking."}</p>
-              <footer className="blockquote-footer">{"First_name, " + "November 2020"}</footer>
+              <p>{(reviews[id] ? "Related review: " : "Previous review: ") + review.user_comment}</p>
+              <footer className="blockquote-footer">{review.reviewer + ", " + review.execution_date.slice(0,10).replace(/-/g,"/") + (reviews[id] ?"":`, related to ${review.service_name}`)}</footer>
             </blockquote>
           </div>
           <footer>
