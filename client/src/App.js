@@ -24,6 +24,7 @@ import Task                 from './pages/Task';
 import TaskComplete         from './pages/TaskComplete';
 import TaskPayment          from './pages/TaskPayment';
 import Search               from './pages/Search';
+import ChatBox from './components/ChatBox';
 
 
 const AppContext = createContext();
@@ -50,6 +51,7 @@ export default function App() {
     <Router>
       <div>
         <Navbar/>
+        <ChatBox/>
         <Switch>
           <Route exact path="/">                           <Home/>            </Route>
           <Route path="/about">                            <About/>           </Route>
