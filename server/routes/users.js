@@ -15,6 +15,7 @@ module.exports = ({
   getUserByEmail,
   addUser,
   updateUser,
+  getChatsByUser
 }) => {
   /* GET users listing. */ 
   router.get('/', (req, res) => {
@@ -195,6 +196,20 @@ module.exports = ({
         error: err.message
       }));
   });
+
+
+/* GET the chats for a specific user. */ 
+router.get('/:id/chats', (req, res) => {
+
+  const { id } = req.params;
+
+  getChatsByUser(id)
+    .then((user) => res.json(user))
+    .catch((err) => res.json({
+      error: err.message
+    }));
+});
+
 
   return router;
 };

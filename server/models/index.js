@@ -283,6 +283,21 @@ module.exports = (db) => {
       .catch(err => err);
   };
 
+  const getChatsByUser = id => {
+    const query = {
+      text: `
+      SELECT *
+      FROM chat_messages
+      WHERE participant_1 = $1 OR participant_2 = $1
+      `,
+      values: [id]
+    };
+    return db
+      .query(query)
+      .then(result => result.rows)
+      .catch((err) => err);
+  }
+
   return {
     getUsers,
     getUserById,
@@ -295,6 +310,7 @@ module.exports = (db) => {
     getTasks,
     getTaskById,
     getTaskForPayment,
-    addTask
+    addTask,
+    getChatsByUser
   };
 };
