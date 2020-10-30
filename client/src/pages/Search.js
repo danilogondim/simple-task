@@ -23,9 +23,12 @@ export default function Search() {
 
     setMyLocation(JSON.parse(location))
 
-
-   
     
+    // const cnTower = {latitude: 43.644300, longitude: -79.386886};
+    // setMyLocation(cnTower)
+    
+   
+
     //setMyLocation({lat, lng})
   })
 
@@ -41,11 +44,11 @@ export default function Search() {
     return (
           
       <>
-      <p>RENDER MAP HERE</p>
+      {/* <p>RENDER MAP HERE</p>
       <div className="App" >
       <h2> Taskers </h2>
       <ul> {users} </ul>
-      </div>
+      </div> */}
 
       <div className="App">
       <MapView
