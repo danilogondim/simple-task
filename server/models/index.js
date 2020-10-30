@@ -74,10 +74,10 @@ module.exports = (db) => {
 
     const query = {
       text: `
-      SELECT users.id, first_name, last_name, phone, email, address, coordinates, photo_url, summary, vehicle, hourly_rate, user_rating, reviews_count, availability
+      SELECT users.id, first_name, last_name, phone, email, address, coordinates, photo_url, summary, vehicle, hourly_rate, average_rating, reviews_count, availability
       FROM availabilities JOIN
         (
-          SELECT users.id, first_name, last_name, phone, email, address, coordinates, photo_url, summary, vehicle, hourly_rate, AVG(user_rating) AS user_rating, COUNT(user_rating) AS reviews_count
+          SELECT users.id, first_name, last_name, phone, email, address, coordinates, photo_url, summary, vehicle, hourly_rate, AVG(user_rating) AS average_rating, COUNT(user_rating) AS reviews_count
           FROM users
           JOIN service_taskers ON users.id = service_taskers.tasker_id
           LEFT JOIN task_reviews ON users.id = task_reviews.tasker_id

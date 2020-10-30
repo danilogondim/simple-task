@@ -18,7 +18,7 @@ export default function TaskerDetail(props) {
     summary,
     vehicle,
     hourly_rate,
-    user_rating
+    average_rating
   } = props.tasker;
 
   const history = useHistory();
@@ -43,12 +43,12 @@ export default function TaskerDetail(props) {
                 {first_name + ' ' + last_name}
               </h5>
               <div className="rating">
-                {user_rating === null && <p>New Tasker!</p>}
-                {user_rating !== null &&
+                {average_rating === null && <p>New Tasker!</p>}
+                {average_rating !== null &&
                   <>
                     <Rating
                       name="half-rating-read"
-                      defaultValue={Number(Number(user_rating).toFixed(2))}
+                      defaultValue={Number(Number(average_rating).toFixed(2))}
                       precision={0.1}
                       readOnly
                       className="rating-result"
