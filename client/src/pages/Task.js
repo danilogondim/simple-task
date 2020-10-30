@@ -12,10 +12,7 @@ export default function Task() {
   const { description, estimated_duration, start_time, start_location, end_location } = state.task;
   const time = !start_time ? "" : start_time.split("T")[1].slice(0, 5);
 
-  const { register } = useForm(
-    { defaultValues: { description, estimated_duration, time, start_location, end_location } },
-    { reValidateMode: 'onChange' }
-  );
+  const { register } = useForm()
 
   return (
     <main className="new-task">
@@ -29,18 +26,18 @@ export default function Task() {
             <TaskerListItem tasker={state.tasker} />
           </div>
           <div className="right">
-          <h1>Task information</h1>
+            <h1>Task information</h1>
 
             <form className='new-task-form'>
 
 
               <label>Task description: </label>
-              <textarea name="description" rows="4" type="textarea" placeholder="Please let your tasker know any important detail to fulfill the task" ref={register({ required: true })} />
+              <textarea name="description" rows="4" type="textarea" readOnly disabled value={description} ref={register({ required: true })} />
 
 
               <label>Estimated duration: </label>
               <div className="input-group mb-3">
-                <select className="custom-select" name="estimated_duration" ref={register({ validate: value => value !== '0' })}>
+                <select className="custom-select" name="estimated_duration" readOnly disabled value={estimated_duration}  ref={register({ validate: value => value !== '0' })}>
                   <option value="0">Choose...</option>
                   <option value="1">1 hour</option>
                   <option value="2">2 hours</option>
@@ -53,15 +50,15 @@ export default function Task() {
 
 
               <label>Start time: </label>
-              <input type="time" name="time" min="00:00" max="23:00" ref={register({ required: true })} />
+              <input type="time" name="time" min="00:00" max="23:00" readOnly disabled value={time} ref={register({ required: true })} />
 
 
               <label>Start location: </label>
-              <input type="text" name="start_location" ref={register({ required: true })} />
+              <input type="text" name="start_location" readOnly disabled value={start_location}ref={register({ required: true })} />
 
 
-              <label>End location if different from start location: </label>
-              <input type="text" name="end_location" ref={register()} />
+              <label>End location: </label>
+              <input type="text" name="end_location" readOnly disabled value={end_location}ref={register()} />
 
             </form>
 
