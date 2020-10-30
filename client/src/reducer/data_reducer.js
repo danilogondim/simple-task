@@ -6,6 +6,7 @@ export const SET_RANGE              = 'SET_RANGE';
 export const SET_TASKER             = 'SET_TASKER';
 export const SET_TASK_PAYMENT       = 'SET_TASK_PAYMENT';
 export const SET_TASK               = 'SET_TASK';
+export const SET_CHATS              = 'SET_CHATS';
 
 
 const dataReducer = (state, action) => {
@@ -63,6 +64,13 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         task: action.task,
+        loading: false,
+      };
+
+    case SET_CHATS:
+      return {
+        ...state,
+        chats: action.chats,
         loading: false,
       };
 

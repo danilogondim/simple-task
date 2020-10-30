@@ -24,14 +24,14 @@ import Task                 from './pages/Task';
 import TaskComplete         from './pages/TaskComplete';
 import TaskPayment          from './pages/TaskPayment';
 import Search               from './pages/Search';
-import ChatBox from './components/ChatBox';
+import ChatBox              from './components/ChatBox';
 
 
 const AppContext = createContext();
 
 export default function App() {
 
-  const [token, setToken] = React.useState([])
+  const [token, setToken] = React.useState(localStorage.getItem('token'));
 
   useEffect(() => {
     const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
@@ -42,35 +42,37 @@ export default function App() {
     };
 
     socket.onopen = function (event) {
-      socket.send("ping"); 
+      socket.send("ping");
     };
-  },[])
+  }, [])
 
   return (
-    <AppContext.Provider value={{token, setToken}}>
-    <Router>
-      <div>
-        <Navbar/>
-        <ChatBox/>
-        <Switch>
-          <Route exact path="/">                           <Home/>            </Route>
-          <Route path="/about">                            <About/>           </Route>
-          <Route path="/login">                            <Login/>           </Route>
-          <Route path="/register">                         <Register/>        </Route>
-          <Route exact path="/users">                      <Users/>           </Route>
-          <Route path="/users/:id">                        <User/>            </Route>
-          <Route exact path="/categories/:id">             <Services/>        </Route>
-          <Route path="/categories/:c_id/services/:id">    <Service />        </Route>
-          <Route path="/tasks/new">                        <TasksNew/>        </Route>
-          <Route exact path="/tasks/:id">                  <Task/>            </Route>
-          <Route path="/tasks/:id/complete">               <TaskComplete/>    </Route>
-          <Route path="/tasks/:id/payment">                <TaskPayment/>     </Route>
-          <Route path="/search">                           <Search/>          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <AppContext.Provider value={{ token, setToken }}>
+      <Router>
+        <div>
+          <Navbar />
+          <AppContext.Consumer>
+            {token => <ChatBox token={token} />}
+          </AppContext.Consumer>
+          <Switch>
+            <Route exact path="/">                           <Home />            </Route>
+            <Route path="/about">                            <About />           </Route>
+            <Route path="/login">                            <Login />           </Route>
+            <Route path="/register">                         <Register />        </Route>
+            <Route exact path="/users">                      <Users />           </Route>
+            <Route path="/users/:id">                        <User />            </Route>
+            <Route exact path="/categories/:id">             <Services />        </Route>
+            <Route path="/categories/:c_id/services/:id">    <Service />        </Route>
+            <Route path="/tasks/new">                        <TasksNew />        </Route>
+            <Route exact path="/tasks/:id">                  <Task />            </Route>
+            <Route path="/tasks/:id/complete">               <TaskComplete />    </Route>
+            <Route path="/tasks/:id/payment">                <TaskPayment />     </Route>
+            <Route path="/search">                           <Search />          </Route>
+          </Switch>
+        </div>
+      </Router>
     </AppContext.Provider>
   );
 };
 
-export {AppContext}; 
+export { AppContext }; 

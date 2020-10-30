@@ -41,7 +41,7 @@ export default function Navbar() {
         <li className="nav-item"><Link className="nav-link" to="/about">About</Link> </li>
         <li className="nav-item"><Link className="nav-link" to='/search'>Search</Link></li>
 
-        {(token.length > 0) ? 
+        {token ? 
         <>
         <li className="nav-item"><Link className="nav-link" onClick={handleLogout}>Logout</Link></li>
         <li className="nav-item"><Link className="nav-link" to='/users/:id'>Profile</Link></li>
