@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import useTaskersData from '../hooks/useTaskersData.js'
 import MapView from '../components/MapView';
 
+//import useCategories from '../hooks/useCategories.js'
+
 
 
 
@@ -9,8 +11,7 @@ export default function Search() {
 
   const [myLocation, setMyLocation] = useState(JSON.parse(localStorage.getItem('location')));
   const [value, setValue] = useState('1');
-  console.log('value----------->', value)
-
+  //console.log('value----------->', value)
 
 
   navigator.geolocation.getCurrentPosition((data) => {
@@ -19,7 +20,6 @@ export default function Search() {
     let location = localStorage.getItem('location');
     //console.log('location------->', location);
     setMyLocation(JSON.parse(location))
-
     //setMyLocation({lat, lng})
   })
 
@@ -30,6 +30,15 @@ export default function Search() {
     return (
       <li key={user.id} > {user.first_name} {user.last_name} {user.email} </li>
   )});
+
+
+  //renders categories
+  // const { state } = useCategories();
+  // const categories = state2.categories.map(user => {
+  //   return (
+  //     <li key={user.id} > {user.first_name} {user.last_name} {user.email} </li>
+  // )});
+
 
       
 
