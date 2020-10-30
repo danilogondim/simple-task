@@ -1,8 +1,9 @@
 import React from 'react';
-import { Jumbotron, Container} from 'react-bootstrap'
-import useTaskPaymentData from '../hooks/useTaskPaymentData.js'
+import {Link} from 'react-router-dom';
+import { Jumbotron, Container} from 'react-bootstrap';
+import useTaskPaymentData from '../hooks/useTaskPaymentData.js';
 import "./Home.scss";
-import "./TaskPayment.scss"
+import "./TaskPayment.scss";
 
 export default function TaskPayment() {
   const { state } = useTaskPaymentData();
@@ -84,7 +85,9 @@ export default function TaskPayment() {
         </tr>
         <tr>
           <td colSpan="2" className="text-center">
-            <button type="button" className="btn btn-success">Submit</button>
+            <Link to={`/tasks/${task.task_id}/payment/stripe`}>
+              <button type="button" className="btn btn-success">Submit</button>
+            </Link>
           </td>
         </tr>
       </tbody>

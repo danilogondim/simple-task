@@ -1,6 +1,6 @@
 import React, { createContext }       from 'react';
-// import {Elements}                     from '@stripe/react-stripe-js';
-// import {loadStripe}                   from '@stripe/stripe-js';
+import {Elements}                     from '@stripe/react-stripe-js';
+import {loadStripe}                   from '@stripe/stripe-js';
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 
 import Navbar               from './components/Navbar';
+import CheckoutForm         from './components/Stripe/CheckoutForm';
 
 import Home                 from './pages/Home';
 import About                from './pages/About';
@@ -27,9 +28,9 @@ import TaskComplete         from './pages/TaskComplete';
 import TaskPayment          from './pages/TaskPayment';
 import Search               from './pages/Search';
 
-
 const AppContext            = createContext();
-// const stripePromise         = loadStripe('pk_test_JJ1eMdKN0Hp4UFJ6kWXWO4ix00jtXzq5XG');
+// const stripePromise         = loadStripe(process.env.STRIPE_PUBLISHABLE_KEY);
+const stripePromise         = loadStripe('pk_test_51Hby0PCXWHX4Z0Mr4mkQjSwI7jzP8bO1Y6szg28g4HNVejsGld8a3DwPqtqI3Nnxs0L1AC8NT6YXPZ8V29sTzK5100pCs0WdKu');
 
 
 export default function App() {
@@ -38,10 +39,6 @@ export default function App() {
 
   return (
     <AppContext.Provider value={{token, setToken}}>
-
-    {/* <Elements stripe={stripePromise}>
-      <CheckoutForm />
-    </Elements> */}
 
     <Router>
       <div>
@@ -58,7 +55,12 @@ export default function App() {
           <Route path="/tasks/new">                        <TasksNew/>        </Route>
           <Route exact path="/tasks/:id">                  <Task/>            </Route>
           <Route path="/tasks/:id/complete">               <TaskComplete/>    </Route>
-          <Route path="/tasks/:id/payment">                <TaskPayment/>     </Route>
+          <Route exact path="/tasks/:id/payment">                <TaskPayment/>     </Route>
+          <Route path="/tasks/:id/payment/stripe"> 
+            <Elements stripe={stripePromise}>
+              <CheckoutForm />
+            </Elements>
+          </Route>
           <Route path="/search">                           <Search/>          </Route>
         </Switch>
       </div>
