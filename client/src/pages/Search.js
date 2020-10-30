@@ -8,52 +8,31 @@ import MapView from '../components/MapView';
 export default function Search() {
 
   const [myLocation, setMyLocation] = useState(JSON.parse(localStorage.getItem('location')));
-
   const [value, setValue] = useState('1');
-
   console.log('value----------->', value)
 
+
+
   navigator.geolocation.getCurrentPosition((data) => {
-
     const {latitude: lat, longitude: lng} = data.coords
-
-    
-
     localStorage.setItem('location', JSON.stringify({lat, lng}))
-
     let location = localStorage.getItem('location');
-
     //console.log('location------->', location);
-
     setMyLocation(JSON.parse(location))
-
-    
-    // const cnTower = {latitude: 43.644300, longitude: -79.386886};
-    // setMyLocation(cnTower)
-    
-   
 
     //setMyLocation({lat, lng})
   })
 
   
-
-
-
-
-
-
   //render users
-
-  const { state } = useTaskersData(1);
-  
+  const { state } = useTaskersData(value);
   const users = state.taskers.map(user => {
     return (
       <li key={user.id} > {user.first_name} {user.last_name} {user.email} </li>
   )});
 
-      //console.log(state);
-  
+      
+
     return (
           
       <>
