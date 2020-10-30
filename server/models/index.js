@@ -188,7 +188,14 @@ module.exports = (db) => {
 
   const getTaskById = (id) => {
     const query = {
-      text: `SELECT * FROM tasks WHERE id = $1`,
+      text: `
+      SELECT tasks.*, services.name AS service_name, hourly_rate
+      FROM tasks
+      JOIN services ON service_id = services.id
+      JOIN service_taskers
+      ON tasks.tasker_id = service_taskers.tasker_id
+      AND services.id = service_taskers.service_id
+      WHERE tasks.id = $1`,
       values: [id]
     };
 
