@@ -23,9 +23,10 @@ export default function Navbar() {
   // console.log('!!token------------>', !!token)
   // console.log('token------------>', token)
 
-  function handleLogout() {
+  function handleLogout(event) {
+    event.preventDefault();
     localStorage.clear();
-    setToken([]);
+    setToken();
     history.push('/login');
   }
   
@@ -41,9 +42,9 @@ export default function Navbar() {
         <li className="nav-item"><Link className="nav-link" to="/about">About</Link> </li>
         <li className="nav-item"><Link className="nav-link" to='/search'>Search</Link></li>
 
-        {token ? 
+        {token ?
         <>
-        <li className="nav-item"><Link className="nav-link" onClick={handleLogout}>Logout</Link></li>
+        <li className="nav-item"><Link className="nav-link" to='/' onClick={event => handleLogout(event)}>Logout</Link></li>
         <li className="nav-item"><Link className="nav-link" to='/users/:id'>Profile</Link></li>
         </>
         :
