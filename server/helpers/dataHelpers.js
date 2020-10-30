@@ -37,9 +37,25 @@ const getServicesByCategories = categories => {
 };
 
 const getBestReviewsByTaskers = (taskers, bestReviews) => {
-  console.log({ taskers });
-  console.log({ bestReviews });
+  const taskersWithReviews = {};
 
+  for (const tasker of taskers) {
+    // for every tasker, add the whole object to the new object and create a reviews key to hold the reviews
+    if (!taskersWithReviews[tasker.id]) {
+      taskersWithReviews[tasker.id] = { ...tasker, reviews: {} };
+    }
+    const filteredReviews = bestReviews.filter(review => review.tasker_id === tasker.id);
+    filteredReviews.sort((a, b) => b.user_comment.length - a.user_comment.length)
+    for (const review of filteredReviews) {
+      if (!taskersWithReviews[tasker.id].reviews[review.service_id]) {
+        taskersWithReviews[tasker.id].reviews[review.service_id] = []
+      }
+      const { execution_date, reviewer, user_comment, user_rating } = review;
+
+      taskersWithReviews[tasker.id].reviews[review.service_id].push({ execution_date, reviewer, user_comment, user_rating })
+    }
+  }
+  return Object.values(taskersWithReviews);
 };
 
 module.exports = {
