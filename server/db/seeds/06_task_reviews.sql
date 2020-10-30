@@ -4,10 +4,10 @@ VALUES
 -- first user comment and rating directed to the tasker
  (10, 1, 7, 'By the time I came back, my horse was really relaxed. I am sure John treated him very well. I really recommend his services', 5, 'Communication was easy and I have not had any problems', 5),
  (9, 5, 8, 'Everything was done really carefully and as I wanted. It took a little longer than what I was expected', 4, 'The task was just as described and I did not have any problem to fulfill it', 5),
- (11, 6, 8, 'My dogs had a nice time. I will definitely hire him again', 5, 'Communication was a little confusing', 4),
+ (11, 6, 8, 'My dogs had a nice time. I will definitely hire her again', 5, 'Communication was a little confusing', 4),
  (16, 5, 9, 'Everything was delivered as expected', 5, 'Well detailed task', 5),
  (8, 2, 10, 'My bed was slightly damaged', 3, 'When I chatted with Eric, he simplified the task. I had to disassemble the bed to be able to move it', 3),
- (15, 4, 11, 'Amazing!! All my friends loved his job', 5, 'Everything went as expected', 5),
+ (15, 4, 11, 'Amazing!! All my friends loved her job', 5, 'Everything went as expected', 5),
  (13, 3, 13, 'Thank you Mario! Amazing job!', 5, 'It was really fun to work for Diana', 5),
  (14, 4, 14, 'Horrible service! It started late and I now can''t find my stuff!', 1, 'The user did not provide the right address and the instructions were unclear', 3),
  (12, 2, 15, 'Just as expected', 5, 'My experience was great. The user gave my clear instructions', 5),

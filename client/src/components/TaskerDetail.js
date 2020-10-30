@@ -81,10 +81,26 @@ export default function TaskerDetail(props) {
           </div>
           <div className="comment-review">
             <p>{"About me: " + summary}</p>
-            <blockquote className="blockquote mb-0">
-              <p>{(reviews[id] ? "Related review: " : "Previous review: ") + review.user_comment}</p>
-              <footer className="blockquote-footer">{review.reviewer + ", " + review.execution_date.slice(0,10).replace(/-/g,"/") + (reviews[id] ?"":`, related to ${review.service_name}`)}</footer>
-            </blockquote>
+            {review &&
+              <blockquote className="blockquote mb-0">
+                <p>
+                  {(reviews[id] ? "Related feedback: " : "Previous feedback: ")}
+                  <Rating
+                    name="half-rating-read"
+                    defaultValue={Number(Number(review.user_rating).toFixed(2))}
+                    precision={0.1}
+                    readOnly
+                    className="rating-result"
+                  />
+                </p>
+                <p>{review.user_comment}</p>
+
+                <footer className="blockquote-footer">{review.reviewer + ", " + review.execution_date.slice(0, 10).replace(/-/g, "/") + (reviews[id] ? "" : `, related to ${review.service_name}`)}</footer>
+              </blockquote>
+            }
+            {!review &&
+              <p>Previous feedback: there is no previous feedback for this tasker.</p>
+            }
           </div>
           <footer>
             <button>Chat now!</button>
