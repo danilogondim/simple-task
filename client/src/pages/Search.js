@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import useTaskersData from '../hooks/useTaskersData.js'
 import MapView from '../components/MapView';
-
-//import useCategories from '../hooks/useCategories.js'
+import useCategories from '../hooks/useCategories.js'
+import Dropbox from '../components/Dropbox.js'
 
 
 
@@ -33,33 +33,26 @@ export default function Search() {
 
 
   //renders categories
-  // const { state } = useCategories();
-  // const categories = state2.categories.map(user => {
-  //   return (
-  //     <li key={user.id} > {user.first_name} {user.last_name} {user.email} </li>
-  // )});
+  const state2 = useCategories().state;
+  const categories = state2.categories.map(category => {
+  return (
+      <li key={category.category_id} > {category.category} {category.service_id} {category.service} </li>
+  )});
+
+  
 
 
-      
 
     return (
           
       <>
-      {/* <p>RENDER MAP HERE</p>
-      <div className="App" >
-      <h2> Taskers </h2>
-      <ul> {users} </ul>
-      </div> */}
 
-      <form>
-        <label> Categories:</label>
-         <select value={value} onChange={event => setValue(event.target.value)} name = "dropdown_categories">
-            <option value = "1">Pets</option>
-            <option value = "2">House</option>
-            <option value = "3">Garden</option>
-            <option value = "4">Food</option>
-         </select>
-      </form>
+      <Dropbox 
+        value = {value}
+        setValue = {setValue}
+      />
+
+      
       {myLocation &&
       
         <div className="App">
