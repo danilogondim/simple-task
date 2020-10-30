@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, { createContext, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -31,6 +31,19 @@ const AppContext = createContext();
 export default function App() {
 
   const [token, setToken] = React.useState([])
+
+  useEffect(() => {
+    const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
+    socket.onmessage = event => {
+      const data = JSON.parse(event.data);
+    
+      console.log("new data: ", data);
+    };
+
+    socket.onopen = function (event) {
+      socket.send("ping"); 
+    };
+  },[])
 
   return (
     <AppContext.Provider value={{token, setToken}}>
