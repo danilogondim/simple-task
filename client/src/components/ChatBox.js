@@ -13,7 +13,9 @@ import './ChatBox.scss';
 export default function ChatBox(props) {
   const { socket } = props;
   const user = JSON.parse(localStorage.getItem('user'));
+  // control if the chat is shown (toggle button)
   const [active, setActive] = useState(false);
+  // check if a contact was selected to shown some error message and prevent user to send messages if there is no contact selected
   const [error, setError] = useState(null);
 
   const id = !user ? '' : user.id;
@@ -31,7 +33,7 @@ export default function ChatBox(props) {
       setError(false);
       const newMessage = { ...message, sender_id: id, receiver_id: contact, sent_at: new Date() }
       reset()
-      socket.send(JSON.stringify({ event: "message", message: newMessage }));
+      socket.send(JSON.stringify({ type: "chat-message", message: newMessage }));
 
       axios
         .post('/api/chats/', newMessage)

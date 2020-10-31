@@ -47,11 +47,11 @@ export default function App() {
   if (socket) {
 
     socket.onopen = function () {
-      socket.send(JSON.stringify({ event: "connection", token }));
+      socket.send(JSON.stringify({ type: "connection", token }));
     };
 
     if (!token) {
-      socket.send(JSON.stringify({ event: "disconnection" }));
+      socket.send(JSON.stringify({ type: "disconnection" }));
       socket.close();
     }
   }

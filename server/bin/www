@@ -29,21 +29,30 @@ const clients = {};
 wss.on("connection", socket => {
   socket.onmessage = event => {
     const data = JSON.parse(event.data);
-    if (data.event === "connection") {
+    const { type, message } = data;
+    if (type === "connection") {
       const { token } = data;
       const { user } = token;
-      const { id } = user;
+      const { id } = user ? user : {};
 
       console.log("The following user has connected:", id);
       clients[id] = socket;
     }
-    if (data.event === "disconnection") {
+    if (type === "disconnection") {
       console.log("client disconneted");
       for (const client in clients) {
         if (clients[client] === socket) {
           console.log("The following user has disconnected:", client);
           delete clients[client];
         }
+      }
+    }
+    if (type === "chat-message") {
+      console.log(message);
+      const { sender_id, receiver_id } = message;
+      clients[sender_id].send(JSON.stringify("new-message"));
+      if (clients[receiver_id]) {
+        clients[receiver_id].send(JSON.stringify("new-message"));
       }
     }
   };
