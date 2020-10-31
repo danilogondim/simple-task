@@ -1,20 +1,44 @@
 import React, { useState } from 'react';
-import './ChatBox.scss';
+import { useForm } from 'react-hook-form';
 import ContactList from './ChatBox/ContactList';
 import MessageList from './ChatBox/MessageList';
-import TextField from '@material-ui/core/TextField';
 import useChatBoxData from '../hooks/useChatBoxData';
+import TextField from '@material-ui/core/TextField';
+import { Send } from '@material-ui/icons';
+import './ChatBox.scss';
+
 
 
 export default function ChatBox() {
   const user = JSON.parse(localStorage.getItem('user'));
   const [active, setActive] = useState(false);
+  const [error, setError] = useState(null);
 
   const id = !user ? '' : user.id;
   const { state, dispatch } = useChatBoxData(id);
   const { chats, contact } = state;
   const chat = chats.find(chat => chat.contact_id === contact);
 
+  const { register, handleSubmit, reset } = useForm();
+
+
+  const onSubmit = (message) => {
+    if (!contact) {
+      setError(true);
+    } else {
+      setError(false);
+      const newMessage = { ...message, sender_id: id, receiver_id: contact }
+      console.log(newMessage);
+      reset()
+
+      // axios
+      //   .post('/api/route??', message)
+      //   .then(res => console.log(res))
+      //   .catch(err => {
+      //     console.error(err);
+      //   });
+    }
+  }
   return (
 
     <>
@@ -24,7 +48,11 @@ export default function ChatBox() {
             <ContactList chats={chats} dispatch={dispatch} />
           </div>
           <MessageList chat={chat} />
-          <TextField id="standard-basic" label="Type a message" />
+          <form className="chat-message-form" onSubmit={handleSubmit(onSubmit)}>
+            <TextField name="message" inputRef={register} label="Type a message" />
+            <button><Send /></button>
+            {error && <p>Please select a contact to send your message</p>}
+          </form>
           <button className="toggle-chat" onClick={() => setActive(false)}>Close!</button>
         </section>
       }

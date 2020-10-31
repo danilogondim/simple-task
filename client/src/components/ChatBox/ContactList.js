@@ -13,7 +13,7 @@ export default function UserList(props) {
       key={contact.contact_id}
       alt={contact.contact_name}
       src={contact.contact_photo}
-      onClick={() => props.dispatch({ type: SET_CONTACT, contact: contact.contact_id })}
+      onClick={() => dispatch({ type: SET_CONTACT, contact: contact.contact_id })}
     />
   })
 
