@@ -55,11 +55,15 @@ export default function Search() {
       category_id: service.service_id
     }))
 
-    console.log("aqui:", services);
+    //console.log("aqui:", services);
     return services
 
   }
 
+    const handleChange = () => {
+      
+      setSelectedService();
+    };
  
 
     return (
@@ -72,6 +76,7 @@ export default function Search() {
         value = {selectedCategory}
         setValue = {setSelectedCategory}
         categories = {result.categories}
+        handleChange = {handleChange}
       />
 
 
@@ -81,6 +86,7 @@ export default function Search() {
         value = {selectedService}
         setValue = {setSelectedService}
         categories = {findServices()}
+        handleChange = {handleChange}
       />
 
       

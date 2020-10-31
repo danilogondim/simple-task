@@ -19,9 +19,7 @@ const VenueMarkers = (props) => {
       lng: Number(lng)
     }
 
-    console.log('Props.venues---------->', props.venues);
-    
-
+  
     return (
     <Marker key={id} position={location} icon={VenueLocationIcon} >
       <MarkerPopup data={venue}/>
