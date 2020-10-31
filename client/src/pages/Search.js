@@ -29,7 +29,7 @@ export default function Search() {
 
   
   //render users
-  const { state } = useTaskersData(selectedService, selectedCategory);
+  const { state } = useTaskersData(selectedService)
 
   
 
