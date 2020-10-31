@@ -56,7 +56,7 @@ export default function ChatBox() {
           <button className="toggle-chat" onClick={() => setActive(false)}>Close!</button>
         </section>
       }
-      {!active && <button className="toggle-chat" onClick={() => setActive(true)}>Open!</button>}
+      {!active && user && <button className="toggle-chat" onClick={() => setActive(true)}>Open!</button>}
     </>
 
   )
