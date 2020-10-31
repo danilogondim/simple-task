@@ -5,7 +5,9 @@ import axios from 'axios';
 const useChatBoxData = (id) => {
 
   const [state, dispatch] = useReducer(dataReducer, {
-    chats: []
+    chats: [],
+    contact: null,
+    loading: true
   });
 
   useEffect(() => {

@@ -7,6 +7,7 @@ export const SET_TASKER             = 'SET_TASKER';
 export const SET_TASK_PAYMENT       = 'SET_TASK_PAYMENT';
 export const SET_TASK               = 'SET_TASK';
 export const SET_CHATS              = 'SET_CHATS';
+export const SET_CONTACT            = 'SET_CONTACT';
 
 
 const dataReducer = (state, action) => {
@@ -71,6 +72,13 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         chats: action.chats,
+        loading: false,
+      };
+
+    case SET_CONTACT:
+      return {
+        ...state,
+        contact: action.contact,
         loading: false,
       };
 
