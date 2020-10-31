@@ -10,11 +10,8 @@ import Dropbox from '../components/Dropbox.js'
 export default function Search() {
 
   const [myLocation, setMyLocation] = useState(JSON.parse(localStorage.getItem('location')));
-
-  const [selectedService, setSelectedService] = useState('1');
-
-
   const [selectedCategory, setSelectedCategory] = useState('1');
+  const [selectedService, setSelectedService] = useState('1');
 
 
  
