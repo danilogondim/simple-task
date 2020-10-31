@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import ContactList from './ChatBox/ContactList';
 import MessageList from './ChatBox/MessageList';
@@ -21,22 +22,21 @@ export default function ChatBox() {
 
   const { register, handleSubmit, reset } = useForm();
 
-
+  
   const onSubmit = (message) => {
     if (!contact) {
       setError(true);
     } else {
       setError(false);
-      const newMessage = { ...message, sender_id: id, receiver_id: contact }
-      console.log(newMessage);
+      const newMessage = { ...message, sender_id: id, receiver_id: contact, sent_at: new Date() }
       reset()
 
-      // axios
-      //   .post('/api/chats/', message)
-      //   .then(res => console.log(res))
-      //   .catch(err => {
-      //     console.error(err);
-      //   });
+      axios
+        .post('/api/chats/', newMessage)
+        .then(res => console.log(res.data))
+        .catch(err => {
+          console.error(err);
+        });
     }
   }
   return (
