@@ -1,13 +1,20 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import { Jumbotron, Container} from 'react-bootstrap';
-import useTaskPaymentData from '../hooks/useTaskPaymentData.js';
+import useTaskPaymentData from '../hooks/useTaskPaymentData';
 import "./Home.scss";
 import "./TaskPayment.scss";
 
 export default function TaskPayment() {
   const { state } = useTaskPaymentData();
-  const task = state.taskPayment
+  const task = state.taskPayment;
+  const rate = (task.hourly_rate/100).toFixed(2);
+  const hourlyTotal = (rate * task.total_time);
+  const serviceCharge = (hourlyTotal * 0.10).toFixed(2);
+  // const tax = ((hourlyTotal + serviceCharge) * 0.13).toFixed(2); // => NaN I dont know why this does not work
+  const tax = (((hourlyTotal) + (hourlyTotal) * 0.10) * 0.13).toFixed(2);
+  const grandTotal = ((rate * task.total_time) * 1.23).toFixed(2);
+
   return (
     <div className="App">
     <Container className="p-3">
@@ -15,8 +22,8 @@ export default function TaskPayment() {
       <h1 className="header">Payment</h1>
     </Jumbotron>
     <div className="payment table-responsive">
-    <table className="table table-dark">
-      <thead>
+    <table className="table">
+      <thead className="thead-dark">
         <tr>
           <th colSpan="2" scope="col">Task Info</th>
         </tr>
@@ -36,7 +43,7 @@ export default function TaskPayment() {
         </tr>
         <tr>
           <td>Hourly Rate</td>
-          <td className="text-right">${task.hourly_rate}</td>
+          <td className="text-right">${rate}</td>
         </tr>
         <tr>
           <td>Start Time</td>
@@ -53,8 +60,8 @@ export default function TaskPayment() {
       </tbody>
     </table>
 
-    <table className="payment.table table table-dark">
-      <thead>
+    <table className="payment.table table ">
+      <thead className="thead-dark">
         <tr>
           <th colSpan="2" scope="col">Payment Info</th>
         </tr>
@@ -62,7 +69,7 @@ export default function TaskPayment() {
       <tbody className="text-left">
         <tr>
           <td>Hourly Total</td>
-          <td className="text-right">${(task.hourly_rate * task.total_time).toFixed(2)}</td>
+          <td className="text-right">${hourlyTotal}</td>
         </tr>
         <tr>
           <td className="text-wrap">Discount</td>
@@ -70,15 +77,15 @@ export default function TaskPayment() {
         </tr>
         <tr>
           <td>Service Charge</td>
-          <td className="text-right">${((task.hourly_rate * task.total_time) * 0.10).toFixed(2)}</td>
+          <td className="text-right">${serviceCharge}</td>
         </tr>
         <tr>
           <td>Tax</td>
-          <td className="text-right">${(((task.hourly_rate * task.total_time) + (task.hourly_rate * task.total_time) * 0.10) * 0.13).toFixed(2)}</td>
+          <td className="text-right">${tax}</td>
         </tr>
         <tr>
           <td>Total Price</td>
-          <td className="text-right">${((task.hourly_rate * task.total_time) * 1.23).toFixed(2)}</td>
+          <td className="text-right">${grandTotal}</td>
         </tr>
         <tr>
           <td colSpan="2" className="text-center">Proceed to Pay</td>

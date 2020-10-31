@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import styled from "@emotion/styled";
 import axios from "axios";
+// import { useHistory } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import Row from "./prebuilt/Row";
 import BillingDetailsFields from "./prebuilt/BillingDetailsFields";
 import SubmitButton from "./prebuilt/SubmitButton";
 import CheckoutError from "./prebuilt/CheckoutError";
+
+// To get total amount due
+import useTaskPaymentData from '../../../src/hooks/useTaskPaymentData.js';
 
 const CardElementContainer = styled.div`
   height: 40px;
@@ -24,6 +29,14 @@ const CheckoutForm = ({ price, onSuccessfulCheckout }) => {
 
   const stripe = useStripe();
   const elements = useElements();
+  // const history = useHistory();
+  const { id } = useParams();
+
+  // To get Display total amount due of stripe pay button
+  const { state } = useTaskPaymentData();
+  const task = state.taskPayment;
+  const rate = (task.hourly_rate/100).toFixed(2);
+  const grandTotal = ((rate * task.total_time) * 1.23).toFixed(2);
 
   // TIP
   // use the cardElements onChange prop to add a handler
@@ -136,9 +149,12 @@ const CheckoutForm = ({ price, onSuccessfulCheckout }) => {
       {checkoutError && <CheckoutError>{checkoutError}</CheckoutError>}
       <Row>
         {/* TIP always disable your submit button while processing payments */}
-        <SubmitButton disabled={isProcessing || !stripe}>
-          {isProcessing ? "Processing..." : `Pay $${price}`}
-        </SubmitButton>
+        <Link to={`/tasks/${id}/payment/success`}>
+          <SubmitButton disabled={isProcessing || !stripe}>
+            {/* {isProcessing ? "Processing..." : `Pay $${price}`} */}
+            {isProcessing ? "Processing..." : `Pay $${grandTotal}`}
+          </SubmitButton>
+        </Link>
       </Row>
     </form>
   );

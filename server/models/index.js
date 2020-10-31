@@ -158,7 +158,7 @@ module.exports = (db) => {
               tasks.description   AS task,
               users.first_name,
               users.last_name,
-              round(service_taskers.hourly_rate/100, 2) AS hourly_rate,
+              service_taskers.hourly_rate AS hourly_rate,
               to_char(
                 (to_char(started_at :: time, 'HH24:MI'):: time
                 ),
