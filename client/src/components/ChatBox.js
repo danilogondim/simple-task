@@ -10,7 +10,8 @@ import './ChatBox.scss';
 
 
 
-export default function ChatBox() {
+export default function ChatBox(props) {
+  const { socket } = props;
   const user = JSON.parse(localStorage.getItem('user'));
   const [active, setActive] = useState(false);
   const [error, setError] = useState(null);
@@ -22,7 +23,7 @@ export default function ChatBox() {
 
   const { register, handleSubmit, reset } = useForm();
 
-  
+  console.log(chats);
   const onSubmit = (message) => {
     if (!contact) {
       setError(true);
@@ -30,6 +31,7 @@ export default function ChatBox() {
       setError(false);
       const newMessage = { ...message, sender_id: id, receiver_id: contact, sent_at: new Date() }
       reset()
+      socket.send(JSON.stringify({ event: "message", message: newMessage }));
 
       axios
         .post('/api/chats/', newMessage)

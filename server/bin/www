@@ -20,16 +20,31 @@ app.set('port', port);
  */
 
 const server = http.createServer(app);
-// websocket
+// Create websocket
 const WebSocket = require('ws');
 const wss = new WebSocket.Server({ server });
 
+// Manage websocket
+const clients = {};
 wss.on("connection", socket => {
   socket.onmessage = event => {
-    console.log(`Message Received: ${event.data}`);
+    const data = JSON.parse(event.data);
+    if (data.event === "connection") {
+      const { token } = data;
+      const { user } = token;
+      const { id } = user;
 
-    if (event.data === "ping") {
-      socket.send(JSON.stringify("pong"));
+      console.log("The following user has connected:", id);
+      clients[id] = socket;
+    }
+    if (data.event === "disconnection") {
+      console.log("client disconneted");
+      for (const client in clients) {
+        if (clients[client] === socket) {
+          console.log("The following user has disconnected:", client);
+          delete clients[client];
+        }
+      }
     }
   };
 });

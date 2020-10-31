@@ -1,4 +1,4 @@
-import React, { createContext, useEffect } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import {
@@ -34,20 +34,28 @@ const stripePromise = loadStripe(`${process.env.STRIPE_PUBLISHABLE_KEY}`);
 
 export default function App() {
 
-  const [token, setToken] = React.useState(localStorage.getItem('token'));
+  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
-    socket.onmessage = event => {
-      const data = JSON.parse(event.data);
+    if (token) {
+      return setSocket(new WebSocket(process.env.REACT_APP_WEBSOCKET_URL));
+    }
+  }, [token])
 
-      console.log("new data: ", data);
+  // does it need to be in a useEffect?
+  if (socket) {
+
+    socket.onopen = function () {
+      socket.send(JSON.stringify({ event: "connection", token }));
     };
 
-    socket.onopen = function (event) {
-      socket.send("ping");
-    };
-  }, [])
+    if (!token) {
+      socket.send(JSON.stringify({ event: "disconnection" }));
+      socket.close();
+    }
+  }
+
 
   return (
     <AppContext.Provider value={{ token, setToken }}>
@@ -55,7 +63,7 @@ export default function App() {
         <div>
           <Navbar />
           <AppContext.Consumer>
-            {token => <ChatBox token={token} />}
+            {token => <ChatBox token={token} socket={socket} />}
           </AppContext.Consumer>
           <Switch>
             <Route exact path="/">                           <Home />            </Route>
