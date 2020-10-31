@@ -1,20 +1,27 @@
 const express = require('express');
 const router = express.Router();
 
+const {
+  getBestReviewsByTaskers
+} = require('../helpers/dataHelpers');
+
 module.exports = ({
-  getTaskersByService
+  getTaskersByService,
+  getBestReviews
 }) => {
-  /* GET users listing. */
+  /* GET taskers listing for a specific service. */
   router.get('/:id/users', (req, res) => {
 
     const { id } = req.params;
 
-    getTaskersByService(id)
-      .then((users) => res.json(users))
+    Promise.all([getTaskersByService(id), getBestReviews(3)])
+      .then(all => {
+        taskersWithReviews = getBestReviewsByTaskers(all[0], all[1]);
+        res.json(taskersWithReviews);
+      })
       .catch((err) => res.json({
         error: err.message
       }));
-
   });
   
 

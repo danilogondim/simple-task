@@ -1,0 +1,14 @@
+ tasker_id |                                                        user_comment                                                         | user_rating 
+-----------+-----------------------------------------------------------------------------------------------------------------------------+-------------
+         7 | By the time I came back, my horse was really relaxed. I am sure John treated him very well. I really recommend his services |           5
+         8 | Everything was done really carefully and as I wanted. It took a little longer than what I was expected                      |           4
+         8 | My dogs had a nice time. I will definitely hire him again                                                                   |           5
+         9 | Everything was delivered as expected                                                                                        |           5
+        10 | My bed was slightly damaged                                                                                                 |           3
+        10 | Just in time! Thanks man!                                                                                                   |           5
+        11 | Amazing!! All my friends loved his job                                                                                      |           5
+        13 | Thank you Mario! Amazing job!                                                                                               |           5
+        14 | Horrible service! It started late and I now can't find my stuff!                                                            |           1
+        15 | Just as expected                                                                                                            |           5
+(10 rows)
+

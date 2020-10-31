@@ -5,6 +5,7 @@ export const SET_DAY                = 'SET_DAY';
 export const SET_RANGE              = 'SET_RANGE';
 export const SET_TASKER             = 'SET_TASKER';
 export const SET_TASK_PAYMENT       = 'SET_TASK_PAYMENT';
+export const SET_TASK               = 'SET_TASK';
 
 
 const dataReducer = (state, action) => {
@@ -52,11 +53,18 @@ const dataReducer = (state, action) => {
       };
 
     case SET_TASK_PAYMENT:
-    return {
-      ...state,
-      taskPayment: action.taskPayment,
-      loading: false,
-    };
+      return {
+        ...state,
+        taskPayment: action.taskPayment,
+        loading: false,
+      };
+
+    case SET_TASK:
+      return {
+        ...state,
+        task: action.task,
+        loading: false,
+      };
 
     default:
       return state;

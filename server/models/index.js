@@ -10,6 +10,23 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const getUserById = id => {
+    const query = {
+      text: `
+      SELECT first_name, last_name, phone, email, photo_url, vehicle, AVG(user_rating) AS average_rating
+      FROM users
+      JOIN task_reviews
+      ON users.id = tasker_id
+      WHERE id = $1
+      GROUP BY first_name, last_name, phone, email, photo_url, vehicle`,
+      values: [id]
+    };
+    return db
+      .query(query)
+      .then(result => result.rows[0])
+      .catch((err) => err);
+  }
+
   const getUserByEmail = email => {
 
     const query = {
@@ -74,10 +91,10 @@ module.exports = (db) => {
 
     const query = {
       text: `
-      SELECT users.id, first_name, last_name, phone, email, address, coordinates, photo_url, summary, vehicle, hourly_rate, user_rating, availability
+      SELECT users.id, first_name, last_name, phone, email, address, coordinates, photo_url, summary, vehicle, hourly_rate, average_rating, reviews_count, availability
       FROM availabilities JOIN
         (
-          SELECT users.id, first_name, last_name, phone, email, address, coordinates, photo_url, summary, vehicle, hourly_rate, AVG(user_rating) AS user_rating
+          SELECT users.id, first_name, last_name, phone, email, address, coordinates, photo_url, summary, vehicle, hourly_rate, AVG(user_rating) AS average_rating, COUNT(user_rating) AS reviews_count
           FROM users
           JOIN service_taskers ON users.id = service_taskers.tasker_id
           LEFT JOIN task_reviews ON users.id = task_reviews.tasker_id
@@ -90,6 +107,42 @@ module.exports = (db) => {
         ) AS users ON tasker_id = users.id;
       `,
       values: [service_id]
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
+  const getBestReviews = (limit) => {
+    const query = {
+      text: ` 
+            SELECT execution_date, service_name, service_id, reviewer, tasker_id, user_comment, user_rating
+            FROM (
+                  SELECT
+                    ROW_NUMBER() OVER (PARTITION BY service_id, tasker_id ORDER BY execution_date DESC) AS r, t.*
+                  FROM (
+                        SELECT DATE(start_time) AS execution_date, service_name, service_id, reviewer, tasks.tasker_id, user_comment, user_rating
+                        FROM tasks
+                        JOIN (
+                              SELECT first_name AS reviewer, service_name, task_id, task_reviews.tasker_id, user_comment, user_rating
+                              FROM task_reviews
+                              JOIN  (
+                                      SELECT services.name AS service_name, task_reviews.tasker_id, service_id, MAX(user_rating) AS max_rating
+                                      FROM task_reviews
+                                      JOIN tasks ON task_id = tasks.id
+                                      JOIN services ON service_id = services.id
+                                      GROUP BY services.name, task_reviews.tasker_id, service_id
+                                    ) AS max_ratings
+                              ON max_ratings.tasker_id = task_reviews.tasker_id AND max_rating = task_reviews.user_rating
+                              JOIN users ON users.id = user_id
+                            ) AS max_reviews
+                        ON tasks.id = task_id
+                  ) t) x
+            WHERE
+              x.r <= $1;`,
+      values: [limit]
     };
 
     return db
@@ -119,7 +172,7 @@ module.exports = (db) => {
       JOIN users ON tasker_id = users.id
       WHERE is_available = 't'
       GROUP BY categories.id, categories.name, categories.description, categories.thumbnail_photo_url, categories.cover_photo_url, services.id, services.name, services.description, services.thumbnail_photo_url
-      ORDER BY categories.id, services.id`
+      ORDER BY categories.name, services.name`
     };
 
     return db
@@ -141,7 +194,14 @@ module.exports = (db) => {
 
   const getTaskById = (id) => {
     const query = {
-      text: `SELECT * FROM tasks WHERE id = $1`,
+      text: `
+      SELECT tasks.*, services.name AS service_name, hourly_rate
+      FROM tasks
+      JOIN services ON service_id = services.id
+      JOIN service_taskers
+      ON tasks.tasker_id = service_taskers.tasker_id
+      AND services.id = service_taskers.service_id
+      WHERE tasks.id = $1`,
       values: [id]
     };
 
@@ -158,7 +218,7 @@ module.exports = (db) => {
               tasks.description   AS task,
               users.first_name,
               users.last_name,
-              round(service_taskers.hourly_rate/100, 2) AS hourly_rate,
+              service_taskers.hourly_rate AS hourly_rate,
               to_char(
                 (to_char(started_at :: time, 'HH24:MI'):: time
                 ),
@@ -173,7 +233,7 @@ module.exports = (db) => {
               completed_at - started_at       AS total_duration
             FROM tasks
             JOIN users ON tasks.tasker_id = users.id
-            JOIN service_taskers ON tasks.tasker_id = service_taskers.tasker_id
+            JOIN service_taskers ON tasks.service_id = service_taskers.service_id
             WHERE tasks.id = $1`,
       values: [id]
     };
@@ -225,10 +285,12 @@ module.exports = (db) => {
 
   return {
     getUsers,
+    getUserById,
     getUserByEmail,
     addUser,
     updateUser,
     getTaskersByService,
+    getBestReviews,
     getCategories,
     getTasks,
     getTaskById,
@@ -236,34 +298,3 @@ module.exports = (db) => {
     addTask
   };
 };
-
-
-// `
-// SELECT users.id, first_name, last_name, phone, email, address, coordinates, photo_url, vehicle, hourly_rate, availability, AVG(user_rating) AS user_rating
-// FROM users
-// JOIN service_taskers ON users.id = service_taskers.tasker_id
-// JOIN availabilities ON users.id = availabilities.tasker_id
-// LEFT JOIN task_reviews ON users.id = task_reviews.tasker_id
-
-// WHERE
-//   service_id = 1 AND
-//   is_tasker = 't' AND
-//   is_available = 't'
-//   GROUP BY users.id, first_name, last_name, phone, email, address, coordinates, photo_url, vehicle, hourly_rate, availability;
-// `
-
-
-
-// `
-// SELECT * from availabilities JOIN
-// (SELECT users.id, first_name, last_name, phone, email, address, coordinates, photo_url, vehicle, hourly_rate, AVG(user_rating) AS user_rating
-// FROM users
-// JOIN service_taskers ON users.id = service_taskers.tasker_id
-// LEFT JOIN task_reviews ON users.id = task_reviews.tasker_id
-
-// WHERE
-//   service_id = 1 AND
-//   is_tasker = 't' AND
-//   is_available = 't'
-//   GROUP BY users.id, first_name, last_name, phone, email, address, coordinates, photo_url, vehicle, hourly_rate) AS users ON tasker_id = users.id;
-// `
