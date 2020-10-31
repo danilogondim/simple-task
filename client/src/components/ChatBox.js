@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import React from 'react';
 import ContactList from './ChatBox/ContactList';
 import MessageList from './ChatBox/MessageList';
 import useChatBoxData from '../hooks/useChatBoxData';
@@ -11,45 +9,26 @@ import './ChatBox.scss';
 
 
 export default function ChatBox(props) {
-  const { socket } = props;
-  const user = JSON.parse(localStorage.getItem('user'));
-  // control if the chat is shown (toggle button)
-  const [active, setActive] = useState(false);
-  // check if a contact was selected to shown some error message and prevent user to send messages if there is no contact selected
-  const [error, setError] = useState(null);
 
-  const id = !user ? '' : user.id;
-  const { state, dispatch } = useChatBoxData(id);
-  const { chats, contact } = state;
-  const chat = chats.find(chat => chat.contact_id === contact);
+  const { state,
+    dispatch,
+    onSubmit,
+    active,
+    error,
+    setActive,
+    user,
+    register,
+    handleSubmit,
+    chat } = useChatBoxData(props);
 
-  const { register, handleSubmit, reset } = useForm();
 
-  // console.log(chats);
-  const onSubmit = (message) => {
-    if (!contact) {
-      setError(true);
-    } else {
-      setError(false);
-      const newMessage = { ...message, sender_id: id, receiver_id: contact, sent_at: new Date() }
-      reset()
-      socket.send(JSON.stringify({ type: "chat-message", message: newMessage }));
-
-      axios
-        .post('/api/chats/', newMessage)
-        .then(res => console.log(res.data))
-        .catch(err => {
-          console.error(err);
-        });
-    }
-  }
   return (
 
     <>
       {user && active &&
         <section className="chat-box">
           <div className="contact-list">
-            <ContactList chats={chats} dispatch={dispatch} />
+            <ContactList chats={state.chats} dispatch={dispatch} />
           </div>
           <MessageList chat={chat} />
           <form className="chat-message-form" onSubmit={handleSubmit(onSubmit)}>
