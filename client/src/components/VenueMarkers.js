@@ -18,6 +18,8 @@ const VenueMarkers = (props) => {
       lat: Number(lat),
       lng: Number(lng)
     }
+
+    console.log('Props.venues---------->', props.venues);
     
 
     return (

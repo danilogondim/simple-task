@@ -11,7 +11,6 @@ export default function Search() {
 
   const [myLocation, setMyLocation] = useState(JSON.parse(localStorage.getItem('location')));
   const [selectedCategory, setSelectedCategory] = useState('1');
-
   const [selectedService, setSelectedService] = useState('1');
 
 
@@ -30,7 +29,9 @@ export default function Search() {
 
   
   //render users
-  const { state } = useTaskersData(selectedCategory, selectedService);
+  const { state } = useTaskersData(selectedService);
+
+  //const { state } = useTaskersData(selectedCategory, selectedService);
 
 
 
@@ -43,7 +44,7 @@ export default function Search() {
   const findServices = () => {
 
     
-    console.log(result.categories)
+    //console.log(result.categories)
     const indexOfCategory = result.categories.findIndex( (category) => category.category_id.toString() === selectedCategory )
     
     const category = {...result.categories[indexOfCategory] }
@@ -54,6 +55,7 @@ export default function Search() {
       category_id: service.service_id
     }))
 
+    console.log("aqui:", services);
     return services
 
   }
