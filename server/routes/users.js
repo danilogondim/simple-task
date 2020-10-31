@@ -85,7 +85,7 @@ module.exports = ({
       })
       .then(user => {
         const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET);
-        res.json(token)
+        res.json({ token, user })
         res.end()
       })
       .then(newUser => res.json(newUser))
@@ -119,7 +119,7 @@ module.exports = ({
             //console.log('req.body users.js:', req.body)
             const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET);
 
-            res.json(token)
+            res.json({ user, token })
             res.end()
 
             //Getting ID from the JWT Token
@@ -210,21 +210,6 @@ module.exports = ({
         error: err.message
       }));
   });
-
-  /* GET the chats for a specific user by using a token instead of id. */
-  router.get('/token/:token/chats', (req, res) => {
-
-    const { token } = req.params;
-    const id = jwt.verify(token, process.env.TOKEN_SECRET).id;
-    console.log(id);
-
-    getChatsByUser(id)
-      .then((user) => res.json(user))
-      .catch((err) => res.json({
-        error: err.message
-      }));
-  });
-
 
   return router;
 };

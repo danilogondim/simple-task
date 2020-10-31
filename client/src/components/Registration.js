@@ -39,8 +39,9 @@ export default function Registration() {
 
     try {
       const response = await axios.post('/api/users/', user);
-      localStorage.setItem('token', response.data);
-      setToken(response.data);
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+      setToken(response.data.token);
       if(localStorage.getItem('task')) {
         history.push("/tasks/new")
       } else {

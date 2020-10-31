@@ -2,20 +2,20 @@ import { useEffect, useReducer } from 'react';
 import dataReducer, { SET_CHATS } from '../reducer/data_reducer';
 import axios from 'axios';
 
-const useChatBoxData = (token) => {
+const useChatBoxData = (id) => {
 
   const [state, dispatch] = useReducer(dataReducer, {
     chats: []
   });
 
   useEffect(() => {
-    if (token) {
+    if (id) {
       axios
-        .get(`/api/users/token/${token}/chats`)
+        .get(`/api/users/${id}/chats`)
         .then(({ data }) => dispatch({ type: SET_CHATS, chats: data }))
         .catch((err) => console.log(err));
     }
-  }, [token]);
+  }, [id]);
 
   return { state, dispatch };
 };

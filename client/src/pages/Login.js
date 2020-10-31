@@ -10,11 +10,7 @@ export default function Login() {
 
   const [message, setMessage] = useState('');
 
-  const handleClickAsync = () => {
-    setTimeout(function delay() {
-      setMessage('Email not registered or incorret password!');
-    }, 500);
-  }
+
 
   const {setToken} = useContext(AppContext);
 
@@ -28,23 +24,25 @@ export default function Login() {
     .post('/api/users/authenticate/', user)
     .then((info)=>{
 
-      console.log('Info.data from ValidatedLoginForm:', info.data);
-
       if (info.data.msg === 'Password and email do not match!') {
 
         localStorage.clear();
-        setToken([]);
+        setToken();
         history.push('/login');
+        setMessage(info.data.msg)
 
       } else if (info.data.msg === 'Email not registered!') {
 
         localStorage.clear();
-        setToken([]);
+        setToken();
         history.push('/login');
+        setMessage(info.data.msg)
+
 
       } else {
 
-      localStorage.setItem('token', info.data);
+      localStorage.setItem('token', info.data.token);
+      localStorage.setItem('user', JSON.stringify(info.data.user));
       setToken(info.data);
       
 
@@ -90,7 +88,6 @@ export default function Login() {
 
          <button 
          type="submit"
-         onClick={handleClickAsync}
          >
            Login
          </button>
