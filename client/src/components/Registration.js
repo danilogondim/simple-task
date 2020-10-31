@@ -4,14 +4,8 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import { AppContext } from "../App.js"
-import Geocode from "react-geocode";
 
-//Google Geocode Setup
-const API_KEY = process.env.REACT_APP_GOOGLE_API;
-Geocode.setApiKey(API_KEY);
-Geocode.setLanguage("en");
-Geocode.setRegion("ca");
-Geocode.enableDebug();
+
 
 
 export default function Registration() {
@@ -23,52 +17,46 @@ export default function Registration() {
 
   const { register, handleSubmit, watch, errors } = useForm();
   
-  const onSubmit = (user) => {
+  const onSubmit = async(user) => {
 
-    //console.log(user);
     
     let address = `${user.number} ${user.street}, ${user.city}`;
+    let newAddress = address.split(' ').join('+');
 
-    Geocode.fromAddress(address).then(
-      response => {
-        const { lat, lng } = response.results[0].geometry.location;
-        user.coordinates = [lat, lng];
-        //console.log('user.coordinates------>', user.coordinates);
 
-        axios
-        .post('/api/users/', user)
-        .then((info) => {
-          //console.log('info.data---------------->', info.data)
-          localStorage.setItem('token', info.data);
+    try {
+      const response = await axios.get(`${window.location.protocol}//nominatim.openstreetmap.org/search?format=json&q='+${newAddress}`);
 
-          setToken(info.data);
-          history.push("/");
-        }
-        )
-        .catch(err => {
-          console.error(err);
-        });
+      //console.log (response.data[0])
 
-      },
-      error => {
-        console.error(error);
-      }
-    );
-
+      user.coordinates = [response.data[0].lat, response.data[0].lon]
    
 
+    } catch (error) {
+      console.log(error)
+    }
+  
 
-
-
+    try {
+      const response = await axios.post('/api/users/', user);
+      localStorage.setItem('token', response.data);
+      setToken(response.data);
+      if(localStorage.getItem('task')) {
+        history.push("/tasks/new")
+      } else {
+        history.push("/")
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  
   }
 
 
   return (
     <div>
       <h1>Registration</h1>  
-
       <hr />
-
 
       <h2>User: </h2>
         <form className='Registration-form' onSubmit={handleSubmit(onSubmit)}>
@@ -128,10 +116,6 @@ export default function Registration() {
         </form>
 
       <p>Are you looking to become a tasker? Make an account as an user and upgrade it for free after.</p>
-
-    
-
-
 
     </div>
   );

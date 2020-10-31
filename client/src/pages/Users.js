@@ -12,6 +12,6 @@ export default function Users() {
     <div className="App" >
       <h2> Users </h2>
       <ul> {users} </ul>
-    </div >
+    </div>
   );
 }

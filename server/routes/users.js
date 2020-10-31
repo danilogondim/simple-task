@@ -11,6 +11,7 @@ const jwt = require('jsonwebtoken');
 
 module.exports = ({
   getUsers,
+  getUserById,
   getUserByEmail,
   addUser,
   updateUser,
@@ -19,6 +20,18 @@ module.exports = ({
   router.get('/', (req, res) => {
     getUsers()
       .then((users) => res.json(users))
+      .catch((err) => res.json({
+        error: err.message
+      }));
+  });
+
+  /* GET a specific user. */ 
+  router.get('/:id', (req, res) => {
+
+    const { id } = req.params;
+
+    getUserById(id)
+      .then((user) => res.json(user))
       .catch((err) => res.json({
         error: err.message
       }));
@@ -65,7 +78,6 @@ module.exports = ({
           return addUser(first_name, last_name, phone, email, password, address, coordinates, photo_url)
 
         }
-
 
         // Need to updated coordinates
 

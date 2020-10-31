@@ -18,7 +18,7 @@ export default function TaskerList(props) {
   };
 
   const handleFilter = {
-    'rating': 'user_rating',
+    'rating': 'average_rating',
     'price': 'hourly_rate'
   }
 

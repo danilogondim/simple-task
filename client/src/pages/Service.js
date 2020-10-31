@@ -7,6 +7,7 @@ import TaskerDetail from '../components/TaskerDetail';
 // import taskersFilter from '../helpers/taskersFilter';
 import { SET_TASKER } from '../reducer/data_reducer';
 import './Service.scss';
+import { CircularProgress } from '@material-ui/core';
 
 export default function Service() {
   const { c_id, id } = useParams();
@@ -21,7 +22,13 @@ export default function Service() {
 
   return (
     <>
-      {!tasker && (
+      {state.loading && (
+        <div className="loading">
+          <h3>Loading...</h3>
+          <CircularProgress />
+        </div>
+      )}
+      {!tasker && !state.loading && (
         <main className="selection_page">
           {<Filter dispatch={dispatch} day={day} range={range} />}
           {/* commented out to test layout */}

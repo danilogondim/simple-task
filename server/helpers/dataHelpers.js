@@ -23,10 +23,42 @@ const getServicesByCategories = categories => {
     });
 
   }
+  const orderedCategories = Object.values(servicesByCategories).sort((a, b) => {
+    if (a.category < b.category) {
+      return -1;
+    }
+    if (a.category > b.category) {
+      return 1;
+    }
+    return 0;
+  })
 
-  return Object.values(servicesByCategories);
+  return orderedCategories;
+};
+
+const getBestReviewsByTaskers = (taskers, bestReviews) => {
+  const taskersWithReviews = {};
+
+  for (const tasker of taskers) {
+    // for every tasker, add the whole object to the new object and create a reviews key to hold the reviews
+    if (!taskersWithReviews[tasker.id]) {
+      taskersWithReviews[tasker.id] = { ...tasker, reviews: {} };
+    }
+    const filteredReviews = bestReviews.filter(review => review.tasker_id === tasker.id);
+    filteredReviews.sort((a, b) => b.user_comment.length - a.user_comment.length)
+    for (const review of filteredReviews) {
+      if (!taskersWithReviews[tasker.id].reviews[review.service_id]) {
+        taskersWithReviews[tasker.id].reviews[review.service_id] = []
+      }
+      const { execution_date, reviewer, user_comment, user_rating, service_name } = review;
+
+      taskersWithReviews[tasker.id].reviews[review.service_id].push({ execution_date, reviewer, user_comment, user_rating, service_name })
+    }
+  }
+  return Object.values(taskersWithReviews);
 };
 
 module.exports = {
-  getServicesByCategories
+  getServicesByCategories,
+  getBestReviewsByTaskers
 };
