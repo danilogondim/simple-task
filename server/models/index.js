@@ -299,6 +299,22 @@ module.exports = (db) => {
       .catch((err) => err);
   }
 
+  const addMessage = (message, participant_1, participant_2) => {
+    const query = {
+      text: `
+      UPDATE chat_messages
+      SET messages = messages || $1::jsonb
+      WHERE participant_1 = $2 and participant_2 = $3
+      RETURNING *
+    `,
+      values: [message, participant_1, participant_2]
+    };
+    return db
+      .query(query)
+      .then(result => result.rows[0])
+      .catch((err) => err);
+  }
+
   return {
     getUsers,
     getUserById,
@@ -312,6 +328,7 @@ module.exports = (db) => {
     getTaskById,
     getTaskForPayment,
     addTask,
-    getChatsByUser
+    getChatsByUser,
+    addMessage
   };
 };
