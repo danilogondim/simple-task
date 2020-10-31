@@ -32,7 +32,7 @@ export default function ChatBox() {
       reset()
 
       // axios
-      //   .post('/api/route??', message)
+      //   .post('/api/chats/', message)
       //   .then(res => console.log(res))
       //   .catch(err => {
       //     console.error(err);
