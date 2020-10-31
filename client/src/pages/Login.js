@@ -43,7 +43,7 @@ export default function Login() {
 
       localStorage.setItem('token', info.data.token);
       localStorage.setItem('user', JSON.stringify(info.data.user));
-      setToken(info.data);
+      setToken(info.data.token);
       
 
         if(localStorage.getItem('task')) {

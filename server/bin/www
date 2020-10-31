@@ -25,16 +25,15 @@ const WebSocket = require('ws');
 const wss = new WebSocket.Server({ server });
 
 // Manage websocket
+const jwt = require('jsonwebtoken');
 const clients = {};
 wss.on("connection", socket => {
   socket.onmessage = event => {
     const data = JSON.parse(event.data);
-    const { type, message } = data;
+    const { type, message, token } = data;
     if (type === "connection") {
       const { token } = data;
-      const { user } = token;
-      const { id } = user ? user : {};
-
+      const id = jwt.verify(token, process.env.TOKEN_SECRET).id;
       console.log("The following user has connected:", id);
       clients[id] = socket;
     }

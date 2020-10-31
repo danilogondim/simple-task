@@ -25,7 +25,7 @@ export default function ChatBox(props) {
 
   const { register, handleSubmit, reset } = useForm();
 
-  console.log(chats);
+  // console.log(chats);
   const onSubmit = (message) => {
     if (!contact) {
       setError(true);
