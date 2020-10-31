@@ -13,7 +13,7 @@ class Dropbox extends Component {
         <label> {this.props.title}</label>
          <select value={this.props.value} onChange={event => this.props.setValue(event.target.value)} name = "dropdown_categories">
 
-         {this.props.categories?.map ((category) => (
+         {this.props.categories?.sort().map ((category) => (
           <option key={category.category_id} value = {category.category_id}>{category.category}</option>
          )
          )}
