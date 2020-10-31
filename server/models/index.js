@@ -286,9 +286,10 @@ module.exports = (db) => {
   const getChatsByUser = id => {
     const query = {
       text: `
-      SELECT *
+      SELECT id AS contact_id, photo_url AS contact_photo, CONCAT(first_name, ' ', last_name) AS contact_name, messages
       FROM chat_messages
-      WHERE participant_1 = $1 OR participant_2 = $1
+      JOIN users ON id = participant_1 OR  id = participant_2
+      WHERE (participant_1 = $1 OR participant_2 = $1) AND id <> $1
       `,
       values: [id]
     };
