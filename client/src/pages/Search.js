@@ -10,8 +10,8 @@ import Dropbox from '../components/Dropbox.js'
 export default function Search() {
 
   const [myLocation, setMyLocation] = useState(JSON.parse(localStorage.getItem('location')));
-  const [selectedCategory, setSelectedCategory] = useState('1');
-  const [selectedService, setSelectedService] = useState('1');
+  const [selectedCategory, setSelectedCategory] = useState('0');
+  const [selectedService, setSelectedService] = useState('0');
 
 
  
@@ -29,9 +29,9 @@ export default function Search() {
 
   
   //render users
-  const { state } = useTaskersData(selectedService);
+  const { state } = useTaskersData(selectedService, selectedCategory);
 
-  //const { state } = useTaskersData(selectedCategory, selectedService);
+  
 
 
 
@@ -67,7 +67,7 @@ export default function Search() {
           
       <>
 
-      
+  
       <Dropbox 
         title = 'Categories:'
         value = {selectedCategory}
