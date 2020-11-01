@@ -11,32 +11,20 @@ import { AppContext } from "../App.js"
 export default function Registration() {
 
   const {setToken} = useContext(AppContext);
-
   const history = useHistory();
-
-
   const { register, handleSubmit, watch, errors } = useForm();
-  
   const onSubmit = async(user) => {
 
-    
     let address = `${user.number} ${user.street}, ${user.city}`;
     let newAddress = address.split(' ').join('+');
 
-
     try {
       const response = await axios.get(`${window.location.protocol}//nominatim.openstreetmap.org/search?format=json&q='+${newAddress}`);
-
-      //console.log (response.data[0])
-
       user.coordinates = [response.data[0].lat, response.data[0].lon]
-   
-
     } catch (error) {
       console.log(error)
     }
   
-
     try {
       const response = await axios.post('/api/users/', user);
       localStorage.setItem('token', response.data.token);
@@ -58,7 +46,6 @@ export default function Registration() {
     <div>
       <h1>Registration</h1>  
       <hr />
-
       <h2>User: </h2>
         <form className='Registration-form' onSubmit={handleSubmit(onSubmit)}>
           
@@ -67,13 +54,11 @@ export default function Registration() {
           {errors.first_name && <p> This is a mandatory field. </p>}
           <br />
           
-
           <label>Last Name:</label>
           <input type="text" name="last_name" ref={register({ required: true})}  />
           {errors.last_name && <p> This is a mandatory field. </p>}
           <br />
          
-
           <label>Phone:</label>
           <input type="tel" name="phone" ref={register({ required: true})}  />          
           {errors.phone && <p> This is a mandatory field. </p>}
@@ -98,7 +83,6 @@ export default function Registration() {
           <input type="text" name="number" ref={register({ required: true})}  /><br />
           {errors.number && <p> This is a mandatory field. </p>}
 
-
           <label>Street:</label>
           <input type="text" name="street" ref={register({ required: true})}  /><br />
           {errors.street && <p> This is a mandatory field. </p>}
@@ -115,9 +99,7 @@ export default function Registration() {
 
           <input type="submit" name="submit_register" />
         </form>
-
       <p>Are you looking to become a tasker? Make an account as an user and upgrade it for free after.</p>
-
     </div>
   );
 }
