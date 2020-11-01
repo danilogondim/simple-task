@@ -36,7 +36,7 @@ export default function ChatBox(props) {
           {state.contact &&
             <>
               <p className="contact-name">Chatting with: {contactName}</p>
-              <MessageList chat={chat} />
+              <MessageList chat={chat} contact={state.contact}/>
               <form className="chat-message-form" onSubmit={handleSubmit(onSubmit)}>
                 <TextField className="message-input" name="message" inputRef={register} label="Type a message" />
                 <button><Send /></button>

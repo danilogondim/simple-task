@@ -1,9 +1,10 @@
 import React, { useRef, useEffect } from 'react';
 import { List, ListItem, ListItemText } from '@material-ui/core';
 import "./MessageList.scss"
+import classNames from 'classnames';
 
 export default function MessageList(props) {
-  const { chat } = props;
+  const { chat, contact } = props;
 
   const bottomRef = useRef();
 
@@ -17,13 +18,16 @@ export default function MessageList(props) {
   }, [chat])
 
   const messages = !chat ? "" : chat.messages.map((message, index) => {
+    const messageClass = classNames("text", {
+      "user": message.sender_id !== contact,
+      "contact": message.sender_id === contact
+    });
     return (
       <ListItem alignItems="flex-start" className="message" key={index}>
-        <ListItemText className="text"
+        <ListItemText className={messageClass}
           primary={message.message}
           secondary={message.sent_at}
         />
-        <hr />
       </ListItem>
     )
   })

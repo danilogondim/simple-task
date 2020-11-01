@@ -5,10 +5,17 @@
     .message {
       display: inline;
       .text {
-        padding: 0 1.2rem;
+        padding: 0 1rem;
+        border-radius: 8px;
       }
-      hr {
-        padding: 0 1.2rem;
+      .user{
+        margin: 1rem 0.3rem 1rem 2rem;
+        background-color:rgba(104, 176, 171, 0.45);
+      }
+      .contact{
+        margin: 1rem 2rem 1rem 0.3rem;
+        background-color: rgba(255, 126, 103, 0.45);
+
       }
     }
     li{
