@@ -23,7 +23,6 @@ export default function Search() {
   //render users
   const { state } = useTaskersData(selectedService)
 
-
   //renders categories
   const result = useCategories().state;
 
@@ -56,10 +55,13 @@ export default function Search() {
         setValue = {setSelectedService}
         categories = {findServices()}
       />
-
-      <button onClick={handleClick}>
+    
+      <div className="">
+      {selectedService==='0'? null:
+      <button className="Conditional_button" onClick={handleClick}>
       Go to service page!
-      </button>
+      </button>}
+      </div>
 
       <hr/>
 
