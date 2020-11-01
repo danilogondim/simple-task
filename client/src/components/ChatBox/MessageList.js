@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {List} from '@material-ui/core';
+import { List, ListItem, ListItemText } from '@material-ui/core';
 import "./MessageList.scss"
 
 export default function MessageList(props) {
@@ -8,11 +8,14 @@ export default function MessageList(props) {
 
   const messages = !chat ? "" : chat.messages.map((message, index) => {
     return (
-      <div key={index}>
-        {/* <p>{message.sender_id}</p> */}
-        <p>{message.sent_at}</p>
-        <p>{message.message}</p>
-      </div>
+
+      <ListItem alignItems="flex-start" className="message" key ={index}>
+        <ListItemText className="text"
+          primary={message.message}
+          secondary={message.sent_at}
+        />
+        <hr/>
+      </ListItem>
     )
   })
 

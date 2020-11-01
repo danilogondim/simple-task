@@ -1,3 +1,12 @@
 .chat-list {
     width: 100%;
+    .message {
+      display: inline;
+      .text {
+        padding: 0 1.2rem;
+      }
+      hr {
+        padding: 0 1.2rem;
+      }
+    }
 }
