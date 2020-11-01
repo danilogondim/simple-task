@@ -1,15 +1,18 @@
 .leaflet-container {  width: 100vw;  height: 100vh; }
 
 .Conditional_button {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-
+  text-align: center;
+  margin: 0 auto;
 }
 
-.conditional_selection {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+.Conditional_button button {
+  margin-top: 1em;
+  width: 11.5%;
+}
+
+.Conditional_button select {
+  padding: 0.5em;
+  margin-bottom: .5em;
+  width: 40%;
+  margin-top: .5em
 }

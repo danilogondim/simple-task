@@ -4,7 +4,7 @@ import MapView from '../components/MapView';
 import useCategories from '../hooks/useCategories.js'
 import Dropbox from '../components/Dropbox.js'
 import { useHistory } from "react-router-dom";
-
+import "./Search.scss"
 
 export default function Search() {
 
@@ -42,6 +42,9 @@ export default function Search() {
 
   return (  
     <>
+
+      <div className="Conditional_button">
+
       <Dropbox 
         title = 'Categories:'
         value = {selectedCategory}
@@ -56,11 +59,12 @@ export default function Search() {
         categories = {findServices()}
       />
     
-      <div className="">
+      
       {selectedService==='0'? null:
-      <button className="Conditional_button" onClick={handleClick}>
+      <button onClick={handleClick}>
       Go to service page!
       </button>}
+      
       </div>
 
       <hr/>
