@@ -4,6 +4,7 @@ import MessageList from './ChatBox/MessageList';
 import useChatBoxData from '../hooks/useChatBoxData';
 import TextField from '@material-ui/core/TextField';
 import { Send } from '@material-ui/icons';
+import { SET_CONTACT } from '../reducer/data_reducer';
 import './ChatBox.scss';
 
 
@@ -44,7 +45,10 @@ export default function ChatBox(props) {
               </form>
             </>
           }
-          <button className="toggle-chat" onClick={() => setActive(false)}>Exit</button>
+          <button className="toggle-chat" onClick={() => {
+            dispatch({ type: SET_CONTACT, contact: null })
+            setActive(false)
+            }}>Exit</button>
         </section>
       }
       {!active && user && <button className="toggle-chat" onClick={() => setActive(true)}>Chat</button>}
