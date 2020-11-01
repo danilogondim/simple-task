@@ -52,13 +52,13 @@ const useChatBoxData = (props) => {
       setError(true);
     } else {
       setError(false);
-      const newMessage = { ...message, sender_id: id, receiver_id: state.contact, sent_at: new Date() }
+      const newMessage = { ...message, sender_id: id, receiver_id: state.contact, sent_at: new Date().toLocaleString() }
       reset()
       socket.send(JSON.stringify({ type: "chat-message", message: newMessage }));
 
       axios
         .post('/api/chats/', newMessage)
-        .then(res => console.log(res.data))
+        .then()
         .catch(err => {
           console.error(err);
         });
