@@ -51,50 +51,45 @@ export default function Registration() {
           <label>First Name:</label>
           <input type="text" name="first_name" ref={register({ required: true})} />
           {errors.first_name && <p> This is a mandatory field. </p>}
-          <br />
-          
+        
           <label>Last Name:</label>
           <input type="text" name="last_name" ref={register({ required: true})}  />
           {errors.last_name && <p> This is a mandatory field. </p>}
-          <br />
          
           <label>Phone:</label>
           <input type="tel" name="phone" ref={register({ required: true})}  />          
           {errors.phone && <p> This is a mandatory field. </p>}
-          <br />
 
           <label>Email:</label>
           <input type="email" name="email" ref={register({ required: true})}  />
           {errors.email && <p> This is a mandatory field. </p>}
-          <br />
 
           <label>Password:</label>
-          <input type="password" name="password" ref={register({ required: true, minLength: 6})}  /><br />
+          <input type="password" name="password" ref={register({ required: true, minLength: 6})}  />
           {errors.password && errors.password.type === "required" && <p> This is a mandatory field. </p>}
           {errors.password && errors.password.type === "minLength" && <p> Password must have at least 6 characters. </p>}
 
           <label>Confirm Password:</label>
           <input type="password" name="check_password" ref={register({ validate: (value) => value === watch('password') })}  />
           {errors.check_password && <p> Password and Check Password must match </p>}
-          <br />
 
           <label>Number:</label>
-          <input type="text" name="number" ref={register({ required: true})}  /><br />
+          <input type="text" name="number" ref={register({ required: true})}  />
           {errors.number && <p> This is a mandatory field. </p>}
 
           <label>Street:</label>
-          <input type="text" name="street" ref={register({ required: true})}  /><br />
+          <input type="text" name="street" ref={register({ required: true})}  />
           {errors.street && <p> This is a mandatory field. </p>}
 
           <label>Unit:</label>
-          <input type="text" name="unit" ref={register({ required: false})} /><br />
+          <input type="text" name="unit" ref={register({ required: false})} />
 
           <label>City:</label>
-          <input type="text" name="city" ref={register({ required: true})}  /><br />
+          <input type="text" name="city" ref={register({ required: true})}  />
           {errors.city && <p> This is a mandatory field. </p>}
 
           <label>Photo:</label>
-          <input type="text" name="photo_url" ref={register({ required: false})}  /><br />
+          <input type="text" name="photo_url" ref={register({ required: false})}  />
 
           <input type="submit" name="submit_register" className="LoginRegister_btn"/>
         </form>
