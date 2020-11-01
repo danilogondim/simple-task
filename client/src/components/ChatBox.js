@@ -32,7 +32,7 @@ export default function ChatBox(props) {
           </div>
           <MessageList chat={chat} />
           <form className="chat-message-form" onSubmit={handleSubmit(onSubmit)}>
-            <TextField name="message" inputRef={register} label="Type a message" />
+            <TextField className="message-input" name="message" inputRef={register} label="Type a message" />
             <button><Send /></button>
             {error && <p>Please select a contact to send your message</p>}
           </form>
