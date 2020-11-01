@@ -3,7 +3,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import styled from "@emotion/styled";
 import axios from "axios";
 // import { useHistory } from 'react-router-dom';
-import { Link, useParams } from 'react-router-dom';
+// import { Link, useParams } from 'react-router-dom';
 
 import Row from "./prebuilt/Row";
 import BillingDetailsFields from "./prebuilt/BillingDetailsFields";
@@ -30,7 +30,7 @@ const CheckoutForm = ({ price, onSuccessfulCheckout }) => {
   const stripe = useStripe();
   const elements = useElements();
   // const history = useHistory();
-  const { id } = useParams();
+  // const { id } = useParams();
 
   // To get Display total amount due of stripe pay button
   const { state } = useTaskPaymentData();
@@ -151,8 +151,8 @@ const CheckoutForm = ({ price, onSuccessfulCheckout }) => {
         {/* TIP always disable your submit button while processing payments */}
         {/* <Link to={`/tasks/${id}/payment/success`}> */}
           <SubmitButton disabled={isProcessing || !stripe}>
-            {isProcessing ? "Processing..." : `Pay $${price}`}
-            {/* {isProcessing ? "Processing..." : `Pay $${grandTotal}`} */}
+            {/* {isProcessing ? "Processing..." : `Pay $${price}`} */}
+            {isProcessing ? "Processing..." : `Pay $${grandTotal}`}
           </SubmitButton>
         {/* </Link> */}
       </Row>

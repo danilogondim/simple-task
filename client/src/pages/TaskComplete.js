@@ -17,7 +17,11 @@ export default function TaskComplete() {
 
   const start = !startTime ? "" : startTime;
   const end = !endTime ? "" : endTime;
-  const timeTotal = end && start && Number((end.getHours() - start.getHours() + (end.getMinutes() - start.getMinutes()) / 60).toFixed(2));
+
+  const hours = !startTime || !endTime ? "" : Number(end.getHours() - start.getHours());
+  const minutes = !startTime || !endTime ? "" : Number(((end.getMinutes() - start.getMinutes()) / 60).toFixed(2));
+
+  const timeTotal = end && start && hours + minutes;
 
   const task = state.taskPayment;
   const rate = (task.hourly_rate / 100).toFixed(2);
@@ -28,6 +32,8 @@ export default function TaskComplete() {
   const tax = ((hourlyTotal * 1.10) * 0.13).toFixed(2);
   const grandTotal = ((rate * timeTotal) * 1.23).toFixed(2);
   
+  // Not linked to with calculation yet
+  const discount = (1 - 1).toFixed(2)
 
   const onSubmit = () => {
     
@@ -38,8 +44,6 @@ export default function TaskComplete() {
       started_at: newStart,
       completed_at: newEnd,
     };
-
-    console.log('data outside axios--->', data);
 
     axios
       .post(`/api/tasks/${task.task_id}`, data)
@@ -124,16 +128,24 @@ export default function TaskComplete() {
                     (<td className="text-right">{timeTotal} Hour</td>) : null
                   }
 
-                  {timeTotal && timeTotal > 1 && timeTotal < 2 ?
-                    (<td className="text-right">{end.getHours() - start.getHours()} Hour {end.getMinutes() - start.getMinutes()} Minutes</td>) : null
+                  {timeTotal && timeTotal > 1 && timeTotal < 2 && minutes < 0 ?
+                    (<td className="text-right">{hours - 1} Hour {(60 + (minutes * 60)).toFixed(0)} Minutes</td>) : null
                   }
 
-                  {timeTotal && timeTotal >= 2 && end.getMinutes() - start.getMinutes() === 0 ?
-                    (<td className="text-right">{end.getHours() - start.getHours()} Hours</td>) : null
+                  {timeTotal && timeTotal > 1 && timeTotal < 2 && minutes > 0 ?
+                    (<td className="text-right">{hours} Hour {(minutes * 60).toFixed(0)} Minutes</td>) : null
                   }
 
-                  {timeTotal && timeTotal >= 2 && end.getMinutes() - start.getMinutes() !== 0?
-                    (<td className="text-right">{end.getHours() - start.getHours()} Hours {end.getMinutes() - start.getMinutes()} Minutes</td>) : null
+                  {timeTotal && timeTotal >= 2 && minutes === 0 ?
+                    (<td className="text-right">{hours} Hours</td>) : null
+                  }
+
+                  {timeTotal && timeTotal >= 2 && minutes < 0 ?
+                    (<td className="text-right">{hours - 1} Hours {(60 + (minutes * 60)).toFixed(0)} Minutes</td>) : null
+                  }
+
+                  {timeTotal && timeTotal >= 2 && minutes > 0 ?
+                    (<td className="text-right">{hours} Hours {(minutes * 60).toFixed(0)} Minutes</td>) : null
                   }
                 </tr>
               </tbody>
@@ -148,29 +160,29 @@ export default function TaskComplete() {
               <tbody className="text-left">
                 <tr>
                   <td>Hourly Total</td>
-                  <td className="text-right form-control col-md-4" type="text" readOnly value={endTime} onChange={setEndTime}>
+                  <td className="text-right form-control">
                       ${hourlyTotal}
                   </td>
                 </tr>
                 <tr>
                   <td className="text-wrap">Discount</td>
-                  <td className="text-right">$0.00</td>
+                <td className="text-right form-control">${discount}</td>
                 </tr>
                 <tr>
                   <td>Service Charge</td>
-                  <td className="text-right form-control col-md-4" type="text" readOnly value={endTime} onChange={setEndTime}>
+                  <td className="text-right form-control">
                       ${serviceCharge}
                   </td>
                 </tr>
                 <tr>
                   <td>Tax</td>
-                  <td className="text-right form-control col-md-4" type="text" readOnly value={endTime} onChange={setEndTime}>
+                  <td className="text-right form-control">
                       ${tax}
                   </td>
                 </tr>
                 <tr>
                   <td>Total Price</td>
-                  <td className="text-right form-control col-md-4" type="text" readOnly value={endTime} onChange={setEndTime}>
+                  <td className="text-right form-control">
                       ${grandTotal}
                   </td>
                 </tr>
