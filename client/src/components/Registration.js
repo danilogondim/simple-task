@@ -14,7 +14,6 @@ export default function Registration() {
 
   const history = useHistory();
 
-
   const { register, handleSubmit, watch, errors } = useForm();
   
   const onSubmit = async(user) => {

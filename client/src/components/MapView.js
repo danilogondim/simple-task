@@ -12,7 +12,7 @@ class MapView extends Component {
       <Map 
         center={this.props.myLocation} 
         zoom={12} 
-        maxZoom={20}
+        // maxZoom={20}
         style = {{  width: "80vw",  height: "80vh" }}
       >
         <TileLayer
