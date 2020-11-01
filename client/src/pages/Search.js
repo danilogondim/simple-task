@@ -47,9 +47,11 @@ export default function Search() {
 
       <div className="Conditional_button">
 
+      <div className="Dropxbox-search">
+
       <Dropbox 
         title = 'Categories:'
-        value = {selectedCategory}
+        value = {selectedCategory}  
         setValue = {setSelectedCategory}
         categories = {result.categories}
       />
@@ -60,7 +62,8 @@ export default function Search() {
         setValue = {setSelectedService}
         categories = {findServices()}
       />
-    
+
+      </div>
       
       {selectedService==='0'? null:
       <button onClick={handleClick}>
