@@ -1,5 +1,6 @@
 import 'date-fns';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Grid, Input, Slider, Typography } from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
@@ -67,8 +68,8 @@ export default function Filter(props) {
   return (
     <section className="filter">
       <div>
-        <h4>Location: </h4>
-        <input type='search'></input>
+        <h4>Would you like to search by location?</h4>
+        <h4>Try our <Link to='/search'>map search</Link>.</h4>
       </div>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container justify="space-around">
