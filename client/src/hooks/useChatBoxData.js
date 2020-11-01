@@ -30,7 +30,12 @@ const useChatBoxData = (props) => {
         .catch((err) => console.log(err));
     }
     setNewMessage(false);
+    setActive(false);
   }, [id, newMessage]);
+
+  useEffect(() => {
+    setNewMessage(true);
+  }, [user]);
 
   if (socket) {
     socket.onmessage = event => {
