@@ -1,29 +1,51 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Jumbotron, Container } from 'react-bootstrap';
 import useTaskPaymentData from '../hooks/useTaskPaymentData';
 import DateFnsUtils from '@date-io/date-fns';
 import { TimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+import axios from 'axios';
 
 
 import "./Home.scss";
 import "./TaskPayment.scss";
+// import TasksNew from "./simple-task/client/src/pages/TasksNew";
 
 export default function TaskComplete() {
   const { state } = useTaskPaymentData();
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
 
-  const start = !startTime ? "" : new Date(startTime);
-  const end = !endTime ? "" : new Date(endTime);
+  const start = !startTime ? "" : startTime;
+  const end = !endTime ? "" : endTime;
+  const timeTotal = end && start && Number((end.getHours() - start.getHours() + (end.getMinutes() - start.getMinutes()) / 60).toFixed(2));
 
   const task = state.taskPayment;
   const rate = (task.hourly_rate / 100).toFixed(2);
-  const hourlyTotal = (rate * task.total_time);
+
+  const hourlyTotal = (rate * timeTotal).toFixed(2);
   const serviceCharge = (hourlyTotal * 0.10).toFixed(2);
   // const tax = ((hourlyTotal + serviceCharge) * 0.13).toFixed(2); // => NaN I dont know why this does not work
-  const tax = (((hourlyTotal) + (hourlyTotal) * 0.10) * 0.13).toFixed(2);
-  const grandTotal = ((rate * task.total_time) * 1.23).toFixed(2);
+  const tax = ((hourlyTotal * 1.10) * 0.13).toFixed(2);
+  const grandTotal = ((rate * timeTotal) * 1.23).toFixed(2);
+  
+
+  const onSubmit = () => {
+    
+    const newStart = new Date(start).toLocaleTimeString();
+    const newEnd = new Date(endTime).toLocaleTimeString();  
+
+    const data = { id: task.task_id,
+      started_at: newStart,
+      completed_at: newEnd,
+    };
+
+    console.log('data outside axios--->', data);
+
+    axios
+      .post(`/api/tasks/${task.task_id}`, data)
+      .then((data) => console.log(data))
+      .catch((err) => console.error(err))
+  }
 
   return (
     <div className="App">
@@ -32,105 +54,139 @@ export default function TaskComplete() {
           <h1 className="header">Task Completion</h1>
         </Jumbotron>
 
-        <div className="payment table-responsive">
-          <table className="table">
-            <thead className="thead-dark">
-              <tr>
-                <th colSpan="2" scope="col">Task Info</th>
-              </tr>
-            </thead>
-            <tbody className="text-left">
-              <tr>
-                <td>Task ID</td>
-                <td className="text-right">{task.task_id}</td>
-              </tr>
-              <tr>
-                <td className="text-wrap">Task</td>
-                <td className="text-right">{task.task}</td>
-              </tr>
-              <tr>
-                <td>Tasker</td>
-                <td className="text-right">{task.first_name} {task.last_name}</td>
-              </tr>
-              <tr>
-                <td>Hourly Rate</td>
-                <td className="text-right">${rate}</td>
-              </tr>
-              <tr>
-                <td>Start Time</td>
-                <td className="text-right">
-                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <TimePicker
-                      clearable
-                      ampm={false}
-                      label="select time"
-                      value={startTime}
-                      onChange={setStartTime}
-                    />
-                  </MuiPickersUtilsProvider>
-                </td>
-              </tr>
-              <tr>
-                <td>End Time</td>
-                <td className="text-right">
-                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <TimePicker
-                      clearable
-                      ampm={false}
-                      label="select time"
-                      value={endTime}
-                      onChange={setEndTime}
-                    />
-                  </MuiPickersUtilsProvider>
-                </td>
-              </tr>
-              <tr>
-                <td>Total Time</td>
-                <td className="text-right">{end && start ? end.getHours() - start.getHours() + (end.getMinutes() - start.getMinutes()) / 60 : "-"} Hours</td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="payment table-responsive">
+            <table className="table">
+              <thead className="thead-dark">
+                <tr>
+                  <th colSpan="2" scope="col">Task Info</th>
+                </tr>
+              </thead>
+              <tbody className="text-left">
+                <tr>
+                  <td>Task ID</td>
+                  <td className="text-right">{task.task_id}</td>
+                </tr>
+                <tr>
+                  <td className="text-wrap">Task</td>
+                  <td className="text-right">{task.task}</td>
+                </tr>
+                <tr>
+                  <td>Tasker</td>
+                  <td className="text-right">{task.first_name} {task.last_name}</td>
+                </tr>
+                <tr>
+                  <td>Hourly Rate</td>
+                  <td className="text-right">${rate}</td>
+                </tr>
+                <tr>
+                  <td>Start Time</td>
+                  <td className="text-right">
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                      <TimePicker
+                        clearable
+                        ampm={false}
+                        label="select time"
+                        value={startTime}
+                        onChange={setStartTime}
+                      />
+                    </MuiPickersUtilsProvider>
+                  </td>
+                </tr>
+                <tr>
+                  <td>End Time</td>
+                  <td className="text-right">
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                      <TimePicker
+                        clearable
+                        ampm={false}
+                        label="select time"
+                        value={endTime}
+                        onChange={setEndTime}
+                      />
+                    </MuiPickersUtilsProvider>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Total Time</td>
+                  {!timeTotal ?
+                    (<td className="text-right">{"🦆"}</td>) : null
+                  }
 
-          <table className="payment.table table">
-            <thead className="thead-dark">
-              <tr>
-                <th colSpan="2" scope="col">Payment Info</th>
-              </tr>
-            </thead>
-            <tbody className="text-left">
-              <tr>
-                <td>Hourly Total</td>
-                <td className="text-right">${hourlyTotal}</td>
-              </tr>
-              <tr>
-                <td className="text-wrap">Discount</td>
-                <td className="text-right">$0.00</td>
-              </tr>
-              <tr>
-                <td>Service Charge</td>
-                <td className="text-right">${serviceCharge}</td>
-              </tr>
-              <tr>
-                <td>Tax</td>
-                <td className="text-right">${tax}</td>
-              </tr>
-              <tr>
-                <td>Total Price</td>
-                <td className="text-right">${grandTotal}</td>
-              </tr>
-              <tr>
-                <td colSpan="2" className="text-center">Task Completed</td>
-              </tr>
-              <tr>
-                <td colSpan="2" className="text-center">
-                  <Link to={`/tasks/${task.task_id}/payment/stripe`}>
-                    <button type="button" className="btn btn-success">Submit</button>
-                  </Link>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+                  {timeTotal && timeTotal <= 0 ?
+                    (<td className="text-right bg-danger">{"Wrong selection, select time in 24HR format"}</td>) : null
+                  }
+
+                  {timeTotal  && timeTotal > 0 && timeTotal < 1 ?
+                    (<td className="text-right">{(timeTotal * 60).toFixed(0)} Minutes</td>) : null
+                  }
+
+                  {timeTotal && timeTotal === 1 ?
+                    (<td className="text-right">{timeTotal} Hour</td>) : null
+                  }
+
+                  {timeTotal && timeTotal > 1 && timeTotal < 2 ?
+                    (<td className="text-right">{end.getHours() - start.getHours()} Hour {end.getMinutes() - start.getMinutes()} Minutes</td>) : null
+                  }
+
+                  {timeTotal && timeTotal >= 2 && end.getMinutes() - start.getMinutes() === 0 ?
+                    (<td className="text-right">{end.getHours() - start.getHours()} Hours</td>) : null
+                  }
+
+                  {timeTotal && timeTotal >= 2 && end.getMinutes() - start.getMinutes() !== 0?
+                    (<td className="text-right">{end.getHours() - start.getHours()} Hours {end.getMinutes() - start.getMinutes()} Minutes</td>) : null
+                  }
+                </tr>
+              </tbody>
+            </table>
+
+            <table className="payment.table table">
+              <thead className="thead-dark">
+                <tr>
+                  <th colSpan="2" scope="col">Payment Info</th>
+                </tr>
+              </thead>
+              <tbody className="text-left">
+                <tr>
+                  <td>Hourly Total</td>
+                  <td className="text-right form-control col-md-4" type="text" readOnly value={endTime} onChange={setEndTime}>
+                      ${hourlyTotal}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="text-wrap">Discount</td>
+                  <td className="text-right">$0.00</td>
+                </tr>
+                <tr>
+                  <td>Service Charge</td>
+                  <td className="text-right form-control col-md-4" type="text" readOnly value={endTime} onChange={setEndTime}>
+                      ${serviceCharge}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Tax</td>
+                  <td className="text-right form-control col-md-4" type="text" readOnly value={endTime} onChange={setEndTime}>
+                      ${tax}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Total Price</td>
+                  <td className="text-right form-control col-md-4" type="text" readOnly value={endTime} onChange={setEndTime}>
+                      ${grandTotal}
+                  </td>
+                </tr>
+                <tr>
+                  <td colSpan="2" className="text-center">Task Completed</td>
+                </tr>
+                <tr>
+                  <td colSpan="2" className="text-center">
+                    {/* <Link to={`/tasks/${task.task_id}/payment/stripe`}> */}
+                      <button type="submit" onClick={onSubmit} className="btn btn-success">Submit</button>
+                    {/* </Link> */}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
       </Container>
     </div >
   );

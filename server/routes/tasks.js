@@ -7,7 +7,8 @@ module.exports = ({
   getTasks,
   getTaskById,
   getTaskForPayment,
-  addTask
+  addTask,
+  updateTask
 }) => {
   /* GET Tasks listing. */
   router.get('/', (req, res) => {
@@ -51,6 +52,30 @@ module.exports = ({
         error: err.message
       }));
 
+  });
+
+  // Update task after completion
+  router.post("/:id", (req, res) => {
+    const {
+      started_at,
+      completed_at
+    } = req.body;
+
+    const { id } = req.params;
+
+    getTaskById(id)
+      .then(() => {
+          return updateTask({
+            id,
+            started_at,
+            completed_at
+          })
+        }
+      )
+      .then(updatedTask => res.json(updatedTask))
+      .catch(err => res.json({
+        error: err.message
+      }));
   });
 
   return router;
