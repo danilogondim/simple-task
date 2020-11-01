@@ -8,7 +8,6 @@ export default function MessageList(props) {
 
   const messages = !chat ? "" : chat.messages.map((message, index) => {
     return (
-
       <ListItem alignItems="flex-start" className="message" key ={index}>
         <ListItemText className="text"
           primary={message.message}
