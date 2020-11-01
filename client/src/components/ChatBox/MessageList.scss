@@ -1,5 +1,7 @@
 .chat-list {
     width: 100%;
+    height: 75%;
+    overflow: auto;
     .message {
       display: inline;
       .text {
