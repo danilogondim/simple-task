@@ -5,7 +5,7 @@ import MarkerPopup from './MarkerPopup';
 
 const VenueMarkers = (props) => {
 
-  console.log(props.venues[0]);
+  //console.log(props.venues[0]);
 
 
 
@@ -18,11 +18,11 @@ const VenueMarkers = (props) => {
       lat: Number(lat),
       lng: Number(lng)
     }
-    
 
+  
     return (
     <Marker key={id} position={location} icon={VenueLocationIcon} >
-      {/* <MarkerPopup data={venue}/> */}
+      <MarkerPopup data={venue}/>
     </Marker>
   )});
 
