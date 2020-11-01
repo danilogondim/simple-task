@@ -29,15 +29,16 @@ export default function UserList(props) {
       "contact-selected": chat.contact_id === contact,
       "contact-unselected": chat.contact_id !== contact
     });
-    return <div className={contactClass}>
-      < Avatar
-        className={classes.large}
-        key={chat.contact_id}
-        alt={chat.contact_name}
-        src={chat.contact_photo}
-        onClick={() => dispatch({ type: SET_CONTACT, contact: chat.contact_id })}
-      />
-    </div>
+    return (
+      <div className={contactClass} key={chat.contact_id}>
+        < Avatar
+          className={classes.large}
+          alt={chat.contact_name}
+          src={chat.contact_photo}
+          onClick={() => dispatch({ type: SET_CONTACT, contact: chat.contact_id })}
+        />
+      </div>
+    )
   })
 
   return (

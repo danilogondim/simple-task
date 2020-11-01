@@ -10,11 +10,7 @@ export default function MessageList(props) {
 
 
   useEffect(() => {
-    bottomRef.current.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-
+    bottomRef.current.scrollIntoView();
   }, [chat])
 
   const messages = !chat ? "" : chat.messages.map((message, index) => {
