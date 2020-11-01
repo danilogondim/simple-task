@@ -5,7 +5,7 @@ class Dropbox extends Component {
   render() {
 
 
-    //console.log('this.props Dropxbox----------->', this.props.categories);
+
 
     return (
       <>

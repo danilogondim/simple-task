@@ -84,6 +84,8 @@ export default function Search() {
         categories = {findServices()}
       />
 
+      <hr/>
+
       
       {myLocation &&
       
