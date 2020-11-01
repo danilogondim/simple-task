@@ -47,7 +47,6 @@ const useChatBoxData = (props) => {
 
   const { register, handleSubmit, reset } = useForm();
 
-  console.log(state.chats);
   const onSubmit = (message) => {
     if (!state.contact) {
       setError(true);

@@ -15,7 +15,7 @@ module.exports = (db) => {
       text: `
       SELECT first_name, last_name, phone, email, photo_url, vehicle, AVG(user_rating) AS average_rating
       FROM users
-      JOIN task_reviews
+      LEFT JOIN task_reviews
       ON users.id = tasker_id
       WHERE id = $1
       GROUP BY first_name, last_name, phone, email, photo_url, vehicle`,
