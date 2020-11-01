@@ -46,7 +46,6 @@ export default function Registration() {
     <div>
       <h1>Registration</h1>  
       <hr />
-      <h2>User: </h2>
         <form className='Registration-form' onSubmit={handleSubmit(onSubmit)}>
           
           <label>First Name:</label>
@@ -99,7 +98,7 @@ export default function Registration() {
 
           <input type="submit" name="submit_register" className="LoginRegister_btn"/>
         </form>
-      <p>Are you looking to become a tasker? Make an account as an user and upgrade it for free after.</p>
+      <p className='Become_tasker'>*Are you looking to become a tasker? Make an account as an user and upgrade it for free after.</p>
     </div>
   );
 }

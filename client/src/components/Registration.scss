@@ -49,6 +49,7 @@ button {
   transition: ease-in-out background-color 250ms, ease-in-out color 250ms;
 }
 
+
 button:hover {
   cursor: pointer;
   background-color: white;
@@ -58,4 +59,20 @@ button:hover {
 .LoginRegister_btn {
   margin-top: 1em;
   width: 100%;
+  padding: 10px 15px;
+  background-color: rgb(70, 153, 179);
+  color: white;
+  border: 1px solid rgb(70, 153, 179);
+  transition: ease-in-out background-color 250ms, ease-in-out color 250ms;
+}
+
+.LoginRegister_btn:hover {
+  cursor: pointer;
+  background-color: white;
+  color: rgb(70, 153, 179);
+}
+
+.Become_tasker {
+  text-align: center;
+  margin: 0 auto;
 }
