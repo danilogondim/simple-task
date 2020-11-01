@@ -12,7 +12,7 @@ export default function Registration() {
 
   const {setToken} = useContext(AppContext);
 
-  let history = useHistory();
+  const history = useHistory();
 
 
   const { register, handleSubmit, watch, errors } = useForm();
