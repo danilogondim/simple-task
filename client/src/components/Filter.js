@@ -28,8 +28,8 @@ export default function Filter(props) {
     const index = event.target.id;
     const input = Number(event.target.value);
     // check if the input is within the accepted range
-    if (input <= 23 && input >= 0) {
-      if (index === '0' && input === range[0] + 1 && input === range[1] && input + 1 <= 23) {
+    if (input <= 24 && input >= 0) {
+      if (index === '0' && input === range[0] + 1 && input === range[1] && input + 1 <= 24) {
         // avoid lowest value overlapping the highest value by making the highest value move as long as it is within the limit
         const newRange = [...range];
         newRange[index] = event.target.value === '' ? '' : input;
@@ -110,7 +110,7 @@ export default function Filter(props) {
               inputProps={{
                 step: 1,
                 min: 0,
-                max: 23,
+                max: 24,
                 type: 'number',
                 'aria-labelledby': 'input-slider',
               }}
@@ -123,7 +123,7 @@ export default function Filter(props) {
               valueLabelDisplay="auto"
               aria-labelledby="range-slider"
               min={0}
-              max={23}
+              max={24}
             />
           </Grid>
           <Grid item>
@@ -136,7 +136,7 @@ export default function Filter(props) {
               inputProps={{
                 step: 1,
                 min: 0,
-                max: 23,
+                max: 24,
                 type: 'number',
                 'aria-labelledby': 'input-slider',
               }}
