@@ -1,6 +1,7 @@
 .chat-box {
   position: fixed;
-  display: block;
+  display: flex;
+  flex-direction: column;
   height: 800px;
   width: 45%;
   max-width: 600px;
@@ -9,6 +10,18 @@
   right: 30px;
   background-color: #ecf4f3;
   z-index: 999;
+  p {
+    margin: 0 0 0.5rem;
+  }
+  .no-selected-contact {
+    align-self: center;
+    margin-top: 60%;
+    color:#006a71;
+  }
+  .contact-name{
+    padding: 0rem 1rem;
+    color:#006a71;
+  }
 
   .contact-list{
     display: flex;
@@ -22,6 +35,7 @@
 .chat-message-form {
   padding: 0 1.2rem;
   margin: 0;
+  max-width: inherit;
 }
 
 .message-input {

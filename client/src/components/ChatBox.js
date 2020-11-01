@@ -20,7 +20,7 @@ export default function ChatBox(props) {
     register,
     handleSubmit,
     chat } = useChatBoxData(props);
-
+  const contactName = !state.contact ? "" : state.chats.find(contact => contact.contact_id === state.contact).contact_name;
 
   return (
 
@@ -30,12 +30,20 @@ export default function ChatBox(props) {
           <div className="contact-list">
             <ContactList chats={state.chats} dispatch={dispatch} />
           </div>
-          <MessageList chat={chat} />
-          <form className="chat-message-form" onSubmit={handleSubmit(onSubmit)}>
-            <TextField className="message-input" name="message" inputRef={register} label="Type a message" />
-            <button><Send /></button>
-            {error && <p>Please select a contact to send your message</p>}
-          </form>
+          {!state.contact &&
+            <p className="no-selected-contact">Please select a contact to start chatting</p>
+          }
+          {state.contact &&
+            <>
+              <p className="contact-name">Chatting with: {contactName}</p>
+              <MessageList chat={chat} />
+              <form className="chat-message-form" onSubmit={handleSubmit(onSubmit)}>
+                <TextField className="message-input" name="message" inputRef={register} label="Type a message" />
+                <button><Send /></button>
+                {error && <p>Please select a contact to send your message</p>}
+              </form>
+            </>
+          }
           <button className="toggle-chat" onClick={() => setActive(false)}>Exit chat</button>
         </section>
       }
