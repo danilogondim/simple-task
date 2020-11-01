@@ -73,11 +73,11 @@ export default function Registration() {
           <input type="password" name="check_password" ref={register({ validate: (value) => value === watch('password') })}  />
           {errors.check_password && <p> Password and Check Password must match </p>}
 
-          <label>Number:</label>
+          <label>Street Number:</label>
           <input type="text" name="number" ref={register({ required: true})}  />
           {errors.number && <p> This is a mandatory field. </p>}
 
-          <label>Street:</label>
+          <label>Street Name:</label>
           <input type="text" name="street" ref={register({ required: true})}  />
           {errors.street && <p> This is a mandatory field. </p>}
 

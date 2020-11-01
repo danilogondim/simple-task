@@ -3,7 +3,9 @@ import React from 'react';
 export default function About() {
   return (
     <div>
-      <h1>Here you can brag about our company </h1>
+     <h1>About us</h1>  
+      <hr />
+      <p>blablablalba</p>
     </div>
   );
 }
