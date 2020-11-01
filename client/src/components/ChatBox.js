@@ -36,10 +36,10 @@ export default function ChatBox(props) {
             <button><Send /></button>
             {error && <p>Please select a contact to send your message</p>}
           </form>
-          <button className="toggle-chat" onClick={() => setActive(false)}>Close!</button>
+          <button className="toggle-chat" onClick={() => setActive(false)}>Exit chat</button>
         </section>
       }
-      {!active && user && <button className="toggle-chat" onClick={() => setActive(true)}>Open!</button>}
+      {!active && user && <button className="toggle-chat" onClick={() => setActive(true)}>Chat</button>}
     </>
 
   )

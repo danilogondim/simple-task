@@ -1,4 +1,7 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import {List} from '@material-ui/core';
+import "./MessageList.scss"
 
 export default function MessageList(props) {
   const { chat } = props;
@@ -15,9 +18,9 @@ export default function MessageList(props) {
 
   return (
 
-    <>
+    <List className="chat-list">
       {messages}
-    </>
+    </List>
 
   )
 }
