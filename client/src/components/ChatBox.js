@@ -44,7 +44,7 @@ export default function ChatBox(props) {
               </form>
             </>
           }
-          <button className="toggle-chat" onClick={() => setActive(false)}>Exit chat</button>
+          <button className="toggle-chat" onClick={() => setActive(false)}>Exit</button>
         </section>
       }
       {!active && user && <button className="toggle-chat" onClick={() => setActive(true)}>Chat</button>}

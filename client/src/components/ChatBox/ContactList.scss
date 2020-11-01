@@ -1,0 +1,29 @@
+.contact-list{
+  display: flex;
+  padding: 0rem 1rem;
+  height: 10%;
+  > * {
+    margin: 0;
+  }
+  background-color: #68b0ab;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+  
+  .contact{
+    width: fit-content;
+    height: fit-content;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+  }
+  
+  .contact-selected{
+    background-color: #ecf4f3;
+    border-bottom: #ecf4f3 solid;
+  }
+  
+  .contact-unselected{
+  }
+}
