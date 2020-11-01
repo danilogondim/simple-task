@@ -26,7 +26,7 @@ export default function TasksNew() {
   return (
     <main className="new-task">
       {!tasker && (
-        <div class="alert alert-primary" role="alert">
+        <div className="alert alert-primary" role="alert">
           <h2>It seems that you have not selected any service.</h2>
           <br />
           <h4>Navigate to our <Link to='/'>homepage</Link> and start browsing the different categories and services.</h4>
