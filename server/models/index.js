@@ -229,11 +229,11 @@ module.exports = (db) => {
                 ),
                 'HH24:MI'
               ) AS end_time,
-              EXTRACT(EPOCH FROM (completed_at - started_at))/3600 AS total_time,
-              completed_at - started_at       AS total_duration
+              EXTRACT(EPOCH FROM (completed_at - started_at))/3600 AS total_time
             FROM tasks
             JOIN users ON tasks.tasker_id = users.id
             JOIN service_taskers ON tasks.service_id = service_taskers.service_id
+            AND service_taskers.tasker_id = users.id
             WHERE tasks.id = $1`,
       values: [id]
     };
@@ -283,6 +283,36 @@ module.exports = (db) => {
       .catch(err => err);
   };
 
+  const updateTask = taskObject => {
+    if (taskObject.id && Object.keys(taskObject).length > 1) {
+      // we can add more fields to update database
+      const taskFields = ['started_at', 'completed_at'];
+      
+      // the sql query and the values array should be build dynamically
+      let text = `UPDATE tasks \nSET `;
+      const values = [taskObject.id];
+
+      for (const field of taskFields) {
+        if (taskObject[field]) {
+          values.push(taskObject[field]);
+          text += `${field} = $${values.length},\n`;
+        }
+      }
+      text = text.slice(0, -2) + "\nWHERE tasks.id = $1 \nRETURNING *;";
+      return db.query(text, values)
+        .then(result => {
+          if (result.rows[0]) {
+            return result.rows[0];
+          }
+          throw 'The task id does not exist';
+        })
+        .catch(err => {
+          return err});
+    }
+
+    throw 'It seems that the task id is missing or there are no fields to update';
+  };
+
   return {
     getUsers,
     getUserById,
@@ -295,6 +325,7 @@ module.exports = (db) => {
     getTasks,
     getTaskById,
     getTaskForPayment,
-    addTask
+    addTask,
+    updateTask
   };
 };

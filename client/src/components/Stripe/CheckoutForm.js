@@ -149,12 +149,12 @@ const CheckoutForm = ({ price, onSuccessfulCheckout }) => {
       {checkoutError && <CheckoutError>{checkoutError}</CheckoutError>}
       <Row>
         {/* TIP always disable your submit button while processing payments */}
-        <Link to={`/tasks/${id}/payment/success`}>
+        {/* <Link to={`/tasks/${id}/payment/success`}> */}
           <SubmitButton disabled={isProcessing || !stripe}>
-            {/* {isProcessing ? "Processing..." : `Pay $${price}`} */}
-            {isProcessing ? "Processing..." : `Pay $${grandTotal}`}
+            {isProcessing ? "Processing..." : `Pay $${price}`}
+            {/* {isProcessing ? "Processing..." : `Pay $${grandTotal}`} */}
           </SubmitButton>
-        </Link>
+        {/* </Link> */}
       </Row>
     </form>
   );
