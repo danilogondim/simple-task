@@ -71,6 +71,7 @@ export default function Login() {
   return (
     <div>
       <h1>Login</h1>
+      <hr/>
 
       <form className='Login-form' onSubmit={handleSubmit(onSubmit)}>
 
@@ -87,6 +88,7 @@ export default function Login() {
         <p>{message}</p>
 
          <button 
+         className="LoginRegister_btn"
          type="submit"
          >
            Login

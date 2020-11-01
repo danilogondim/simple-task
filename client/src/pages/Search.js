@@ -42,6 +42,8 @@ export default function Search() {
 
   return (  
     <>
+      
+      <h1>Select a Tasker</h1>
 
       <div className="Conditional_button">
 
@@ -62,9 +64,9 @@ export default function Search() {
       
       {selectedService==='0'? null:
       <button onClick={handleClick}>
-      Go to service page!
+      Select a Tasker
       </button>}
-      
+
       </div>
 
       <hr/>

@@ -97,7 +97,7 @@ export default function Registration() {
           <label>Photo:</label>
           <input type="text" name="photo_url" ref={register({ required: false})}  /><br />
 
-          <input type="submit" name="submit_register" />
+          <input type="submit" name="submit_register" className="LoginRegister_btn"/>
         </form>
       <p>Are you looking to become a tasker? Make an account as an user and upgrade it for free after.</p>
     </div>
