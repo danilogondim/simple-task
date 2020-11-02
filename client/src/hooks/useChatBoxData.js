@@ -49,6 +49,7 @@ const useChatBoxData = (props) => {
       const data = JSON.parse(event.data);
       if (data === "new-message") {
         setNewMessage(true);
+        setActive(true);
       }
     };
   }
@@ -58,7 +59,7 @@ const useChatBoxData = (props) => {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (message) => {
-    if (!state.contact) {
+    if (!message.message) {
       setError(true);
     } else {
       setError(false);
