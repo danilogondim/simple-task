@@ -15,6 +15,22 @@ VALUES
  (18, 2, 10, 'Nothing to complain. The food was still hot when it arrived', 5, 'My experience was great. The user gave my clear instructions', 5),
  (19, 3, 10, 'The food was a little bid cold by the time I received it', 4, 'My experience was great. The user gave my clear instructions', 5);
 
+
+
+-- web dev reviews (task_id starting at 20)
+-- web dev reviews (tasker_id starting at 37)
+
+INSERT INTO
+task_reviews(task_id, user_id, tasker_id, user_comment, user_rating, tasker_comment, tasker_rating)
+VALUES
+-- first user comment and rating directed to the tasker
+ (20, 1, 37, 'Danilo did an excellent job fixing a bug in my application. Thank you!', 5, '', 5),
+ (21, 2, 38, 'Ricardo', 5, '', 5),
+ (22, 3, 39, 'Vinay', 5, '', 5),
+ (23, 4, 40, 'Fatima made my website look bomb.  A+++, highly recommend her services.', 5, '', 5);
+-- sequence(task_id), range 1-6, sequence(tasker_id), 'positive feedback', 5, '', 5);
+
+
 -- user_comment and user_rating is expected to be user input, evaluating the tasker
 -- tasker_comment and tasker_rating is expected to be tasker input, evaluating the user
 
