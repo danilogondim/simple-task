@@ -21,19 +21,28 @@
     header{
       display: flex;
       justify-content: space-evenly;
-      padding: 0.5rem;
+      padding: 1rem;
+      align-items: center;
+
+
+
+
 
       h5 {
         margin:0;
       }
       
-      > .rating {
-        height: 0.9rem;
-        padding: 0.1em 0.3em 0.1em 0;
-  
-        > p{
+      > .rating-vehicle {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        > * {
+          padding: 0.1rem;
+        }
+        > h5{
           color: #ff7e67;
           font-size: 1.2rem;
+          margin: 0;
         }
   
         .rating-result {
@@ -42,31 +51,49 @@
       }
     }
 
-    .price-vehicle{
+    .name-price{
       display: flex;
-      padding: 0 2rem 1rem 2rem;
+      flex-direction: column;
+      align-items: center;
       justify-content: space-around;
+      > * {
+        padding: 0.1rem;
+      }
     }
   }
 
   .right_details{
     width: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     > footer {
       display: flex;
       justify-content: space-evenly;
       padding: 1rem 0;
+      height: 18.5%;
+    }
+    .card-body {
+      flex: inherit;
+      height: 20%;
     }
   } 
 
   .comment-review{
+    height: 61.5%;
     padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     p{
       font-size: 1rem;
+      margin: 0;
     }
     > .blockquote{
-      > p {
-        display: flex;
-      }
+      height: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
       .rating-result{
         font-size: 1rem;
         padding-top: 0.25rem;
