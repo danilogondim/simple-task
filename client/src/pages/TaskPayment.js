@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import React from 'react';
 import { Jumbotron, Container} from 'react-bootstrap';
 import StripeCheckout from "react-stripe-checkout";
+// import axios from 'axios'
 
 import useTaskPaymentData from '../hooks/useTaskPaymentData';
 import "./Home.scss";
@@ -25,11 +25,11 @@ export default function TaskPayment() {
 
   const timeTotal = end && start && hours + minutes;
 
-  const [product, setProduct] = useState({
-    name: "React from FB",
-    price: 10,
-    productBy: "facebook"
-  });
+  const product = {
+    taskId: task.task_id,
+    price: grandTotal,
+    productBy: "SimpleTask"
+  };
 
   const makePayment = token => {
     const body = {
@@ -40,7 +40,7 @@ export default function TaskPayment() {
       "Content-Type": "application/json"
     };
 
-    return fetch(`http://localhost:3001/payments`, {
+    return fetch(`http://localhost:3001/api/payments/success`, {
       method: "POST",
       headers,
       body: JSON.stringify(body)
@@ -166,7 +166,7 @@ export default function TaskPayment() {
               shippingAddress
               billingAddress
             >
-            <button type="button" className="btn btn-success">Proceed to Pay {'💰'}</button>
+            <button type="button" className="btn btn-success">Proceed to Pay {'💰'} {grandTotal}</button>
             </StripeCheckout>
           </td>
         </tr>

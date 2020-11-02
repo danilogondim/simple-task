@@ -11,8 +11,10 @@ module.exports = ({
 
   router.post("/success", (req, res) => {
     const { product, token } = req.body;
-    console.log("PRODUCT ", product);
-    console.log("PRICE ", product.price);
+
+    !product? console.log("Nothing here") : console.log("PRODUCT", product.price)
+    // console.log("PRODUCT", product);
+    // console.log("PRICE ", product.price);
     const idempontencyKey = uuid();
 
     return stripe.customers
