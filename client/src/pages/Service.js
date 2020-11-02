@@ -9,13 +9,14 @@ import { SET_TASKER } from '../reducer/data_reducer';
 import './Service.scss';
 import { CircularProgress } from '@material-ui/core';
 
-export default function Service() {
+export default function Service(props) {
   const { c_id, id } = useParams();
   const { state, dispatch, service } = useServiceData(c_id, id);
   const { day, range, tasker } = state;
   localStorage.setItem('category_id', c_id);
   localStorage.setItem('service_id', id);
   localStorage.setItem("service_name", service.service);
+  const { socket } = props;
 
 
   // const filteredTaskers = taskersFilter(state);
@@ -38,7 +39,7 @@ export default function Service() {
       )}
       {tasker && (
         <main className="detail_page" onClick={() => dispatch({ type: SET_TASKER, tasker: null })}>
-          <TaskerDetail tasker={tasker} day={day} />
+          <TaskerDetail tasker={tasker} day={day} socket={socket} service={service} />
         </main>
       )}
     </>

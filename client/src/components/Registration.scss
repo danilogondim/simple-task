@@ -12,6 +12,13 @@ form {
   margin: 0 auto;
 }
 
+body {
+  background-color: #ecf4f3;
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 2.5rem;
+}
+
 label,
 input {
   display: block;
@@ -43,14 +50,49 @@ input.error {
 
 button {
   padding: 10px 15px;
-  background-color: rgb(70, 153, 179);
+  background-color: #006a71;
   color: white;
-  border: 1px solid rgb(70, 153, 179);
+  border: 1px solid #006a71;
   transition: ease-in-out background-color 250ms, ease-in-out color 250ms;
 }
+
 
 button:hover {
   cursor: pointer;
   background-color: white;
   color: rgb(70, 153, 179);
 }
+
+.LoginRegister_btn {
+  margin-top: 1em;
+  width: 100%;
+  padding: 10px 15px;
+  background-color:  #006a71;
+  color: white;
+  border: 1px solid  #006a71;
+  transition: ease-in-out background-color 250ms, ease-in-out color 250ms;
+}
+
+.LoginRegister_btn:hover {
+  cursor: pointer;
+  background-color: white;
+  color: rgb(70, 153, 179);
+}
+
+.Become_tasker {
+  text-align: center;
+  margin: 2em;
+  color: #006a71;
+}
+
+.Registration-form {
+  margin-top: 2em;
+}
+
+.Registration-form label{
+  color: #ff7e67;
+};
+
+.Registration-form input{
+  color: #006a71;
+};

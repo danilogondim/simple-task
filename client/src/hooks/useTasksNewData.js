@@ -94,7 +94,6 @@ export default function useTasksNewData() {
 
     if (token) {
       task['token'] = token;
-      console.log(task);
 
       const promises = [Geocode.fromAddress(task.start_location)]
       if (task.end_location !== "") {

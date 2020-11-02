@@ -4,6 +4,7 @@ import MessageList from './ChatBox/MessageList';
 import useChatBoxData from '../hooks/useChatBoxData';
 import TextField from '@material-ui/core/TextField';
 import { Send } from '@material-ui/icons';
+import { SET_CONTACT } from '../reducer/data_reducer';
 import './ChatBox.scss';
 
 
@@ -19,27 +20,44 @@ export default function ChatBox(props) {
     user,
     register,
     handleSubmit,
-    chat } = useChatBoxData(props);
+    chat,
+    onlineClients } = useChatBoxData(props);
 
 
+  const currentChat = !state.contact ? "" : state.chats.find(contact => contact.contact_id === state.contact);
+  let contactName;
+  if (currentChat) {
+    contactName = currentChat.contact_name;
+  }
   return (
 
     <>
       {user && active &&
         <section className="chat-box">
           <div className="contact-list">
-            <ContactList chats={state.chats} dispatch={dispatch} />
+            <ContactList chats={state.chats} clients={onlineClients} dispatch={dispatch} contact={state.contact} />
           </div>
-          <MessageList chat={chat} />
-          <form className="chat-message-form" onSubmit={handleSubmit(onSubmit)}>
-            <TextField name="message" inputRef={register} label="Type a message" />
-            <button><Send /></button>
-            {error && <p>Please select a contact to send your message</p>}
-          </form>
-          <button className="toggle-chat" onClick={() => setActive(false)}>Close!</button>
+          {!state.contact &&
+            <p className="no-selected-contact">Please select a contact to start chatting</p>
+          }
+          {state.contact &&
+            <>
+              <p className="contact-name">Chatting with: {contactName}</p>
+              <MessageList chat={chat} contact={state.contact} />
+              <form className="chat-message-form" onSubmit={handleSubmit(onSubmit)}>
+                <TextField className="message-input" name="message" inputRef={register} label="Type a message" />
+                <button><Send /></button>
+                {error && <p>Cannot be blank</p>}
+              </form>
+            </>
+          }
+          <button className="toggle-chat" onClick={() => {
+            dispatch({ type: SET_CONTACT, contact: null })
+            setActive(false)
+          }}>Exit</button>
         </section>
       }
-      {!active && user && <button className="toggle-chat" onClick={() => setActive(true)}>Open!</button>}
+      {!active && user && state.chats.length > 0 && <button className="toggle-chat" onClick={() => setActive(true)}>Chat</button>}
     </>
 
   )

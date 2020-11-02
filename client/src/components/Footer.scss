@@ -1,0 +1,18 @@
+.footer-bar {
+  background-color: #006a71;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 11px rgba(33,33,33,.2);
+  margin-top:1em;
+  position: absolute;
+  bottom:0;
+  width:100%;
+ 
+}
+
+
+.footer-bar .foot {
+  color: #ecf4f3;
+  margin: 1em;
+};

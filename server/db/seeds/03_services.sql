@@ -2,9 +2,9 @@
 INSERT INTO
 services(name, description, category_id, thumbnail_photo_url)
 VALUES
- ('Pet sitting','Let someone look after your beloved pets and enjoy your free time!',1,'https://images.unsplash.com/photo-1585071550721-fdb362ae2b8d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'),
- ('Pet walking', 'Tough day? Let us help you with your pets'' needs!',1,'https://images.unsplash.com/photo-1494947665470-20322015e3a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'),
- ('Pet feeding','Do you want to keep your pet at home while you are travelling? This service is definitely for you!',1,'https://images.unsplash.com/photo-1580238169544-86bf7cd8c84c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60');
+ ('Pet Sitting','Let someone look after your beloved pets and enjoy your free time!',1,'https://images.unsplash.com/photo-1585071550721-fdb362ae2b8d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'),
+ ('Pet Walking', 'Tough day? Let us help you with your pets'' needs!',1,'https://images.unsplash.com/photo-1494947665470-20322015e3a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'),
+ ('Pet Feeding','Do you want to keep your pet at home while you are travelling? This service is definitely for you!',1,'https://images.unsplash.com/photo-1580238169544-86bf7cd8c84c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60');
 
 -- House (ids: 4-7)
 INSERT INTO
@@ -21,12 +21,12 @@ INSERT INTO
 services(name, description, category_id, thumbnail_photo_url)
 VALUES
  ('Landscaping','Your garden will never be the same!',3,'https://images.unsplash.com/photo-1524247108137-732e0f642303?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60'),
- ('Showering flowers','Let a specialist water your plants and have amazing results!',3,'https://images.unsplash.com/photo-1494007485290-ce668e189d92?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60');
+ ('Showering Flowers','Let a specialist water your plants and have amazing results!',3,'https://images.unsplash.com/photo-1494007485290-ce668e189d92?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60');
 
 
 -- Food (ids: 10-11)
 INSERT INTO
 services(name, description, category_id, thumbnail_photo_url)
 VALUES
- ('Grocery shopping','Without time to grocery shopping? Our professionals are here to help!',4,'https://images.unsplash.com/photo-1578916171728-46686eac8d58?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80'),
- ('Food pick-up','Hungry? We''ve got your back!',4,'https://images.unsplash.com/photo-1574641264510-d656942d6380?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1065&q=80');
+ ('Grocery Shopping','Without time to grocery shopping? Our professionals are here to help!',4,'https://images.unsplash.com/photo-1578916171728-46686eac8d58?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80'),
+ ('Food Pick-up','Hungry? We''ve got your back!',4,'https://images.unsplash.com/photo-1574641264510-d656942d6380?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1065&q=80');
