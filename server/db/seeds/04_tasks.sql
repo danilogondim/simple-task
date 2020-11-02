@@ -45,9 +45,9 @@ VALUES
 INSERT INTO
 tasks(number, category_id, service_id, user_id, tasker_id, description, estimated_duration, start_time, start_location, end_location, started_at, completed_at)
 VALUES
-(20, 9, 23, 1, 37, '', 2, '2020-10-22 09:00:00', '', '', '09:00:00', '11:00:00'),
+(20, 9, 23, 1, 37, 'Fix login issues on my website', 2, '2020-10-22 09:00:00', '', '', '09:00:00', '11:00:00'),
 (21, 9, 23, 2, 38, '', 2, '2020-10-22 09:00:00', '', '', '09:00:00', '11:00:00'),
 (22, 9, 23, 3, 39, '', 2, '2020-10-22 09:00:00', '', '', '09:00:00', '11:00:00'),
-(23, 9, 23, 4, 40, '', 2, '2020-10-22 09:00:00', '', '', '09:00:00', '11:00:00');
+(23, 9, 23, 4, 40, 'Need some CSS assistance to improve my website', 2, '2020-10-22 09:00:00', '', '', '09:00:00', '11:00:00');
 
 -- (sequence(task_id), 9, 23, range 1-6, sequence(tasker_id), 'task description', 2, '2020-10-22 09:00:00', '', '', '09:00:00', '11:00:00'),
