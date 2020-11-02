@@ -21,8 +21,11 @@ export default function ChatBox(props) {
     register,
     handleSubmit,
     chat } = useChatBoxData(props);
-  const contactName = !state.contact ? "" : state.chats.find(contact => contact.contact_id === state.contact).contact_name;
-
+  const currentChat = !state.contact ? "" : state.chats.find(contact => contact.contact_id === state.contact);
+  let contactName;
+  if (currentChat) {
+    contactName = currentChat.contact_name;
+  }
   return (
 
     <>

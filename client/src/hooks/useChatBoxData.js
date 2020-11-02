@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import dataReducer, { SET_CHATS } from '../reducer/data_reducer';
+import dataReducer, { SET_CHATS, SET_CONTACT } from '../reducer/data_reducer';
 import axios from 'axios';
 
 const useChatBoxData = (props) => {
@@ -12,7 +12,9 @@ const useChatBoxData = (props) => {
   // check if a contact was selected to shown some error message and prevent user to send messages if there is no contact selected
   const [error, setError] = useState(null);
   // control new messages
-  const [newMessage, setNewMessage] = useState(true);
+  const [newMessage, setNewMessage] = useState(false);
+  // check if there is an axios request to be done
+  const [pending, setPending] = useState(true);
 
 
   const id = !user ? '' : user.id;
@@ -23,30 +25,32 @@ const useChatBoxData = (props) => {
   });
 
   useEffect(() => {
-    if (id && newMessage) {
+    if (!id) {
+      setActive(false);
+      dispatch({ type: SET_CONTACT, contact: null })
+    }
+    if ((id && newMessage) || (id && pending)) {
       axios
         .get(`/api/users/${id}/chats`)
         .then(({ data }) => dispatch({ type: SET_CHATS, chats: data }))
         .catch((err) => console.log(err));
     }
-    setNewMessage(false);
-    setActive(false);
-  }, [id, newMessage]);
+    setPending(false)
+    setNewMessage(false)
+  }, [id, newMessage, pending]);
 
   useEffect(() => {
-    setNewMessage(true);
+    setPending(true);
   }, [user]);
 
   if (socket) {
     socket.onmessage = event => {
       const data = JSON.parse(event.data);
-      if (data === "new-message"){
+      if (data === "new-message") {
         setNewMessage(true);
       }
     };
   }
- 
-
 
   const chat = state.chats.find(chat => chat.contact_id === state.contact);
 
