@@ -22,8 +22,13 @@ export default function ChatBox(props) {
     handleSubmit,
     chat } = useChatBoxData(props);
 
-  const contactName = !state.contact ? "" : state.chats.find(contact => contact.contact_id === state.contact).contact_name;
 
+  const currentChat = !state.contact ? "" : state.chats.find(contact => contact.contact_id === state.contact);
+  let contactName;
+  if (currentChat) {
+    contactName = currentChat.contact_name;
+  }
+  console.log(state.chats)
   return (
 
     <>
@@ -52,7 +57,7 @@ export default function ChatBox(props) {
           }}>Exit</button>
         </section>
       }
-      {!active && user && <button className="toggle-chat" onClick={() => setActive(true)}>Chat</button>}
+      {!active && user && state.chats.length > 0 && <button className="toggle-chat" onClick={() => setActive(true)}>Chat</button>}
     </>
 
   )

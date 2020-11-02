@@ -47,9 +47,17 @@ const useChatBoxData = (props) => {
   if (socket) {
     socket.onmessage = event => {
       const data = JSON.parse(event.data);
-      if (data === "new-message") {
+      const { type, sender_id, receiver_id } = data;
+      console.log(data)
+      if (type === "new-message") {
         setNewMessage(true);
         setActive(true);
+        if (sender_id) {
+          dispatch({ type: SET_CONTACT, contact: sender_id })
+        }
+        if (receiver_id) {
+          dispatch({ type: SET_CONTACT, contact: receiver_id })
+        }
       }
     };
   }
