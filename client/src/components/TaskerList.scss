@@ -7,10 +7,12 @@
     flex-direction: column;
     flex-flow: row wrap;
     padding: 0;
+    justify-content: center;
 
     .alert{
-      margin-top: 1rem;
+      margin: 1rem;
       padding: 1.5rem;
+      text-align: justify;
     }
   }
   
@@ -22,6 +24,9 @@
     > button {
       margin-left: 1rem;
       width: 80px;
+    }
+    h5 {
+      margin: 0;
     }
   }
   .taskers__header {

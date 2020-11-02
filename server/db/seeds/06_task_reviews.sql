@@ -25,9 +25,10 @@ task_reviews(task_id, user_id, tasker_id, user_comment, user_rating, tasker_comm
 VALUES
 -- first user comment and rating directed to the tasker
  (20, 1, 37, 'Danilo did an excellent job fixing a bug in my application. Thank you!', 5, '', 5),
- (21, 2, 38, 'Ricardo', 5, '', 5),
+ (21, 2, 38, 'Ricardo is extremely detailed-oriented. I strongly recommend his services!', 5, '', 5),
  (22, 3, 39, 'Vinay', 5, '', 5),
- (23, 4, 40, 'Fatima made my website look bomb.  A+++, highly recommend her services.', 5, '', 5);
+ (23, 4, 40, 'Fatima made my website look bomb.  A+++, highly recommend her services.', 5, '', 5),
+ (24, 5, 41, 'Fast and efficient, great discussion on the next possible steps to improve my business even more!', 5, '', 5);
 -- sequence(task_id), range 1-6, sequence(tasker_id), 'positive feedback', 5, '', 5);
 
 

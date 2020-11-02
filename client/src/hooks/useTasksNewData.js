@@ -1,17 +1,11 @@
 import { useEffect, useState } from 'react';
 import randomString from '../helpers/randomString';
 import axios from 'axios';
-import Geocode from "react-geocode";
 import { useHistory } from "react-router-dom";
 
 
 export default function useTasksNewData() {
-  //Google Geocode Setup
-  const API_KEY = process.env.REACT_APP_GOOGLE_API;
-  Geocode.setApiKey(API_KEY);
-  Geocode.setLanguage("en");
-  Geocode.setRegion("ca");
-  Geocode.enableDebug();
+
   const history = useHistory();
 
   const day = new Date(localStorage.getItem('day'));
@@ -84,7 +78,7 @@ export default function useTasksNewData() {
   }
 
 
-  const onSubmit = (task) => {
+  const onSubmit = async (task) => {
 
     task['tasker_id'] = tasker.id;
     task['number'] = randomString(32);
@@ -94,30 +88,26 @@ export default function useTasksNewData() {
 
     if (token) {
       task['token'] = token;
-
-      const promises = [Geocode.fromAddress(task.start_location)]
+      try {
+        const response = await axios.get(`${window.location.protocol}//nominatim.openstreetmap.org/search?format=json&q='+${task.start_location}`);
+        task.start_coordinates = [response.data[0].lat, response.data[0].lon]
+      } catch (error) {
+        console.log(error)
+      }
       if (task.end_location !== "") {
-        promises.push(Geocode.fromAddress(task.end_location))
+        try {
+          const response = await axios.get(`${window.location.protocol}//nominatim.openstreetmap.org/search?format=json&q='+${task.end_location}`);
+          task.end_coordinates = [response.data[0].lat, response.data[0].lon]
+        } catch (error) {
+          console.log(error)
+        }
       };
-
-      Promise.all(promises)
-        .then(all => {
-          const { lat, lng } = all[0].results[0].geometry.location;
-          task['start_coordinates'] = [lat, lng];
-          if (all.length === 2) {
-            const { lat, lng } = all[1].results[0].geometry.location;
-            task['end_coordinates'] = [lat, lng];
-          }
-        })
-        .catch(e => console.log(e.message))
-        .then(() => {
-          axios
-            .post('/api/tasks/new', task)
-            .then(task => {
-              localStorage.removeItem('task');   // if everything went right, we can empty the task (also empty if user navigates to other pages that are different than login or register)
-              updateProgressiveBar('task_created', {});
-              history.push(`/tasks/${task.data.id}`);
-            })
+      axios
+        .post('/api/tasks/new', task)
+        .then(task => {
+          localStorage.removeItem('task');   // if everything went right, we can empty the task (also empty if user navigates to other pages that are different than login or register)
+          updateProgressiveBar('task_created', {});
+          history.push(`/tasks/${task.data.id}`);
         })
         .catch(err => {
           console.error(err);

@@ -1,13 +1,13 @@
 .tasker {
   list-style-type: none;
-  width: 310px;
-  margin: 1rem;
+  width: 300px;
+  margin: 0.8rem 0.4rem 0;
   opacity: 0.8;
   cursor: pointer;
 
   li > img {
     width: percentage($number: 1);
-    height: 300px;
+    height: 275px;
     object-fit: cover;
   }
 

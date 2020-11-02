@@ -62,11 +62,16 @@ export default function TaskerDetail({ tasker, socket, day, service }) {
         <div className="right_details">
           <div className="card-body">
             <header>
-              <h5>
-                {first_name + ' ' + last_name}
-              </h5>
-              <div className="rating">
-                {average_rating === null && <p>New Tasker!</p>}
+              <div className="name-price">
+                <h5>
+                  {first_name + ' ' + last_name}
+                </h5>
+                <span>
+                  {'$' + (hourly_rate / 100).toFixed(2) + '/h'}
+                </span>
+              </div>
+              <div className="rating-vehicle">
+                {average_rating === null && <h5>New Tasker!</h5>}
                 {average_rating !== null &&
                   <>
                     <Rating
@@ -78,21 +83,16 @@ export default function TaskerDetail({ tasker, socket, day, service }) {
                     />
                   </>
                 }
+                <span>
+                  {vehicle === 'van' && <AirportShuttle />}
+                  {vehicle === 'truck' && <LocalShipping />}
+                  {vehicle === 'car' && <DriveEta />}
+                  {vehicle === 'bicycle' && <DirectionsBike />}
+                  {vehicle === 'motorcycle' && <SportsMotorsports />}
+                  {vehicle === 'public' && <DirectionsTransit />}
+                </span>
               </div>
             </header>
-            <div className="price-vehicle">
-              <span>
-                {'$' + (hourly_rate / 100).toFixed(2) + '/h'}
-              </span>
-              <span>
-                {vehicle === 'van' && <AirportShuttle />}
-                {vehicle === 'truck' && <LocalShipping />}
-                {vehicle === 'car' && <DriveEta />}
-                {vehicle === 'bicycle' && <DirectionsBike />}
-                {vehicle === 'motorcycle' && <SportsMotorsports />}
-                {vehicle === 'public' && <DirectionsTransit />}
-              </span>
-            </div>
           </div>
           <div className="comment-review">
             <p>{"About me: " + summary}</p>

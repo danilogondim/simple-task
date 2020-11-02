@@ -2,9 +2,9 @@
   position: fixed;
   display: flex;
   flex-direction: column;
-  height: 800px;
+  height: 60%;
   width: 45%;
-  max-width: 600px;
+  max-width: 500px;
   border: solid #006a71;
   border-radius: 15px;
   bottom: 30px;
@@ -16,7 +16,7 @@
   }
   .no-selected-contact {
     align-self: center;
-    margin-top: 55%;
+    margin: auto;
     color:#006a71;
   }
   .contact-name{

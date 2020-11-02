@@ -1,10 +1,13 @@
 .filter {
+  width: 300px;
   display: flex;
   flex-direction: column;
   text-align: justify;
   color: #006a71;
 
-  
+  .MuiSvgIcon-root{
+    color: #006a71;
+  }
   > div{
     padding: 0rem 0 3rem;
     h4 {
@@ -21,4 +24,22 @@
   .input {
     width: 42px;
   }
+  .MuiSlider-root{
+    color: #006a71;
+  }
+  .MuiInputLabel-formControl{
+    color: #006a71;
+  } 
+  .MuiInputBase-input{
+    color: #68b0ab;
+  }
+  .MuiInput-underline:before {
+    border-bottom: 1px solid #006a71;
+  }
+  .MuiInput-underline:after {
+    border-bottom: 2px solid #006a71;
+    transform: none
+  }
+
+  
 }

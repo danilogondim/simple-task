@@ -7,7 +7,21 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/picker
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import { SET_DAY, SET_RANGE } from '../reducer/data_reducer';
 import "./Filter.scss";
+import { createMuiTheme } from '@material-ui/core'
+import { MuiThemeProvider } from '@material-ui/core/styles';
 
+export const customTheme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#006a71',
+      light: '#006a71',
+      dark: '#006a71',
+    },
+    secondary: {
+      main: '#006a71',
+    },
+  },
+})
 
 export default function Filter(props) {
 
@@ -71,25 +85,27 @@ export default function Filter(props) {
         <h4>Would you like to search by location?</h4>
         <h5>Try our <Link to='/search'>map search</Link>.</h5>
       </div>
-      <MuiPickersUtilsProvider utils={DateFnsUtils} className="date-picker">
-        <Grid container justify="space-around">
-          <KeyboardDatePicker
-            disableToolbar
-            variant="inline"
-            format="yyyy/MM/dd"
-            minDate={new Date()}
-            minDateMessage="Please select a future date"
-            margin="normal"
-            id="date-picker-inline"
-            label="Date"
-            value={day}
-            onChange={handleDateChange}
-            KeyboardButtonProps={{
-              'aria-label': 'change date',
-            }}
-          />
-        </Grid>
-      </MuiPickersUtilsProvider>
+      <MuiThemeProvider theme={customTheme}>
+        <MuiPickersUtilsProvider utils={DateFnsUtils} className="date-picker">
+          <Grid container justify="space-around">
+            <KeyboardDatePicker
+              disableToolbar
+              variant="inline"
+              format="yyyy/MM/dd"
+              minDate={new Date()}
+              minDateMessage="Please select a future date"
+              margin="normal"
+              id="date-picker-inline"
+              label="Date"
+              value={day}
+              onChange={handleDateChange}
+              KeyboardButtonProps={{
+                'aria-label': 'change date',
+              }}
+            />
+          </Grid>
+        </MuiPickersUtilsProvider>
+      </MuiThemeProvider>
       <div className="time">
         <Grid container spacing={2} alignItems="center">
           <Grid item>
