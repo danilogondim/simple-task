@@ -55,7 +55,7 @@ VALUES
  INSERT INTO
 users(first_name, last_name, phone, email, password, address, coordinates, is_tasker, photo_url, summary, is_available, vehicle)
 VALUES
-('Danilo', 'Gondim', '6474567890', 'd.gondim@email.com', 'password37', '769 Broadview Ave, Toronto', '{43.676788, -79.358804}', 't', 'https://ca.slack-edge.com/T2G8TE2E5-U018NBHMCJE-60312ec27317-512', 'summary', 't', 'public'),
+('Danilo', 'Gondim', '6474567890', 'd.gondim@email.com', 'password37', '769 Broadview Ave, Toronto', '{43.676788, -79.358804}', 't', 'https://ca.slack-edge.com/T2G8TE2E5-U018NBHMCJE-60312ec27317-512', 'I consider myself a hardworking professional that is moved by results. I am reliable and friendly and strong analytical and problem-solving skills.', 't', 'public'),
 ('Ricardo', 'Barbosa', '6474567890', 'r.barbosa@email.com', 'password38', '313-317 Main St Toronto', '{43.688858, -79.302114}', 't', 'https://ca.slack-edge.com/T2G8TE2E5-U018NHKJ38B-227eadfb65fd-512', 'summary', 't', 'car'),
 ('Vinay', 'Baswa', '6474567890', 'v.baswa@email.com', 'password39', 'address', '{coordinates}', 't', 'https://ca.slack-edge.com/T2G8TE2E5-U018FKEV8JJ-f07855d40eb1-512', 'summary', 't', 'bicycle');
 -- ('first_name', 'last_name', '6474567890', 'f.last_name@email.com', 'passwordXX', 'address', '{coordinates}', 't', 'photo_url', 'summary', 't', vehicle);
