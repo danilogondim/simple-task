@@ -6,7 +6,7 @@ import { useParams, useHistory } from "react-router-dom";
 import axios from 'axios';
 
 
-export default function TaskerDetail(props) {
+export default function TaskerDetail({ tasker, socket, day, service }) {
   const {
     first_name,
     last_name,
@@ -16,7 +16,7 @@ export default function TaskerDetail(props) {
     hourly_rate,
     average_rating,
     reviews
-  } = props.tasker;
+  } = tasker;
   const { id } = useParams();
   const user = JSON.parse(localStorage.getItem('user'));
 
@@ -29,17 +29,17 @@ export default function TaskerDetail(props) {
   const history = useHistory();
 
   const handleBookingClick = () => {
-    localStorage.setItem("tasker", JSON.stringify(props.tasker));
-    localStorage.setItem("day", props.day);
+    localStorage.setItem("tasker", JSON.stringify(tasker));
+    localStorage.setItem("day", day);
     history.push("/tasks/new");
   }
 
   const handleNewChat = () => {
     if (user) {
       const newMessage = {
-        message: "Ok", sender_id: user.id, receiver_id: props.tasker.id, sent_at: new Date().toLocaleString()
+        message: `Hi, ${first_name}. I am interested in your ${service.service} services.`, sender_id: user.id, receiver_id: tasker.id, sent_at: new Date().toLocaleString()
       }
-      // socket.send(JSON.stringify({ type: "chat-message", message: newMessage }));
+      socket.send(JSON.stringify({ type: "chat-message", message: newMessage }));
       axios
         .post('/api/chats/', newMessage)
         .then(res => console.log(res))
