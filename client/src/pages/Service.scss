@@ -46,6 +46,10 @@ main.detail_page{
   text-align: center;
   margin-bottom: 2rem;
   position: absolute;
+  margin: 0;
+}
+:hover.toggle-filter {
+  margin: 0;
 }
 
 @media only screen and (min-width: 768px) {
