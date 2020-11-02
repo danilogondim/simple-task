@@ -60,7 +60,7 @@ export default function TaskComplete() {
 
           <div className="payment table-responsive">
             <table className="table">
-              <thead className="thead-dark">
+              <thead className="thead">
                 <tr>
                   <th colSpan="2" scope="col">Task Info</th>
                 </tr>
@@ -113,7 +113,7 @@ export default function TaskComplete() {
                 <tr>
                   <td>Total Time</td>
                   {!timeTotal ?
-                    (<td className="text-right">{"🦆"}</td>) : null
+                    (<td className="text-right total">{"🦆"}</td>) : null
                   }
 
                   {timeTotal && timeTotal <= 0 ?
@@ -121,38 +121,38 @@ export default function TaskComplete() {
                   }
 
                   {timeTotal  && timeTotal > 0 && timeTotal < 1 ?
-                    (<td className="text-right">{(timeTotal * 60).toFixed(0)} Minutes</td>) : null
+                    (<td className="text-right total">{(timeTotal * 60).toFixed(0)} Minutes</td>) : null
                   }
 
                   {timeTotal && timeTotal === 1 ?
-                    (<td className="text-right">{timeTotal} Hour</td>) : null
+                    (<td className="text-right total">{timeTotal} Hour</td>) : null
                   }
 
                   {timeTotal && timeTotal > 1 && timeTotal < 2 && minutes < 0 ?
-                    (<td className="text-right">{hours - 1} Hour {(60 + (minutes * 60)).toFixed(0)} Minutes</td>) : null
+                    (<td className="text-right total">{hours - 1} Hour {(60 + (minutes * 60)).toFixed(0)} Minutes</td>) : null
                   }
 
                   {timeTotal && timeTotal > 1 && timeTotal < 2 && minutes > 0 ?
-                    (<td className="text-right">{hours} Hour {(minutes * 60).toFixed(0)} Minutes</td>) : null
+                    (<td className="text-right total">{hours} Hour {(minutes * 60).toFixed(0)} Minutes</td>) : null
                   }
 
                   {timeTotal && timeTotal >= 2 && minutes === 0 ?
-                    (<td className="text-right">{hours} Hours</td>) : null
+                    (<td className="text-right total">{hours} Hours</td>) : null
                   }
 
                   {timeTotal && timeTotal >= 2 && minutes < 0 ?
-                    (<td className="text-right">{hours - 1} Hours {(60 + (minutes * 60)).toFixed(0)} Minutes</td>) : null
+                    (<td className="text-right total">{hours - 1} Hours {(60 + (minutes * 60)).toFixed(0)} Minutes</td>) : null
                   }
 
                   {timeTotal && timeTotal >= 2 && minutes > 0 ?
-                    (<td className="text-right">{hours} Hours {(minutes * 60).toFixed(0)} Minutes</td>) : null
+                    (<td className="text-right total">{hours} Hours {(minutes * 60).toFixed(0)} Minutes</td>) : null
                   }
                 </tr>
               </tbody>
             </table>
 
-            <table className="payment.table table">
-              <thead className="thead-dark">
+            <table className="table">
+              <thead className="thead">
                 <tr>
                   <th colSpan="2" scope="col">Payment Info</th>
                 </tr>
@@ -182,17 +182,17 @@ export default function TaskComplete() {
                 </tr>
                 <tr>
                   <td>Total Price</td>
-                  <td className="text-right form-control">
+                  <td className="text-right form-control total">
                       ${grandTotal}
                   </td>
                 </tr>
                 <tr>
-                  <td colSpan="2" className="text-center">Task Completed</td>
+                  <td colSpan="2" className="text-center">Review and Submit</td>
                 </tr>
                 <tr>
                   <td colSpan="2" className="text-center">
                     {/* <Link to={`/tasks/${task.task_id}/payment/stripe`}> */}
-                      <button type="submit" onClick={onSubmit} className="btn btn-success">Submit</button>
+                      <button type="submit" onClick={onSubmit} className="btn">Review and Submit</button>
                     {/* </Link> */}
                   </td>
                 </tr>
