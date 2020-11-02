@@ -72,3 +72,14 @@ VALUES
  (1, 34, 1850),
  (1, 35, 1920),
  (1, 36, 3200);
+
+
+ -- web development (ids from 37 to ???)
+
+INSERT INTO
+service_taskers(service_id, tasker_id, hourly_rate)
+VALUES
+ (23, 37, 2300),
+ (23, 38, 2300),
+ (23, 39, 2300);
+--  (23, tasker_id, hourly_rate),

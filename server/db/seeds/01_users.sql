@@ -2,26 +2,26 @@
 INSERT INTO
 users(first_name, last_name, phone, email, password, address, coordinates, is_tasker)
 VALUES
- ('Daniel', 'Abreu', '4161234567', 'dabreu@email.com', 'password1', '100 Queen St W, Toronto', '{43.652569, -79.383713}', 'f'),
- ('Eric', 'Clinton', '6477654321', 'eclinton@email.com', 'password2', '1 Austin Terrace, Toronto', '{43.678030, -79.409440}', 'f'),
- ('Diana', 'Gibbons', '7462222222', 'diana@email.com', 'password3', '1 Dundas St E, Toronto', '{43.656200, -79.380440}', 'f'),
- ('Richard', 'Nakoolak', '6479999999', 'richard@email.com', 'password4', '2 Bloor St E, Toronto', '{43.670420, -79.386450}', 'f'),
- ('Sheila', 'Souza', '6474567890', 'ss@email.com', 'password5', '90 Eastdale Avenue, Toronto', '{43.694610, -79.301250}', 'f'),
- ('Carlos', 'Richmond', '6474567890', 'cr@email.com', 'password6', '2000 Meadowvale Rd, Toronto', '{43.820469, -79.181160}', 'f');
+ ('Daniel', 'Abreu', '4161234567', 'd.abreu@email.com', 'password1', '100 Queen St W, Toronto', '{43.652569, -79.383713}', 'f'),
+ ('Eric', 'Clinton', '6477654321', 'e.clinton@email.com', 'password2', '1 Austin Terrace, Toronto', '{43.678030, -79.409440}', 'f'),
+ ('Diana', 'Gibbons', '7462222222', 'd.gibbons@email.com', 'password3', '1 Dundas St E, Toronto', '{43.656200, -79.380440}', 'f'),
+ ('Richard', 'Nakoolak', '6479999999', 'r.nakoolak@email.com', 'password4', '2 Bloor St E, Toronto', '{43.670420, -79.386450}', 'f'),
+ ('Sheila', 'Souza', '6474567890', 's.souza@email.com', 'password5', '90 Eastdale Avenue, Toronto', '{43.694610, -79.301250}', 'f'),
+ ('Carlos', 'Richmond', '6474567890', 'c.richmond@email.com', 'password6', '2000 Meadowvale Rd, Toronto', '{43.820469, -79.181160}', 'f');
 
 -- taskers (ids: 7-15)
 INSERT INTO
 users(first_name, last_name, phone, email, password, address, coordinates, is_tasker, photo_url, summary, is_available, vehicle)
 VALUES
- ('John', 'Smith', '4167653112', 'johns@email.com', 'password7', '290 Bremner Blvd, Toronto', '{43.641842, -79.386436}', 't', 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'I am trustable and reliable. By hiring me you will have what you need to be done in an efficient manner.', 't', 'car'),
- ('Diana', 'Philips', '6477654321', 'diana2@email.com', 'password8', '6301 Silver Dart Dr, Mississauga', '{43.686321, -79.621780}', 't', 'https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'Life is too short to waste your time doing something you don''t like. Let me take care of it for you!', 't', 'car'),
- ('Cameron', 'Rutherford', '6477665421', 'cameron@email.com', 'password9', '662 King St W, Toronto','{43.644260, -79.402260}' , 't', 'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'Less is more, a simple life is a better life. I can help you find the balance you need between getting the job done and rest.', 't', 'van'),
- ('Cristina', 'Button', '6477654321', 'chris@email.com', 'password10', '288 Bremner Blvd, Toronto', '{43.642210, -79.386620}',  't', 'https://images.unsplash.com/photo-1595026530842-ccc7d3f71723?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'I love being in the outdoors, look at the stars, enjoy myself. If you like it as well but can''t find the time, let me help you!', 't', 'bicycle'),
- ('Elizabeth', 'Sinatra', '4167653112', 'elizabeth@email.com', 'password11', '789 Yonge St, Toronto','{43.671890, -79.386670 }', 't', 'https://images.unsplash.com/photo-1552101264-e35e17f3c046?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'I can make things happen and help you with any tasks you need. Give me a chance to show you what I am capable of.', 't', 'bicycle'),
- ('Gilbert', 'Stace', '6477654321', 'gilbert@email.com', 'password12', '200 Bay St, Toronto,','{43.646301, -79.379753}', 't', 'https://images.unsplash.com/photo-1541647376583-8934aaf3448a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'Don''t be fooled by my young appearance, I have a huge set of skills available to help you. I am also reliable and friendly.', 't', 'truck'),
- ('Mario', 'Bros', '4161234567', 'mario@email.com', 'password13', '40 Bay St, Toronto','{43.643452, -79.378998}', 't', 'https://images.unsplash.com/photo-1602459816722-ce53719a4987?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'I can fix and assemble almost everything. I am strong and hardworking. Count on me!', 't', 'public'),
- ('Steven', 'Garcia', '6477654321', 'steven@email.com', 'password14', '60 Carl Hall Rd, North York','{43.748300, -79.476440}', 't', 'https://images.unsplash.com/photo-1553946550-4b8f3eea5451?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'Experienced in the home and commercial renovation field. I have the tools and experience for all you need.', 't', 'motorcycle'),
- ('Antony', 'Cooper', '4162222222', 'antony@email.com', 'password15', '1 Blue Jays Way, Toronto','{43.640580, -79.388920}', 't', 'https://images.unsplash.com/photo-1548535537-3cfaf1fc327c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'Need remote help? Look no further! ', 't', 'bicycle');
+ ('John', 'Smith', '4167653112', 'j.smith@email.com', 'password7', '290 Bremner Blvd, Toronto', '{43.641842, -79.386436}', 't', 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'I am trustable and reliable. By hiring me you will have what you need to be done in an efficient manner.', 't', 'car'),
+ ('Diana', 'Philips', '6477654321', 'd.philips@email.com', 'password8', '6301 Silver Dart Dr, Mississauga', '{43.686321, -79.621780}', 't', 'https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'Life is too short to waste your time doing something you don''t like. Let me take care of it for you!', 't', 'car'),
+ ('Cameron', 'Rutherford', '6477665421', 'c.rutherford@email.com', 'password9', '662 King St W, Toronto','{43.644260, -79.402260}' , 't', 'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'Less is more, a simple life is a better life. I can help you find the balance you need between getting the job done and rest.', 't', 'van'),
+ ('Cristina', 'Button', '6477654321', 'c.button@email.com', 'password10', '288 Bremner Blvd, Toronto', '{43.642210, -79.386620}',  't', 'https://images.unsplash.com/photo-1595026530842-ccc7d3f71723?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'I love being in the outdoors, look at the stars, enjoy myself. If you like it as well but can''t find the time, let me help you!', 't', 'bicycle'),
+ ('Elizabeth', 'Sinatra', '4167653112', 'e.sinatra@email.com', 'password11', '789 Yonge St, Toronto','{43.671890, -79.386670 }', 't', 'https://images.unsplash.com/photo-1552101264-e35e17f3c046?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'I can make things happen and help you with any tasks you need. Give me a chance to show you what I am capable of.', 't', 'bicycle'),
+ ('Gilbert', 'Stace', '6477654321', 'g.stace@email.com', 'password12', '200 Bay St, Toronto,','{43.646301, -79.379753}', 't', 'https://images.unsplash.com/photo-1541647376583-8934aaf3448a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'Don''t be fooled by my young appearance, I have a huge set of skills available to help you. I am also reliable and friendly.', 't', 'truck'),
+ ('Mario', 'Bros', '4161234567', 'm.bros@email.com', 'password13', '40 Bay St, Toronto','{43.643452, -79.378998}', 't', 'https://images.unsplash.com/photo-1602459816722-ce53719a4987?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'I can fix and assemble almost everything. I am strong and hardworking. Count on me!', 't', 'public'),
+ ('Steven', 'Garcia', '6477654321', 's.garcia@email.com', 'password14', '60 Carl Hall Rd, North York','{43.748300, -79.476440}', 't', 'https://images.unsplash.com/photo-1553946550-4b8f3eea5451?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'Experienced in the home and commercial renovation field. I have the tools and experience for all you need.', 't', 'motorcycle'),
+ ('Antony', 'Cooper', '4162222222', 'a.cooper@email.com', 'password15', '1 Blue Jays Way, Toronto','{43.640580, -79.388920}', 't', 'https://images.unsplash.com/photo-1548535537-3cfaf1fc327c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'Need remote help? Look no further! ', 't', 'bicycle');
 
 -- new taskers (ids 16-36)
  INSERT INTO
@@ -48,3 +48,14 @@ VALUES
 ('Carmem',	'Alvarez',	'6471234585',	'c.alvarez@email.com',	'password34',	'77 Davisville Avenue, Toronto',	'{43.698450, -79.393750}', 't',	'https://images.unsplash.com/photo-1485893086445-ed75865251e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',	'I love driving and pets. Imagine driving with pets? Taking them to places they like or need to be.', 't',	'car'),
 ('James',	'Jackson',	'6471234586',	'j.jackson@email.com',	'password35',	'327 Nairn Avenue, York',	'{43.686050, -79.452200}', 't',	'https://images.unsplash.com/photo-1535162777965-1304efc8c6dc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',	'Have the best of the best helping you with anything. I am a very flexible and organized person.', 't',	'car'),
 ('Georgia',	'Blake',	'6471234587',	'g.blake@email.com',	'password36',	'19 Western Battery Road, Toronto',	'{43.639580, -79.411330}', 't',	'https://images.unsplash.com/photo-1530577197743-7adf14294584?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',	'I have a truck I can use for any kind of transportation in the safest way possible.', 't',	'truck');
+
+
+
+-- Web Development people (ids 37-39?)
+ INSERT INTO
+users(first_name, last_name, phone, email, password, address, coordinates, is_tasker, photo_url, summary, is_available, vehicle)
+VALUES
+('Danilo', 'Gondim', '6474567890', 'd.gondim@email.com', 'password37', '769 Broadview Ave, Toronto', '{43.676788, -79.358804}', 't', 'https://ca.slack-edge.com/T2G8TE2E5-U018NBHMCJE-60312ec27317-512', 'summary', 't', 'public'),
+('Ricardo', 'Barbosa', '6474567890', 'r.barbosa@email.com', 'password38', '313-317 Main St Toronto', '{43.688858, -79.302114}', 't', 'https://ca.slack-edge.com/T2G8TE2E5-U018NHKJ38B-227eadfb65fd-512', 'summary', 't', 'car'),
+('Vinay', 'Baswa', '6474567890', 'v.baswa@email.com', 'password39', 'address', '{coordinates}', 't', 'https://ca.slack-edge.com/T2G8TE2E5-U018FKEV8JJ-f07855d40eb1-512', 'summary', 't', 'bicycle');
+-- ('first_name', 'last_name', '6474567890', 'f.last_name@email.com', 'passwordXX', 'address', '{coordinates}', 't', 'photo_url', 'summary', 't', vehicle);
