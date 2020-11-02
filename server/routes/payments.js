@@ -9,7 +9,7 @@ module.exports = ({
     res.send("ITS WORKING");
   });
 
-  router.post("/payment/success", (req, res) => {
+  router.post("/success", (req, res) => {
     const { product, token } = req.body;
     console.log("PRODUCT ", product);
     console.log("PRICE ", product.price);
