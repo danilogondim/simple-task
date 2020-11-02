@@ -166,7 +166,7 @@ export default function TaskPayment() {
         <StripeCheckout
           stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}
           token={makePayment}
-          name="Buy React"
+          name="SimpleTask"
           amount={product.price * 100}
           shippingAddress
           billingAddress
