@@ -128,7 +128,7 @@ export default function TaskPayment() {
         <tr>
           <td colSpan="2" className="text-center">
             <Link to={`/tasks/${task.task_id}/payment/stripe`}>
-              <button type="button" className="btn btn-success">Proceed to Pay 💰</button>
+              <button type="button" className="btn btn-success">Proceed to Pay {'💰'}</button>
             </Link>
           </td>
         </tr>

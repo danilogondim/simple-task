@@ -1,6 +1,4 @@
 import React, { useState, createContext, useEffect } from 'react';
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,11 +6,9 @@ import {
 } from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-
 import './App.css';
 
 import Navbar               from './components/Navbar';
-import CheckoutForm         from './components/Stripe/CheckoutForm';
 import Home                 from './pages/Home';
 import About                from './pages/About';
 import Login                from './pages/Login';
@@ -30,7 +26,7 @@ import Search               from './pages/Search';
 import ChatBox              from './components/ChatBox';
 
 const AppContext = createContext();
-const stripePromise = loadStripe(`${process.env.STRIPE_PUBLISHABLE_KEY}`);
+
 
 export default function App() {
 
@@ -73,17 +69,13 @@ export default function App() {
             <Route exact path="/users">                      <Users />           </Route>
             <Route path="/users/:id">                        <User />            </Route>
             <Route exact path="/categories/:id">             <Services />        </Route>
-            <Route path="/categories/:c_id/services/:id">    <Service />        </Route>
+            <Route path="/categories/:c_id/services/:id">    <Service />         </Route>
             <Route path="/tasks/new">                        <TasksNew />        </Route>
             <Route exact path="/tasks/:id">                  <Task />            </Route>
             <Route path="/tasks/:id/complete">               <TaskComplete />    </Route>
             <Route exact path="/tasks/:id/payment">          <TaskPayment />     </Route>
-            <Route path="/tasks/:id/payment/stripe">
-              <Elements stripe={stripePromise}>
-                <CheckoutForm />
-              </Elements>
-            </Route>
-            <Route path="/tasks/:id/payment/success">         <PaymentSuccess /> </Route>
+            {/* <Route path="/tasks/:id/payment/stripe">         <Layout />          </Route> */}
+            <Route path="/tasks/:id/payment/success">        <PaymentSuccess />  </Route>
             <Route path="/search">                           <Search />          </Route>
           </Switch>
         </div>
