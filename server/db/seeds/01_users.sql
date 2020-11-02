@@ -51,11 +51,16 @@ VALUES
 
 
 
--- Web Development people (ids 37-39?)
+-- Web Development people (ids 37-40?)
  INSERT INTO
 users(first_name, last_name, phone, email, password, address, coordinates, is_tasker, photo_url, summary, is_available, vehicle)
 VALUES
+-- 37
 ('Danilo', 'Gondim', '6474567890', 'd.gondim@email.com', 'password37', '769 Broadview Ave, Toronto', '{43.676788, -79.358804}', 't', 'https://ca.slack-edge.com/T2G8TE2E5-U018NBHMCJE-60312ec27317-512', 'I consider myself a hardworking professional that is moved by results. I am reliable and have strong analytical skills.', 't', 'public'),
+-- 38
 ('Ricardo', 'Barbosa', '6474567890', 'r.barbosa@email.com', 'password38', '313-317 Main St Toronto', '{43.688858, -79.302114}', 't', 'https://ca.slack-edge.com/T2G8TE2E5-U018NHKJ38B-227eadfb65fd-512', 'summary', 't', 'car'),
-('Vinay', 'Baswa', '6474567890', 'v.baswa@email.com', 'password39', 'address', '{43.676788, -79.358804}', 't', 'https://ca.slack-edge.com/T2G8TE2E5-U018FKEV8JJ-f07855d40eb1-512', 'summary', 't', 'bicycle');
--- ('first_name', 'last_name', '6474567890', 'f.last_name@email.com', 'passwordXX', 'address', '{coordinates}', 't', 'photo_url', 'summary', 't', vehicle);
+-- 39
+('Vinay', 'Baswa', '6474567890', 'v.baswa@email.com', 'password39', 'address', '{43.676788, -79.358804}', 't', 'https://ca.slack-edge.com/T2G8TE2E5-U018FKEV8JJ-f07855d40eb1-512', 'summary', 't', 'bicycle'),
+-- 40
+('Fatima', 'Nguyen', '6474567890', 'f.nguyen@email.com', 'password40', '8450 Boul. Saint-Michel, Montreal', '{45.566289, -73.615824}', 't', 'https://ca.slack-edge.com/T2G8TE2E5-U019C6U5BBJ-793060db46f8-512', 'Junior full stack developer. I can build your front-end on React. I have a keen interest in simple and minimalistic looking interfaces.', 't', 'car');
+-- ('first_name', 'last_name', '6474567890', 'f.last_name@email.com', 'passwordXX', 'address', '{coordinates}', 't', 'photo_url', 'summary', 't', 'vehicle');

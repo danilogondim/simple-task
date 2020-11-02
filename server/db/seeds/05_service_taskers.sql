@@ -81,5 +81,6 @@ service_taskers(service_id, tasker_id, hourly_rate)
 VALUES
  (23, 37, 2300),
  (23, 38, 2300),
- (23, 39, 2300);
+ (23, 39, 2300),
+ (23, 40, 2300);
 --  (23, tasker_id, hourly_rate),

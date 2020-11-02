@@ -36,3 +36,18 @@ VALUES
 (17,5,11, 'Burger king pick-up', 2, '2020-10-22 09:00:00', '100 Queen St W, Toronto', '100 Queen St W, Toronto', '09:00:00', '09:45:00', 1, 10),
 (18,5,11, 'Pizza Hut pick-up', 2, '2020-10-23 09:00:00', '1 Austin Terrace, Toronto', '1 Austin Terrace, Toronto', '09:00:00', '11:00:00', 2, 10),
 (19,5,11, 'Dominos Hut pick-up', 2, '2020-10-24 09:00:00', '1 Dundas St E, Toronto', '1 Dundas St E, Toronto', '09:00:00', '11:00:00', 3, 10);
+
+
+
+
+-- Web Dev tasks (id 20+, following number)
+-- taskers starting at 37
+INSERT INTO
+tasks(number, category_id, service_id, user_id, tasker_id, description, estimated_duration, start_time, start_location, end_location, started_at, completed_at)
+VALUES
+(20, 9, 23, 1, 37, '', 2, '2020-10-22 09:00:00', '', '', '09:00:00', '11:00:00'),
+(21, 9, 23, 2, 38, '', 2, '2020-10-22 09:00:00', '', '', '09:00:00', '11:00:00'),
+(22, 9, 23, 3, 39, '', 2, '2020-10-22 09:00:00', '', '', '09:00:00', '11:00:00'),
+(23, 9, 23, 4, 40, '', 2, '2020-10-22 09:00:00', '', '', '09:00:00', '11:00:00');
+
+-- (sequence(task_id), 9, 23, range 1-6, sequence(tasker_id), 'task description', 2, '2020-10-22 09:00:00', '', '', '09:00:00', '11:00:00'),
