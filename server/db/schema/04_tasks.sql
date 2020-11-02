@@ -16,6 +16,7 @@ CREATE TABLE tasks (
   cancelled_at TIMESTAMP,
   started_at TIME,
   completed_at TIME,
+  payment_received INTEGER,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   tasker_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   -- both id and number should be unique and not null, the idea is that both together make a unique id to be use in our routes. Number should be a hash starting with a letter

@@ -1,6 +1,8 @@
-const express = require('express');
-const router = express.Router();
-const jwt = require('jsonwebtoken');
+const express       = require('express');
+const router        = express.Router();
+const jwt           = require('jsonwebtoken');
+const stripe        = require("stripe")(process.env.REACT_APP_STRIPE_SECRET_KEY);
+const uuid          = require("uuid");
 
 
 module.exports = ({
@@ -69,6 +71,56 @@ module.exports = ({
             id,
             started_at,
             completed_at
+          })
+        }
+      )
+      .then(updatedTask => res.json(updatedTask))
+      .catch(err => res.json({
+        error: err.message
+      }));
+  });
+
+  router.post("/:id/payment", (req, res) => {
+    const {
+      product,
+      token
+    } = req.body;
+
+    const { id } = req.params;
+    const idempontencyKey = uuid();
+
+    console.log("PRODUCT", product);
+    console.log("PRICE ", product.price);
+
+    return stripe.customers
+      .create({
+        email: token.email,
+        source: token.id
+      })
+      .then(customer => {
+        stripe.charges.create(
+          {
+            amount: product.price * 100,
+            currency: "usd",
+            customer: customer.id,
+            receipt_email: token.email,
+            description: `purchase of ${product.name}`,
+            shipping: {
+              name: token.card.name,
+              address: {
+              country: token.card.address_country
+              }
+            }
+          },
+          { idempontencyKey }
+        );
+      })
+      .then(result => res.status(200).json(result))
+      .then(getTaskById(id))
+      .then(() => {
+          return updateTask({
+            id,
+            payment_received
           })
         }
       )

@@ -335,8 +335,8 @@ module.exports = (db) => {
   const updateTask = taskObject => {
     if (taskObject.id && Object.keys(taskObject).length > 1) {
       // we can add more fields to update database
-      const taskFields = ['started_at', 'completed_at'];
-
+      const taskFields = ['started_at', 'completed_at', 'payment_received'];
+      
       // the sql query and the values array should be build dynamically
       let text = `UPDATE tasks \nSET `;
       const values = [taskObject.id];

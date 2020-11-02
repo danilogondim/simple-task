@@ -1,6 +1,8 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import { Jumbotron, Container} from 'react-bootstrap';
+import StripeCheckout from "react-stripe-checkout";
+import axios from 'axios'
+
 import useTaskPaymentData from '../hooks/useTaskPaymentData';
 import "./Home.scss";
 import "./TaskPayment.scss";
@@ -9,11 +11,59 @@ export default function TaskPayment() {
   const { state } = useTaskPaymentData();
   const task = state.taskPayment;
   const rate = (task.hourly_rate/100).toFixed(2);
-  const hourlyTotal = (rate * task.total_time);
+  const hourlyTotal = (rate * task.total_time).toFixed(2);
   const serviceCharge = (hourlyTotal * 0.10).toFixed(2);
   // const tax = ((hourlyTotal + serviceCharge) * 0.13).toFixed(2); // => NaN I dont know why this does not work
-  const tax = (((hourlyTotal) + (hourlyTotal) * 0.10) * 0.13).toFixed(2);
+  const tax = ((hourlyTotal * 1.10) * 0.13).toFixed(2);
   const grandTotal = ((rate * task.total_time) * 1.23).toFixed(2);
+
+  const start = !task.start_time ? "" : task.start_time.split(':');
+  const end = !task.end_time ? "" : task.end_time.split(':');
+
+  const hours = !start || !end ? "" : Number((end[0] - start[0]).toFixed(0));
+  const minutes = !start  || !end ? "" : Number((((end[1] - start[1])) / 60).toFixed(2));
+
+  const timeTotal = end && start && hours + minutes;
+
+  const product = {
+    id: task.task_id,
+    price: grandTotal,
+    productBy: "SimpleTask"
+  };
+
+  const makePayment = token => {
+    const body = {
+      token,
+      product,
+      id: task.task_id,
+      payment_received: grandTotal
+    };
+    const headers = {
+      "Content-Type": "application/json"
+    };
+
+    axios
+      .post(`/api/tasks/${task.task_id}/payment`, headers, body)
+      .then(res => {
+        console.log("RESPONSE ", res);
+        const { status } = res;
+        console.log("STATUS ", status);
+      })
+      .catch(err => console.log(err));
+
+    // return fetch(`http://localhost:3001/api/payments/success`, {
+    //   method: "POST",
+    //   headers,
+    //   body: JSON.stringify(body)
+    // })
+    //   .then(response => {
+    //     console.log("RESPONSE ", response);
+    //     const { status } = response;
+    //     console.log("STATUS ", status);
+    //   })
+    //   .catch(error => console.log(error));
+  };
+
 
   return (
     <div className="App">
@@ -23,7 +73,7 @@ export default function TaskPayment() {
     </Jumbotron>
     <div className="payment table-responsive">
     <table className="table">
-      <thead className="thead-dark">
+      <thead className="thead">
         <tr>
           <th colSpan="2" scope="col">Task Info</th>
         </tr>
@@ -55,13 +105,43 @@ export default function TaskPayment() {
         </tr>
         <tr>
           <td>Total Time</td>
-          <td className="text-right">{task.total_time} Hours</td>
+          {!timeTotal ?
+            (<td className="text-right">{"🦆"}</td>) : null
+          }
+
+          {timeTotal  && timeTotal > 0 && timeTotal < 1 ?
+            (<td className="text-right total">{(timeTotal * 60).toFixed(0)} Minutes</td>) : null
+          }
+
+          {timeTotal && timeTotal === 1 ?
+            (<td className="text-right total">{timeTotal} Hour</td>) : null
+          }
+
+          {timeTotal && timeTotal > 1 && timeTotal < 2 && minutes < 0 ?
+            (<td className="text-right total">{hours - 1} Hour {(60 + (minutes * 60)).toFixed(0)} Minutes</td>) : null
+          }
+
+          {timeTotal && timeTotal > 1 && timeTotal < 2 && minutes > 0 ?
+            (<td className="text-right total">{hours} Hour {(minutes * 60).toFixed(0)} Minutes</td>) : null
+          }
+
+          {timeTotal && timeTotal >= 2 && minutes === 0 ?
+            (<td className="text-right total">{hours} Hours</td>) : null
+          }
+
+          {timeTotal && timeTotal >= 2 && minutes < 0 ?
+            (<td className="text-right total">{hours - 1} Hours {(60 + (minutes * 60)).toFixed(0)} Minutes</td>) : null
+          }
+
+          {timeTotal && timeTotal >= 2 && minutes > 0 ?
+            (<td className="text-right total">{hours} Hours {(minutes * 60).toFixed(0)} Minutes</td>) : null
+          }
         </tr>
       </tbody>
     </table>
 
-    <table className="payment.table table ">
-      <thead className="thead-dark">
+    <table className="table">
+      <thead className="thead">
         <tr>
           <th colSpan="2" scope="col">Payment Info</th>
         </tr>
@@ -85,16 +165,20 @@ export default function TaskPayment() {
         </tr>
         <tr>
           <td>Total Price</td>
-          <td className="text-right">${grandTotal}</td>
-        </tr>
-        <tr>
-          <td colSpan="2" className="text-center">Proceed to Pay</td>
+          <td className="text-right total">${grandTotal}</td>
         </tr>
         <tr>
           <td colSpan="2" className="text-center">
-            <Link to={`/tasks/${task.task_id}/payment/stripe`}>
-              <button type="button" className="btn btn-success">Submit</button>
-            </Link>
+            <StripeCheckout
+              stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}
+              token={makePayment}
+              name="Buy React"
+              amount={product.price * 100}
+              shippingAddress
+              billingAddress
+            >
+            <button type="button" className="btn btn-success">Proceed to Pay {'💰'} {grandTotal}</button>
+            </StripeCheckout>
           </td>
         </tr>
       </tbody>

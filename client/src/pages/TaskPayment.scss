@@ -1,13 +1,39 @@
-.table {
-  max-width: 600px;
-  margin-bottom: 50px;
-  border: solid;
-  border-color: rgb(83, 83, 83);
-};
+// .banner {
+//   max-width: 1000px;
+// }
 
 .payment {
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-evenly;
+
+  .table {
+    max-width: 600px;
+    margin-bottom: 50px;
+    border: solid;
+    border-color: #68b0ab;
+
+    .thead {
+      background-color: #68b0ab;
+      color: #006a71;
+    }
+
+    .btn {
+      background-color: #68b0ab;
+      color: aliceblue;
+      min-width: 150px;
+      font-weight: 700;
+    }
+
+    .total {
+      color: #006a71;
+      font-weight: 700;
+    }
+  };
 };
+
+.btn:hover {
+  color: #ff7e67 !important;
+  box-shadow: 0 0 11px #006a71;
+}
