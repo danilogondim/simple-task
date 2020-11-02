@@ -4,7 +4,7 @@ const path                  = require('path');
 const cookieParser          = require('cookie-parser');
 const logger                = require('morgan');
 const cors                  = require('cors');
-// const stripe                = require("stripe")("");
+const stripe                = require("stripe")(process.env.REACT_APP_STRIPE_SECRET_KEY);
 const uuid                  = require("uuid");
 
 const db                    = require('./db');

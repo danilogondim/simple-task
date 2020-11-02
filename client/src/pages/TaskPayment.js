@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import { Jumbotron, Container} from 'react-bootstrap';
+import StripeCheckout from "react-stripe-checkout";
+
 import useTaskPaymentData from '../hooks/useTaskPaymentData';
 import "./Home.scss";
 import "./TaskPayment.scss";
