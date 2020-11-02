@@ -14,6 +14,9 @@ form {
 
 body {
   background-color: #ecf4f3;
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 2.5rem;
 }
 
 label,
@@ -78,5 +81,5 @@ button:hover {
 
 .Become_tasker {
   text-align: center;
-  margin: 0 auto;
+  margin: 2em;
 }
