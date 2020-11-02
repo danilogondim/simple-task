@@ -3,17 +3,13 @@ import './TaskerDetail.scss';
 import { Rating } from '@material-ui/lab';
 import { AirportShuttle, LocalShipping, DriveEta, DirectionsBike, SportsMotorsports, DirectionsTransit } from '@material-ui/icons';
 import { useParams, useHistory } from "react-router-dom";
+import axios from 'axios';
 
 
 export default function TaskerDetail(props) {
   const {
-    // id,
     first_name,
     last_name,
-    // phone,
-    // address,
-    // coordinates,
-    // email,
     photo_url,
     summary,
     vehicle,
@@ -22,6 +18,7 @@ export default function TaskerDetail(props) {
     reviews
   } = props.tasker;
   const { id } = useParams();
+  const user = JSON.parse(localStorage.getItem('user'));
 
   // define review to be shown
   // if there is a review related to the current service, just take the first review (it will be the longest one between the last three most positive reviews)
@@ -35,6 +32,24 @@ export default function TaskerDetail(props) {
     localStorage.setItem("tasker", JSON.stringify(props.tasker));
     localStorage.setItem("day", props.day);
     history.push("/tasks/new");
+  }
+
+  const handleNewChat = () => {
+    if (user) {
+      const newMessage = {
+        message: "Ok", sender_id: user.id, receiver_id: props.tasker.id, sent_at: new Date().toLocaleString()
+      }
+      // socket.send(JSON.stringify({ type: "chat-message", message: newMessage }));
+      axios
+        .post('/api/chats/', newMessage)
+        .then(res => console.log(res))
+        .catch(err => {
+          console.log(err.message);
+        });
+
+    }
+
+
   }
 
 
@@ -103,7 +118,7 @@ export default function TaskerDetail(props) {
             }
           </div>
           <footer>
-            <button>Chat now!</button>
+            <button onClick={handleNewChat}>Chat now!</button>
             <button onClick={handleBookingClick}>Book now!</button>
           </footer>
         </div>

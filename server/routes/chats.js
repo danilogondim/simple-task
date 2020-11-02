@@ -11,7 +11,7 @@ module.exports = ({
 
     const participant_1 = sender_id < receiver_id ? sender_id : receiver_id;
     const participant_2 = sender_id < receiver_id ? receiver_id : sender_id;
-    const messageObj = JSON.stringify({ sender_id, sent_at, message })
+    const messageObj = { sender_id, sent_at, message };
 
     addMessage(messageObj, participant_1, participant_2)
       .then((message) => {

@@ -300,25 +300,43 @@ module.exports = (db) => {
   }
 
   const addMessage = (message, participant_1, participant_2) => {
-    const query = {
-      text: `
-      UPDATE chat_messages
-      SET messages = messages || $1::jsonb
-      WHERE participant_1 = $2 and participant_2 = $3
-      RETURNING *
-    `,
-      values: [message, participant_1, participant_2]
-    };
-    return db
-      .query(query)
-      .then(result => result.rows[0])
-      .catch((err) => err);
+    return getChatsByUser(participant_1)
+      .then(res => {
+        let values;
+        let text;
+        const chat = res.find(chat => chat.contact_id === participant_2)
+        if (chat) {
+          text = `
+            UPDATE chat_messages
+            SET messages = messages || $1::jsonb
+            WHERE participant_1 = $2 and participant_2 = $3
+            RETURNING *
+          `;
+          values = [JSON.stringify(message), participant_1, participant_2]
+        } else {
+          text = `
+            INSERT INTO
+            chat_messages(messages, participant_1, participant_2)
+            VALUES
+            ($1, $2, $3)
+            RETURNING *
+          `;
+          values = [JSON.stringify([message]), participant_1, participant_2]
+
+        }
+        return db
+          .query(text, values)
+          .then(result => result.rows[0])
+          .catch((err) => err);
+      })
   }
+
+
   const updateTask = taskObject => {
     if (taskObject.id && Object.keys(taskObject).length > 1) {
       // we can add more fields to update database
       const taskFields = ['started_at', 'completed_at'];
-      
+
       // the sql query and the values array should be build dynamically
       let text = `UPDATE tasks \nSET `;
       const values = [taskObject.id];
@@ -338,7 +356,8 @@ module.exports = (db) => {
           throw 'The task id does not exist';
         })
         .catch(err => {
-          return err});
+          return err
+        });
     }
 
     throw 'It seems that the task id is missing or there are no fields to update';
