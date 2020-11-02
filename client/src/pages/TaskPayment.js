@@ -158,29 +158,23 @@ export default function TaskPayment() {
         </tr>
         <tr>
           <td colSpan="2" className="text-center">
-            <Link to={`/tasks/${task.task_id}/payment/stripe`}>
-              <button type="button" className="btn btn-success">Proceed to Pay {'💰'}</button>
-            </Link>
+            <StripeCheckout
+              stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}
+              token={makePayment}
+              name="Buy React"
+              amount={product.price * 100}
+              shippingAddress
+              billingAddress
+            >
+            <button type="button" className="btn btn-success">Proceed to Pay {'💰'}</button>
+            </StripeCheckout>
           </td>
         </tr>
       </tbody>
     </table>
     </div>
 
-    <header className="App-header">
-        <StripeCheckout
-          stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}
-          token={makePayment}
-          name="Buy React"
-          amount={product.price * 100}
-          shippingAddress
-          billingAddress
-        >
-          <button className="btn-large blue">
-            Buy react is just {product.price} $
-          </button>
-        </StripeCheckout>
-    </header>
+
 
     </Container>
     </div >
