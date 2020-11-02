@@ -40,7 +40,7 @@ export default function TaskPayment() {
       "Content-Type": "application/json"
     };
 
-    return fetch(`http://localhost:3001/payment`, {
+    return fetch(`http://localhost:3001/payments`, {
       method: "POST",
       headers,
       body: JSON.stringify(body)
