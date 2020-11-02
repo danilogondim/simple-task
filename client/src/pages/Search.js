@@ -5,6 +5,7 @@ import useCategories from '../hooks/useCategories.js'
 import Dropbox from '../components/Dropbox.js'
 import { useHistory } from "react-router-dom";
 import "./Search.scss"
+import { Jumbotron, Container} from 'react-bootstrap'
 
 export default function Search() {
 
@@ -42,8 +43,11 @@ export default function Search() {
 
   return (  
     <>
-      
-      <h1>Find your Tasker</h1>
+
+      <Container className="p-3">
+      <Jumbotron className=" p-3 mb-2 jumbotron">      
+      <h1 className="header">Find your Tasker</h1>
+      </Jumbotron>
 
       <div className="Conditional_button">
 
@@ -82,6 +86,7 @@ export default function Search() {
           />
         </div>
       }
+      </Container>
     </>
   )
 }

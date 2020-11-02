@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import { AppContext } from "../App.js"
+import { Jumbotron, Container} from 'react-bootstrap'
 
 
 
@@ -44,8 +45,10 @@ export default function Registration() {
 
   return (
     <div>
-      <h1>Registration</h1>  
-      <hr />
+      <Container className="p-3">
+      <Jumbotron className=" p-3 mb-2 jumbotron">
+      <h1 className="header">Registration</h1>  
+      </Jumbotron>
         <form className='Registration-form' onSubmit={handleSubmit(onSubmit)}>
           
           <label>First Name:</label>
@@ -91,9 +94,11 @@ export default function Registration() {
           <label>Photo:</label>
           <input type="text" name="photo_url" ref={register({ required: false})}  />
 
-          <input type="submit" name="submit_register" className="LoginRegister_btn"/>
+          <button type="submit" name="submit_register" className="LoginRegister_btn"> Submit</button>
+          
         </form>
       <p className='Become_tasker'>*Are you looking to become a tasker? Make an account as an user and upgrade it for free after.</p>
+      </Container>
     </div>
   );
 }

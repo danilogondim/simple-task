@@ -50,9 +50,9 @@ input.error {
 
 button {
   padding: 10px 15px;
-  background-color: rgb(70, 153, 179);
+  background-color: #006a71;
   color: white;
-  border: 1px solid rgb(70, 153, 179);
+  border: 1px solid #006a71;
   transition: ease-in-out background-color 250ms, ease-in-out color 250ms;
 }
 
@@ -67,9 +67,9 @@ button:hover {
   margin-top: 1em;
   width: 100%;
   padding: 10px 15px;
-  background-color: rgb(70, 153, 179);
+  background-color:  #006a71;
   color: white;
-  border: 1px solid rgb(70, 153, 179);
+  border: 1px solid  #006a71;
   transition: ease-in-out background-color 250ms, ease-in-out color 250ms;
 }
 
@@ -82,4 +82,17 @@ button:hover {
 .Become_tasker {
   text-align: center;
   margin: 2em;
+  color: #006a71;
 }
+
+.Registration-form {
+  margin-top: 2em;
+}
+
+.Registration-form label{
+  color: #ff7e67;
+};
+
+.Registration-form input{
+  color: #006a71;
+};
