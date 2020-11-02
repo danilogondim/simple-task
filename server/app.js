@@ -4,6 +4,8 @@ const path                  = require('path');
 const cookieParser          = require('cookie-parser');
 const logger                = require('morgan');
 const cors                  = require('cors');
+const stripe                = require("stripe")("LEARNCODEONLINE");
+const uuid                  = require("uuid");
 
 const db                    = require('./db');
 const dbHelpers             = require('./models')(db);
