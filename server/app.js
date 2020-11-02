@@ -4,8 +4,6 @@ const path                  = require('path');
 const cookieParser          = require('cookie-parser');
 const logger                = require('morgan');
 const cors                  = require('cors');
-const stripe                = require("stripe")(process.env.REACT_APP_STRIPE_SECRET_KEY);
-const uuid                  = require("uuid");
 
 const db                    = require('./db');
 const dbHelpers             = require('./models')(db);
@@ -16,7 +14,7 @@ const servicesRouter        = require('./routes/services');
 const categoriesRouter      = require('./routes/categories');
 const tasksRouter           = require('./routes/tasks');
 const chatsRouter           = require('./routes/chats');
-const paymentsRouter        = require('./routes/payments')
+// const paymentsRouter        = require('./routes/payments')
 
 const app = express();
 
@@ -37,7 +35,7 @@ app.use('/api/services', servicesRouter(dbHelpers));
 app.use('/api/categories', categoriesRouter(dbHelpers));
 app.use('/api/tasks', tasksRouter(dbHelpers));
 app.use('/api/chats', chatsRouter(dbHelpers));
-app.use('/api/payments', paymentsRouter(dbHelpers));
+// app.use('/api/payments', paymentsRouter(dbHelpers));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

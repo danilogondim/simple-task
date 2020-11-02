@@ -1,7 +1,7 @@
 import React from 'react';
 import { Jumbotron, Container} from 'react-bootstrap';
 import StripeCheckout from "react-stripe-checkout";
-// import axios from 'axios'
+import axios from 'axios'
 
 import useTaskPaymentData from '../hooks/useTaskPaymentData';
 import "./Home.scss";
@@ -26,7 +26,7 @@ export default function TaskPayment() {
   const timeTotal = end && start && hours + minutes;
 
   const product = {
-    taskId: task.task_id,
+    id: task.task_id,
     price: grandTotal,
     productBy: "SimpleTask"
   };
@@ -34,23 +34,34 @@ export default function TaskPayment() {
   const makePayment = token => {
     const body = {
       token,
-      product
+      product,
+      id: task.task_id,
+      payment_received: grandTotal
     };
     const headers = {
       "Content-Type": "application/json"
     };
 
-    return fetch(`http://localhost:3001/api/payments/success`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        console.log("RESPONSE ", response);
-        const { status } = response;
+    axios
+      .post(`/api/tasks/${task.task_id}/payment`, headers, body)
+      .then(res => {
+        console.log("RESPONSE ", res);
+        const { status } = res;
         console.log("STATUS ", status);
       })
-      .catch(error => console.log(error));
+      .catch(err => console.log(err));
+
+    // return fetch(`http://localhost:3001/api/payments/success`, {
+    //   method: "POST",
+    //   headers,
+    //   body: JSON.stringify(body)
+    // })
+    //   .then(response => {
+    //     console.log("RESPONSE ", response);
+    //     const { status } = response;
+    //     console.log("STATUS ", status);
+    //   })
+    //   .catch(error => console.log(error));
   };
 
 
@@ -173,11 +184,7 @@ export default function TaskPayment() {
       </tbody>
     </table>
     </div>
-
-
-
     </Container>
     </div >
-    
   );
 }
