@@ -48,6 +48,9 @@ main.detail_page{
   position: absolute;
   margin: 0;
   padding: 0;
+  .MuiSvgIcon-root{
+    color: white;
+  }
 }
 :hover.toggle-filter {
   margin: 0;
