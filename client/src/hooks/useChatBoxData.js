@@ -15,6 +15,8 @@ const useChatBoxData = (props) => {
   const [newMessage, setNewMessage] = useState(false);
   // check if there is an axios request to be done
   const [pending, setPending] = useState(true);
+  // check if there is an axios request to be done
+  const [onlineClients, setOnlineClients] = useState([]);
 
 
   const id = !user ? '' : user.id;
@@ -47,8 +49,7 @@ const useChatBoxData = (props) => {
   if (socket) {
     socket.onmessage = event => {
       const data = JSON.parse(event.data);
-      const { type, sender_id, receiver_id } = data;
-      console.log(data)
+      const { type, sender_id, receiver_id, clients } = data;
       if (type === "new-message") {
         setNewMessage(true);
         setActive(true);
@@ -58,6 +59,12 @@ const useChatBoxData = (props) => {
         if (receiver_id) {
           dispatch({ type: SET_CONTACT, contact: receiver_id })
         }
+      }
+      if (type === "new-connection") {
+        setOnlineClients(clients);
+      }
+      if (type === "new-disconnection") {
+        setOnlineClients(clients);
       }
     };
   }
@@ -84,7 +91,7 @@ const useChatBoxData = (props) => {
     }
   }
 
-  return { state, dispatch, onSubmit, active, error, setActive, user, register, handleSubmit, chat };
+  return { state, dispatch, onSubmit, active, error, setActive, user, register, handleSubmit, chat, onlineClients };
 };
 
 export default useChatBoxData;

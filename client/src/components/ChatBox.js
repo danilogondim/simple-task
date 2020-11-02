@@ -20,7 +20,8 @@ export default function ChatBox(props) {
     user,
     register,
     handleSubmit,
-    chat } = useChatBoxData(props);
+    chat,
+    onlineClients } = useChatBoxData(props);
 
 
   const currentChat = !state.contact ? "" : state.chats.find(contact => contact.contact_id === state.contact);
@@ -28,14 +29,13 @@ export default function ChatBox(props) {
   if (currentChat) {
     contactName = currentChat.contact_name;
   }
-  console.log(state.chats)
   return (
 
     <>
       {user && active &&
         <section className="chat-box">
           <div className="contact-list">
-            <ContactList chats={state.chats} dispatch={dispatch} contact={state.contact} />
+            <ContactList chats={state.chats} clients={onlineClients} dispatch={dispatch} contact={state.contact} />
           </div>
           {!state.contact &&
             <p className="no-selected-contact">Please select a contact to start chatting</p>
