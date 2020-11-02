@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 
 import Navbar               from './components/Navbar';
+import Footer               from './components/Footer';
 import CheckoutForm         from './components/Stripe/CheckoutForm';
 import Home                 from './pages/Home';
 import About                from './pages/About';
@@ -86,6 +87,7 @@ export default function App() {
             <Route path="/tasks/:id/payment/success">         <PaymentSuccess /> </Route>
             <Route path="/search">                           <Search />          </Route>
           </Switch>
+          <Footer />
         </div>
       </Router>
     </AppContext.Provider>

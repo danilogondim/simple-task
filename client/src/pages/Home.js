@@ -4,6 +4,7 @@ import { Jumbotron, Container, Card } from 'react-bootstrap'
 import useCategories from '../hooks/useCategories.js'
 import "./Home.scss";
 
+
 export default function Home() {
   const { state } = useCategories();
   const renderCard = ((card) => {

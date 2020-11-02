@@ -1,1 +1,23 @@
 .leaflet-container {  width: 100vw;  height: 100vh; }
+
+.Conditional_button {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.Conditional_button button {
+  margin-top: 1em;
+  width: 20%;
+}
+
+.Dropxbox-search {
+  display: flex;
+  justify-content: center;
+}
+
+.Conditional_button select {
+  padding: 0.5em;
+  margin-bottom: .5em;
+  width: 40%;
+  margin-top: .5em
+}

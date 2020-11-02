@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import { AppContext } from "../App.js"
+import { Jumbotron, Container} from 'react-bootstrap'
 
 
 export default function Login() {
@@ -70,9 +71,13 @@ export default function Login() {
 
   return (
     <div>
-      <h1>Login</h1>
+      <Container className="p-3">
+      <Jumbotron className=" p-3 mb-2 jumbotron">
+      <h1 className="header">Login</h1>
+      </Jumbotron>
+      
 
-      <form className='Login-form' onSubmit={handleSubmit(onSubmit)}>
+      <form className='Registration-form' onSubmit={handleSubmit(onSubmit)}>
 
         <label htmlFor="email">Email: </label>
         <input name="email" type="text" placeholder="Enter your email"
@@ -87,6 +92,7 @@ export default function Login() {
         <p>{message}</p>
 
          <button 
+         className="LoginRegister_btn"
          type="submit"
          >
            Login
@@ -94,7 +100,7 @@ export default function Login() {
 
       </form>
 
-
+    </Container>
      </div>
   );
 }
