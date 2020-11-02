@@ -25,6 +25,7 @@ const useChatBoxData = (props) => {
   });
 
   useEffect(() => {
+    // make sure that when a user logout, the chat will be hidden and the previous selected contact will be reset
     if (!id) {
       setActive(false);
       dispatch({ type: SET_CONTACT, contact: null })

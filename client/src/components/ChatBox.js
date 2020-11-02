@@ -21,11 +21,9 @@ export default function ChatBox(props) {
     register,
     handleSubmit,
     chat } = useChatBoxData(props);
-  const currentChat = !state.contact ? "" : state.chats.find(contact => contact.contact_id === state.contact);
-  let contactName;
-  if (currentChat) {
-    contactName = currentChat.contact_name;
-  }
+
+  const contactName = !state.contact ? "" : state.chats.find(contact => contact.contact_id === state.contact).contact_name;
+
   return (
 
     <>
@@ -51,7 +49,7 @@ export default function ChatBox(props) {
           <button className="toggle-chat" onClick={() => {
             dispatch({ type: SET_CONTACT, contact: null })
             setActive(false)
-            }}>Exit</button>
+          }}>Exit</button>
         </section>
       }
       {!active && user && <button className="toggle-chat" onClick={() => setActive(true)}>Chat</button>}
