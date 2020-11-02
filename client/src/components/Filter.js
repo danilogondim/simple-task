@@ -66,12 +66,12 @@ export default function Filter(props) {
   };
 
   return (
-    <section className="filter">
+    <>
       <div>
         <h4>Would you like to search by location?</h4>
         <h4>Try our <Link to='/search'>map search</Link>.</h4>
       </div>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <MuiPickersUtilsProvider utils={DateFnsUtils} className="date-picker">
         <Grid container justify="space-around">
           <KeyboardDatePicker
             disableToolbar
@@ -147,6 +147,6 @@ export default function Filter(props) {
 
 
 
-    </section>
+    </>
   )
 };

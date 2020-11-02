@@ -1,7 +1,9 @@
 .filter {
-  width: 400px;
   display: flex;
   flex-direction: column;
+  text-align: justify;
+  color: #006a71;
+
   
   > div{
     padding: 0rem 0 3rem;
@@ -9,6 +11,9 @@
 
   .time{
     width: 300px;
+    p{
+      margin: 0;
+    }
   }
   .input {
     width: 42px;

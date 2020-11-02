@@ -17,6 +17,12 @@
   .sort{
     margin-left: auto;
     display: flex;
+    align-items: center;
+    color: #006a71;
+    > button {
+      margin-left: 1rem;
+      width: 80px;
+    }
   }
   .taskers__header {
     color: #68b0ab;
