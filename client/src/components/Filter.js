@@ -69,7 +69,7 @@ export default function Filter(props) {
     <>
       <div>
         <h4>Would you like to search by location?</h4>
-        <h4>Try our <Link to='/search'>map search</Link>.</h4>
+        <h5>Try our <Link to='/search'>map search</Link>.</h5>
       </div>
       <MuiPickersUtilsProvider utils={DateFnsUtils} className="date-picker">
         <Grid container justify="space-around">
