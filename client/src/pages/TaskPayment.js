@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Jumbotron, Container} from 'react-bootstrap';
 import StripeCheckout from "react-stripe-checkout";
 import axios from 'axios'
@@ -9,6 +9,8 @@ import "./TaskPayment.scss";
 
 export default function TaskPayment() {
   const { state } = useTaskPaymentData();
+  const [complete, setComplete] = useState()
+
   const task = state.taskPayment;
   const rate = (task.hourly_rate/100).toFixed(2);
   const hourlyTotal = (rate * task.total_time).toFixed(2);
@@ -24,6 +26,8 @@ export default function TaskPayment() {
   const minutes = !start  || !end ? "" : Number((((end[1] - start[1])) / 60).toFixed(2));
 
   const timeTotal = end && start && hours + minutes;
+
+  const onSubmit = () => setComplete(true)
 
   const product = {
     id: task.task_id,
@@ -155,22 +159,25 @@ export default function TaskPayment() {
           <td>Total Price</td>
           <td className="text-right total">${grandTotal}</td>
         </tr>
-        <tr>
-          <td colSpan="2" className="text-center">
-            <StripeCheckout
-              stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}
-              token={makePayment}
-              name="Buy React"
-              amount={product.price * 100}
-              shippingAddress
-              billingAddress
-            >
-            <button type="button" className="btn btn-success">Proceed to Pay {'💰'} {grandTotal}</button>
-            </StripeCheckout>
-          </td>
-        </tr>
       </tbody>
     </table>
+    <div className='status'>
+      { !complete && 
+        <StripeCheckout
+          stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}
+          token={makePayment}
+          name="Buy React"
+          amount={product.price * 100}
+          shippingAddress
+          billingAddress
+        >
+          <button type="button" onClick={onSubmit} className="btn btn-success">Proceed to Pay {'💰'} {grandTotal}</button>
+        </StripeCheckout>
+      }
+      {complete &&
+        <button type="submit" onClick={() =>  window.location.href='/'} className="btn btn-info">Home</button>
+      }
+    </div>
     </div>
     </Container>
     </div >
