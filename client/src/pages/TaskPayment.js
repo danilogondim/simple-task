@@ -50,18 +50,6 @@ export default function TaskPayment() {
         console.log("STATUS ", status);
       })
       .catch(err => console.log(err));
-
-    // return fetch(`http://localhost:3001/api/payments/success`, {
-    //   method: "POST",
-    //   headers,
-    //   body: JSON.stringify(body)
-    // })
-    //   .then(response => {
-    //     console.log("RESPONSE ", response);
-    //     const { status } = response;
-    //     console.log("STATUS ", status);
-    //   })
-    //   .catch(error => console.log(error));
   };
 
 
