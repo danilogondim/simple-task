@@ -1,8 +1,9 @@
-import React, {useContext} from 'react';
-import {Link} from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 //import NavButton from './NavButton';
 import { useHistory } from "react-router-dom";
 import { AppContext } from "../App.js"
+import Avatar from '@material-ui/core/Avatar';
 // import HomeIcon from '@material-ui/icons/Home';
 
 import './Navbar.scss';
@@ -16,9 +17,10 @@ import './Navbar.scss';
 
 export default function Navbar() {
 
-  const {token, setToken} = useContext(AppContext);
+  const { token, setToken } = useContext(AppContext);
 
   let history = useHistory();
+  const user = JSON.parse(localStorage.getItem("user"));
 
   // console.log('!!token------------>', !!token)
   // console.log('token------------>', token)
@@ -29,10 +31,10 @@ export default function Navbar() {
     setToken();
     history.push('/login');
   }
-  
+
   return (
     <nav className="navbar sticky-top">
-      
+
       <Link to="/" className="logo nav-link">
         <span>Simple</span><span>Task</span>
       </Link>
@@ -43,18 +45,19 @@ export default function Navbar() {
         <li className="nav-item"><Link className="nav-link" to='/search'>Search</Link></li>
 
         {token ?
-        <>
-        <li className="nav-item"><Link className="nav-link" to='/' onClick={event => handleLogout(event)}>Logout</Link></li>
-        <li className="nav-item"><Link className="nav-link" to='/users/:id'>Profile</Link></li>
-        </>
-        :
-        <>
-        <li className="nav-item"><Link className="nav-link" to='/login'>Login</Link></li>
-        <li className="nav-item"><Link className="nav-link" to='/register'>Register</Link></li>
-        </>
+          <>
+            <li className="nav-item"><Link className="nav-link" to='/' onClick={event => handleLogout(event)}>Logout</Link></li>
+            <li className="nav-item"><Link className="nav-link" to='/users/:id'>{!user.photo_url ? `Hello, ${user.first_name}!` : <Avatar alt={user.first_name}
+              src={user.photo_url} />}</Link></li>
+          </>
+          :
+          <>
+            <li className="nav-item"><Link className="nav-link" to='/login'>Login</Link></li>
+            <li className="nav-item"><Link className="nav-link" to='/register'>Register</Link></li>
+          </>
         }
       </ul>
-      
+
     </nav>
   );
 }

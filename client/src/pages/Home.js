@@ -29,7 +29,7 @@ export default function Home() {
     </Jumbotron>
       <div className="grid">{state.categories.map(renderCard)}</div>
     </Container>
-    <hr/>
-    </div >
+    <br/>
+    </div>
   );
 }

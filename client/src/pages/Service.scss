@@ -1,13 +1,14 @@
 main.selection_page {
   padding: 0 1rem;
-
-  section {
-    padding: 2rem 0;
-  }
+  display: flex;
+  flex-direction: column;
 }
 main.detail_page{
+  position: absolute;
   width: 100vw;
   height: 100vh;
+  top: 0;
+  left:0;
   text-align: justify;
 }
 
@@ -40,14 +41,40 @@ main.detail_page{
   text-align: center;
   margin-bottom: 2rem;
   position: absolute;
+  top: -51px;
   margin: 0;
   padding: 0;
   .MuiSvgIcon-root{
     color: white;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
+  }
+  :hover.MuiSvgIcon-root{
+    color: #006a71;
   }
 }
 :hover.toggle-filter {
   margin: 0;
+}
+
+.filter-tasker__list{
+  display: flex;
+  flex-direction: row;
+}
+
+.sort-criteria{
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  color: #006a71;
+  > button {
+    margin-left: 1rem;
+    width: 80px;
+  }
+  h5 {
+    margin: 0;
+  }
 }
 
 @media only screen and (min-width: 768px) {

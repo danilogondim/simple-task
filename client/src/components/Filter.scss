@@ -1,9 +1,10 @@
 .filter {
-  width: 300px;
+  max-width: 300px;
   display: flex;
   flex-direction: column;
   text-align: justify;
   color: #006a71;
+  position: relative;
 
   .MuiSvgIcon-root{
     color: #006a71;
@@ -11,7 +12,7 @@
   > div{
     padding: 0rem 0 3rem;
     h4 {
-      margin-top: 70px;
+      margin-top: 18px;
     }
   }
 
@@ -19,6 +20,10 @@
     width: 300px;
     p{
       margin: 0;
+    }
+    > * {
+      margin: 0;
+      width: 100%;
     }
   }
   .input {
