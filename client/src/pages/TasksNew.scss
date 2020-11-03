@@ -39,6 +39,15 @@ textarea[name="description"] {
   color: red;
 }
 
+div.Selected-Tasker2 > * {
+  opacity: 1;
+}
+
+div.Selected-Tasker2 > *:hover{
+  box-shadow: none;
+  cursor: auto;
+}
+
 
 
 

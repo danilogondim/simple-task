@@ -42,7 +42,7 @@ export default function Task() {
 
             <div className="AlignElements">
               <LinearProgressWithLabel value={100} />
-              <TaskerListItem tasker={state.tasker} />
+              <div className="Selected-Tasker2"><TaskerListItem tasker={state.tasker} /></div>
             </div>
 
           </div>

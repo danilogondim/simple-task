@@ -5,7 +5,7 @@ import useTasksNewData from '../hooks/useTasksNewData';
 import LinearProgressWithLabel from '../components/LinearProgressWithLabel';
 import TaskerListItem from '../components/TaskerListItem';
 import './TasksNew.scss';
-import { Jumbotron, Container, Card } from 'react-bootstrap'
+import { Jumbotron, Container} from 'react-bootstrap'
 
 export default function TasksNew() {
   const { progress,
@@ -61,7 +61,7 @@ export default function TasksNew() {
 
             <div className="AlignElements">
             <LinearProgressWithLabel value={progress} />
-            <div className="Selected-Tasker"><TaskerListItem tasker={tasker} /></div>
+            <div className="Selected-Tasker2"><TaskerListItem tasker={tasker} /></div>
             </div>
             
 

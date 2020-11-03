@@ -1,7 +1,4 @@
-import React, {useContext} from 'react';
-import {Link} from 'react-router-dom';
-import { useHistory } from "react-router-dom";
-import { AppContext } from "../App.js"
+import React from 'react';
 
 import './Footer.scss';
 
