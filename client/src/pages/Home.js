@@ -33,7 +33,7 @@ export default function Home() {
 
       <div className="grid">{state.categories.map(renderCard)}</div>
     </Container>
-    <hr/>
-    </div >
+    <br/>
+    </div>
   );
 }

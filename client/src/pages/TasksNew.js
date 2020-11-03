@@ -101,7 +101,7 @@ export default function TasksNew() {
               {errors.time && <p> This is a mandatory field. </p>}
 
 
-              <label>Start location: </label>
+              <label>Start location: (If it is remote, type "remote") </label>
               <input type="text" name="start_location" onBlur={() => updateProgressiveBar('start_location', getValues(['start_location']))} ref={register({ required: true })} />
               {errors.start_location && <p> This is a mandatory field. </p>}
 
