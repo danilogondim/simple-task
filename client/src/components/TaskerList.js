@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SET_TASKER } from '../reducer/data_reducer';
 import './TaskerList.scss';
 
