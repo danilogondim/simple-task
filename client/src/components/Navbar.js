@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { AppContext } from "../App.js"
 import Avatar from '@material-ui/core/Avatar';
 // import HomeIcon from '@material-ui/icons/Home';
+import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
 
 import './Navbar.scss';
 
@@ -42,7 +43,7 @@ export default function Navbar() {
       <ul className="nav">
         <li className="nav-item"><Link className="nav-link" to='/'>Home</Link></li>
         <li className="nav-item"><Link className="nav-link" to="/about">About</Link> </li>
-        <li className="nav-item"><Link className="nav-link" to='/search'>Search</Link></li>
+        <li className="nav-item"><Link className="nav-link" to='/search'>Map<RoomOutlinedIcon/></Link></li>
 
         {token ?
           <>
