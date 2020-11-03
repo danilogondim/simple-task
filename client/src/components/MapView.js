@@ -13,7 +13,7 @@ class MapView extends Component {
         center={this.props.myLocation} 
         zoom={12} 
         // maxZoom={20}
-        style = {{  width: "80vw",  height: "58vh" }}
+        style = {{  width: "80vw",  height: "55vh", marginBottom: "2rem" }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
