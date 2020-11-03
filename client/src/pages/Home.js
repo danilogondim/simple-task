@@ -25,7 +25,6 @@ export default function Home() {
     <Container className="p-3">
     <Jumbotron className="p-3 mb-2 jumbotron">
       <h1 className="header">Welcome To SimpleTask</h1>
-      <br></br>
       <h4>Select a category to begin with</h4>
     </Jumbotron>
       <div className="grid">{state.categories.map(renderCard)}</div>
