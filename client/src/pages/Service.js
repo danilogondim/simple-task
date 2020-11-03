@@ -69,7 +69,7 @@ export default function Service(props) {
               </section>
               {/* commented out to test layout */}
               {<TaskerList dispatch={dispatch} service={service} taskers={filteredTaskers} filter={filter} />}
-              {/* {<TaskerList dispatch={dispatch} service={service} taskers={state.taskers} />} */}
+              {/* {<TaskerList dispatch={dispatch} service={service} taskers={state.taskers} filter={filter}/>} */}
             </div>
           </main>
         )}
