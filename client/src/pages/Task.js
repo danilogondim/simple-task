@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form';
 import LinearProgressWithLabel from '../components/LinearProgressWithLabel';
 import TaskerListItem from '../components/TaskerListItem';
 import { CheckCircle } from '@material-ui/icons';
+import './TasksNew.scss';
+import { Jumbotron, Container } from 'react-bootstrap'
 
 export default function Task() {
 
@@ -16,15 +18,39 @@ export default function Task() {
 
   return (
     <main className="new-task">
+
+    <Container className="p-3">
+    <Jumbotron className="p-3 mb-2 jumbotron">
+      <div className="TitleTask">
+      <h1>Please fill the information below</h1>
+      </div>
+    </Jumbotron>
+
       {state.tasker &&
         <>
+
+        <div className="BodyTask">
+
+        <div className="row">
+
+        <div className="col"> 
+
           <div className="left">
             <h3>Task: {state.task.service_name}</h3>
             <h3>Date: {state.task.start_time.slice(0, 10).replace(/-/g, "/")}</h3>
             <h1>Booked!!!  <CheckCircle /></h1>
-            <LinearProgressWithLabel value={100} />
-            <TaskerListItem tasker={state.tasker} />
+
+            <div className="AlignElements">
+              <LinearProgressWithLabel value={100} />
+              <TaskerListItem tasker={state.tasker} />
+            </div>
+
           </div>
+
+        </div> 
+
+        <div className="col"> 
+
           <div className="right">
             <h1>Task information</h1>
 
@@ -63,8 +89,13 @@ export default function Task() {
             </form>
 
           </div>
+          
+        </div>
+        </div>
+        </div>
         </>
       }
+    </Container>
     </main>
   );
 }

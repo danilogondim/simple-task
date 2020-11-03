@@ -46,7 +46,16 @@
   }
 }
 
-.tasker:hover{
-  opacity: 1;
-  box-shadow: 0 0 11px rgba(33,33,33,.2); 
+.BodyTask {
+  margin-top: 3em;
 }
+
+div.Selected-Tasker > * {
+  opacity: 1;
+}
+
+div.Selected-Tasker >*:hover{
+  box-shadow: none;
+  cursor: auto;
+}
+
