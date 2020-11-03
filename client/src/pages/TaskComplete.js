@@ -14,7 +14,9 @@ export default function TaskComplete() {
   const { state } = useTaskPaymentData();
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
-
+  const [complete, setComplete] = useState();
+  const [processing, setProcessing] = useState()
+  console.log(processing)
   const start = !startTime ? "" : startTime;
   const end = !endTime ? "" : endTime;
 
@@ -37,18 +39,25 @@ export default function TaskComplete() {
 
   const onSubmit = () => {
     
-    const newStart = new Date(start).toLocaleTimeString();
-    const newEnd = new Date(endTime).toLocaleTimeString();  
+    setProcessing(true);
 
-    const data = { id: task.task_id,
+    const newStart = new Date(start).toLocaleTimeString();
+    const newEnd = new Date(end).toLocaleTimeString();  
+
+    const data = { 
+      id: task.task_id,
       started_at: newStart,
       completed_at: newEnd,
     };
 
-    axios
-      .post(`/api/tasks/${task.task_id}`, data)
-      .then((data) => console.log(data))
-      .catch((err) => console.error(err))
+    setTimeout(() => {
+      axios
+        .post(`/api/tasks/${task.task_id}`, data)
+        .then((res) => console.log(res))
+        .then(setProcessing(false), setComplete(true))
+        .catch((err) => console.error(err))
+    }, 2000)
+    
   }
 
   return (
@@ -186,18 +195,26 @@ export default function TaskComplete() {
                       ${grandTotal}
                   </td>
                 </tr>
-                <tr>
-                  <td colSpan="2" className="text-center">Review and Submit</td>
-                </tr>
-                <tr>
-                  <td colSpan="2" className="text-center">
-                    {/* <Link to={`/tasks/${task.task_id}/payment/stripe`}> */}
-                      <button type="submit" onClick={onSubmit} className="btn">Review and Submit</button>
-                    {/* </Link> */}
-                  </td>
-                </tr>
               </tbody>
             </table>
+            <div className="status">
+              {!processing && !complete &&
+                <button type="submit" onClick={onSubmit} className="btn btn-info">Review and Submit</button>
+              }
+              
+              {processing &&
+                <div className="spinner-border text-success" role="status">
+                  <span className="sr-only">Loading...</span>
+                </div> 
+              }
+
+              {complete && 
+              <div>
+                <h4 className='text-success'>Completed {'👍'}</h4>
+                <button type="submit" onClick={() =>  window.location.href='/'} className="btn btn-info">Home</button>
+              </div>
+              }
+            </div>
           </div>
       </Container>
     </div >
