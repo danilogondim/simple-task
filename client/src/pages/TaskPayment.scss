@@ -10,7 +10,7 @@
 
   .table {
     max-width: 600px;
-    margin-bottom: 50px;
+    margin: 25px 0;
     border: solid;
     border-color: #68b0ab;
 
@@ -19,19 +19,25 @@
       color: #006a71;
     }
 
+    .total {
+      color: #006a71;
+      font-weight: 700;
+    }
+  };
+
+  .status {
+    margin-bottom: 100px;
+
     .btn {
       background-color: #68b0ab;
       color: aliceblue;
       min-width: 150px;
       font-weight: 700;
     }
-
-    .total {
-      color: #006a71;
-      font-weight: 700;
-    }
-  };
+  }
 };
+
+
 
 .btn:hover {
   color: #ff7e67 !important;
