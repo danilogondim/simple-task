@@ -20,6 +20,10 @@
     p{
       margin: 0;
     }
+    > * {
+      margin: 0;
+      width: 100%;
+    }
   }
   .input {
     width: 42px;
