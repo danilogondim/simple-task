@@ -12,7 +12,7 @@ const useServiceData = (category_id, service_id) => {
     taskers: [],
     loading: true,
     day: new Date(),
-    range: [9, 15],
+    range: [9, 12],
     tasker: null
   });
 
