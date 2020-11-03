@@ -5,6 +5,7 @@ import useTasksNewData from '../hooks/useTasksNewData';
 import LinearProgressWithLabel from '../components/LinearProgressWithLabel';
 import TaskerListItem from '../components/TaskerListItem';
 import './TasksNew.scss';
+import { Jumbotron, Container, Card } from 'react-bootstrap'
 
 export default function TasksNew() {
   const { progress,
@@ -34,15 +35,43 @@ export default function TasksNew() {
       }
       {tasker &&
         <>
+        
+      
+        
+
+        <Container className="p-3">
+          <Jumbotron className="p-3 mb-2 jumbotron">
+          <div className="TitleTask">
+            <h1>Please fill the information below</h1>
+          </div>
+          </Jumbotron>
+
+          
+
+          
+          <div className="BodyTask">
+
+          <div className="row">
+
+          <div className="col">                 
           <div className="left">
             <h1>Booking</h1>
             <h3>Task: {localStorage.getItem('service_name')}</h3>
             <h3>Date: {`${year}/${month + 1}/${date}`}</h3>
+
+            <div className="AlignElements">
             <LinearProgressWithLabel value={progress} />
-            <TaskerListItem tasker={tasker} />
+            <div className="Selected-Tasker"><TaskerListItem tasker={tasker} /></div>
+            </div>
+            
+
           </div>
+          </div> 
+         
+
+          <div className="col">  
           <div className="right">
-            <h1>Please fill the information below</h1>
+            
 
             <form className='new-task-form' onSubmit={handleSubmit(onSubmit)}>
 
@@ -83,10 +112,13 @@ export default function TasksNew() {
 
               <label>Please confirm the information and submit below</label>
 
-
-              <button type="submit">
+              <div className="Button-taskNew">
+              <button 
+              type="submit"
+              >
                 Create Task
               </button>
+              </div>
 
               {previousTask && !token && (
                 <div className="alert alert-danger error-message" role="alert">
@@ -97,7 +129,15 @@ export default function TasksNew() {
             </form>
 
           </div>
+          </div>
+          </div>
+          
+          </div>
+        </Container>
+          
+       
         </>
+
       }
     </main>
   );
