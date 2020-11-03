@@ -24,7 +24,7 @@ VALUES
 (8,5,7, 'Moving a bed inside the same building, from apt 1712 to apt 508', 1, '2020-10-22 09:00:00', '1 Austin Terrace, Toronto', '1 Austin Terrace, Toronto', '09:00:00', '10:00:00', 2, 10),
 -- a example that took more than expected (5 instead of 4 hours):
 (9,5,7, 'Transporting living room furniture', 4, '2020-10-22 08:00:00', 'Ikea front shopping window', '90 Eastdale Avenue, Toronto', '08:00:00', '13:00:00', 5, 8),
-(10,1,1, 'Taking care of a horse in the morning', 4, '2020-10-22 12:00:00', '100 Queen St W, Toronto', '100 Queen St W, Toronto', '12:00:00', '16:00:00', 1, 7),
+(10,1,1, 'Taking care of a dog in the morning', 4, '2020-10-22 12:00:00', '100 Queen St W, Toronto', '100 Queen St W, Toronto', '12:00:00', '16:00:00', 1, 7),
 (11,1,2, 'Walking two huskies', 4, '2020-10-22 10:00:00', '2000 Meadowvale Rd, Toronto', '2000 Meadowvale Rd, Toronto', '10:00:00', '14:00:00', 6, 8),
 (12,1,3, 'Feeding some fishes', 1, '2020-10-22 09:00:00', '1 Austin Terrace, Toronto', '1 Austin Terrace, Toronto', '09:00:00', '10:00:00', 2, 15),
 (13,2,5, 'Fixing a kitchen sink leak', 1, '2020-10-22 09:00:00', '1 Dundas St E, Toronto', '1 Dundas St E, Toronto', '09:00:00', '10:00:00', 3, 13),
@@ -49,6 +49,9 @@ VALUES
 (21, 9, 23, 2, 38, 'Need react code review', 2, '2020-10-22 09:00:00', 'Remote', '', '09:00:00', '11:00:00'),
 (22, 9, 23, 3, 39, '', 2, '2020-10-22 09:00:00', 'Remote', '', '09:00:00', '11:00:00'),
 (23, 9, 23, 4, 40, 'Need some CSS assistance to improve my website', 2, '2020-10-22 09:00:00', 'Remote', '', '09:00:00', '11:00:00'),
-(24, 9, 23, 5, 41, 'Need technical assistance to improve my website', 2, '2020-10-22 09:00:00', 'Remote', '', '09:00:00', '11:00:00');
+(24, 9, 23, 5, 41, 'Need technical assistance to improve my website', 2, '2020-10-22 09:00:00', 'Remote', '', '09:00:00', '11:00:00'),
+
+-- random tasker
+(25, 9, 23, 6, 25, 'Refactoring react code', 2, '2020-10-22 09:00:00', 'Remote', '', '09:00:00', '11:00:00');
 
 -- (sequence(task_id), 9, 23, range 1-6, sequence(tasker_id), 'task description', 2, '2020-10-22 09:00:00', 'Remote', '', '09:00:00', '11:00:00'),

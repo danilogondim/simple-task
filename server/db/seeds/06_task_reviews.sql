@@ -2,7 +2,7 @@ INSERT INTO
 task_reviews(task_id, user_id, tasker_id, user_comment, user_rating, tasker_comment, tasker_rating)
 VALUES
 -- first user comment and rating directed to the tasker
- (10, 1, 7, 'By the time I came back, my horse was really relaxed. I am sure John treated him very well. I really recommend his services', 5, 'Communication was easy and I have not had any problems', 5),
+ (10, 1, 7, 'By the time I came back, my dog was really relaxed. I am sure John treated him very well. I really recommend his services', 5, 'Communication was easy and I have not had any problems', 5),
  (9, 5, 8, 'Everything was done really carefully and as I wanted. It took a little longer than what I was expected', 4, 'The task was just as described and I did not have any problem to fulfill it', 5),
  (11, 6, 8, 'My dogs had a nice time. I will definitely hire her again', 5, 'Communication was a little confusing', 4),
  (16, 5, 9, 'Everything was delivered as expected', 5, 'Well detailed task', 5),
@@ -28,7 +28,10 @@ VALUES
  (21, 2, 38, 'Ricardo is extremely detailed-oriented. I strongly recommend his services!', 5, '', 5),
  (22, 3, 39, 'I highly recomend Vinay for web solutions. always takes a simple and realist approach.', 5, '', 5),
  (23, 4, 40, 'Fatima made my website look bomb.  A+++, highly recommend her services.', 5, '', 5),
- (24, 5, 41, 'Fast and efficient, great discussion on the next possible steps to improve my business even more!', 5, '', 5);
+ (24, 5, 41, 'Fast and efficient, great discussion on the next possible steps to improve my business even more!', 5, '', 5),
+ 
+--  random tasker
+ (25, 6, 25, 'He is definitely a nice person, but the solutions he provided were below par.', 3, '', 5);
 -- sequence(task_id), range 1-6, sequence(tasker_id), 'positive feedback', 5, '', 5);
 
 
