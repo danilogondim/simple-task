@@ -60,7 +60,7 @@ VALUES
 -- 38
 ('Ricardo', 'Barbosa', '6474567890', 'r.barbosa@email.com', 'password38', '313-317 Main St Toronto', '{43.688858, -79.302114}', 't', 'https://ca.slack-edge.com/T2G8TE2E5-U018NHKJ38B-227eadfb65fd-512', 'Tech-savvy programmer with engineer background. Available for short and long-term projects.', 't', 'car'),
 -- 39
-('Vinay', 'Baswa', '6474567890', 'v.baswa@email.com', 'password39', 'address', '{43.676788, -79.358804}', 't', 'https://ca.slack-edge.com/T2G8TE2E5-U018FKEV8JJ-f07855d40eb1-512', 'summary', 't', 'bicycle'),
+('Vinay', 'Baswa', '6474567890', 'v.baswa@email.com', 'password39', '1537 Kirkrow Crescent Mississauga', '{43.587080, -79.700110}', 't', 'https://ca.slack-edge.com/T2G8TE2E5-U018FKEV8JJ-f07855d40eb1-512', 'Let me help you with web solutions that suit your needs. I am a tech enthusiast and full stack web developer passionate about building solutions and also obsessed with writing dry code.', 't', 'car'),
 -- 40
 ('Fatima', 'Nguyen', '6474567890', 'f.nguyen@email.com', 'password40', '8450 Boul. Saint-Michel, Montreal', '{45.566289, -73.615824}', 't', 'https://ca.slack-edge.com/T2G8TE2E5-U019C6U5BBJ-793060db46f8-512', 'Junior full stack developer. I can build your front-end on React. I have a keen interest in simple and minimalistic looking interfaces.', 't', 'car'),
 -- 41
