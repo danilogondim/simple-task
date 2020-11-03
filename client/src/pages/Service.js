@@ -46,10 +46,6 @@ export default function Service(props) {
   return (
     <div className="App" >
       <Container className="p-3">
-        <Jumbotron className="p-3 mb-2 jumbotron">
-          <h4>{service.service + " >> "}Select a Tasker</h4>
-        </Jumbotron>
-
         {state.loading && (
           <div className="loading">
             <h3>Loading...</h3>
@@ -58,6 +54,9 @@ export default function Service(props) {
         )}
         {!tasker && !state.loading && (
           <main className="selection_page">
+            <Jumbotron className="p-3 mb-2 jumbotron">
+              <h4>{service.service + " >> "}Select a Tasker</h4>
+            </Jumbotron>
             <div className="sort-criteria">
               <h5>Sorted By:</h5>
               <button onClick={handleClick}>{filter}</button>

@@ -25,6 +25,7 @@ import TaskPayment          from './pages/TaskPayment';
 import PaymentSuccess       from './pages/PaymentSuccess';
 import Search               from './pages/Search';
 import ChatBox              from './components/ChatBox';
+import ScrollToTop          from './components/ScrollToTop';
 
 const AppContext = createContext();
 
@@ -57,6 +58,7 @@ export default function App() {
   return (
     <AppContext.Provider value={{ token, setToken }}>
       <Router>
+        <ScrollToTop />
         <div>
           <Navbar />
           <AppContext.Consumer>
