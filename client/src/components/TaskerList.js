@@ -6,18 +6,9 @@ import TaskerListItem from './TaskerListItem';
 
 export default function TaskerList(props) {
 
-  const { taskers } = props;
+  const { taskers, filter } = props;
 
-  const [filter, setFilter] = useState('rating')
-  const handleClick = () => {
-    if (filter === 'rating') {
-      setFilter('price');
-    } else {
-      setFilter('rating');
-    }
-  };
-
-  const handleFilter = {
+   const handleFilter = {
     'rating': 'average_rating',
     'price': 'hourly_rate'
   }
@@ -45,11 +36,7 @@ export default function TaskerList(props) {
 
   return (
     <section className="taskers">
-      <div className="sort">
-        <h5>Sorted By:</h5>
-        <button onClick={handleClick}>{filter}</button>
-      </div>
-      <ul className="taskers__list">
+       <ul className="taskers__list">
         {taskerList.length === 0 &&
           <>
             <div className="alert alert-primary">

@@ -34,6 +34,15 @@ export default function Service(props) {
     }
   }
 
+  const [filter, setFilter] = useState('rating')
+  const handleClick = () => {
+    if (filter === 'rating') {
+      setFilter('price');
+    } else {
+      setFilter('rating');
+    }
+  };
+
   return (
     <div className="App" >
       <Container className="p-3">
@@ -49,13 +58,19 @@ export default function Service(props) {
         )}
         {!tasker && !state.loading && (
           <main className="selection_page">
-            <section className="filter">
-              <button className="toggle-filter" onClick={handleFilter}><FilterList /></button>
-              {filterActive && <Filter dispatch={dispatch} day={day} range={range} />}
-            </section>
-            {/* commented out to test layout */}
-            {<TaskerList dispatch={dispatch} service={service} taskers={filteredTaskers} />}
-            {/* {<TaskerList dispatch={dispatch} service={service} taskers={state.taskers} />} */}
+            <div className="sort-criteria">
+              <h5>Sorted By:</h5>
+              <button onClick={handleClick}>{filter}</button>
+            </div>
+            <div className="filter-tasker__list">
+              <section className="filter">
+                <button className="toggle-filter" onClick={handleFilter}><FilterList /></button>
+                {filterActive && <Filter dispatch={dispatch} day={day} range={range} />}
+              </section>
+              {/* commented out to test layout */}
+              {<TaskerList dispatch={dispatch} service={service} taskers={filteredTaskers} filter={filter} />}
+              {/* {<TaskerList dispatch={dispatch} service={service} taskers={state.taskers} />} */}
+            </div>
           </main>
         )}
         {tasker && (

@@ -1,5 +1,7 @@
 main.selection_page {
   padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
 
   section {
     padding: 2rem 0;
@@ -63,6 +65,25 @@ main.detail_page{
 }
 :hover.toggle-filter {
   margin: 0;
+}
+
+.filter-tasker__list{
+  display: flex;
+  flex-direction: row;
+}
+
+.sort-criteria{
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  color: #006a71;
+  > button {
+    margin-left: 1rem;
+    width: 80px;
+  }
+  h5 {
+    margin: 0;
+  }
 }
 
 @media only screen and (min-width: 768px) {
