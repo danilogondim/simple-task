@@ -77,4 +77,56 @@ VALUES
     "read_at":"22/10/2020, 13:38:05",
     "message":"Great! I will book a task for you right now!"
   }
+]'),
+(18, 37,
+'[
+  {
+    "sender_id":18,
+    "sent_at":"22/10/2020, 13:22:00",
+    "received_at":"22/10/2020, 13:32:00",
+    "read_at":"22/10/2020, 13:33:00",
+    "message":"Hey Danilo"
+  },
+  {
+    "sender_id":18,
+    "sent_at":"22/10/2020, 13:22:00",
+    "received_at":"22/10/2020, 13:32:00",
+    "read_at":"22/10/2020, 13:33:00",
+    "message":"I am wondering if u are able to help me with some back-end issues. I need assistance ASAP!"
+  },
+  {
+    "sender_id":37,
+    "sent_at":"22/10/2020, 13:34:00",
+    "received_at":"22/10/2020, 13:37:10",
+    "read_at":"22/10/2020, 13:37:20",
+    "message":"Hello, John! Sure, I am definitely able to help with that"
+  },
+  {
+    "sender_id":18,
+    "sent_at":"22/10/2020, 13:38:00",
+    "received_at":"22/10/2020, 13:38:05",
+    "read_at":"22/10/2020, 13:38:05",
+    "message":"Are u available today?"
+  },
+  {
+    "sender_id":37,
+    "sent_at":"22/10/2020, 13:38:00",
+    "received_at":"22/10/2020, 13:38:05",
+    "read_at":"22/10/2020, 13:38:05",
+    "message":"Yes, anytime between 8 and 10 pm"
+  },
+  {
+    "sender_id":18,
+    "sent_at":"22/10/2020, 13:38:00",
+    "received_at":"22/10/2020, 13:38:05",
+    "read_at":"22/10/2020, 13:38:05",
+    "message":"Ok, I will make an appointment for 8 o’clock"
+  },
+  {
+    "sender_id":37,
+    "sent_at":"22/10/2020, 13:38:00",
+    "received_at":"22/10/2020, 13:38:05",
+    "read_at":"22/10/2020, 13:38:05",
+    "message":"That is great, see you then"
+  }
 ]');
