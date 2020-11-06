@@ -11,22 +11,22 @@ This is the final project made during Lighthouse Labs Bootcamp as a group projec
 ## Final product
 
 ### Browsing by navigating categories and services
-!["Browsing by navigating categories and services"]()
+!["Browsing by navigating categories and services"](https://github.com/danilogondim/simple-task/blob/master/docs/Browsing-categories-services.gif?raw=true)
 
 ### Browsing by using the map
-!["Browsing by using the map"]()
+!["Browsing by using the map"](https://github.com/danilogondim/simple-task/blob/master/docs/Browsing-map.gif?raw=true)
 
 ### Sorting and filtering taskers
-!["Sorting and filtering taskers"]()
+!["Sorting and filtering taskers"](https://github.com/danilogondim/simple-task/blob/master/docs/sorting-filtering.gif?raw=true)
 
 ### Booking process with chat
-!["Booking process with chat"]()
+!["Booking process with chat"](https://github.com/danilogondim/simple-task/blob/master/docs/Booking-process-with-chat.gif?raw=true)
 
 ### Finishing a task
-!["Finishing a task"]()
+!["Finishing a task"](https://github.com/danilogondim/simple-task/blob/master/docs/finishing-task.gif?raw=true)
 
 ### Paying a task
-!["Paying a task"]()
+!["Paying a task"](https://github.com/danilogondim/simple-task/blob/master/docs/payment.gif?raw=true)
 
 
 ## Getting Started
