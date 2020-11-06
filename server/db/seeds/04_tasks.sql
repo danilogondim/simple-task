@@ -34,7 +34,7 @@ VALUES
 (16,4,10, 'Buying beverages for a party', 2, '2020-10-22 08:00:00', '2 Bloor St E, Toronto', '2 Bloor St E, Toronto', '08:00:00', '10:00:00', 5, 9),
 -- a example that was faster than expected:
 (17,5,11, 'Burger king pick-up', 2, '2020-10-22 09:00:00', '100 Queen St W, Toronto', '100 Queen St W, Toronto', '09:00:00', '09:45:00', 1, 10),
-(18,5,11, 'Pizza Hut pick-up', 2, '2020-10-23 09:00:00', '1 Austin Terrace, Toronto', '1 Austin Terrace, Toronto', '09:00:00', '11:00:00', 2, 10),
+(18,1,1, 'Taking care of a dog in the morning', 2, '2020-10-23 09:00:00', '1 Austin Terrace, Toronto', '1 Austin Terrace, Toronto', '09:00:00', '11:00:00', 2, 10),
 (19,5,11, 'Dominos Hut pick-up', 2, '2020-10-24 09:00:00', '1 Dundas St E, Toronto', '1 Dundas St E, Toronto', '09:00:00', '11:00:00', 3, 10);
 
 

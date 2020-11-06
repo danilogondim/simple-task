@@ -12,7 +12,7 @@ VALUES
  (14, 4, 14, 'Horrible service! It started late and I now can''t find my stuff!', 1, 'The user did not provide the right address and the instructions were unclear', 3),
  (12, 2, 15, 'Just as expected', 5, 'My experience was great. The user gave my clear instructions', 5),
  (17, 1, 10, 'Just in time! Thanks!', 5, 'Just a regular pick-up. Great communication', 5),
- (18, 2, 10, 'Nothing to complain. The food was still hot when it arrived', 5, 'My experience was great. The user gave my clear instructions', 5),
+ (18, 2, 10, 'Cristina did a great job looking after my dog. Thanks!', 5, 'My experience was great. The user gave my clear instructions', 5),
  (19, 3, 10, 'The food was a little bid cold by the time I received it', 4, 'My experience was great. The user gave my clear instructions', 5);
 
 
