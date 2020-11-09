@@ -27,23 +27,23 @@ const useApplicationData = () => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    if (token) {
+    if (token && !socket) {
       return setSocket(new WebSocket(process.env.REACT_APP_WEBSOCKET_URL));
     }
-  }, [token])
+    
+    if (socket) {
 
-  // does it need to be in a useEffect?
-  if (socket) {
+      socket.onopen = function () {
+        socket.send(JSON.stringify({ type: "connection", token }));
+      };
 
-    socket.onopen = function () {
-      socket.send(JSON.stringify({ type: "connection", token }));
-    };
-
-    if (!token && socket.readyState === 1) {
-      socket.send(JSON.stringify({ type: "disconnection" }));
-      socket.close();
+      if (!token && socket.readyState === 1) {
+        socket.send(JSON.stringify({ type: "disconnection" }));
+        socket.close();
+      }
     }
-  }
+
+  }, [token, socket])
 
   return {
     state,

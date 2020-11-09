@@ -42,7 +42,6 @@ wss.on("connection", socket => {
       });
     }
     if (type === "disconnection") {
-      console.log("client disconneted");
       for (const client in clients) {
         if (clients[client] === socket) {
           console.log("The following user has disconnected:", client);
