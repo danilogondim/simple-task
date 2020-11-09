@@ -40,6 +40,7 @@ const useApplicationData = () => {
       if (!token && socket.readyState === 1) {
         socket.send(JSON.stringify({ type: "disconnection" }));
         socket.close();
+        setSocket(null);
       }
     }
 
