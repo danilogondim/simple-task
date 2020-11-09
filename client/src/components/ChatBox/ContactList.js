@@ -1,82 +1,19 @@
 import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import Badge from '@material-ui/core/Badge';
 import { SET_CONTACT } from '../../reducer/data_reducer';
 import classNames from 'classnames';
 import "./ContactList.scss";
-
-const OnBadge = withStyles((theme) => ({
-  badge: {
-    backgroundColor: '#44b700',
-    color: '#44b700',
-    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-    '&::after': {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      borderRadius: '50%',
-      animation: '$ripple 1.2s infinite ease-in-out',
-      border: '1px solid currentColor',
-      content: '""',
-    },
-  },
-  '@keyframes ripple': {
-    '0%': {
-      transform: 'scale(.8)',
-      opacity: 1,
-    },
-    '100%': {
-      transform: 'scale(2.4)',
-      opacity: 0,
-    },
-  },
-}))(Badge);
-const OffBadge = withStyles((theme) => ({
-  badge: {
-    backgroundColor: '#ff0000',
-    color: '#ff0000',
-    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-    '&::after': {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      borderRadius: '50%',
-      animation: '$ripple 1.2s infinite ease-in-out',
-      border: '1px solid currentColor',
-      content: '""',
-    },
-  },
-  '@keyframes ripple': {
-    '0%': {
-      transform: 'scale(.8)',
-      opacity: 1,
-    },
-    '100%': {
-      transform: 'scale(2.4)',
-      opacity: 0,
-    },
-  },
-}))(Badge);
+import useContactListStyle from './useContactListStyle';
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-  large: {
-    width: theme.spacing(6),
-    height: theme.spacing(6),
-  },
-}));
 export default function UserList(props) {
+  // get styling settings from a custom hook
+  const { 
+    OnBadge,
+    OffBadge,
+    useStyles 
+  } = useContactListStyle();
+  
   const classes = useStyles();
 
   const { chats, dispatch, contact, clients } = props;
