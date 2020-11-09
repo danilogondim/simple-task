@@ -10,21 +10,12 @@ const jwt = require('jsonwebtoken');
 // } = require('../helpers/dataHelpers');
 
 module.exports = ({
-  getUsers,
   getUserById,
   getUserByEmail,
   addUser,
   updateUser,
   getChatsByUser
 }) => {
-  /* GET users listing. */
-  router.get('/', (req, res) => {
-    getUsers()
-      .then((users) => res.json(users))
-      .catch((err) => res.json({
-        error: err.message
-      }));
-  });
 
   /* GET a specific user. */
   router.get('/:id', (req, res) => {

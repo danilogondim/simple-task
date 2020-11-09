@@ -16,7 +16,6 @@ import Home                 from './pages/Home';
 import About                from './pages/About';
 import Login                from './pages/Login';
 import Register             from './pages/Register';
-import Users                from './pages/Users';
 import User                 from './pages/User';
 import Services             from './pages/Services';
 import Service              from './pages/Service';
@@ -49,7 +48,6 @@ export default function App() {
             <Route path="/about">                            <About />           </Route>
             <Route path="/login">                            <Login />           </Route>
             <Route path="/register">                         <Register />        </Route>
-            <Route exact path="/users">                      <Users />           </Route>
             <Route path="/users/:id">                        <User />            </Route>
             <Route exact path="/categories/:id">             <Services />        </Route>
             <Route path="/categories/:c_id/services/:id">    <Service socket={socket} /></Route>

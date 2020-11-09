@@ -1,14 +1,4 @@
 module.exports = (db) => {
-  const getUsers = () => {
-    const query = {
-      text: 'SELECT * FROM users',
-    };
-
-    return db
-      .query(query)
-      .then((result) => result.rows)
-      .catch((err) => err);
-  };
 
   const getUserById = id => {
     const query = {
@@ -336,7 +326,7 @@ module.exports = (db) => {
     if (taskObject.id && Object.keys(taskObject).length > 1) {
       // we can add more fields to update database
       const taskFields = ['started_at', 'completed_at', 'payment_received'];
-      
+
       // the sql query and the values array should be build dynamically
       let text = `UPDATE tasks \nSET `;
       const values = [taskObject.id];
@@ -364,7 +354,6 @@ module.exports = (db) => {
   };
 
   return {
-    getUsers,
     getUserById,
     getUserByEmail,
     addUser,
