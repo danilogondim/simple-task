@@ -15,7 +15,6 @@ const useApplicationData = () => {
       .then(({
         data
       }) => {
-        console.log(data);
         dispatch({
           type: SET_USERS,
           users: data
@@ -40,7 +39,7 @@ const useApplicationData = () => {
       socket.send(JSON.stringify({ type: "connection", token }));
     };
 
-    if (!token) {
+    if (!token && socket.readyState === 1) {
       socket.send(JSON.stringify({ type: "disconnection" }));
       socket.close();
     }
