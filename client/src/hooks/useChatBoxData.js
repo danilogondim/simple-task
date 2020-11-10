@@ -6,7 +6,9 @@ import axios from 'axios';
 const useChatBoxData = (props) => {
 
   const { socket } = props;
+  // check if there is a current user and get his id
   const user = JSON.parse(localStorage.getItem('user'));
+  const id = !user ? '' : user.id;
   // control if the chat is shown (toggle button)
   const [active, setActive] = useState(false);
   // check if a message is blank before trying to submit the form
@@ -16,9 +18,6 @@ const useChatBoxData = (props) => {
   // check if there is an axios request to be done
   const [pending, setPending] = useState(true);
 
-
-
-  const id = !user ? '' : user.id;
   const [state, dispatch] = useReducer(dataReducer, {
     chats: [],
     contact: null,
@@ -91,13 +90,7 @@ const useChatBoxData = (props) => {
     }
   }
 
-  const currentChat = !state.contact ? "" : state.chats.find(contact => contact.contact_id === state.contact);
-  let contactName;
-  if (currentChat) {
-    contactName = currentChat.contact_name;
-  }
-
-  return { state, dispatch, onSubmit, active, error, setActive, user, register, handleSubmit, chat, contactName };
+  return { state, dispatch, onSubmit, active, error, setActive, user, register, handleSubmit, chat };
 };
 
 export default useChatBoxData;

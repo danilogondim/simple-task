@@ -20,8 +20,7 @@ export default function ChatBox(props) {
     user,
     register,
     handleSubmit,
-    chat,
-    contactName } = useChatBoxData(props);
+    chat } = useChatBoxData(props);
 
   return (
 
@@ -34,9 +33,9 @@ export default function ChatBox(props) {
           {!state.contact &&
             <p className="no-selected-contact">Please select a contact to start chatting</p>
           }
-          {state.contact &&
+          {state.contact && chat &&
             <>
-              <p className="contact-name">Chatting with: {contactName}</p>
+              <p className="contact-name">Chatting with: {chat.contact_name}</p>
               <MessageList chat={chat} contact={state.contact} />
               <form className="chat-message-form" onSubmit={handleSubmit(onSubmit)}>
                 <TextField className="message-input" name="message" inputRef={register} label="Type a message" />
