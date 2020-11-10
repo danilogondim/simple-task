@@ -7,6 +7,7 @@ export const SET_TASK_PAYMENT       = 'SET_TASK_PAYMENT';
 export const SET_TASK               = 'SET_TASK';
 export const SET_CHATS              = 'SET_CHATS';
 export const SET_CONTACT            = 'SET_CONTACT';
+export const SET_ONLINE_CLIENTS     = 'SET_ONLINE_CLIENTS';
 
 
 const dataReducer = (state, action) => {
@@ -72,6 +73,13 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         contact: action.contact,
+        loading: false,
+      };
+
+    case SET_ONLINE_CLIENTS:
+      return {
+        ...state,
+        online: action.online,
         loading: false,
       };
 

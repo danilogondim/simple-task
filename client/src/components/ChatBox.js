@@ -21,7 +21,6 @@ export default function ChatBox(props) {
     register,
     handleSubmit,
     chat,
-    onlineClients,
     contactName } = useChatBoxData(props);
 
   return (
@@ -30,7 +29,7 @@ export default function ChatBox(props) {
       {user && active &&
         <section className="chat-box">
           <div className="contact-list">
-            <ContactList chats={state.chats} clients={onlineClients} dispatch={dispatch} contact={state.contact} />
+            <ContactList chats={state.chats} clients={state.online} dispatch={dispatch} contact={state.contact} />
           </div>
           {!state.contact &&
             <p className="no-selected-contact">Please select a contact to start chatting</p>

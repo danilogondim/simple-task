@@ -42,7 +42,7 @@ export default function TaskerDetail({ tasker, socket, day, service }) {
       socket.send(JSON.stringify({ type: "chat-message", message: newMessage }));
       axios
         .post('/api/chats/', newMessage)
-        .then(res => console.log(res))
+        .then(res => console.log(res.data))
         .catch(err => {
           console.log(err.message);
         });

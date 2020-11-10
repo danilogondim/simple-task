@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import dataReducer, { SET_CHATS, SET_CONTACT } from '../reducer/data_reducer';
+import dataReducer, { SET_CHATS, SET_CONTACT, SET_ONLINE_CLIENTS } from '../reducer/data_reducer';
 import axios from 'axios';
 
 const useChatBoxData = (props) => {
@@ -15,14 +15,14 @@ const useChatBoxData = (props) => {
   const [newMessage, setNewMessage] = useState(false);
   // check if there is an axios request to be done
   const [pending, setPending] = useState(true);
-  // check if there is an axios request to be done
-  const [onlineClients, setOnlineClients] = useState([]);
+
 
 
   const id = !user ? '' : user.id;
   const [state, dispatch] = useReducer(dataReducer, {
     chats: [],
     contact: null,
+    online: [],
     loading: true
   });
 
@@ -61,10 +61,10 @@ const useChatBoxData = (props) => {
         }
       }
       if (type === "new-connection") {
-        setOnlineClients(clients);
+        dispatch({ type: SET_ONLINE_CLIENTS, online: clients })
       }
       if (type === "new-disconnection") {
-        setOnlineClients(clients);
+        dispatch({ type: SET_ONLINE_CLIENTS, online: clients })
       }
     };
   }
@@ -97,7 +97,7 @@ const useChatBoxData = (props) => {
     contactName = currentChat.contact_name;
   }
 
-  return { state, dispatch, onSubmit, active, error, setActive, user, register, handleSubmit, chat, onlineClients, contactName };
+  return { state, dispatch, onSubmit, active, error, setActive, user, register, handleSubmit, chat, contactName };
 };
 
 export default useChatBoxData;
