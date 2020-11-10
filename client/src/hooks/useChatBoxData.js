@@ -9,7 +9,7 @@ const useChatBoxData = (props) => {
   const user = JSON.parse(localStorage.getItem('user'));
   // control if the chat is shown (toggle button)
   const [active, setActive] = useState(false);
-  // check if a contact was selected to shown some error message and prevent user to send messages if there is no contact selected
+  // check if a message is blank before trying to submit the form
   const [error, setError] = useState(null);
   // control new messages
   const [newMessage, setNewMessage] = useState(false);
@@ -91,7 +91,13 @@ const useChatBoxData = (props) => {
     }
   }
 
-  return { state, dispatch, onSubmit, active, error, setActive, user, register, handleSubmit, chat, onlineClients };
+  const currentChat = !state.contact ? "" : state.chats.find(contact => contact.contact_id === state.contact);
+  let contactName;
+  if (currentChat) {
+    contactName = currentChat.contact_name;
+  }
+
+  return { state, dispatch, onSubmit, active, error, setActive, user, register, handleSubmit, chat, onlineClients, contactName };
 };
 
 export default useChatBoxData;
