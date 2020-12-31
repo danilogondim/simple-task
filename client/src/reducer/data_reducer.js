@@ -1,4 +1,3 @@
-export const SET_USERS              = 'SET_USERS';
 export const SET_CATEGORIES         = 'SET_CATEGORIES';
 export const SET_TASKERS            = 'SET_TASKERS';
 export const SET_DAY                = 'SET_DAY';
@@ -8,16 +7,11 @@ export const SET_TASK_PAYMENT       = 'SET_TASK_PAYMENT';
 export const SET_TASK               = 'SET_TASK';
 export const SET_CHATS              = 'SET_CHATS';
 export const SET_CONTACT            = 'SET_CONTACT';
+export const SET_ONLINE_CLIENTS     = 'SET_ONLINE_CLIENTS';
 
 
 const dataReducer = (state, action) => {
   switch (action.type) {
-    case SET_USERS:
-      return {
-        ...state,
-        users: action.users,
-        loading: false,
-      };
 
     case SET_CATEGORIES:
       return {
@@ -79,6 +73,13 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         contact: action.contact,
+        loading: false,
+      };
+
+    case SET_ONLINE_CLIENTS:
+      return {
+        ...state,
+        online: action.online,
         loading: false,
       };
 

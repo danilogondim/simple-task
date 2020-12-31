@@ -1,9 +1,11 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { createContext } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
+
+import useApplicationData from './hooks/useApplicationData';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
@@ -14,7 +16,6 @@ import Home                 from './pages/Home';
 import About                from './pages/About';
 import Login                from './pages/Login';
 import Register             from './pages/Register';
-import Users                from './pages/Users';
 import User                 from './pages/User';
 import Services             from './pages/Services';
 import Service              from './pages/Service';
@@ -29,31 +30,9 @@ import ScrollToTop          from './components/ScrollToTop';
 
 const AppContext = createContext();
 
-
 export default function App() {
 
-  const [token, setToken] = useState(localStorage.getItem('token'));
-  const [socket, setSocket] = useState(null);
-
-  useEffect(() => {
-    if (token) {
-      return setSocket(new WebSocket(process.env.REACT_APP_WEBSOCKET_URL));
-    }
-  }, [token])
-
-  // does it need to be in a useEffect?
-  if (socket) {
-
-    socket.onopen = function () {
-      socket.send(JSON.stringify({ type: "connection", token }));
-    };
-
-    if (!token) {
-      socket.send(JSON.stringify({ type: "disconnection" }));
-      socket.close();
-    }
-  }
-
+  const { token, setToken, socket } = useApplicationData();
 
   return (
     <AppContext.Provider value={{ token, setToken }}>
@@ -69,7 +48,6 @@ export default function App() {
             <Route path="/about">                            <About />           </Route>
             <Route path="/login">                            <Login />           </Route>
             <Route path="/register">                         <Register />        </Route>
-            <Route exact path="/users">                      <Users />           </Route>
             <Route path="/users/:id">                        <User />            </Route>
             <Route exact path="/categories/:id">             <Services />        </Route>
             <Route path="/categories/:c_id/services/:id">    <Service socket={socket} /></Route>

@@ -20,29 +20,22 @@ export default function ChatBox(props) {
     user,
     register,
     handleSubmit,
-    chat,
-    onlineClients } = useChatBoxData(props);
+    chat } = useChatBoxData(props);
 
-
-  const currentChat = !state.contact ? "" : state.chats.find(contact => contact.contact_id === state.contact);
-  let contactName;
-  if (currentChat) {
-    contactName = currentChat.contact_name;
-  }
   return (
 
     <>
       {user && active &&
         <section className="chat-box">
           <div className="contact-list">
-            <ContactList chats={state.chats} clients={onlineClients} dispatch={dispatch} contact={state.contact} />
+            <ContactList chats={state.chats} clients={state.online} dispatch={dispatch} contact={state.contact} />
           </div>
           {!state.contact &&
             <p className="no-selected-contact">Please select a contact to start chatting</p>
           }
-          {state.contact &&
+          {state.contact && chat &&
             <>
-              <p className="contact-name">Chatting with: {contactName}</p>
+              <p className="contact-name">Chatting with: {chat.contact_name}</p>
               <MessageList chat={chat} contact={state.contact} />
               <form className="chat-message-form" onSubmit={handleSubmit(onSubmit)}>
                 <TextField className="message-input" name="message" inputRef={register} label="Type a message" />

@@ -1,28 +1,27 @@
 import { useEffect, useReducer, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import dataReducer, { SET_CHATS, SET_CONTACT } from '../reducer/data_reducer';
+import dataReducer, { SET_CHATS, SET_CONTACT, SET_ONLINE_CLIENTS } from '../reducer/data_reducer';
 import axios from 'axios';
 
 const useChatBoxData = (props) => {
 
   const { socket } = props;
+  // check if there is a current user and get his id
   const user = JSON.parse(localStorage.getItem('user'));
+  const id = !user ? '' : user.id;
   // control if the chat is shown (toggle button)
   const [active, setActive] = useState(false);
-  // check if a contact was selected to shown some error message and prevent user to send messages if there is no contact selected
+  // check if a message is blank before trying to submit the form
   const [error, setError] = useState(null);
   // control new messages
   const [newMessage, setNewMessage] = useState(false);
   // check if there is an axios request to be done
   const [pending, setPending] = useState(true);
-  // check if there is an axios request to be done
-  const [onlineClients, setOnlineClients] = useState([]);
 
-
-  const id = !user ? '' : user.id;
   const [state, dispatch] = useReducer(dataReducer, {
     chats: [],
     contact: null,
+    online: [],
     loading: true
   });
 
@@ -61,10 +60,10 @@ const useChatBoxData = (props) => {
         }
       }
       if (type === "new-connection") {
-        setOnlineClients(clients);
+        dispatch({ type: SET_ONLINE_CLIENTS, online: clients })
       }
       if (type === "new-disconnection") {
-        setOnlineClients(clients);
+        dispatch({ type: SET_ONLINE_CLIENTS, online: clients })
       }
     };
   }
@@ -91,7 +90,7 @@ const useChatBoxData = (props) => {
     }
   }
 
-  return { state, dispatch, onSubmit, active, error, setActive, user, register, handleSubmit, chat, onlineClients };
+  return { state, dispatch, onSubmit, active, error, setActive, user, register, handleSubmit, chat };
 };
 
 export default useChatBoxData;
