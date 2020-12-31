@@ -3,12 +3,6 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 
 
-
-//console.log('validation function: ', validation)
-// const {
-//   getPostsByUsers
-// } = require('../helpers/dataHelpers');
-
 module.exports = ({
   getUserById,
   getUserByEmail,
@@ -31,10 +25,6 @@ module.exports = ({
 
   /* create new user */
   router.post('/', (req, res) => {
-
-    //console.log(req.body);
-
-
     const {
       first_name,
       last_name,
@@ -65,13 +55,9 @@ module.exports = ({
             :
             (address = `${number} ${street}, ${city}`);
 
-          // console.log('Address------------>', Address);
-
           return addUser(first_name, last_name, phone, email, password, address, coordinates, photo_url)
 
         }
-
-        // Need to updated coordinates
 
       })
       .then(user => {
@@ -95,19 +81,12 @@ module.exports = ({
     } = req.body;
 
 
-    //console.log(req.body);
     getUserByEmail(email)
       .then(user => {
         if (user) {
 
           if (user.password === password) {
 
-            // res.json({
-            //   msg: 'User can enter!'
-            // });
-            //create and assign a token
-
-            //console.log('req.body users.js:', req.body)
             const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET);
 
             res.json({ user, token })
