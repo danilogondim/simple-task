@@ -77,7 +77,6 @@ export default function App() {
             <Route exact path="/tasks/:id">                  <Task />            </Route>
             <Route path="/tasks/:id/complete">               <TaskComplete />    </Route>
             <Route exact path="/tasks/:id/payment">          <TaskPayment />     </Route>
-            {/* <Route path="/tasks/:id/payment/stripe">         <Layout />          </Route> */}
             <Route path="/tasks/:id/payment/success">        <PaymentSuccess />  </Route>
             <Route path="/search">                           <Search />          </Route>
           </Switch>
