@@ -17,7 +17,6 @@ export default function About() {
         <p className="AboutDescription2">If you are skeptical about the application propose, just give us a shot. Our successful business model seeks to link users and taskers. Both are evaluated according to their previous experiences, and you can check the reviews in advance before booking an appointment or accepting a service. It provides widespread features and, for your security, even the payment is made using our platform.</p>
         <p className="AboutDescription2">For more questions or further details, do not hesitate to contact us.</p>
 
-
       </Container>
     </div>
   );
