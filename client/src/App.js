@@ -10,23 +10,23 @@ import useApplicationData from './hooks/useApplicationData';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 
-import Navbar               from './components/Navbar';
-import Footer               from './components/Footer';
-import Home                 from './pages/Home';
-import About                from './pages/About';
-import Login                from './pages/Login';
-import Register             from './pages/Register';
-import User                 from './pages/User';
-import Services             from './pages/Services';
-import Service              from './pages/Service';
-import TasksNew             from './pages/TasksNew';
-import Task                 from './pages/Task';
-import TaskComplete         from './pages/TaskComplete';
-import TaskPayment          from './pages/TaskPayment';
-import PaymentSuccess       from './pages/PaymentSuccess';
-import Search               from './pages/Search';
-import ChatBox              from './components/ChatBox';
-import ScrollToTop          from './components/ScrollToTop';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import About from './pages/About';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import User from './pages/User';
+import Services from './pages/Services';
+import Service from './pages/Service';
+import TasksNew from './pages/TasksNew';
+import Task from './pages/Task';
+import TaskComplete from './pages/TaskComplete';
+import TaskPayment from './pages/TaskPayment';
+import PaymentSuccess from './pages/PaymentSuccess';
+import Search from './pages/Search';
+import ChatBox from './components/ChatBox';
+import ScrollToTop from './components/ScrollToTop';
 
 const AppContext = createContext();
 
